@@ -7,6 +7,7 @@
     <groupId>org.speed.big.company.service</groupId>
     <artifactId>ServiceCompanyBigSpeed</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <name>Service Company Big Speed</name>
 
