@@ -1,0 +1,69 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- Enables the Spring MVC @Controller programming model (@RequestMapping, @Controller, @RequestBody, @ResponseBody)-->
+    <mvc:annotation-driven/>
+
+    <!--объявляет поддержку общих аннотаций , таких как @Resource, @Required, @Autowired, @PostConstruct и так далее.-->
+    <context:annotation-config />
+
+    <import resource="spring_web_db.xml"/>
+    <import resource="spring_web_app.xml"/>
+    <!--сообщает spring, что он должен искать путь к классам для всех классов в com.mycompany.maventestweapp
+    и просматривать каждый класс, чтобы увидеть, имеет ли он @Controller или @Repository, или @Service, или @Component-->
+    <context:component-scan base-package="org.speed.big.company.service.**.web"/>
+    <!-- <context:component-scan base-package="com.taxi.speedy.company.**.config"/>-->
+
+
+    <!--  all resources inside folder src/main/webapp/resources are mapped so they can be referred to inside JSP files -->
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+
+    <!-- uses WebJars so Javascript and CSS libs can be declared as Maven dependencies (Bootstrap, jQuery...) -->
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp"/>
+
+    <!--
+   Localization (l10n)            -  реализация в коде
+   Internationalization  (i18n)   - включение в приложение поддержки разных языков
+   -->
+    <!--ReloadableResourceBundleMessageSource - поиск в любой папке-->
+    <!--ResourceBundleMessageSource - поиск в класпасе (.classpath)-->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+          p:cacheSeconds="5"
+          p:defaultEncoding="UTF-8">
+        <!--казывается путь к app. and app_ru-->
+        <!--        <property name="basenames" value="file:///#{systemEnvironment['SERVICE_COMPANY_BIG_SPEED']}/config/locales/messages"/>-->
+        <property name="basename" value="/WEB-INF/locales/messages" />
+        <!--  <property name="fallbackToSystemLocale" value="false"/>-->
+    </bean>
+
+    <!--Перехватывает переключение Locale, использует localeResolver-->
+    <mvc:interceptors>
+        <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="lang"/>
+        </bean>
+    </mvc:interceptors>
+    <!-- <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+         <property name="paramName" value="lang" />
+     </bean>-->
+
+    <!--Локаль по умолчанию-->
+    <!--Работает с локалью и хранить в обределеной области допустим Cookie-->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="defaultLocale" value="ru"/>
+    </bean>
+    <!--Работает с локалью и хранить в обределеной области допустим Session-->
+    <!--    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+            <property name="defaultLocale" value="ru" />
+        </bean>-->
+
+</beans>
