@@ -38,7 +38,7 @@ public class JdbcUserRepositoryImpl implements UserRepository {
     //private static BeanPropertyRowMapper<User> ROW_MAPPER_USER = BeanPropertyRowMapper.newInstance(User.class);
     private static RowMapper<User> ROW_MAPPER_USER = BeanPropertyRowMapper.newInstance(User.class);
 
-    private final String sqlQuery = "select u.id as u_id, u.name as u_anme,\n " +
+    private final String sqlQuery = "select u.id as u_id, u.name as u_name,\n " +
             " u.email as u_email, u.password as u_password,\n " +
             "u.phone as u_phone, u.registered as u_registered, u.enabled as u_enabled\n " +
             " from users u";
@@ -55,15 +55,41 @@ public class JdbcUserRepositoryImpl implements UserRepository {
 
     @Override
     public User save(User user) {
-        return null;
+        //Этот класс предназначен для передачи в простой Map значений параметров методам NamedParameterJdbcTemplate класса.
+        MapSqlParameterSource map = new MapSqlParameterSource()
+                .addValue("id",user.getId()) //Добавьте параметр к этому источнику параметра.
+                .addValue("name",user.getName())
+                .addValue("email",user.getEmail())
+                .addValue("password",user.getPassword())
+                .addValue("phone",user.getPhone())
+                .addValue("registered",user.getRegistered())
+                .addValue("enabled",user.isEnabled());
+
+/*        BeanPropertySqlParameterSource - анализирует переданный ему объект и для каждого свойства объекта создаёт параметр
+        с именем свойства и его значением.*/
+        BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(user);
+
+        if (user.isNew()){
+            //Выполните вставку, используя значения, переданные и возвращающие сгенерированный ключ.
+            //Number newKey = jdbcInsert.executeAndReturnKey(parameterSource);
+            Number newKey = jdbcInsert.executeAndReturnKey(map);
+            user.setId(newKey.intValue());
+        }else{
+             namedParameterJdbcTemplate.update(
+                    "UPDATE users SET name=:name, email=:email, password=:password, phone=:phone,  " +
+                            "registered=:registered, enabled=:enabled WHERE id=:id", map);
+
+        }
+
+        return user;
     }
 
     @Override
     public User get(int id) {
-    /*    String sqlGet = sqlQuery + " where u_id=?";
+    /*    String sqlGet = sqlQuery + " where u.id=?";
         List<User> list = jdbcTemplate.query(sqlGet, new UserRowMapper(),id);*/
 
-        String sqlGet = sqlQuery + " where u_id=:id";
+        String sqlGet = sqlQuery + " where u.id=:id";
         //Этот класс предназначен для передачи в простой Map значений параметров методам NamedParameterJdbcTemplate класса.
         MapSqlParameterSource parameterSource = new MapSqlParameterSource()
                 .addValue("id",id);
@@ -94,7 +120,7 @@ public class JdbcUserRepositoryImpl implements UserRepository {
                 .addValue("startDate", startDate)
                 .addValue("endDate", endDate);
         String sqlBetweenRegistered = sqlQuery+" where u.registered between :startDate and :endDate\n" +
-                " order be u.registered DESC";// DESC - по убыванию
+                " order by u.registered DESC";// DESC - по убыванию
         List<User> list = namedParameterJdbcTemplate.query(sqlBetweenRegistered
                 ,parameterSource,new UserRowMapper());
         return list;
