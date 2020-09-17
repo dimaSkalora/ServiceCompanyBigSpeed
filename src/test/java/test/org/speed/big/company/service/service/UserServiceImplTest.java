@@ -45,19 +45,6 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void createNot() {
-        User user = new User();
-        user.setName("test name");
-        user.setEmail("test email" + LocalDateTime.now().getNano());
-        user.setPassword("test password");
-
-        userService.create(user);
-        idUser = user.getId();
-
-        log.info("createNot {}", user);
-    }
-
-    @Test
     public void update() {
         create();
         user = userService.get(idUser);
@@ -72,16 +59,6 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void updateNot() {
-        user = null;
-        log.info("get {}", user);
-
-        userService.update(user);
-
-        log.info("updateNot {}", user);
-    }
-
-    @Test
     public void get() {
         create();
         user = userService.get(idUser);
@@ -89,22 +66,8 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void getNot() {
-        user = userService.get(idUser);
-        log.info("getNot {}", user);
-    }
-
-    @Test
     public void delete() {
         create();
-        user = userService.get(idUser);
-        log.info("get {}", user);
-
-        log.info("delete {}", userService.delete(user.getId()));
-    }
-
-    @Test
-    public void deleteNot() {
         user = userService.get(idUser);
         log.info("get {}", user);
 
@@ -128,30 +91,12 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void getBetweenRegisteredNot() {
-        log.info("getBetweenRegisteredNot");
-
-        List<User> users = userService.getBetweenRegistered(null, null);
-        users.forEach(u -> log.info("user {}", u));
-    }
-
-    @Test
     public void filterUser() {
         User user = new User();
         user.setName("test name");
         user.setPassword("test password");
 
         log.info("filterUser");
-        List<User> users = userService.filterUser(user);
-        users.forEach(u -> log.info("user {}", u));
-    }
-
-    @Test
-    public void filterUserNot() {
-        User user = new User();
-        user.setId(0);
-
-        log.info("filterUserNot");
         List<User> users = userService.filterUser(user);
         users.forEach(u -> log.info("user {}", u));
     }
@@ -168,15 +113,4 @@ public class UserServiceImplTest {
         users.forEach(u -> log.info("user {}",u));
     }
 
-    @Test
-    public void filterUserConditionNot() {
-        User user = new User();
-        user.setId(0);
-
-        String sqlCondition = "";
-
-        log.info("filterUserConditionNot");
-        List<User> users = userService.filterUser(user, sqlCondition);
-        users.forEach(u -> log.info("user {}", u));
-    }
 }
