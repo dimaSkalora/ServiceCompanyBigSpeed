@@ -11,7 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 
-@Controller("users")
+@Controller
+@RequestMapping("users")
 public class JspUserController extends AbstractUserController{
     @RequestMapping
     public String users(Model model){
