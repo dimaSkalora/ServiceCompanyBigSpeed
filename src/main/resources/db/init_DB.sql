@@ -53,10 +53,10 @@ CREATE TABLE roles
     id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     name             VARCHAR                 NOT NULL,
     description      VARCHAR                 NOT NULL,
-    id_role_type     INTEGER                 NOT NULL
+    id_role_type     INTEGER                 NOT NULL,
+    CONSTRAINT roles_role_type_idx UNIQUE (name, id_role_type),
+    FOREIGN KEY (id_role_type) REFERENCES role_type (id)
 );
-CONSTRAINT roles_role_type_idx UNIQUE (name, id_role_type);
-FOREIGN KEY (id_role_type) REFERENCES role_type (id);
 COMMENT ON TABLE roles
     IS 'Роли';
 COMMENT ON COLUMN roles.id
@@ -74,16 +74,16 @@ CREATE TABLE user_roles
     id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     id_user          INTEGER NOT NULL,
     id_role          INTEGER NOT NULL,
-    date_time  TIMESTAMP NOT NULL,
+    date_time        TIMESTAMP NOT NULL,
+    FOREIGN KEY (id_user) REFERENCES users (id),
+    FOREIGN KEY (id_role) REFERENCES roles (id)
 );
 CREATE UNIQUE INDEX ur_idu_idr_unique_idx ON user_roles (id_user,id_role)
-FOREIGN KEY (id_user) REFERENCES users (id);
-FOREIGN KEY (id_role) REFERENCES roles (id);
 COMMENT ON TABLE user_roles
     IS 'Пользователь и Роли';
 COMMENT ON COLUMN user_roles.id_user
     IS 'Пользователь';
 COMMENT ON COLUMN user_roles.id_role
     IS 'Роль';
-COMMENT ON COLUMN user_roles.start_date_time
+COMMENT ON COLUMN user_roles.date_time
     IS 'Дата добавление пользователя и роли';
