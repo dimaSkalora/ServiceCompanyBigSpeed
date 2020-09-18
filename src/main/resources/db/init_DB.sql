@@ -67,3 +67,23 @@ COMMENT ON COLUMN roles.description
     IS 'Описание';
 COMMENT ON COLUMN roles.id_role_type
     IS 'Тип роли';
+
+---------------user_roles---------------4
+CREATE TABLE user_roles
+(
+    id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    id_user          INTEGER NOT NULL,
+    id_role          INTEGER NOT NULL,
+    date_time  TIMESTAMP NOT NULL,
+);
+CREATE UNIQUE INDEX ur_idu_idr_unique_idx ON user_roles (id_user,id_role)
+FOREIGN KEY (id_user) REFERENCES users (id);
+FOREIGN KEY (id_role) REFERENCES roles (id);
+COMMENT ON TABLE user_roles
+    IS 'Пользователь и Роли';
+COMMENT ON COLUMN user_roles.id_user
+    IS 'Пользователь';
+COMMENT ON COLUMN user_roles.id_role
+    IS 'Роль';
+COMMENT ON COLUMN user_roles.start_date_time
+    IS 'Дата добавление пользователя и роли';
