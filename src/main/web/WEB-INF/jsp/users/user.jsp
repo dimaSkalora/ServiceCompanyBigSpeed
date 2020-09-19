@@ -14,12 +14,9 @@
 <jsp:include page="../fragments/bodyHeader.jsp"/>
 <div class="jumbotron">
     <div class="container">
-
         <c:url var="createOrUpdateUrl" value="/users/createOrUpdate" />
-        <form:form method="POST" modelAttribute="user" action="${createOrUpdateUrl}"
-                   class="box login">
-
-            <fieldset class="boxBody">
+        <form:form method="POST" modelAttribute="user" action="${createOrUpdateUrl}">
+            <fieldset>
                 <table>
                     <tr>
                         <td>
@@ -76,7 +73,7 @@
                                 </form:label>
                             </td>
                             <td>
-                                <form:input path="registered" />
+                                <form:input type="data" path="registered" />
                             </td>
                             <td>
                                 <form:label path="enabled">
@@ -95,15 +92,15 @@
                 <c:set var="jsf_request_uri" value="${requestScope.get(\"javax.servlet.forward.request_uri\")}"/>
                 <c:set var="jsf_request_uriStr" value="/ServiceCompanyBigSpeed/users/get"/>
                 <c:if test="${jsf_request_uri.startsWith(jsf_request_uriStr)}">
-                    <a href="/ServiceCompanyBigSpeed/users" class="btnLogin"><spring:message code="app.ok"/></a>
-                    <%--<input class ="btnLogin" type="button" value="<spring:message text="OK2"/>" onclick="location.href = '/ServiceCompanyBigSpeed/users'"/>--%>
+                    <a href="/ServiceCompanyBigSpeed/users"><spring:message code="app.ok"/></a>
+                    <%--<input type="button" value="<spring:message text="OK2"/>" onclick="location.href = '/ServiceCompanyBigSpeed/users'"/>--%>
                 </c:if>
                 <c:if test="${!jsf_request_uri.startsWith(jsf_request_uriStr)}">
                     <c:if test="${!empty user.id}">
-                        <input type="submit" class="btnLogin" value="<spring:message code="app.update"/>"/>
+                        <input type="submit" value="<spring:message code="app.update"/>"/>
                     </c:if>
                     <c:if test="${empty user.id}">
-                        <input type="submit" class="btnLogin" value="<spring:message code="app.save"/>"/>
+                        <input type="submit" value="<spring:message code="app.save"/>"/>
                     </c:if>
                 </c:if>
             </footer>

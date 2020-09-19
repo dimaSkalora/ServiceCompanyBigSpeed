@@ -38,7 +38,7 @@
                 </tr>
                 <tr>
                     <td><spring:message code="user.enabled"/></td>
-                    <td><input type="checkbox" name="enabled" value="${param.enabled}"></td>
+                    <td><input type="checkbox" name="enabled" checked = "checked"></td>
                     <td></td>
                     <td></td>
                 </tr>

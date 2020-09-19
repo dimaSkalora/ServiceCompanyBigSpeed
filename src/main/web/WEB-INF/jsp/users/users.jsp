@@ -42,7 +42,7 @@
                     <td><c:out value="${user.password}"/></td>
                     <td><c:out value="${user.phone}"/></td>
                     <td><c:out value="${user.registered}"/></td>
-                    <td><c:out value="${user.enabled}"/></td>
+                    <td><c:out value="${user.isEnabled().booleanValue()}"/></td>
                     <td><a href="users/update/${user.id}"/><spring:message code="app.update"/></td>
                     <td><a href="users/delete?id=${user.id}"/><spring:message code="app.delete"/></td>
                 </tr>
