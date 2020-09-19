@@ -15,8 +15,8 @@
         <property name="driverClassName" value="org.postgresql.Driver" />
         <property name="url" value="jdbc:postgresql://localhost:5432/service_company_big_speed" />
         <property name="username" value="postgres" />
-        <!--<property name="password" value="rootpassword" />-->
-        <property name="password" value="passwordroot" />
+        <property name="password" value="rootpassword" />
+        <!--<property name="password" value="passwordroot" />-->
     </bean>
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
