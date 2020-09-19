@@ -11,7 +11,7 @@ public class User implements HasId {
     private String password;
     private String phone;
     private LocalDate registered;        //Дата регистраиции пользователя
-    private Boolean enabled;        //true - активный, false - не активный
+    private boolean enabled;        //true - активный, false - не активный
 
     public User() {
     }
@@ -80,11 +80,11 @@ public class User implements HasId {
         this.registered = registered;
     }
 
-    public Boolean isEnabled() {
+    public boolean isEnabled() {
         return enabled;
     }
 
-    public void setEnabled(Boolean enabled) {
+    public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 
