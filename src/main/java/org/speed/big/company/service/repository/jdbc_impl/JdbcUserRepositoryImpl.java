@@ -151,8 +151,8 @@ public class JdbcUserRepositoryImpl implements UserRepository {
             parameterSource.addValue("phone",user.getPhone());
         if (user.getRegistered() != null)
             parameterSource.addValue("registered",user.getRegistered());
-        if (user.isEnabled() != null)
-            parameterSource.addValue("enabled",user.isEnabled());
+
+        parameterSource.addValue("enabled",user.isEnabled());
 
         for (var entrySet: parameterSource.getValues().entrySet()){
             String paramName = entrySet.getKey();
