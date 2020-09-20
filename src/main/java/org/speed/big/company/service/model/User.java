@@ -2,22 +2,58 @@ package org.speed.big.company.service.model;
 
 import org.speed.big.company.service.HasId;
 
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
-public class User implements HasId {
-    private Integer id;
+@NamedQueries({
+        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
+        @NamedQuery(name = User.ALL_SORTED, query = "SELECT u FROM User u ORDER BY u.name, u.email"),
+})
+@Entity
+@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx"),
+        @UniqueConstraint(columnNames = "phone", name = "users_unique_phone_idx")})
+public class User extends AbstractBaseEntity{
+
+    public static final String DELETE = "User.delete";
+    public static final String ALL_SORTED = "User.getAllSorted";
+
+    @NotBlank
+    @Size(min = 2, max = 100)
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "email", nullable = false, unique = true)
+    @Email
+    @NotBlank
+    @Size(max = 100)
     private String email;
+
+    @Column(name = "password", nullable = false)
+    @NotBlank
+    @Size(min = 5, max = 64)
     private String password;
+
+    @Column(name = "phone", nullable = false, unique = true)
+    @NotNull
     private String phone;
+
+    @Column(name = "registered", nullable = false)
+    @NotNull
     private LocalDate registered;        //Дата регистраиции пользователя
+
+    @Column(name = "enabled", nullable = false, columnDefinition = "bool default true")
+    @NotNull
     private boolean enabled;        //true - активный, false - не активный
 
     public User() {
     }
 
     public User(Integer id, String name, String email, String password, String phone, LocalDate registered, boolean enabled) {
-        this.id=id;
+        super(id);
         this.name = name;
         this.email = email;
         this.password = password;
