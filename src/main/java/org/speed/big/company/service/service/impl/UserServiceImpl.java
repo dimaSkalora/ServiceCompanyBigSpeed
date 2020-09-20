@@ -22,7 +22,7 @@ public class UserServiceImpl  implements UserService {
     private UserRepository userRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(@Qualifier("jdbcUserRepositoryImpl") UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
