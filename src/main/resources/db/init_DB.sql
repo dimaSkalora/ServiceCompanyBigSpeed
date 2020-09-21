@@ -53,9 +53,9 @@ CREATE TABLE roles
     id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     name             VARCHAR                 NOT NULL,
     description      VARCHAR                 NOT NULL,
-    id_role_type     INTEGER                 NOT NULL,
-    CONSTRAINT roles_role_type_idx UNIQUE (name, id_role_type),
-    FOREIGN KEY (id_role_type) REFERENCES role_type (id)
+    role_type_id     INTEGER                 NOT NULL,
+    CONSTRAINT roles_role_type_idx UNIQUE (name, role_type_id),
+    FOREIGN KEY (role_type_id) REFERENCES role_type (id)
 );
 COMMENT ON TABLE roles
     IS 'Роли';
@@ -65,25 +65,25 @@ COMMENT ON COLUMN roles.name
     IS 'Найменование';
 COMMENT ON COLUMN roles.description
     IS 'Описание';
-COMMENT ON COLUMN roles.id_role_type
+COMMENT ON COLUMN roles.role_type_id
     IS 'Тип роли';
 
 ---------------user_roles---------------4
 CREATE TABLE user_roles
 (
     id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    id_user          INTEGER NOT NULL,
-    id_role          INTEGER NOT NULL,
+    user_id          INTEGER NOT NULL,
+    role_id          INTEGER NOT NULL,
     date_time        TIMESTAMP NOT NULL,
-    FOREIGN KEY (id_user) REFERENCES users (id),
-    FOREIGN KEY (id_role) REFERENCES roles (id)
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (role_id) REFERENCES roles (id)
 );
-CREATE UNIQUE INDEX ur_idu_idr_unique_idx ON user_roles (id_user,id_role)
+CREATE UNIQUE INDEX ur_udid_rid_unique_idx ON user_roles (user_id,role_id)
 COMMENT ON TABLE user_roles
     IS 'Пользователь и Роли';
-COMMENT ON COLUMN user_roles.id_user
+COMMENT ON COLUMN user_roles.user_id
     IS 'Пользователь';
-COMMENT ON COLUMN user_roles.id_role
+COMMENT ON COLUMN user_roles.role_id
     IS 'Роль';
 COMMENT ON COLUMN user_roles.date_time
     IS 'Дата добавление пользователя и роли';
