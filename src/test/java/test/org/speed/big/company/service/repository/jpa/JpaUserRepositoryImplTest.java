@@ -95,6 +95,7 @@ public class JpaUserRepositoryImplTest {
         User user = new User();
         user.setName("test name");
         user.setPassword("test password");
+        user.setEnabled(true);
 
         log.info("filterUser");
         List<User> users = userRepository.filterUser(user);
@@ -105,6 +106,7 @@ public class JpaUserRepositoryImplTest {
     public void filterUserCondition(){
         User user = new User();
         user.setName("test name");
+        user.setEnabled(true);
 
         String sqlCondition = " u.password = 'test password'";
 
