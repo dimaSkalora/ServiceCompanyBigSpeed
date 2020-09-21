@@ -12,6 +12,9 @@ import java.time.LocalDate;
 @NamedQueries({
         @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
         @NamedQuery(name = User.ALL_SORTED, query = "SELECT u FROM User u ORDER BY u.name, u.email"),
+        @NamedQuery(name = User.BETWEEN_REGISTERED, query = "SELECT u FROM User u " +
+                " where u.registered between :startDate and :endDate " +
+                " ORDER BY u.registered")
 })
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx"),
@@ -20,6 +23,8 @@ public class User extends AbstractBaseEntity{
 
     public static final String DELETE = "User.delete";
     public static final String ALL_SORTED = "User.getAllSorted";
+    public static final String BETWEEN_REGISTERED = "User.betweenRegistered";
+
 
     @NotBlank
     @Size(min = 2, max = 100)
