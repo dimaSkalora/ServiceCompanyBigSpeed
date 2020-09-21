@@ -97,7 +97,15 @@ public class JdbcRoleTypeRepositoryImpl implements RoleTypeRepository {
 
     @Override
     public List<RoleType> filterRoleType(RoleType roleType) {
+        //Этот класс предназначен для передачи в простой Map значений параметров методам NamedParameterJdbcTemplate класса.
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        if (roleType.getId() != null)
+            parameterSource.addValue("id",roleType.getId());
+        if (roleType.getName() != null)
+            parameterSource.addValue("name",roleType.getName());
 
-        return null;
+        List<RoleType> list = namedParameterJdbcTemplate.query(sqlQuery,parameterSource, new RoleTypeRowMapper());
+
+        return list;
     }
 }
