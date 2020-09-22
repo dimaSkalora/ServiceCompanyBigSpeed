@@ -11,6 +11,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">List</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     <a class="dropdown-item" href="users"><spring:message code="app.users"/></a>
+                    <a class="dropdown-item" href="roleTypes"><spring:message code="app.roleTypes"/></a>
                  </div>
             </li>
         </ul>

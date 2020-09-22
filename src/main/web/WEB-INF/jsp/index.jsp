@@ -12,6 +12,7 @@
     <div class="container">
         <ul>
             <li><a href="users"><spring:message code="app.users"/></a></li>
+            <li><a href="roleTypes"><spring:message code="app.roleTypes"/></a></li>
         </ul>
     </div>
 </div>
