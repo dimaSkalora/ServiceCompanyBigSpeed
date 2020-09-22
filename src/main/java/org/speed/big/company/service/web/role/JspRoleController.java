@@ -1,11 +1,10 @@
 package org.speed.big.company.service.web.role;
 
 import org.speed.big.company.service.model.Role;
+import org.speed.big.company.service.model.RoleType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -21,7 +20,7 @@ public class JspRoleController extends AbstractRoleController{
     public ModelAndView role(){
         ModelAndView modelAndView = new ModelAndView("roles/role");
         modelAndView.addObject("role", new Role());
-        modelAndView.addObject("allRoleType", super.getAllRoleType());
+        modelAndView.addObject("allRoleTypes", super.getAllRoleType());
 
         return modelAndView;
     }
@@ -32,10 +31,64 @@ public class JspRoleController extends AbstractRoleController{
     }
 
     @RequestMapping(value = "/createRequestParam", method = RequestMethod.POST)
-    public String createRequestParam(){
+    public String createRequestParam(@RequestParam String name,
+                                     @RequestParam String description, @RequestParam int roleTypeId){
+
+        //createRequestParam?name=testName....
+        RoleType roleType = new RoleType();
+        roleType.setId(roleTypeId);
+
+        Role role = new Role();
+        role.setName(name);
+        role.setDescription(description);
+        role.setRoleTypeId(roleType);
+
+        super.create(role);
 
         return "redirect:/roles";
     }
+
+    @PostMapping("/createOrUpdate")
+    public String createOrUpdate(@ModelAttribute Role role){
+        if (role.isNew())
+            super.create(role);
+        else
+            super.update(role);
+
+        return "redirect:/roles";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateR(@PathVariable int id, Model model){
+        model.addAttribute("role",super.get(id));
+        model.addAttribute("allRoleTypes", super.getAllRoleType());
+
+        return "roles/role";
+    }
+
+    @GetMapping("/get/{id}")
+    public ModelAndView getR(@PathVariable int id){
+        return new ModelAndView("roles/role","role",super.get(id));
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String deleteR(@RequestParam int id){
+        //delete/?id=0
+        Role role = super.get(id);
+        super.delete(role.getId());
+
+        return "redirect:/roles";
+    }
+
+    @GetMapping("/getData/{id}")
+    public String getData(@PathVariable int id, Model model){
+        Role role = super.get(id);
+        model.addAttribute("roleData", role);
+        model.addAttribute("rRoleType", super.getRoleType(role.getRoleTypeId().getId()));
+
+        return "roles/roleData";
+    }
+
 
 
 }

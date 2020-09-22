@@ -70,7 +70,7 @@ public class JspRoleTypeController extends AbstractRoleTypeController{
         RoleType roleType = super.get(id);
         model.addAttribute("roleType",roleType);
 
-        return "roleTypes/roleTypes";
+        return "roleTypes/roleType";
     }
 
     @GetMapping("/get/{id}")
