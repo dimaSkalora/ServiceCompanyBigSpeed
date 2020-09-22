@@ -56,6 +56,6 @@ public class RoleTypeServiceImpl implements RoleTypeService {
     @Override
     public List<RoleType> filterRoleType(RoleType roleType) {
         Assert.notNull(roleType,"не должно быть null");
-        return filterRoleType(roleType);
+        return roleTypeRepository.filterRoleType(roleType);
     }
 }
