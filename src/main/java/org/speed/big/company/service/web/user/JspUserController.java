@@ -113,7 +113,7 @@ public class JspUserController extends AbstractUserController{
 
     @RequestMapping(value = "/filterU", method = RequestMethod.GET)
     public String filterU(@ModelAttribute("user") User user, Model model){
-        model.addAttribute("users/users", super.filterUser(user));
+        model.addAttribute("users", super.filterUser(user));
 
         return "users/users";
     }
