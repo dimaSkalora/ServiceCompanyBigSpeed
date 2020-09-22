@@ -40,7 +40,7 @@ public class JdbcRoleRepositoryImpl implements RoleRepository {
 
     private final String sqlQuery = "select r.id as r_id, r.name as r_name,\n" +
             " r.description as r_description, r.role_type_id as r_role_type_id,\n " +
-            " rt. as rt_id, rt.name as rt_name from role r \n" +
+            " rt.id as rt_id, rt.name as rt_name from roles r \n" +
             " left join role_type rt on r.role_type_id=rt.id";
 
     @Autowired
