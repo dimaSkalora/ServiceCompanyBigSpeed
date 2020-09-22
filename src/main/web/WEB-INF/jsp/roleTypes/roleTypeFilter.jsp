@@ -22,7 +22,7 @@
                     <td><spring:message code="roleType.id"/></td>
                     <td><input type="number" name="id" value="${param.id}"></td>
                     <td><spring:message code="roleType.name"/></td>
-                    <td><input type="text" name="name value="${param.name}"></td>
+                    <td><input type="text" name="name" value="${param.name}"></td>
                 </tr>
 
                 <div class="text-right">

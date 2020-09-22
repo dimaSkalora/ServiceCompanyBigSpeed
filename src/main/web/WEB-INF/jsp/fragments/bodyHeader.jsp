@@ -12,6 +12,7 @@
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     <a class="dropdown-item" href="users"><spring:message code="app.users"/></a>
                     <a class="dropdown-item" href="roleTypes"><spring:message code="app.roleTypes"/></a>
+                    <a class="dropdown-item" href="roles"><spring:message code="app.roles"/></a>
                  </div>
             </li>
         </ul>

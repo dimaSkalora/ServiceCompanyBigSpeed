@@ -35,7 +35,7 @@
             <c:forEach items="${roles}" var="role">
                 <jsp:useBean id="role" scope="page" type="org.speed.big.company.service.model.Role"/>
                 <tr>
-                    <td><a href="roles/get/${role.id}"/><c:out value="${roleType.id}"/></td>
+                    <td><a href="roles/getData/${role.id}"/><c:out value="${roleType.id}"/></td>
                     <td><c:out value="${role.name}"/></td>
                     <td><c:out value="${role.description}"/></td>
                     <td><c:out value="${role.roleTypeId}"/></td>
