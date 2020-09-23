@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserService {
     User create(User user);
-    void update(User user) throws NotFoundException;//NotFoundException - Об'экт не обнаружен
+    User update(User user) throws NotFoundException;//NotFoundException - Об'экт не обнаружен
     User get(int id) throws NotFoundException;
     boolean delete(int id) throws NotFoundException;
     List<User> getAll();

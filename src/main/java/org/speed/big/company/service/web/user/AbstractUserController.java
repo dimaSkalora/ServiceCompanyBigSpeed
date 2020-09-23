@@ -24,10 +24,10 @@ public abstract class AbstractUserController {
         return userService.create(user);
     }
 
-    public void update(User user) {
+    public User update(User user) {
         checkNotNew(user);
         log.info("update {}",user);
-        userService.update(user);
+        return userService.update(user);
     }
 
     public User get(int id){

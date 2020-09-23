@@ -33,9 +33,9 @@ public class UserServiceImpl  implements UserService {
     }
 
     @Override
-    public void update(User user) throws NotFoundException {
+    public User update(User user) throws NotFoundException {
         Assert.notNull(user,"не должно быть null");
-        userRepository.save(user);
+        return checkNotFoundWithId(userRepository.save(user),user.getId());
     }
 
     @Override
