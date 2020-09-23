@@ -15,7 +15,7 @@
 <div class="jumbotron">
     <div class="container">
 
-        <c:url var="createOrUpdateUrl" value="/roles/filterRoleType" />
+        <c:url var="createOrUpdateUrl" value="/roles/filterRole" />
         <form method="post" action="${createOrUpdateUrl}" >
             <table border="0" cellpadding="8" cellspacing="0">
                 <tr>

@@ -24,7 +24,7 @@
         <!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane container active" id="role">
-                <form:form method="POST" modelAttribute="role">
+                <form:form method="POST" modelAttribute="roleData">
                     <fieldset>
                         <table>
                             <tr>
@@ -82,7 +82,7 @@
             </div>
 
             <div class="tab-pane container fade" id="roleType">
-                <form:form method="POST" modelAttribute="roleType" >
+                <form:form method="POST" modelAttribute="rRoleType" >
                     <fieldset>
                         <table>
                             <tr>
