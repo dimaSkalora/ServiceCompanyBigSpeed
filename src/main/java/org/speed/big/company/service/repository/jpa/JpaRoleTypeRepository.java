@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository("jpaRoleTypeRepository")
@@ -53,11 +54,31 @@ public class JpaRoleTypeRepository implements RoleTypeRepository {
 
     @Override
     public List<RoleType> filterRoleType(RoleType roleType) {
-        String sqlFilter = "";
+        String sqlFilter = "select rt from RoleType rt";
+        int parameterCount = 0;
+
+        if (roleType.getId() != null){
+            sqlFilter += " where id=:id";
+            parameterCount++;
+        }
+        if (roleType.getName() != null){
+            if (parameterCount == 0)
+                sqlFilter += " where name=:name";
+            else
+                sqlFilter += " and name=:name";
+        }
+
+        Query query = entityManager.createQuery(sqlFilter);
+        List<RoleType> list;
+
+        if (roleType.getId() != null)
+            query.setParameter("id",roleType.getId());
+        if (roleType.getName() != null)
+            query.setParameter("name",roleType.getName());
+
+        list = query.getResultList();
 
 
-
-
-        return null;
+        return list;
     }
 }

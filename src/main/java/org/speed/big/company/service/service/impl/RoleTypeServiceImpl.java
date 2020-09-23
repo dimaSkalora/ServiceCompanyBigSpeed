@@ -31,9 +31,9 @@ public class RoleTypeServiceImpl implements RoleTypeService {
     }
 
     @Override
-    public void update(RoleType roleType) {
+    public RoleType update(RoleType roleType) {
         Assert.notNull(roleType,"не должно быть null");
-        roleTypeRepository.save(roleType);
+        return checkNotFoundWithId(roleTypeRepository.save(roleType),roleType.getId());
     }
 
     @Override

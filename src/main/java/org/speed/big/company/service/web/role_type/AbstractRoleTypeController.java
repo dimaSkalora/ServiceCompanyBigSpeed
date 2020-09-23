@@ -24,10 +24,10 @@ public abstract class AbstractRoleTypeController {
         return roleTypeService.create(roleType);
     }
 
-    public void update(RoleType roleType){
+    public RoleType update(RoleType roleType){
         checkNotNew(roleType);
         log.info("update {}",roleType);
-        roleTypeService.update(roleType);
+        return roleTypeService.update(roleType);
     }
 
     public RoleType get(int id) {
