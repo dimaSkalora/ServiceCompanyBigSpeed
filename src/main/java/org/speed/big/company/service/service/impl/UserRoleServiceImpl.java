@@ -1,6 +1,7 @@
 package org.speed.big.company.service.service.impl;
 
 import org.speed.big.company.service.model.UserRole;
+import org.speed.big.company.service.repository.UserRoleRepository;
 import org.speed.big.company.service.service.UserRoleService;
 import org.speed.big.company.service.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,44 +18,44 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     //@Autowired
     //@Qualifier("jdbcUserRoleRepositoryImpl")
-    private UserRoleService userRoleService;
+    private UserRoleRepository userRoleRepository;
 
     @Autowired
-    public UserRoleServiceImpl(@Qualifier("jdbcUserRoleRepositoryImpl") UserRoleService userRoleService) {
-        this.userRoleService = userRoleService;
+    public UserRoleServiceImpl(@Qualifier("jdbcUserRoleRepositoryImpl")UserRoleRepository userRoleRepository) {
+        this.userRoleRepository = userRoleRepository;
     }
 
     @Override
     public UserRole create(UserRole userRole) {
         Assert.notNull(userRole,"не должно быть null");
-        return userRoleService.create(userRole);
+        return userRoleRepository.save(userRole);
     }
 
     @Override
     public UserRole update(UserRole userRole) throws NotFoundException {
         Assert.notNull(userRole,"не должно быть null");
-        return checkNotFoundWithId(userRoleService.update(userRole),userRole.getId());
+        return checkNotFoundWithId(userRoleRepository.save(userRole),userRole.getId());
     }
 
     @Override
     public UserRole get(int id) throws NotFoundException {
         //Проверка - не найден с идентификатором
-        return checkNotFoundWithId(userRoleService.get(id),id);
+        return checkNotFoundWithId(userRoleRepository.get(id),id);
     }
 
     @Override
     public boolean delete(int id) throws NotFoundException {
-        return checkNotFoundWithId(Boolean.valueOf(userRoleService.delete(id)),id);
+        return checkNotFoundWithId(Boolean.valueOf(userRoleRepository.delete(id)),id);
     }
 
     @Override
     public List<UserRole> getAll() {
-        return userRoleService.getAll();
+        return userRoleRepository.getAll();
     }
 
     @Override
     public List<UserRole> filter(UserRole userRole) {
         Assert.notNull(userRole,"не должно быть null");
-        return userRoleService.filter(userRole);
+        return userRoleRepository.filter(userRole);
     }
 }
