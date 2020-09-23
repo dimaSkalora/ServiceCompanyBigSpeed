@@ -19,6 +19,7 @@ public class RoleServiceImpl implements RoleService {
     @Qualifier("jdbcRoleRepositoryImpl")*/
     private final RoleRepository roleRepository;
 
+    @Autowired
     public RoleServiceImpl(@Qualifier("jdbcRoleRepositoryImpl") RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
@@ -30,9 +31,9 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void update(Role role) throws NotFoundException {
+    public Role update(Role role) throws NotFoundException {
         Assert.notNull(role,"не должно быть null");
-        roleRepository.save(role);
+        return checkNotFoundWithId(roleRepository.save(role),role.getId());
     }
 
     @Override

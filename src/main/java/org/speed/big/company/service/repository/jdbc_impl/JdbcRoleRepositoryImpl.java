@@ -68,7 +68,7 @@ public class JdbcRoleRepositoryImpl implements RoleRepository {
             Number newKey = jdbcInsert.executeAndReturnKey(map);
             role.setId(newKey.intValue());
         }else {
-            namedParameterJdbcTemplate.update("update role set name=:name, description=:description," +
+            namedParameterJdbcTemplate.update("update roles set name=:name, description=:description," +
                     " role_type_id=:roleTypeId where id=:id",map);
         }
 

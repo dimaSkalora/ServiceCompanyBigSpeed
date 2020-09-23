@@ -18,6 +18,7 @@ public class RoleRowMapper implements RowMapper<Role> {
         // В пределах одной строки значения могут быть считаны в любом порядке
         RoleType roleType = new RoleType();
         roleType.setId(rs.getInt("r_role_type_id"));
+        roleType.setName(rs.getString("rt_name"));
 
         Role role = new Role();
         role.setId(rs.getInt("r_id"));

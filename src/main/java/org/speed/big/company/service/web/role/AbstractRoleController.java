@@ -28,11 +28,11 @@ public abstract class AbstractRoleController {
         return roleService.create(role);
     }
 
-    public void update(Role role){
+    public Role update(Role role){
         checkNotNew(role);
         log.info("update {}",role);
 
-        roleService.update(role);
+        return roleService.update(role);
     }
 
     public Role get(int id){

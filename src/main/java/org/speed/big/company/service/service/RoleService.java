@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface RoleService {
     Role create(Role role);
-    void update(Role role) throws NotFoundException;//NotFoundException - Об'экт не обнаружен
+    Role update(Role role) throws NotFoundException;//NotFoundException - Об'экт не обнаружен
     Role get(int id) throws NotFoundException;
     boolean delete(int id) throws NotFoundException;
     List<Role> getAll();
