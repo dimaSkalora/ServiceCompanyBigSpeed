@@ -2,10 +2,17 @@ package org.speed.big.company.service.web.role;
 
 import org.speed.big.company.service.model.Role;
 import org.speed.big.company.service.model.RoleType;
+import org.speed.big.company.service.model.propertyeditor.RoleTypePropertyEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+
+import static org.speed.big.company.service.util.ParseUtil.parseInteger;
+import static org.speed.big.company.service.util.ParseUtil.parseString;
 
 @Controller
 @RequestMapping("roles")
@@ -35,8 +42,7 @@ public class JspRoleController extends AbstractRoleController{
                                      @RequestParam String description, @RequestParam int roleTypeId){
 
         //createRequestParam?name=testName....
-        RoleType roleType = new RoleType();
-        roleType.setId(roleTypeId);
+        RoleType roleType = super.getRoleType(roleTypeId);
 
         Role role = new Role();
         role.setName(name);
@@ -44,6 +50,19 @@ public class JspRoleController extends AbstractRoleController{
         role.setRoleTypeId(roleType);
 
         super.create(role);
+
+        return "redirect:/roles";
+    }
+
+    @PostMapping("/createOrUpdateHSR")
+    public String createOrUpdateHSR(HttpServletRequest request){
+        RoleType roleType = super.getRoleType(
+                Integer.parseInt(request.getParameter("roleTypeId")));
+
+        Role role = new Role();
+        role.setName(request.getParameter("name"));
+        role.setDescription(request.getParameter("description"));
+        role.setRoleTypeId(roleType);
 
         return "redirect:/roles";
     }
@@ -89,6 +108,36 @@ public class JspRoleController extends AbstractRoleController{
         return "roles/roleData";
     }
 
+    @PostMapping("/filterRole")
+    public ModelAndView filterRole(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView("/roles/roles");
 
+        var id = parseInteger(request.getParameter("id"));
+        var name = parseString(request.getParameter("name"));
+        var description = parseString(request.getParameter("description"));
+        var roleTypeId = parseInteger(request.getParameter("roleTypeId"));
 
+        RoleType roleType = null;
+        if (roleTypeId != null)
+            roleType = super.getRoleType(roleTypeId);
+
+        Role role = new Role();
+        if (id != null)
+            role.setId(id);
+        if (name != null)
+            role.setName(name);
+        if (description != null)
+            role.setDescription(description);
+        if (roleType != null)
+            role.setRoleTypeId(roleType);
+
+        modelAndView.addObject("roles",super.filterRole(role));
+
+        return modelAndView;
+    }
+
+    @InitBinder
+    private void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(RoleType.class, new RoleTypePropertyEditor());
+    }
 }
