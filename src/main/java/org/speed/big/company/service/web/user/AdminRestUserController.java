@@ -16,18 +16,24 @@ public class AdminRestUserController extends AbstractUserController{
 
     static final String REST_URL = "/rest/admin/users";
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     //produces - Воспроизводимые типы носителей запрошенного запроса, сужающие первичное отображение.
-    public ResponseEntity<List<User>> getAllU() {
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<User> getAllU() {
+        List<User> list = super.getAll();
+
+        return list;
+    }
+
+/*    public ResponseEntity<List<User>> getAllU() {
         List<User> list = super.getAll();
 
         return list != null &&  !list.isEmpty()
                 ? new ResponseEntity<>(list, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+    }*/
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     //@PathVariable - Аннотации, указывающие, что параметр метода должен быть привязан к переменной шаблона UR
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getU(@PathVariable("id") int id) {
         User user = super.get(id);
 
