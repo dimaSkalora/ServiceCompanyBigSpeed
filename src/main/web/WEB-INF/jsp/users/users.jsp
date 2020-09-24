@@ -14,14 +14,14 @@
 <div class="jumbotron">
     <div class="container">
         <ul>
-            <li><a href="users/user">add user</a></li>
+            <li><a class="btn btn-primary" role="button" href="users/user">add user</a></li>
         </ul>
         <ul>
-            <li><a href="users/filter" class="btnSearchBy">Search by User</a> </li>
+            <li><a href="users/filter" class="btn btn-outline-primary" role="button">Search by User</a> </li>
         </ul>
     </div>
     <div>
-        <table border="1" cellpadding="8" cellspacing="0">
+        <table class="table">
             <thead>
             <tr>
                 <th><spring:message code="user.name"/></th>
@@ -34,19 +34,21 @@
                 <th></th>
             </tr>
             </thead>
-            <c:forEach items="${users}" var="user">
-                <jsp:useBean id="user" scope="page" type="org.speed.big.company.service.model.User"/>
-                <tr>
-                    <td><a href="users/get/${user.id}"/><c:out value="${user.name}"/></td>
-                    <td><c:out value="${user.email}"/></td>
-                    <td><c:out value="${user.password}"/></td>
-                    <td><c:out value="${user.phone}"/></td>
-                    <td><c:out value="${user.registered}"/></td>
-                    <td><c:out value="${user.isEnabled().booleanValue()}"/></td>
-                    <td><a href="users/update/${user.id}"/><spring:message code="app.update"/></td>
-                    <td><a href="users/delete?id=${user.id}"/><spring:message code="app.delete"/></td>
-                </tr>
-            </c:forEach>
+            <tbody>
+                <c:forEach items="${users}" var="user">
+                    <jsp:useBean id="user" scope="page" type="org.speed.big.company.service.model.User"/>
+                    <tr>
+                        <td><a href="users/get/${user.id}"/><c:out value="${user.name}"/></td>
+                        <td><c:out value="${user.email}"/></td>
+                        <td><c:out value="${user.password}"/></td>
+                        <td><c:out value="${user.phone}"/></td>
+                        <td><c:out value="${user.registered}"/></td>
+                        <td><c:out value="${user.isEnabled().booleanValue()}"/></td>
+                        <td><a href="users/update/${user.id}"/><spring:message code="app.update"/></td>
+                        <td><a href="users/delete?id=${user.id}"/><spring:message code="app.delete"/></td>
+                    </tr>
+                </c:forEach>
+            </tbody>
         </table>
     </div>
 </div>

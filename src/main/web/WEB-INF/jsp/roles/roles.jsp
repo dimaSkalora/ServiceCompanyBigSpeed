@@ -14,14 +14,14 @@
 <div class="jumbotron">
     <div class="container">
         <ul>
-            <li><a href="roles/role">add role</a></li>
+            <li><a class="btn btn-primary" role="button" href="roles/role">add role</a></li>
         </ul>
         <ul>
             <li><a href="roles/filter" class="btnSearchBy">Search by Role</a> </li>
         </ul>
     </div>
     <div>
-        <table border="1" cellpadding="8" cellspacing="0">
+        <table class="table table-bordered">
             <thead>
             <tr>
                 <th><spring:message code="role.id"/></th>

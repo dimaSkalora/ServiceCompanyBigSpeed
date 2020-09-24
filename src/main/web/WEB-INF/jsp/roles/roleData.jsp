@@ -108,7 +108,7 @@
                     </fieldset>
 
                     <footer>
-                        <a href="/CompanySpeedyTaxi/roles" class="btnLogin"><spring:message code="app.ok"/></a>
+                        <a href="/CompanySpeedyTaxi/roles" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>

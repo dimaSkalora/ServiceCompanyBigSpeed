@@ -32,8 +32,8 @@
                 </tr>
 
                 <div class="text-right">
-                    <a class="btn btn-danger" href="roles"><spring:message code="app.roles"/>
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    <a class="btn btn-outline-primary" role="button" href="roles">
+                        <spring:message code="app.roles"/>
                     </a>
                     <button class="btn btn-primary" type="submit"> <spring:message code="app.search"/>
                         <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>

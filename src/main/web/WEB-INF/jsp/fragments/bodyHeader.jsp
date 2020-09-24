@@ -15,6 +15,7 @@
                     <a class="dropdown-item" href="roles"><spring:message code="app.roles"/></a>
                  </div>
             </li>
+            <a class="navbar-brand" href="restView"><spring:message code="app.rest"/></a>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">

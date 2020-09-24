@@ -34,7 +34,7 @@
                             </form:label>
                         </td>
                         <td>
-                            <form:input path="name"/>
+                            <form:input path="name" placeholder="Name Test"/>
                         </td>
                     </tr>
                     <tr>
@@ -44,7 +44,7 @@
                             </form:label>
                         </td>
                         <td>
-                            <form:password path="password" />
+                            <form:password path="password" placeholder="Password Test"/>
                         </td>
                         <td>
                             <form:label path="email">
@@ -52,7 +52,7 @@
                             </form:label>
                         </td>
                         <td>
-                            <form:input path="email" />
+                            <form:input path="email" placeholder="test@test.com"/>
                         </td>
                     </tr>
                     <tr>
@@ -62,7 +62,7 @@
                             </form:label>
                         </td>
                         <td>
-                            <form:input path="phone" />
+                            <form:input path="phone" placeholder="+30....."/>
                         </td>
                     </tr>
                     <c:if test="${!empty user.name}">

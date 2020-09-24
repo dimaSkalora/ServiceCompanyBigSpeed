@@ -14,14 +14,14 @@
 <div class="jumbotron">
     <div class="container">
         <ul>
-            <li><a href="roleTypes/roleType">add roleType</a></li>
+            <li><a class="btn btn-primary" role="button" href="roleTypes/roleType">add roleType</a></li>
         </ul>
         <ul>
-            <li><a href="roleTypes/filter" class="btnSearchBy">Search by Role Type</a> </li>
+            <li><a href="roleTypes/filter" class="btnSearchBy" role="button">Search by Role Type</a> </li>
         </ul>
     </div>
     <div>
-        <table border="1" cellpadding="8" cellspacing="0">
+        <table class="table table-striped table-dark">
             <thead>
             <tr>
                 <th><spring:message code="roleType.id"/></th>
