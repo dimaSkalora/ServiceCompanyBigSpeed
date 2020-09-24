@@ -9,4 +9,9 @@ public class RootController {
     public String index(){
         return "index";
     }
+
+    @RequestMapping("/restView")
+    public String restView(){
+        return "restView";
+    }
 }
