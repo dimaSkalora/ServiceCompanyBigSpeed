@@ -87,3 +87,120 @@ COMMENT ON COLUMN user_roles.role_id
     IS 'Роль';
 COMMENT ON COLUMN user_roles.date_time
     IS 'Дата добавление пользователя и роли';
+
+---------------wf_package_status---------------5
+CREATE TABLE wf_package_status
+(
+    id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    name             VARCHAR                 NOT NULL
+);
+COMMENT ON TABLE wf_package_status
+    IS 'Статус пакета';
+COMMENT ON COLUMN wf_package_status.id
+    IS 'ID';
+COMMENT ON COLUMN wf_package_status.name
+    IS 'Найменование(В работе, Завершен, Архив, Ожидание, Удалён)';
+
+---------------wf_service---------------6
+CREATE TABLE wf_service
+(
+    id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    name             VARCHAR                 NOT NULL
+);
+COMMENT ON TABLE wf_service
+    IS 'Услуга';
+COMMENT ON COLUMN wf_service.id
+    IS 'ID';
+COMMENT ON COLUMN wf_service.name
+    IS 'Найменование(Ремонт, Подключение...)';
+
+---------------wf_package---------------7
+CREATE TABLE wf_package (
+  id                    INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  name                  VARCHAR(500),
+  date_registration     DATE NOT NULL,
+  customer_name         VARCHAR(500),
+  customer_address      VARCHAR(500),
+  customer_address_jur  VARCHAR(500),
+  customer_phone        VARCHAR,
+  customer_email        VARCHAR(50),
+  contract_number       VARCHAR(150),
+  description           VARCHAR,
+  user_add              VARCHAR(50),
+  date_add              TIMESTAMP(6) WITHOUT TIME ZONE,
+  user_edit             VARCHAR(50),
+  date_edit             TIMESTAMP(6) WITHOUT TIME ZONE,
+  package_service_id    INTEGER NOT NULL,
+  package_status_id     INTEGER NOT NULL,
+
+  FOREIGN KEY (package_status_id)   REFERENCES wf_package_status(id),
+  FOREIGN KEY (package_service_id)  REFERENCES wf_service(id)
+)
+COMMENT ON TABLE wf_package
+    IS 'Пакет документов';
+COMMENT ON COLUMN wf_package.id
+    IS 'ID';
+COMMENT ON COLUMN wf_package.name
+    IS 'Наименование пакета';
+COMMENT ON COLUMN wf_package.date_registration
+    IS 'Дата регистрации';
+COMMENT ON COLUMN wf_package.customer_name
+    IS 'Наименование заказчика';
+COMMENT ON COLUMN wf_package.customer_address
+    IS 'Адреса замовника';
+COMMENT ON COLUMN wf_package.customer_address_jur
+    IS 'Юридична адреса замовника';
+COMMENT ON COLUMN wf_package.customer_phone
+    IS 'Номер телефона заказчика';
+COMMENT ON COLUMN wf_package.contract_number
+    IS 'Номер договора';
+COMMENT ON COLUMN wf_package.description
+    IS 'Краткое описание';
+COMMENT ON COLUMN wf_package.user_add
+    IS 'Користувач, який створив запис';
+COMMENT ON COLUMN wf_package.date_add
+    IS 'Дата створення';
+COMMENT ON COLUMN wf_package.user_edit
+    IS 'Користувач, який вніс зміни';
+COMMENT ON COLUMN wf_package.date_edit
+    IS 'Дата зміни';
+COMMENT ON COLUMN wf_package.package_service_id
+    IS 'Услуга';
+COMMENT ON COLUMN wf_package.package_status_id
+    IS 'Статус пакета';
+
+---------------wf_base_process_type---------------8
+CREATE TABLE wf_base_process_type (
+  id    INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  name  VARCHAR(20) NOT NULL
+)
+COMMENT ON TABLE wf_base_process_type
+    IS 'Типы базовых процессов';
+COMMENT ON COLUMN wf_base_process_type.id
+    IS 'ID';
+COMMENT ON COLUMN wf_base_process_type.name
+    IS 'Наименование(Стартовый, Обычный)';
+
+---------------wf_base_process---------------9
+CREATE TABLE wf_base_process (
+  id                    INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  name                  VARCHAR(500) NOT NULL,
+  description           VARCHAR(500),
+  package_service_id    INTEGER NOT NULL,
+  base_process_type_id  INTEGER NOT NULL,
+  FOREIGN KEY (package_service_id)  REFERENCES wf_service(id),
+  FOREIGN KEY (base_process_type_id)  REFERENCES wf_base_process_type(id)
+)
+COMMENT ON TABLE workflow.wfbaseprocess
+    IS 'Базовый процесс';
+COMMENT ON COLUMN workflow.wfbaseprocess.code
+    IS 'код';
+COMMENT ON COLUMN workflow.wfbaseprocess.name
+    IS 'Наименование процесса';
+COMMENT ON COLUMN workflow.wfbaseprocess.description
+    IS 'Описание процесса';
+COMMENT ON COLUMN workflow.wfbaseprocess.package_service_id
+    IS 'Услуга';
+COMMENT ON COLUMN workflow.wfbaseprocess.base_process_type_id
+    IS 'Типы базовых процессов';
+
