@@ -17,6 +17,7 @@ public class AdminRestUserController extends AbstractUserController{
     static final String REST_URL = "/rest/admin/users";
 
     //produces - Воспроизводимые типы носителей запрошенного запроса, сужающие первичное отображение.
+    //produces - Какой формат отправляем клиенту
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAllU() {
         List<User> list = super.getAll();
@@ -33,6 +34,7 @@ public class AdminRestUserController extends AbstractUserController{
     }*/
 
     //@PathVariable - Аннотации, указывающие, что параметр метода должен быть привязан к переменной шаблона UR
+    //produces - Какой формат отправляем клиенту
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getU(@PathVariable("id") int id) {
         User user = super.get(id);
@@ -43,6 +45,8 @@ public class AdminRestUserController extends AbstractUserController{
     }
 
     //consumes - Типы расходных материалов отображаемого запроса, сужающие первичное отображение.
+    //consumes - Какой формат получаем(от клиента)
+    //produces - Какой формат отправляем клиенту
     //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.
     // Тело запроса передается через HttpMessageConverter для разрешения аргумента метода в зависимости
     // от типа содержимого запроса. Необязательно, автоматическая проверка может быть применена
@@ -60,6 +64,12 @@ public class AdminRestUserController extends AbstractUserController{
 
         //created - Создайте новый построитель с статусом CREATED и заголовком местоположения, заданным для данного URI.
         return ResponseEntity.created(uriOfNewResource).body(created);
+    }
+
+    //consumes - Какой формат получаем(от клиента)
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public User update(@RequestBody User user) {
+        return super.update(user);
     }
 
     @DeleteMapping(value = "/{id}")
