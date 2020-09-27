@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "3ac67b38-98f2-420a-b9a1-5cf4d4114ed7",
+		"name": "ServiceCompanyBigSpeed",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/admin/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/admin/users/100093",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"admin",
+								"users",
+								"100093"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/admin/users/100094",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"admin",
+								"users",
+								"100094"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 100093,\r\n    \"name\": \"test name\",\r\n    \"email\": \"test email25141ыы0\",\r\n    \"password\": \"test password update\",\r\n    \"phone\": \"test 23243530\",\r\n    \"registered\": [\r\n        2020,\r\n        9,\r\n        27\r\n    ],\r\n    \"enabled\": true,\r\n    \"new\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/admin/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"admin",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test name\",\r\n    \"email\": \"test emai1ыы0\",\r\n    \"password\": \"test password\",\r\n    \"phone\": \"test 210\",\r\n    \"registered\": [2020, 9, 27],\r\n    \"enabled\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/admin/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"admin",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
