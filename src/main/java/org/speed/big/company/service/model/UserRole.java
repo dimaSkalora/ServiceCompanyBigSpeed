@@ -1,10 +1,21 @@
 package org.speed.big.company.service.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "user_role", uniqueConstraints = @UniqueConstraint(columnNames = "user_id",
+        name = "ur_udid_rid_unique_idx"))
 public class UserRole extends AbstractBaseEntity{
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role roleId;
+    @NotNull
+    @Column(name = "dateTime", nullable = false)
     private LocalDateTime dateTime;
 
     public UserRole() {

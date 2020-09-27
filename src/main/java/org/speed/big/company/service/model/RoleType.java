@@ -1,11 +1,9 @@
 package org.speed.big.company.service.model;
 
-import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @NamedQueries({
         @NamedQuery(name = RoleType.DELETE, query = "DELETE FROM RoleType rt WHERE rt.id=:id"),
@@ -22,6 +20,8 @@ public class RoleType extends AbstractBaseEntity{
     @NotBlank
     @Size(min = 4)
     private String name;
+    @OneToMany(mappedBy = "roleTypeId")
+    private List<Role> roles;
 
     public RoleType() {
     }
