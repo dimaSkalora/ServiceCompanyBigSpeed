@@ -38,7 +38,7 @@ public class JdbcUserRoleRepositoryImpl implements UserRoleRepository {
 
 
     private final String sqlQuery = " select ur.id as ur_id, ur.user_id as ur_user_id,\n" +
-            " ur.role_id as ur_role_id, ur.date_time as ur_date_time, ur.comment as ur_comment\n" +
+            " ur.role_id as ur_role_id, ur.date_time as ur_date_time, ur.comment as ur_comment,\n" +
             " u.id as u_id, u.name as u_name,\n " +
             " u.email as u_email, u.password as u_password,\n " +
             " u.phone as u_phone, u.registered as u_registered, u.enabled as u_enabled,\n " +

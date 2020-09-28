@@ -78,6 +78,19 @@ public class AdminRestUserController extends AbstractUserController{
         super.delete(id);
     }
 
+    //consumes - Какой формат получаем(от клиента)
+    //produces - Какой формат отправляем клиенту
+    //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.
+    @PostMapping(value = "/filter",
+            consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<User>>filter(@RequestBody User user){
+        List<User> list = super.filterUser(user);
+
+        return list != null
+                ? new ResponseEntity<>(list, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     @GetMapping(value = "/text")
     public String testUTF() {
         return "Русский текст";

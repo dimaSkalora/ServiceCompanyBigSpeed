@@ -27,7 +27,7 @@ public class JspUserRoleController extends AbstractUserRoleController{
 
     @RequestMapping(value = "/userRole",method = RequestMethod.GET)
     public ModelAndView userRole(){
-        ModelAndView modelAndView = new ModelAndView("userRoles/userRoles");
+        ModelAndView modelAndView = new ModelAndView("userRoles/userRole");
         UserRole userRole = new UserRole();
         userRole.setDateTime(LocalDateTime.now());
         modelAndView.addObject("userRole", userRole);
