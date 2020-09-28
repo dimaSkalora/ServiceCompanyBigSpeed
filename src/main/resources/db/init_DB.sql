@@ -76,10 +76,10 @@ CREATE TABLE user_roles
     role_id          INTEGER NOT NULL,
     date_time        TIMESTAMP NOT NULL,
     comment          VARCHAR  NOT NULL,
+    CONSTRAINT ur_udid_rid_unique_idx UNIQUE (user_id,role_id),
     FOREIGN KEY (user_id) REFERENCES users (id),
     FOREIGN KEY (role_id) REFERENCES roles (id)
 );
-CREATE UNIQUE INDEX ur_udid_rid_unique_idx ON user_roles (user_id,role_id)
 COMMENT ON TABLE user_roles
     IS 'Пользователь и Роли';
 COMMENT ON COLUMN user_roles.user_id
