@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @NamedQueries({
         @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
@@ -64,6 +65,16 @@ public class User extends AbstractBaseEntity{
     private Set<UserRole> userRoles;
 
     public User() {
+    }
+
+    public User(@NotBlank @Size(min = 2, max = 100) String name, @Email @NotBlank @Size(max = 100) String email, @NotBlank @Size(min = 5, max = 64) String password, @NotNull String phone, @NotNull LocalDate registered, boolean enabled, Set<UserRole> userRoles) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.registered = registered;
+        this.enabled = enabled;
+        this.userRoles = userRoles;
     }
 
     public User(Integer id, String name, String email, String password, String phone, LocalDate registered, boolean enabled) {
@@ -138,6 +149,14 @@ public class User extends AbstractBaseEntity{
         this.enabled = enabled;
     }
 
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -147,6 +166,9 @@ public class User extends AbstractBaseEntity{
                 ", phone='" + phone + '\'' +
                 ", registered=" + registered +
                 ", enabled=" + enabled +
+             /*   ", userRoles= "+ (userRoles != null ? userRoles.stream().
+                                                        map(UserRole::getRoleId).map(Role::getName).
+                                                        collect(Collectors.toList()) : "")+*/
                 ", id=" + id +
                 '}';
     }

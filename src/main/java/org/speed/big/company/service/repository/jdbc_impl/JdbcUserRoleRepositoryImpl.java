@@ -38,7 +38,7 @@ public class JdbcUserRoleRepositoryImpl implements UserRoleRepository {
 
 
     private final String sqlQuery = " select ur.id as ur_id, ur.user_id as ur_user_id,\n" +
-            " ur.role_id as ur_role_id, ur.date_time as ur_date_time,\n" +
+            " ur.role_id as ur_role_id, ur.date_time as ur_date_time, ur.comment as ur_comment\n" +
             " u.id as u_id, u.name as u_name,\n " +
             " u.email as u_email, u.password as u_password,\n " +
             " u.phone as u_phone, u.registered as u_registered, u.enabled as u_enabled,\n " +
@@ -65,7 +65,8 @@ public class JdbcUserRoleRepositoryImpl implements UserRoleRepository {
                .addValue("id",userRole.getId())
                .addValue("userId",userRole.getUserId().getId())
                 .addValue("roleId",userRole.getRoleId().getId())
-                .addValue("dataTime",userRole.getDateTime());
+                .addValue("dataTime",userRole.getDateTime())
+                .addValue("comment",userRole.getComment());
 
         if (userRole.isNew()){
             //Выполните вставку, используя значения, переданные и возвращающие сгенерированный ключ.
@@ -73,7 +74,7 @@ public class JdbcUserRoleRepositoryImpl implements UserRoleRepository {
             userRole.setId(newKey.intValue());
         }else {
             namedParameterJdbcTemplate.update("update user_roles set user_id=:userId, role_id=:roleId," +
-                    " date_time=:dataTime where id=:id",parameterSource);
+                    " date_time=:dataTime, comment:=comment where id=:id",parameterSource);
         }
 
         return userRole;
@@ -114,6 +115,8 @@ public class JdbcUserRoleRepositoryImpl implements UserRoleRepository {
             parameterSource.addValue("roleId",userRole.getRoleId().getId());
         if (userRole.getDateTime() != null)
             parameterSource.addValue("dateTime",userRole.getDateTime());
+        if (userRole.getComment() != null)
+            parameterSource.addValue("comment",userRole.getComment());
 
         for (var entrySet: parameterSource.getValues().entrySet()){
             String paramName = entrySet.getKey();
@@ -123,6 +126,7 @@ public class JdbcUserRoleRepositoryImpl implements UserRoleRepository {
                     case "userId"   -> sqlFilter += " where user_id=:userId\n";
                     case "roleId"   -> sqlFilter += " where role_id=:roleId\n";
                     case "dateTime" -> sqlFilter += " where date_time=:dateTime\n";
+                    case "comment" -> sqlFilter += " where comment=:comment\n";
                 }
             }else {
                 switch (paramName){
@@ -130,6 +134,7 @@ public class JdbcUserRoleRepositoryImpl implements UserRoleRepository {
                     case "userId"   -> sqlFilter += " and user_id=:userId\n";
                     case "roleId"   -> sqlFilter += " and role_id=:roleId\n";
                     case "dateTime" -> sqlFilter += " and date_time=:dateTime\n";
+                    case "comment" -> sqlFilter += " and comment=:comment\n";
                 }
             }
             count++;

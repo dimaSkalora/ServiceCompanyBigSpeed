@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import static org.speed.big.company.service.util.DateTimeUtil.parseLocalDate;
 import static org.speed.big.company.service.util.DateTimeUtil.parseLocalDateTime;
 import static org.speed.big.company.service.util.ParseUtil.parseInteger;
+import static org.speed.big.company.service.util.ParseUtil.parseString;
 
 @Controller
 @RequestMapping("userRoles")
@@ -44,7 +45,8 @@ public class JspUserRoleController extends AbstractUserRoleController{
     @RequestMapping(value = "/createRequestParam", method = RequestMethod.POST)
     public String createRequestParam(@RequestParam int userId,
                                      @RequestParam int roleId,
-                                     @RequestParam LocalDateTime dateTime){
+                                     @RequestParam LocalDateTime dateTime,
+                                     @RequestParam String comment){
         //createRequestParam?userId=000?roleId=555?.....
 
         User user = super.getUser(userId);
@@ -54,6 +56,7 @@ public class JspUserRoleController extends AbstractUserRoleController{
         userRole.setUserId(user);
         userRole.setRoleId(role);
         userRole.setDateTime(dateTime);
+        userRole.setComment(comment);
         super.create(userRole);
 
         return "redirect:userRoles/userRoles";
@@ -65,6 +68,7 @@ public class JspUserRoleController extends AbstractUserRoleController{
         var userId = parseInteger(request.getParameter("userId"));
         var roleId = parseInteger(request.getParameter("roleId"));
         var dateTime = parseLocalDateTime(request.getParameter("dateTime"));
+        var comment = parseString(request.getParameter("comment"));
 
         User user = super.getUser(userId);
         Role role = super.getRole(roleId);
@@ -73,6 +77,7 @@ public class JspUserRoleController extends AbstractUserRoleController{
         userRole.setUserId(user);
         userRole.setRoleId(role);
         userRole.setDateTime(dateTime);
+        userRole.setComment(comment);
         super.create(userRole);
 
         return "redirect:/userRoles";
@@ -131,6 +136,7 @@ public class JspUserRoleController extends AbstractUserRoleController{
         var userId = parseInteger(request.getParameter("userId"));
         var roleId = parseInteger(request.getParameter("roleId"));
         var dateTime = parseLocalDateTime(request.getParameter("dateTime"));
+        var comment = parseString(request.getParameter("comment"));
 
         User user = null;
         if (userId != null)
@@ -148,6 +154,8 @@ public class JspUserRoleController extends AbstractUserRoleController{
             userRole.setRoleId(role);
         if (dateTime != null)
             userRole.setDateTime(dateTime);
+        if (comment != null)
+            userRole.setComment(comment);
 
         super.filter(userRole);
 

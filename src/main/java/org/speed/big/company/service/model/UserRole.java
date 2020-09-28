@@ -5,27 +5,38 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user_role", uniqueConstraints = @UniqueConstraint(columnNames = "user_id",
+@Table(name = "user_roles", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id","role_id"},
         name = "ur_udid_rid_unique_idx"))
 public class UserRole extends AbstractBaseEntity{
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User userId;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role roleId;
     @NotNull
     @Column(name = "dateTime", nullable = false)
     private LocalDateTime dateTime;
+    @NotNull
+    @Column(name = "comment", nullable = false)
+    private String comment;
 
     public UserRole() {
     }
 
-    public UserRole(Integer id, User userId, Role roleId, LocalDateTime dateTime) {
+    public UserRole(User userId, Role roleId, @NotNull LocalDateTime dateTime, @NotNull String comment) {
+        this.userId = userId;
+        this.roleId = roleId;
+        this.dateTime = dateTime;
+        this.comment = comment;
+    }
+
+    public UserRole(Integer id, User userId, Role roleId, @NotNull LocalDateTime dateTime, @NotNull String comment) {
         super(id);
         this.userId = userId;
         this.roleId = roleId;
         this.dateTime = dateTime;
+        this.comment = comment;
     }
 
     public User getUserId() {
@@ -52,13 +63,11 @@ public class UserRole extends AbstractBaseEntity{
         this.dateTime = dateTime;
     }
 
-    @Override
-    public String toString() {
-        return "UserRole{" +
-                "userId=" + userId +
-                ", roleId=" + roleId +
-                ", dateTime=" + dateTime +
-                ", id=" + id +
-                '}';
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

@@ -38,6 +38,7 @@ public class UserRoleRowMapper implements RowMapper<UserRole> {
         userRole.setUserId(user);
         userRole.setRoleId(role);
         userRole.setDateTime(rs.getTimestamp("ur_date_time").toLocalDateTime());
+        userRole.setComment(rs.getString("ur_comment"));
 
         return userRole;
     }
