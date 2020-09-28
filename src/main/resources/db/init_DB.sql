@@ -75,6 +75,7 @@ CREATE TABLE user_roles
     user_id          INTEGER NOT NULL,
     role_id          INTEGER NOT NULL,
     date_time        TIMESTAMP NOT NULL,
+    comment          VARCHAR  NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id),
     FOREIGN KEY (role_id) REFERENCES roles (id)
 );
@@ -87,6 +88,8 @@ COMMENT ON COLUMN user_roles.role_id
     IS 'Роль';
 COMMENT ON COLUMN user_roles.date_time
     IS 'Дата добавление пользователя и роли';
+COMMENT ON COLUMN user_roles.comment
+    IS 'Коментарий (на основе чего добовлять права пользователю)';
 
 ---------------wf_package_status---------------5
 CREATE TABLE wf_package_status
@@ -99,7 +102,7 @@ COMMENT ON TABLE wf_package_status
 COMMENT ON COLUMN wf_package_status.id
     IS 'ID';
 COMMENT ON COLUMN wf_package_status.name
-    IS 'Найменование(В работе, Завершен, Архив, Ожидание, Удалён)';
+    IS 'Найменование(В работе, Завершен, Архив, Удалён)';
 
 ---------------wf_service---------------6
 CREATE TABLE wf_service
@@ -204,3 +207,48 @@ COMMENT ON COLUMN workflow.wfbaseprocess.package_service_id
 COMMENT ON COLUMN workflow.wfbaseprocess.base_process_type_id
     IS 'Типы базовых процессов';
 
+ ---------------wf_process_status---------------10
+CREATE TABLE wf_process_status
+(
+    id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    name             VARCHAR                 NOT NULL
+);
+COMMENT ON TABLE wf_package_status
+    IS 'Статус пакета';
+COMMENT ON COLUMN wf_package_status.id
+    IS 'ID';
+COMMENT ON COLUMN wf_package_status.name
+    IS 'Найменование(В работе, Завершен, Архив, Ожидание)';
+
+ ---------------wf_process_status---------------11
+CREATE TABLE wf_process (
+  id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  start_date        TIMESTAMP(6) WITHOUT TIME ZONE NOT NULL,
+  final_date        TIMESTAMP(6) WITHOUT TIME ZONE,
+  description       VARCHAR,
+  date_edit         TIMESTAMP(6) WITHOUT TIME ZONE NOT NULL,
+  user_edit         VARCHAR(50) NOT NULL,
+  package_id        INTEGER NOT NULL,
+  base_process_id   INTEGER NOT NULL,
+  process_status_id INTEGER NOT NULL,
+)
+COMMENT ON TABLE wf_process
+    IS 'Процессы пакета';
+COMMENT ON COLUMN wf_process.id
+    IS 'ID';
+COMMENT ON COLUMN wf_process.start_date
+    IS 'Дата старта процесса';
+COMMENT ON COLUMN wf_process.final_date
+    IS 'Дата окончания процесса';
+COMMENT ON COLUMN wf_process.description
+    IS 'Описание';
+COMMENT ON COLUMN wf_process.date_edit
+    IS 'Дата изменений';
+COMMENT ON COLUMN wf_process.user_edit
+    IS 'Користувач, який змінив запис';
+COMMENT ON COLUMN wf_process.package_id
+    IS 'Пакет документов';
+COMMENT ON COLUMN wf_process.base_process_id
+    IS 'Базовый процесс';
+COMMENT ON COLUMN wf_process.process_status_id
+    IS 'Статус процесса';
