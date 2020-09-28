@@ -78,7 +78,7 @@
                             </form:label>
                         </td>
                         <td>
-                            <form:input type="datetime-local" path="comment" />
+                            <form:input type="text" path="comment" />
                         </td>
                     </tr>
                 </table>

@@ -14,6 +14,7 @@
             <li><a href="users"><spring:message code="app.users"/></a></li>
             <li><a href="roleTypes"><spring:message code="app.roleTypes"/></a></li>
             <li><a href="roles"><spring:message code="app.roles"/></a></li>
+            <li><a href="userRoles"><spring:message code="app.userRoles"/></a></li>
         </ul>
     </div>
 </div>

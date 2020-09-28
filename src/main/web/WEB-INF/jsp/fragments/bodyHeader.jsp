@@ -13,6 +13,7 @@
                     <a class="dropdown-item" href="users"><spring:message code="app.users"/></a>
                     <a class="dropdown-item" href="roleTypes"><spring:message code="app.roleTypes"/></a>
                     <a class="dropdown-item" href="roles"><spring:message code="app.roles"/></a>
+                    <a class="dropdown-item" href="userRoles"><spring:message code="app.userRoles"/></a>
                  </div>
             </li>
             <a class="navbar-brand" href="restView"><spring:message code="app.rest"/></a>
