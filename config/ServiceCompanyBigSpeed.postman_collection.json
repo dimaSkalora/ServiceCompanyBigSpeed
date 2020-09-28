@@ -139,6 +139,38 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "filter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": null,\r\n    \"email\": null,\r\n    \"password\": \"test password\",\r\n    \"phone\": null,\r\n    \"registered\": null,\r\n    \"enabled\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/admin/users/filter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"admin",
+								"users",
+								"filter"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
