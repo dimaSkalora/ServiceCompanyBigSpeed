@@ -14,7 +14,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/admin/users",
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/roleTypes",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -23,8 +23,7 @@
 							"path": [
 								"ServiceCompanyBigSpeed",
 								"rest",
-								"admin",
-								"users"
+								"roleTypes"
 							]
 						}
 					},
@@ -147,7 +146,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": null,\r\n    \"email\": null,\r\n    \"password\": \"test password\",\r\n    \"phone\": null,\r\n    \"registered\": null,\r\n    \"enabled\": null\r\n}",
+							"raw": "{\r\n    \"password\": \"test password\",\r\n    \"enabled\":true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -166,6 +165,168 @@
 								"rest",
 								"admin",
 								"users",
+								"filter"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "roleType",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/roleTypes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"roleTypes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/roleTypes/100057",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"roleTypes",
+								"100057"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createWithLocation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"console\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/roleTypes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"roleTypes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"id\": 100130,\r\n        \"name\": \"console update\",\r\n        \"new\": false\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/roleTypes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"roleTypes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/roleTypes/100128",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"roleTypes",
+								"100128"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"console\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/roleTypes/filter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"roleTypes",
 								"filter"
 							]
 						}
