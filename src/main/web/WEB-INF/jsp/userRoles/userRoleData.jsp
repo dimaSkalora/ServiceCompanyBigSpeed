@@ -48,11 +48,12 @@
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:select path="userId">
+                                    <form:input type="text" path="userId" readonly="true" />
+                                   <%-- <form:select path="userId">
                                         <form:option  value="${!empty userRole.id ? userRole.id : ''}"
                                                       label="${!empty userRole.id ? userRole.userId.name : ''}"/>
-                                        <%--<form:option  value="" label=""/>--%>
-                                    </form:select>
+                                        &lt;%&ndash;<form:option  value="" label=""/>&ndash;%&gt;
+                                    </form:select>--%>
                                 </td>
                                 <td>
                                     <form:label path="roleId">
@@ -60,11 +61,12 @@
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:select path="roleId">
+                                    <form:input type="text" path="roleId" readonly="true" />
+                               <%--     <form:select path="roleId">
                                         <form:option  value="${!empty userRole.id ? userRole.id : ''}"
                                                       label="${!empty userRole.id ? userRole.roleId.name : ''}"/>
-                                        <%--<form:option  value="" label=""/>--%>
-                                    </form:select>
+                                        &lt;%&ndash;<form:option  value="" label=""/>&ndash;%&gt;
+                                    </form:select>--%>
                                 </td>
                             </tr>
                             <tr>
@@ -74,28 +76,25 @@
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input type="datetime-local" path="dateTime" />
+                                    <form:input type="datetime-local" path="dateTime" readonly="true" />
                                 </td>
                                 <td>
                                     <form:label path="comment">
-                                        <spring:message code="userRole.comment"/>
+                                        <spring:message code="userRole.comment" />
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input type="datetime-local" path="comment" />
+                                    <form:input type="text" path="comment" readonly="true" />
                                 </td>
                             </tr>
                         </table>
                     </fieldset>
 
                     <footer>
-                        <a href="/CompanySpeedyTaxi/userRoles" class="btnLogin"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/userRoles" class="btnLogin"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>
-            <footer>
-                <a href="/CompanySpeedyTaxi/userRoles" class="btnLogin"><spring:message code="app.ok"/></a>
-            </footer>
 
             <div class="tab-pane container fade" id="user">
                 <form:form method="POST" modelAttribute="urUser">
@@ -117,7 +116,7 @@
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="name"/>
+                                    <form:input path="name" readonly="true" />
                                 </td>
                             </tr>
                             <tr>
@@ -127,7 +126,7 @@
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:password path="password" />
+                                    <form:password path="password" readonly="true" />
                                 </td>
                                 <td>
                                     <form:label path="email">
@@ -135,7 +134,7 @@
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="email" />
+                                    <form:input path="email" readonly="true" />
                                 </td>
                             </tr>
                             <tr>
@@ -145,7 +144,7 @@
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="phone" />
+                                    <form:input path="phone" readonly="true" />
                                 </td>
                             </tr>
                             <c:if test="${!empty user.name}">
@@ -156,7 +155,7 @@
                                         </form:label>
                                     </td>
                                     <td>
-                                        <form:input type="data" path="registered" />
+                                        <form:input type="data" path="registered" readonly="true" />
                                     </td>
                                     <td>
                                         <form:label path="enabled">
@@ -164,7 +163,7 @@
                                         </form:label>
                                     </td>
                                     <td>
-                                        <form:checkbox path="enabled" />
+                                        <form:checkbox path="enabled" readonly="true" />
                                     </td>
                                 </tr>
                             </c:if>
@@ -172,7 +171,7 @@
                     </fieldset>
 
                     <footer>
-                        <a href="/CompanySpeedyTaxi/userRoles" class="btnLogin"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/userRoles" class="btnLogin"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>
@@ -197,7 +196,7 @@
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="name"/>
+                                    <form:input path="name" readonly="true" />
                                 </td>
                             </tr>
                             <tr>
@@ -207,7 +206,7 @@
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="description"/>
+                                    <form:input path="description" readonly="true" />
                                 </td>
                                 <td>
                                     <form:label path="roleTypeId">
@@ -215,18 +214,19 @@
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:select path="roleTypeId">
+                                    <form:input path="roleTypeId" readonly="true" />
+                                  <%--  <form:select path="roleTypeId">
                                         <form:option  value="${!empty role.id ? role.id : ''}"
                                                       label="${!empty role.id ? role.name : ''}"/>
-                                        <%--<form:option  value="" label=""/>--%>
-                                    </form:select>
+                                        &lt;%&ndash;<form:option  value="" label=""/>&ndash;%&gt;
+                                    </form:select>--%>
                                 </td>
                             </tr>
                         </table>
                     </fieldset>
 
                     <footer>
-                        <a href="/CompanySpeedyTaxi/userRoles" class="btnLogin"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/userRoles" class="btnLogin"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>

@@ -29,7 +29,7 @@
                     <td><input type="number" name="roleId" value="${param.roleId}"></td>
                 </tr>
                 <tr>
-                    <td><spring:message code="userRole.userId"/></td>
+                    <td><spring:message code="userRole.dateTime"/></td>
                     <td><input type="datetime-local" name="dateTime" value="${param.dateTime}"></td>
                     <td><spring:message code="userRole.comment"/></td>
                     <td><input type="text" name="comment" value="${param.comment}"></td>

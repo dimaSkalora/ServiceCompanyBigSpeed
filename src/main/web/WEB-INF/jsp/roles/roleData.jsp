@@ -43,7 +43,7 @@
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="name"/>
+                                    <form:input path="name" readonly="true"/>
                                 </td>
                             </tr>
                             <tr>
@@ -53,7 +53,7 @@
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="description"/>
+                                    <form:input path="description" readonly="true"/>
                                 </td>
                                 <td>
                                     <form:label path="roleTypeId">
@@ -61,22 +61,14 @@
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:select path="roleTypeId">
-                                        <form:option  value="${!empty role.id ? role.id : ''}"
-                                                      label="${!empty role.id ? role.name : ''}"/>
-                                        <%--<form:option  value="" label=""/>--%>
-                                        <c:forEach items="${allRoleTypes}" var="roleType">
-                                            <jsp:useBean id="roleType" scope="page" type="org.speed.big.company.service.model.RoleType"/>
-                                            <form:option  value="${roleType.id}" label="${roleType.name}"/>
-                                        </c:forEach>
-                                    </form:select>
+                                    <form:input path="roleTypeId" readonly="true"/>
                                 </td>
                             </tr>
                         </table>
                     </fieldset>
 
                     <footer>
-                        <a href="/CompanySpeedyTaxi/roles" class="btnLogin"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/roles" class="btnLogin"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>
@@ -101,14 +93,14 @@
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="name"/>
+                                    <form:input path="name" readonly="true"/>
                                 </td>
                             </tr>
                         </table>
                     </fieldset>
 
                     <footer>
-                        <a href="/CompanySpeedyTaxi/roles" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/roles" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>
