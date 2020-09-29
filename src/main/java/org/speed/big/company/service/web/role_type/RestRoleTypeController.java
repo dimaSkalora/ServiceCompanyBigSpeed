@@ -4,11 +4,10 @@ import org.speed.big.company.service.model.RoleType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -35,5 +34,23 @@ public class RestRoleTypeController extends AbstractRoleTypeController {
                 ? new ResponseEntity<>(roleType, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    //consumes - Какой формат получаем(от клиента)
+    //produces - Какой формат отправляем клиенту
+    //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<RoleType> createWithLocation(@RequestBody RoleType roleType){
+        RoleType created = super.create(roleType);
+
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path(REST_URL + "/{id}")
+                .buildAndExpand(created.getId()).toUri();
+
+        //HttpHeaders httpHeaders = new HttpHeaders();
+        //httpHeaders.setLocation(uriOfNewResource);
+        //created - Создайте новый построитель с статусом CREATED и заголовком местоположения, заданным для данного URI.
+        return  ResponseEntity.created(uriOfNewResource).body(created);
+    }
+
 
 }

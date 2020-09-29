@@ -3,13 +3,22 @@ package org.speed.big.company.service.web.user_role;
 import org.speed.big.company.service.model.Role;
 import org.speed.big.company.service.model.User;
 import org.speed.big.company.service.model.UserRole;
+import org.speed.big.company.service.model.propertyeditor.RolePropertyEditor;
+import org.speed.big.company.service.model.propertyeditor.UserPropertyEditor;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.beans.PropertyEditor;
+import java.beans.PropertyEditorSupport;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import static org.speed.big.company.service.util.DateTimeUtil.parseLocalDate;
 import static org.speed.big.company.service.util.DateTimeUtil.parseLocalDateTime;
@@ -161,5 +170,29 @@ public class JspUserRoleController extends AbstractUserRoleController{
 
         return modelAndView;
     }
+
+    //Обявил глобально (GlobalBindingInitializer)
+    /*//Method - который преабразовывает обьэкты в строки и наобород (при передачи параметров)
+    @InitBinder
+    public void initBinder(WebDataBinder binder){
+        PropertyEditor editor = new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) throws IllegalArgumentException {
+                if (!text.trim().isEmpty())
+                    super.setValue(LocalDateTime.parse(text.trim(), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            }
+            @Override
+            public String getAsText() {
+                if (super.getValue() == null)
+                    return null;
+                LocalDateTime value = (LocalDateTime) super.getValue();
+                return value.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+            }
+        };
+
+        binder.registerCustomEditor(LocalDateTime.class, editor);
+        binder.registerCustomEditor(User.class, new UserPropertyEditor());
+        binder.registerCustomEditor(Role.class, new RolePropertyEditor());
+    }*/
 
 }

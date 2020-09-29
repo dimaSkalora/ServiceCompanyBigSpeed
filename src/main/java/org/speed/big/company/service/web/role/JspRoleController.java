@@ -136,8 +136,10 @@ public class JspRoleController extends AbstractRoleController{
         return modelAndView;
     }
 
+    //Обявил глобально (GlobalBindingInitializer)
+  /*  //Method - который преабразовывает обьэкты в строки и наобород (при передачи параметров)
     @InitBinder
     private void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(RoleType.class, new RoleTypePropertyEditor());
-    }
+    }*/
 }
