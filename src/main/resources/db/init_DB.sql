@@ -139,7 +139,7 @@ CREATE TABLE wf_package (
 
   FOREIGN KEY (package_status_id)   REFERENCES wf_package_status(id),
   FOREIGN KEY (package_service_id)  REFERENCES wf_service(id)
-)
+);
 COMMENT ON TABLE wf_package
     IS 'Пакет документов';
 COMMENT ON COLUMN wf_package.id
@@ -177,7 +177,7 @@ COMMENT ON COLUMN wf_package.package_status_id
 CREATE TABLE wf_base_process_type (
   id    INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   name  VARCHAR(20) NOT NULL
-)
+);
 COMMENT ON TABLE wf_base_process_type
     IS 'Типы базовых процессов';
 COMMENT ON COLUMN wf_base_process_type.id
@@ -194,7 +194,7 @@ CREATE TABLE wf_base_process (
   base_process_type_id  INTEGER NOT NULL,
   FOREIGN KEY (package_service_id)  REFERENCES wf_service(id),
   FOREIGN KEY (base_process_type_id)  REFERENCES wf_base_process_type(id)
-)
+);
 COMMENT ON TABLE workflow.wfbaseprocess
     IS 'Базовый процесс';
 COMMENT ON COLUMN workflow.wfbaseprocess.code
@@ -232,7 +232,10 @@ CREATE TABLE wf_process (
   package_id        INTEGER NOT NULL,
   base_process_id   INTEGER NOT NULL,
   process_status_id INTEGER NOT NULL,
-)
+  FOREIGN KEY (package_id)  REFERENCES wf_package(id),
+  FOREIGN KEY (base_process_id)  REFERENCES wf_base_process(id),
+  FOREIGN KEY (process_status_id)  REFERENCES wf_process_status(id)
+);
 COMMENT ON TABLE wf_process
     IS 'Процессы пакета';
 COMMENT ON COLUMN wf_process.id
@@ -253,3 +256,66 @@ COMMENT ON COLUMN wf_process.base_process_id
     IS 'Базовый процесс';
 COMMENT ON COLUMN wf_process.process_status_id
     IS 'Статус процесса';
+
+---------------wf_group---------------12
+CREATE TABLE wf_group (
+  id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  name          VARCHAR(500) NOT NULL,
+  description   VARCHAR(500)
+);
+COMMENT ON TABLE wf_group
+    IS 'Группа состояний';
+COMMENT ON COLUMN wf_group.id
+    IS 'ID';
+COMMENT ON COLUMN wf_group.name
+    IS 'Наименование группы (В работе, Завершен, Архив, Ожидание ...)';
+COMMENT ON COLUMN wf_group.description
+    IS 'Описание';
+
+----------------wf_process_state---------------13
+CREATE TABLE wf_process_state (
+  id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  name          VARCHAR(500) NOT NULL,
+  role_id       INTEGER NOT NULL,
+  group_id      INTEGER NOT NULL,
+  description   VARCHAR(500),
+  FOREIGN KEY (role_id)  REFERENCES roles(id),
+  FOREIGN KEY (group_id)  REFERENCES wf_group(id)
+);
+COMMENT ON TABLE wf_process_state
+    IS 'Состояние базового процесса';
+COMMENT ON COLUMN wf_process_state.id
+    IS 'ID';
+COMMENT ON COLUMN wf_process_state.name
+    IS 'Наименование состояния процесса';
+COMMENT ON COLUMN wf_process_state.role_id
+    IS 'Роль';
+COMMENT ON COLUMN wf_process_state.group_id
+    IS 'Группа';
+COMMENT ON COLUMN wf_process_state.description
+    IS 'Описание';
+
+----------------wf_base_process_items---------------14
+CREATE TABLE wf_base_process_items (
+  id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  state_from_id     INTEGER,
+  state_to_id       INTEGER NOT NULL,
+  base_process_id   INTEGER NOT NULL,
+  FOREIGN KEY (state_from_id)  REFERENCES wf_process_state(id),
+  FOREIGN KEY (state_to_id)  REFERENCES wf_process_state(id),
+  FOREIGN KEY (base_process_id)  REFERENCES wf_base_process(id)
+);
+CREATE UNIQUE INDEX wfbpi_sfid_stid_bpid_unique_idx ON wf_base_process_items (state_from_id,state_to_id,base_process_id),
+COMMENT ON TABLE wf_base_process_items
+    IS 'Переходы базового процесса';
+COMMENT ON COLUMN wf_base_process_items.id
+    IS 'ID';
+COMMENT ON COLUMN wf_base_process_items.state_from_id
+    IS 'Состояние базового процесса';
+COMMENT ON COLUMN wf_base_process_items.state_to_id
+    IS 'Состояние базового процесса';
+COMMENT ON COLUMN wf_base_process_items.base_process_id
+    IS 'Базовый процесс';
+
+
+
