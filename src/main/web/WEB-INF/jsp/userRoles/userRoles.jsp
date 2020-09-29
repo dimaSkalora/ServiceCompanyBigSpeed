@@ -37,8 +37,8 @@
                 <jsp:useBean id="userRole" scope="page" type="org.speed.big.company.service.model.UserRole"/>
                 <tr>
                     <td scope="row"><a href="userRoles/getData/${userRole.id}"/><c:out value="${userRole.id}"/></td>
-                    <td><c:out value="${userRole.userId} [${userRole.userId.name}]"/></td>
-                    <td><c:out value="${userRole.roleId} [${userRole.roleId.name}]"/></td>
+                    <td><c:out value="${userRole.userId.id} [${userRole.userId.name}]"/></td>
+                    <td><c:out value="${userRole.roleId.id} [${userRole.roleId.name}]"/></td>
                     <td><c:out value="${userRole.dateTime}"/></td>
                     <td><c:out value="${userRole.comment}"/></td>
                     <td><a href="userRoles/update/${userRole.id}"/><spring:message code="app.update"/></td>
