@@ -54,9 +54,10 @@ CREATE TABLE roles
     name             VARCHAR                 NOT NULL,
     description      VARCHAR                 NOT NULL,
     role_type_id     INTEGER                 NOT NULL,
-    CONSTRAINT roles_role_type_idx UNIQUE (name, role_type_id),
-    FOREIGN KEY (role_type_id) REFERENCES role_type (id)
+    FOREIGN KEY (role_type_id) REFERENCES role_type (id),
+    CONSTRAINT roles_unique_name_role_type_idx UNIQUE(name, role_type_id)
 );
+--CREATE UNIQUE INDEX ur_uid_rid_unique_idx ON roles (name,role_type_id)
 COMMENT ON TABLE roles
     IS 'Роли';
 COMMENT ON COLUMN roles.id
@@ -76,10 +77,10 @@ CREATE TABLE user_roles
     role_id          INTEGER NOT NULL,
     date_time        TIMESTAMP NOT NULL,
     comment          VARCHAR  NOT NULL,
-    CONSTRAINT ur_udid_rid_unique_idx UNIQUE (user_id,role_id),
     FOREIGN KEY (user_id) REFERENCES users (id),
     FOREIGN KEY (role_id) REFERENCES roles (id)
 );
+CREATE UNIQUE INDEX ur_uid_rid_unique_idx ON user_roles (user_id,role_id),
 COMMENT ON TABLE user_roles
     IS 'Пользователь и Роли';
 COMMENT ON COLUMN user_roles.user_id
@@ -220,7 +221,7 @@ COMMENT ON COLUMN wf_package_status.id
 COMMENT ON COLUMN wf_package_status.name
     IS 'Найменование(В работе, Завершен, Архив, Ожидание)';
 
- ---------------wf_process_status---------------11
+ ---------------wf_process---------------11
 CREATE TABLE wf_process (
   id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   start_date        TIMESTAMP(6) WITHOUT TIME ZONE NOT NULL,
