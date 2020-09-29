@@ -116,17 +116,17 @@ public class JdbcRoleRepositoryImpl implements RoleRepository {
             String paramName = entrySet.getKey();
             if (count == 0){
                 switch (paramName){
-                    case "id"           -> sqlFilterRole = sqlFilterRole + " where id=:id ";
-                    case "name"         -> sqlFilterRole += " where name=:name ";
-                    case "description"  -> sqlFilterRole += " where description=:description ";
-                    case "roleTypeId"   -> sqlFilterRole += " where roleTypeId=:roleTypeId ";
+                    case "id"           -> sqlFilterRole = sqlFilterRole + " where r.id=:id ";
+                    case "name"         -> sqlFilterRole += " where r.name=:name ";
+                    case "description"  -> sqlFilterRole += " where r.description=:description ";
+                    case "roleTypeId"   -> sqlFilterRole += " where r.role_type_id=:roleTypeId ";
                 }
             }else {
                 switch (paramName){
-                    case "id"           -> sqlFilterRole = sqlFilterRole + " and id=:id ";
-                    case "name"         -> sqlFilterRole += " and name=:name ";
-                    case "description"  -> sqlFilterRole += " and description=:description ";
-                    case "roleTypeId"   -> sqlFilterRole += " and roleTypeId=:roleTypeId ";
+                    case "id"           -> sqlFilterRole = sqlFilterRole + " r.and id=:id ";
+                    case "name"         -> sqlFilterRole += " and r.name=:name ";
+                    case "description"  -> sqlFilterRole += " and r.description=:description ";
+                    case "roleTypeId"   -> sqlFilterRole += " and r.roleTypeId=:roleTypeId ";
                 }
             }
             count++;

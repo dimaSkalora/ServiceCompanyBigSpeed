@@ -65,7 +65,7 @@ public class JdbcUserRoleRepositoryImpl implements UserRoleRepository {
                .addValue("id",userRole.getId())
                .addValue("userId",userRole.getUserId().getId())
                 .addValue("roleId",userRole.getRoleId().getId())
-                .addValue("dataTime",userRole.getDateTime())
+                .addValue("dateTime",userRole.getDateTime())
                 .addValue("comment",userRole.getComment());
 
         if (userRole.isNew()){
@@ -74,7 +74,7 @@ public class JdbcUserRoleRepositoryImpl implements UserRoleRepository {
             userRole.setId(newKey.intValue());
         }else {
             namedParameterJdbcTemplate.update("update user_roles set user_id=:userId, role_id=:roleId," +
-                    " date_time=:dataTime, comment:=comment where id=:id",parameterSource);
+                    " date_time=:dateTime, comment=:comment where id=:id",parameterSource);
         }
 
         return userRole;
@@ -122,19 +122,19 @@ public class JdbcUserRoleRepositoryImpl implements UserRoleRepository {
             String paramName = entrySet.getKey();
             if (count == 0){
                 switch (paramName){
-                    case "id"       -> sqlFilter = sqlFilter + " where id=:id \n";
-                    case "userId"   -> sqlFilter += " where user_id=:userId\n";
-                    case "roleId"   -> sqlFilter += " where role_id=:roleId\n";
-                    case "dateTime" -> sqlFilter += " where date_time=:dateTime\n";
-                    case "comment" -> sqlFilter += " where comment=:comment\n";
+                    case "id"       -> sqlFilter = sqlFilter + " where ur.id=:id \n";
+                    case "userId"   -> sqlFilter += " where ur.user_id=:userId\n";
+                    case "roleId"   -> sqlFilter += " where ur.role_id=:roleId\n";
+                    case "dateTime" -> sqlFilter += " where ur.date_time=:dateTime\n";
+                    case "comment"  -> sqlFilter += " where ur.comment=:comment\n";
                 }
             }else {
                 switch (paramName){
-                    case "id"       -> sqlFilter = sqlFilter + " and id=:id \n";
-                    case "userId"   -> sqlFilter += " and user_id=:userId\n";
-                    case "roleId"   -> sqlFilter += " and role_id=:roleId\n";
-                    case "dateTime" -> sqlFilter += " and date_time=:dateTime\n";
-                    case "comment" -> sqlFilter += " and comment=:comment\n";
+                    case "id"       -> sqlFilter = sqlFilter + " and ur.id=:id \n";
+                    case "userId"   -> sqlFilter += " and ur.user_id=:userId\n";
+                    case "roleId"   -> sqlFilter += " and ur.role_id=:roleId\n";
+                    case "dateTime" -> sqlFilter += " and ur.date_time=:dateTime\n";
+                    case "comment"  -> sqlFilter += " and ur.comment=:comment\n";
                 }
             }
             count++;
