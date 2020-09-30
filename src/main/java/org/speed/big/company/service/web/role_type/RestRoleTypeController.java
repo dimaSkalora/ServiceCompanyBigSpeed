@@ -52,5 +52,34 @@ public class RestRoleTypeController extends AbstractRoleTypeController {
         return  ResponseEntity.created(uriOfNewResource).body(created);
     }
 
+    //consumes - Какой формат получаем(от клиента)
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<RoleType> updateRT(@RequestBody RoleType roleType){
+        RoleType updateRoleType = super.update(roleType);
+
+        return updateRoleType != null
+                ? new ResponseEntity(updateRoleType,HttpStatus.OK)
+                : new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deleteRT(@PathVariable int id){
+        boolean isDelete = super.delete(id);
+    }
+
+    //consumes - Какой формат получаем(от клиента)
+    //produces - Какой формат отправляем клиенту
+    //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.
+    @PostMapping(value = "/filter",
+            consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<RoleType>> filter(@RequestBody RoleType roleType){
+        List<RoleType> list= super.filterRoleType(roleType);
+
+        return list != null
+                ? new ResponseEntity<>(list, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
 
 }
