@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user_roles", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id","role_id"},
-        name = "ur_udid_rid_unique_idx"))
+        name = "ur_uid_rid_unique_idx"))
 public class UserRole extends AbstractBaseEntity{
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -69,5 +69,16 @@ public class UserRole extends AbstractBaseEntity{
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    @Override
+    public String toString() {
+        return "UserRole{" +
+                "userId=" + userId.getId() +
+                ", roleId=" + roleId+
+                ", dateTime=" + dateTime +
+                ", comment='" + comment + '\'' +
+                ", id=" + id +
+                '}';
     }
 }

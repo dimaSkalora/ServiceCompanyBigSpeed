@@ -1,13 +1,28 @@
 package org.speed.big.company.service.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
+
+@NamedQueries({
+        @NamedQuery(name = Role.DELETE, query = "DELETE from Role r where r.id=:id"),
+        @NamedQuery(name = Role.GET, query = "select r from Role r where r.id=:id"),
+        @NamedQuery(name = Role.ALL_SORTED, query = "select r from Role r order by r.name")
+})
 @Entity
-@Table(name = "role")
+@Table(name = "role", uniqueConstraints = @UniqueConstraint(columnNames = {"name", "role_type_id"},
+                        name = "roles_unique_name_role_type_idx"))
 public class Role extends AbstractBaseEntity{
-    @Column(name = "name")
+
+    public static final String DELETE = "Role.delete";
+    public static final String GET = "Role.get";
+    public static final String ALL_SORTED = "Role.allSorted";
+
+    @NotBlank
+    @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "description")
+    @NotBlank
+    @Column(name = "description", nullable = false)
     private String description;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_type_id")

@@ -19,6 +19,7 @@ public class RoleType extends AbstractBaseEntity{
 
     @NotBlank
     @Size(min = 4)
+    @Column(nullable = false)
     private String name;
     @OneToMany(mappedBy = "roleTypeId")
     private List<Role> roles;
