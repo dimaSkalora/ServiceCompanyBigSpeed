@@ -335,6 +335,168 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "role",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/roles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/roles/100063",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"roles",
+								"100063"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createWithLocation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"eehdbrf\",\r\n    \"description\": \"gdtgd\",\r\n    \"roleTypeId\": {\r\n        \"id\": 100058,\r\n        \"name\": \"docFlow\",\r\n        \"new\": false\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/roles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 100133,\r\n    \"name\": \"update put\",\r\n    \"description\": \"gdtfewfevgd\",\r\n    \"roleTypeId\": {\r\n        \"id\": 100058,\r\n        \"name\": \"docFlow\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/roles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/roles/100135",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"roles",
+								"100135"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"console\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServiceCompanyBigSpeed/rest/roles/filter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServiceCompanyBigSpeed",
+								"rest",
+								"roles",
+								"filter"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
