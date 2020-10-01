@@ -1,7 +1,6 @@
 package org.speed.big.company.service.web.role;
 
 import org.speed.big.company.service.model.Role;
-import org.speed.big.company.service.model.RoleType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,19 +12,19 @@ import java.util.List;
 
 @RestController
 @RequestMapping(RestRoleController.REST_URL)
-public class RestRoleController extends AbstractRoleController{
+public class RestRoleController extends AbstractRoleController {
     static final String REST_URL = "rest/roles";
 
     //produces - Какой формат отправляем клиенту
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Role> getAll(){
+    public List<Role> getAll() {
         List<Role> list = super.getAll();
         return list;
     }
 
     //@PathVariable - Аннотации, указывающие, что параметр метода должен быть привязан к переменной шаблона UR
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Role> getRole(@PathVariable int id){
+    public ResponseEntity<Role> getRole(@PathVariable int id) {
         Role role = super.get(id);
 
         return role != null
@@ -37,11 +36,11 @@ public class RestRoleController extends AbstractRoleController{
     //produces - Какой формат отправляем клиенту
     //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Role> createWithLocation(@RequestBody Role role){
+    public ResponseEntity<Role> createWithLocation(@RequestBody Role role) {
         Role created = super.create(role);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path(REST_URL+"/{id}")
+                .path(REST_URL + "/{id}")
                 .buildAndExpand(created.getId()).toUri();
 
         //HttpHeaders httpHeaders = new HttpHeaders();
@@ -51,7 +50,7 @@ public class RestRoleController extends AbstractRoleController{
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Role> updateRole(@RequestBody Role role){
+    public ResponseEntity<Role> updateRole(@RequestBody Role role) {
         Role updateRole = super.update(role);
 
         return updateRole != null
@@ -61,36 +60,17 @@ public class RestRoleController extends AbstractRoleController{
 
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void deleteRole(@PathVariable int id){
+    public void deleteRole(@PathVariable int id) {
         super.delete(id);
     }
 
     @PostMapping(value = "/filter",
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Role>> filter(@RequestBody Role role){
+    public ResponseEntity<List<Role>> filter(@RequestBody Role role) {
         List<Role> filterRoles = super.filterRole(role);
 
         return filterRoles != null
                 ? new ResponseEntity<>(filterRoles, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
-    @GetMapping()
-    public List<RoleType> getAllRoleType(){
-        List<RoleType> list = super.getAllRoleType();
-
-        return list;
-    }
-
-    @GetMapping(value = "/getRoleType/{id}")
-    public RoleType getRoleType(@PathVariable int id){
-        return super.getRoleType(id);
-    }
-
-
-
-
-
-
-
 }
