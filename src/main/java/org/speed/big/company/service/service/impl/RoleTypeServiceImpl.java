@@ -15,14 +15,14 @@ import static org.speed.big.company.service.util.ValidationUtil.checkNotFoundWit
 @Service("roleTypeServiceImpl")
 public class RoleTypeServiceImpl implements RoleTypeService {
 
-    @Autowired
-    @Qualifier("jdbcRoleTypeRepositoryImpl")
+  /*  @Autowired
+    @Qualifier("jdbcRoleTypeRepositoryImpl")*/
     private RoleTypeRepository roleTypeRepository;
 
-   /* @Autowired
+    @Autowired
     public RoleTypeServiceImpl(@Qualifier("jdbcRoleTypeRepositoryImpl")RoleTypeRepository roleTypeRepository) {
         this.roleTypeRepository = roleTypeRepository;
-    }*/
+    }
 
     @Override
     public RoleType create(RoleType roleType) {
