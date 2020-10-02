@@ -99,6 +99,7 @@ CREATE TABLE wf_package_status
     id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     name             VARCHAR NOT NULL
 );
+CREATE UNIQUE INDEX wfpackstatus_unique_name_idx ON wf_package_status (name);
 COMMENT ON TABLE wf_package_status
     IS 'Статус пакета';
 COMMENT ON COLUMN wf_package_status.id
@@ -112,6 +113,7 @@ CREATE TABLE wf_service
     id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     name             VARCHAR NOT NULL
 );
+CREATE UNIQUE INDEX wfservice_unique_name_idx ON wf_service (name);
 COMMENT ON TABLE wf_service
     IS 'Услуга';
 COMMENT ON COLUMN wf_service.id
