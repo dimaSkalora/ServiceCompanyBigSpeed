@@ -2,7 +2,16 @@ package org.speed.big.company.service.model.workflow;
 
 import org.speed.big.company.service.model.AbstractBaseEntity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+
+@Entity
+@Table(name = "wf_service")
 public class WFService extends AbstractBaseEntity {
+    @NotBlank
+    @Column(nullable = false)
     private String name;
 
     public WFService() {
