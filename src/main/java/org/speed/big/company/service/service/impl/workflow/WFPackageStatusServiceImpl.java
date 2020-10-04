@@ -10,6 +10,8 @@ import org.springframework.util.Assert;
 
 import java.util.List;
 
+import static org.speed.big.company.service.util.ValidationUtil.checkNotFoundWithId;
+
 @Service("wfPackageStatusServiceImpl")
 public class WFPackageStatusServiceImpl implements WFPackageStatusService {
 
@@ -21,33 +23,36 @@ public class WFPackageStatusServiceImpl implements WFPackageStatusService {
     }
 
     @Override
-    public WFPackageStatus save(WFPackageStatus wfPackageStatus) {
+    public WFPackageStatus create(WFPackageStatus wfPackageStatus) {
         Assert.notNull(wfPackageStatus,"не должно быть null");
-        return wfPackageStatusService.save(wfPackageStatus);
+        return wfPackageStatusService.create(wfPackageStatus);
     }
 
     @Override
     public WFPackageStatus update(WFPackageStatus wfPackageStatus) throws NotFoundException {
-        return null;
+        Assert.notNull(wfPackageStatus,"не должно быть null");
+        return checkNotFoundWithId(wfPackageStatusService.update(wfPackageStatus),wfPackageStatus.getId());
     }
 
     @Override
     public WFPackageStatus get(int id) throws NotFoundException {
-        return null;
+        //Проверка - не найден с идентификатором
+        return checkNotFoundWithId(wfPackageStatusService.get(id),id);
     }
 
     @Override
     public boolean delete(int id) throws NotFoundException {
-        return false;
+        return checkNotFoundWithId(Boolean.valueOf(wfPackageStatusService.delete(id)),id);
     }
 
     @Override
     public List<WFPackageStatus> getAll() {
-        return null;
+        return wfPackageStatusService.getAll();
     }
 
     @Override
     public List<WFPackageStatus> filter(WFPackageStatus wfPackageStatus) {
-        return null;
+        Assert.notNull(wfPackageStatus,"не должно быть null");
+        return wfPackageStatusService.filter(wfPackageStatus);
     }
 }
