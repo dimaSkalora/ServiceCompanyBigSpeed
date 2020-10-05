@@ -2,14 +2,22 @@ package org.speed.big.company.service.model.workflow;
 
 import org.speed.big.company.service.model.AbstractBaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+@NamedQueries({
+        @NamedQuery(name = WFService.DELETE, query = "delete from WFService wfs where wfs.id=:id"),
+        @NamedQuery(name = WFService.GET, query = "select wfs from WFService wfs where wfs.id=:id"),
+        @NamedQuery(name = WFService.ALL_SORTED, query = "select wfs from WFService wfs \n" +
+                " where wfs.id=:id order by wfs.name")
+})
 @Entity
 @Table(name = "wf_service")
 public class WFService extends AbstractBaseEntity {
+    public static final String DELETE = "WFService.delete";
+    public static final String GET = "WFService.get";
+    public static final String ALL_SORTED = "WFService.allSorted";
+
     @NotBlank
     @Column(nullable = false)
     private String name;
