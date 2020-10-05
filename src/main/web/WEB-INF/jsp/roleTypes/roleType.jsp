@@ -47,10 +47,10 @@
                     <a href="/ServiceCompanyBigSpeed/roleTypes"><spring:message code="app.ok"/></a>
                 </c:if>
                 <c:if test="${!jsf_request_uri.startsWith(jsf_request_uriStr)}">
-                    <c:if test="${!empty user.id}">
+                    <c:if test="${!empty roleType.id}">
                         <input type="submit" value="<spring:message code="app.update"/>"/>
                     </c:if>
-                    <c:if test="${empty user.id}">
+                    <c:if test="${empty roleType.id}">
                         <input type="submit" value="<spring:message code="app.save"/>"/>
                     </c:if>
                 </c:if>

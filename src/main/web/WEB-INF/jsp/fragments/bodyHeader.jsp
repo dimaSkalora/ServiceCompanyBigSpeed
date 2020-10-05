@@ -14,6 +14,8 @@
                     <a class="dropdown-item" href="roleTypes"><spring:message code="app.roleTypes"/></a>
                     <a class="dropdown-item" href="roles"><spring:message code="app.roles"/></a>
                     <a class="dropdown-item" href="userRoles"><spring:message code="app.userRoles"/></a>
+                    <a class="dropdown-item" href="wfPackageStatuses"><spring:message code="app.wfPackageStatuses"/></a>
+                    <a class="dropdown-item" href="wfServices"><spring:message code="app.wfServices"/></a>
                  </div>
             </li>
             <a class="navbar-brand" href="restView"><spring:message code="app.rest"/></a>
