@@ -4,10 +4,20 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
+@NamedQueries({
+        @NamedQuery(name = UserRole.DELETE, query = "DELETE FROM UserRole ur where ur.id=:id"),
+        @NamedQuery(name = UserRole.GET, query = "select ur from UserRole ur where ur.id=:id"),
+        @NamedQuery(name = UserRole.ALL_SORTED, query = "select ur from UserRole ur order by ur.id")
+})
 @Entity
 @Table(name = "user_roles", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id","role_id"},
         name = "ur_uid_rid_unique_idx"))
 public class UserRole extends AbstractBaseEntity{
+
+    public static final String DELETE = "UserRole.delete";
+    public static final String GET = "UserRole.get";
+    public static final String ALL_SORTED = "UserRole.allSorted";
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User userId;
