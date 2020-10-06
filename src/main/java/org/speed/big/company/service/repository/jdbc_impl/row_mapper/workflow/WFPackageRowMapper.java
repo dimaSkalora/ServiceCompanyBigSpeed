@@ -27,11 +27,19 @@ public class WFPackageRowMapper implements RowMapper<WFPackage> {
         wfPackage.setId(rs.getInt("wfp_id"));
         wfPackage.setName(rs.getString("wpf_name"));
         wfPackage.setDateRegistration(rs.getDate("wfp_date_registration").toLocalDate());
-        wfPackage.setName(rs.getString("wfp_customer_name"));
-        wfPackage.setName(rs.getString("wfp_customer_address"));
-        wfPackage.setName(rs.getString(""));
-        wfPackage.setName(rs.getString(""));
-        wfPackage.setName(rs.getString(""));
+        wfPackage.setCustomerName(rs.getString("wfp_customer_name"));
+        wfPackage.setCustomerAddress(rs.getString("wfp_customer_address"));
+        wfPackage.setCustomerAddressJur(rs.getString("wfp_customer_address_jur"));
+        wfPackage.setCustomerPhone(rs.getString("wfp_customer_phone"));
+        wfPackage.setCustomerEmail(rs.getString("wfp_customer_email"));
+        wfPackage.setContractNumber(rs.getString("wfp_contract_number"));
+        wfPackage.setDescription(rs.getString("wfp_description"));
+        wfPackage.setUserAdd(rs.getString("wfp_user_add"));
+        wfPackage.setDateAdd(rs.getTimestamp("wfp_date_add").toLocalDateTime());
+        wfPackage.setUserEdit(rs.getString("wfp_user_edit"));
+        wfPackage.setDateEdit(rs.getTimestamp("wfp_date_edit").toLocalDateTime());
+        wfPackage.setWfPackageStatusId(wfPackageStatus);
+        wfPackage.setWfServiceId(wfService);
 
         return wfPackage;
     }

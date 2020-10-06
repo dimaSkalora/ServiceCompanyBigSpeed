@@ -38,7 +38,14 @@ public class JdbcWFPackageRepositoryImpl implements WFPackageRepository {
 
     private final String sqlQuery = "select wfp.id as wfp_id, wfp.name as wpf_name,\n" +
             "wfp.date_registration as wfp_date_registration, wfp.customer_name as wfp_customer_name,\n" +
-            "wfp.customer_address as wfp_customer_address" +
+            "wfp.customer_address as wfp_customer_address, wfp.customer_address_jur as wfp_customer_address_jur\n" +
+            "wfp.customer_phone as wfp_customer_phone, wfp.customer_email as wfp_customer_email,\n" +
+            "wfp.contract_number as wfp_contract_number, wfp.description as wfp_description,\n" +
+            "wfp.user_add as wfp_user_add, wfp.date_add as wfp_date_add,\n" +
+            "wfp.user_edit as wfp_user_edit, wfp.date_edit as wfp_date_edit,\n" +
+            "wfp.wf_service_id as wfp_wf_service_id, wfp.wf_package_status_id as wfp_wf_package_status_id,\n" +
+            "wfps.id as wfps_id, wfps.name as wfps_name,\n" +
+            "wfs.id as wfs_id, wfs.name as wfs_name" +
             "from wf_package wfp " +
             "left join wf_package_status wfps on wfp.wf_package_status_id=wfps.id\n" +
             "left join wf_service wfs on wfp.wf_service_id=wfs.id\n";
@@ -116,6 +123,59 @@ public class JdbcWFPackageRepositoryImpl implements WFPackageRepository {
 
     @Override
     public List<WFPackage> filter(WFPackage wfPackage) {
+        String queryFilter = sqlQuery;
+        int paramCount = 0;
+
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        if (wfPackage.getId() != null)
+            parameterSource.addValue("id", wfPackage.getId());
+        if (wfPackage.getName() != null)
+            parameterSource.addValue("name", wfPackage.getName());
+        if (wfPackage.getDateRegistration() != null)
+            parameterSource.addValue("dateRegistration", wfPackage.getDateRegistration());
+        if (wfPackage.getCustomerName() != null)
+            parameterSource.addValue("customerName", wfPackage.getCustomerName());
+        if (wfPackage.getCustomerAddress() != null)
+            parameterSource.addValue("customerAddress", wfPackage.getCustomerAddress());
+        if (wfPackage.getCustomerAddressJur() != null)
+            parameterSource.addValue("customerAddressJur", wfPackage.getCustomerAddressJur());
+        if (wfPackage.getCustomerPhone() != null)
+            parameterSource.addValue("customerPhone", wfPackage.getCustomerPhone());
+        if (wfPackage.getCustomerEmail() != null)
+            parameterSource.addValue("customerEmail", wfPackage.getCustomerEmail());
+        if (wfPackage.getContractNumber() != null)
+            parameterSource.addValue("contractNumber", wfPackage.getContractNumber());
+        if (wfPackage.getDescription() != null)
+            parameterSource.addValue("description", wfPackage.getDescription());
+        if (wfPackage.getUserAdd() != null)
+            parameterSource.addValue("userAdd", wfPackage.getUserAdd());
+        if (wfPackage.getDateAdd() != null)
+            parameterSource.addValue("dateAdd", wfPackage.getDateAdd());
+        if (wfPackage.getUserEdit() != null)
+            parameterSource.addValue("userEdit", wfPackage.getUserEdit());
+        if (wfPackage.getDateEdit() != null)
+            parameterSource.addValue("dateEdit", wfPackage.getDateEdit());
+        if (wfPackage.getWfServiceId() != null)
+            parameterSource.addValue("wfServiceId", wfPackage.getWfServiceId().getId());
+        if (wfPackage.getWfPackageStatusId() != null)
+            parameterSource.addValue("wfPackageStatusId", wfPackage.getWfPackageStatusId());
+
+        for (var entrySet: parameterSource.getValues().entrySet()){
+            String paramName = entrySet.getKey();
+            if (paramCount == 0){
+                switch (paramName){
+                    case "id"                   -> queryFilter = queryFilter + " where wfp.id=:id\n";
+                    case "name"                 -> queryFilter +=" where wfp.name=:name\n";
+                    case "dateRegistration"     -> queryFilter +=" where wfp.date_registration=:dateRegistration\n";
+                }
+            }else {
+
+            }
+
+            paramCount++;
+        }
+
+
         return null;
     }
 }
