@@ -167,15 +167,48 @@ public class JdbcWFPackageRepositoryImpl implements WFPackageRepository {
                     case "id"                   -> queryFilter = queryFilter + " where wfp.id=:id\n";
                     case "name"                 -> queryFilter +=" where wfp.name=:name\n";
                     case "dateRegistration"     -> queryFilter +=" where wfp.date_registration=:dateRegistration\n";
+                    case "customerName"         -> queryFilter +=" where wfp.date_registration=:customerName\n";
+                    case "customerAddress"      -> queryFilter +=" where wfp.customer_address=:customerAddress\n";
+                    case "customerAddressJur"   -> queryFilter +=" where wfp.customer_address_jur=:customerAddressJur\n";
+                    case "customerPhone"        -> queryFilter +=" where wfp.customer_phone=:customerPhone\n";
+                    case "customerEmail"        -> queryFilter +=" where wfp.customer_email=:customerEmail\n";
+                    case "contractNumber"       -> queryFilter +=" where wfp.contract_number=:contractNumber\n";
+                    case "description"          -> queryFilter +=" where wfp.description=:description\n";
+                    case "userAdd"              -> queryFilter +=" where wfp.user_add=:userAdd\n";
+                    case "dateAdd"              -> queryFilter +=" where wfp.date_add=:dateAdd\n";
+                    case "userEdit"             -> queryFilter +=" where wfp.user_edit=:userEdit\n";
+                    case "dateEdit"             -> queryFilter +=" where wfp.date_edit=:dateEdit\n";
+                    case "wfServiceId"          -> queryFilter +=" where wfp.wf_service_id=:wfServiceId\n";
+                    case "wfPackageStatusId"    -> queryFilter +=" where wfp.wf_package_status_id=:wfPackageStatusId\n";
                 }
             }else {
-
+                switch (paramName){
+                    case "id"                   -> queryFilter = queryFilter + " and wfp.id=:id\n";
+                    case "name"                 -> queryFilter +=" and wfp.name=:name\n";
+                    case "dateRegistration"     -> queryFilter +=" and wfp.date_registration=:dateRegistration\n";
+                    case "customerName"         -> queryFilter +=" and wfp.date_registration=:customerName\n";
+                    case "customerAddress"      -> queryFilter +=" and wfp.customer_address=:customerAddress\n";
+                    case "customerAddressJur"   -> queryFilter +=" and wfp.customer_address_jur=:customerAddressJur\n";
+                    case "customerPhone"        -> queryFilter +=" and wfp.customer_phone=:customerPhone\n";
+                    case "customerEmail"        -> queryFilter +=" and wfp.customer_email=:customerEmail\n";
+                    case "contractNumber"       -> queryFilter +=" and wfp.contract_number=:contractNumber\n";
+                    case "description"          -> queryFilter +=" and wfp.description=:description\n";
+                    case "userAdd"              -> queryFilter +=" and wfp.user_add=:userAdd\n";
+                    case "dateAdd"              -> queryFilter +=" and wfp.date_add=:dateAdd\n";
+                    case "userEdit"             -> queryFilter +=" and wfp.user_edit=:userEdit\n";
+                    case "dateEdit"             -> queryFilter +=" and wfp.date_edit=:dateEdit\n";
+                    case "wfServiceId"          -> queryFilter +=" and wfp.wf_service_id=:wfServiceId\n";
+                    case "wfPackageStatusId"    -> queryFilter +=" and wfp.wf_package_status_id=:wfPackageStatusId\n";
+                }
             }
-
             paramCount++;
         }
 
+        queryFilter += " order by wfp.date_registration, wfp.name ";
 
-        return null;
+        List<WFPackage> list = namedParameterJdbcTemplate.query(queryFilter,
+                parameterSource, new WFPackageRowMapper());
+
+        return list;
     }
 }
