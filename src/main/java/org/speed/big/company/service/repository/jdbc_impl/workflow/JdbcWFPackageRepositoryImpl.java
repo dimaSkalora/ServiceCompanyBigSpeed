@@ -123,6 +123,11 @@ public class JdbcWFPackageRepositoryImpl implements WFPackageRepository {
 
     @Override
     public List<WFPackage> filter(WFPackage wfPackage) {
+        return filter(wfPackage,null);
+    }
+
+    @Override
+    public List<WFPackage> filter(WFPackage wfPackage, String sqlCondition) {
         String queryFilter = sqlQuery;
         int paramCount = 0;
 
@@ -210,10 +215,5 @@ public class JdbcWFPackageRepositoryImpl implements WFPackageRepository {
                 parameterSource, new WFPackageRowMapper());
 
         return list;
-    }
-
-    @Override
-    public List<WFPackage> filter(WFPackage wfPackage, String sqlCondition) {
-        return null;
     }
 }
