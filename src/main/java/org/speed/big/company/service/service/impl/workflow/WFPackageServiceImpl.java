@@ -24,7 +24,7 @@ public class WFPackageServiceImpl implements WFPackageService {
     }
 
     @Override
-    public WFPackage save(WFPackage wfPackage) {
+    public WFPackage create(WFPackage wfPackage) {
         Assert.notNull(wfPackage,"не должно быть null");
         return wfPackageRepository.save(wfPackage);
     }

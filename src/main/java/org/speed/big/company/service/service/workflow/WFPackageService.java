@@ -6,7 +6,7 @@ import org.speed.big.company.service.util.exception.NotFoundException;
 import java.util.List;
 
 public interface WFPackageService {
-    WFPackage save(WFPackage wfPackage);
+    WFPackage create(WFPackage wfPackage);
     WFPackage update(WFPackage wfPackage) throws NotFoundException;//NotFoundException - Об'экт не обнаружен
     WFPackage get(int id) throws NotFoundException;
     boolean delete(int id) throws NotFoundException;
