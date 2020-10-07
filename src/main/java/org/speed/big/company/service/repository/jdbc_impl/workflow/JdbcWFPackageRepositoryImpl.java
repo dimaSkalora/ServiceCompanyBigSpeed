@@ -211,4 +211,9 @@ public class JdbcWFPackageRepositoryImpl implements WFPackageRepository {
 
         return list;
     }
+
+    @Override
+    public List<WFPackage> filter(WFPackage wfPackage, String sqlCondition) {
+        return null;
+    }
 }

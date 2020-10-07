@@ -55,4 +55,10 @@ public class WFPackageServiceImpl implements WFPackageService {
         Assert.notNull(wfPackage,"не должно быть null");
         return wfPackageRepository.filter(wfPackage);
     }
+
+    @Override
+    public List<WFPackage> filter(WFPackage wfPackage, String sqlCondition) {
+        Assert.notNull(wfPackage,"не должно быть null");
+        return wfPackageRepository.filter(wfPackage,sqlCondition);
+    }
 }

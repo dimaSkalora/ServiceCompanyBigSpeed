@@ -12,4 +12,5 @@ public interface WFPackageService {
     boolean delete(int id) throws NotFoundException;
     List<WFPackage> getAll();
     List<WFPackage> filter(WFPackage wfPackage);
+    List<WFPackage> filter(WFPackage wfPackage, String sqlCondition);
 }

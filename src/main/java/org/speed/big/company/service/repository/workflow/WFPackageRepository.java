@@ -10,4 +10,5 @@ public interface WFPackageRepository {
     boolean delete(int id);
     List<WFPackage> getAll();
     List<WFPackage> filter(WFPackage wfPackage);
+    List<WFPackage> filter(WFPackage wfPackage, String sqlCondition);
 }
