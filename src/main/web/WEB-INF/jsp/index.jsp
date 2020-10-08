@@ -15,8 +15,9 @@
             <li><a href="roleTypes"><spring:message code="app.roleTypes"/></a></li>
             <li><a href="roles"><spring:message code="app.roles"/></a></li>
             <li><a href="userRoles"><spring:message code="app.userRoles"/></a></li>
-            <li><a href="wfPackageStatuses"><spring:message code="app.wfPackageStatuses"/></a></li>
-            <li><a href="wfServices"><spring:message code="app.wfServices"/></a></li>
+            <li><a href="wfPackageStatuses"><spring:message code="app.workflow.wfPackageStatuses"/></a></li>
+            <li><a href="wfServices"><spring:message code="app.workflow.wfServices"/></a></li>
+            <li><a href="wfPackages"><spring:message code="app.workflow.wfPackages"/></a></li>
         </ul>
     </div>
 </div>
