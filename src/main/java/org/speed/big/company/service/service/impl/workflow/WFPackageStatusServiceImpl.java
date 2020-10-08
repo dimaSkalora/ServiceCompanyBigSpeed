@@ -1,6 +1,7 @@
 package org.speed.big.company.service.service.impl.workflow;
 
 import org.speed.big.company.service.model.workflow.WFPackageStatus;
+import org.speed.big.company.service.repository.WFPackageStatusRepository;
 import org.speed.big.company.service.service.workflow.WFPackageStatusService;
 import org.speed.big.company.service.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,44 +16,44 @@ import static org.speed.big.company.service.util.ValidationUtil.checkNotFoundWit
 @Service("wfPackageStatusServiceImpl")
 public class WFPackageStatusServiceImpl implements WFPackageStatusService {
 
-    private WFPackageStatusService wfPackageStatusService;
+    private WFPackageStatusRepository wfPackageStatusRepository;
 
     @Autowired
-    public WFPackageStatusServiceImpl(@Qualifier("jdbcWFPackageStatusRepositoryImpl")WFPackageStatusService wfPackageStatusService) {
-        this.wfPackageStatusService = wfPackageStatusService;
+    public WFPackageStatusServiceImpl(@Qualifier("jdbcWFPackageStatusRepositoryImpl")WFPackageStatusRepository wfPackageStatusRepository) {
+        this.wfPackageStatusRepository = wfPackageStatusRepository;
     }
 
     @Override
     public WFPackageStatus create(WFPackageStatus wfPackageStatus) {
         Assert.notNull(wfPackageStatus,"не должно быть null");
-        return wfPackageStatusService.create(wfPackageStatus);
+        return wfPackageStatusRepository.save(wfPackageStatus);
     }
 
     @Override
     public WFPackageStatus update(WFPackageStatus wfPackageStatus) throws NotFoundException {
         Assert.notNull(wfPackageStatus,"не должно быть null");
-        return checkNotFoundWithId(wfPackageStatusService.update(wfPackageStatus),wfPackageStatus.getId());
+        return checkNotFoundWithId(wfPackageStatusRepository.save(wfPackageStatus),wfPackageStatus.getId());
     }
 
     @Override
     public WFPackageStatus get(int id) throws NotFoundException {
         //Проверка - не найден с идентификатором
-        return checkNotFoundWithId(wfPackageStatusService.get(id),id);
+        return checkNotFoundWithId(wfPackageStatusRepository.get(id),id);
     }
 
     @Override
     public boolean delete(int id) throws NotFoundException {
-        return checkNotFoundWithId(Boolean.valueOf(wfPackageStatusService.delete(id)),id);
+        return checkNotFoundWithId(Boolean.valueOf(wfPackageStatusRepository.delete(id)),id);
     }
 
     @Override
     public List<WFPackageStatus> getAll() {
-        return wfPackageStatusService.getAll();
+        return wfPackageStatusRepository.getAll();
     }
 
     @Override
     public List<WFPackageStatus> filter(WFPackageStatus wfPackageStatus) {
         Assert.notNull(wfPackageStatus,"не должно быть null");
-        return wfPackageStatusService.filter(wfPackageStatus);
+        return wfPackageStatusRepository.filter(wfPackageStatus);
     }
 }
