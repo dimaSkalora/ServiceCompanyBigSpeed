@@ -11,8 +11,8 @@
     <div class="container">
         <ul>
             <li><a href="wfPackageStatuses"><spring:message code="app.workflow.wfPackageStatuses"/></a></li>
-            <li><a href="wfServices"><spring:message code="app.workflow.WFServices"/></a></li>
-            <li><a href="wfPackages"><spring:message code="app.workflow.WFPackages"/></a></li>
+            <li><a href="wfServices"><spring:message code="app.workflow.wfServices"/></a></li>
+            <li><a href="wfPackages"><spring:message code="app.workflow.wfPackages"/></a></li>
         </ul>
     </div>
 </div>
