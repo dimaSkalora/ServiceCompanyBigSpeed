@@ -23,12 +23,12 @@ public class JspWFPackageController extends AbstractWFPackageController{
     @RequestMapping
     public String wfPackages(Model model){
         model.addAttribute("wfPackages", super.getAll());
-        return "workflow/wfPackage/wfPackages";
+        return "workflow/wfPackages/wfPackages";
     }
 
     @RequestMapping(value = "/wfPackage", method = RequestMethod.GET)
     public ModelAndView wfPackage(){
-        ModelAndView modelAndView = new ModelAndView("workflow/wfPackage/wfPackage");
+        ModelAndView modelAndView = new ModelAndView("workflow/wfPackages/wfPackage");
         modelAndView.addObject("wfPackage", new WFPackage());
         modelAndView.addObject("allWFS", super.getAllWFS());
         modelAndView.addObject("allWFPS", super.getAllWFPS());
@@ -38,7 +38,7 @@ public class JspWFPackageController extends AbstractWFPackageController{
 
     @GetMapping("/wfPackageFilter")
     public String wfPackageFilter(){
-        return "workflow/wfPackage/wfPackageFilter";
+        return "workflow/wfPackages/wfPackageFilter";
     }
 
     @RequestMapping(value = "/createRequestParam",method = RequestMethod.POST)
@@ -137,12 +137,12 @@ public class JspWFPackageController extends AbstractWFPackageController{
         model.addAttribute("allWFS", super.getAllWFS());
         model.addAttribute("allWFPS", super.getAllWFPS());
 
-        return "workflow/wfPackage/wfPackage";
+        return "workflow/wfPackages/wfPackage";
     }
 
     @GetMapping("/get/{id}")
     public ModelAndView getWFP(@PathVariable int id){
-        ModelAndView modelAndView = new ModelAndView("workflow/wfPackage/wfPackage");
+        ModelAndView modelAndView = new ModelAndView("workflow/wfPackages/wfPackage");
         modelAndView.addObject("wfPackage", super.get(id));
 
         return modelAndView;
@@ -158,7 +158,7 @@ public class JspWFPackageController extends AbstractWFPackageController{
 
     @PostMapping("/filter")
     public ModelAndView filter(HttpServletRequest request){
-        ModelAndView modelAndView = new ModelAndView("workflow/wfPackage/wfPackages");
+        ModelAndView modelAndView = new ModelAndView("workflow/wfPackages/wfPackages");
 
         var id = parseInteger(request.getParameter("id"));
         var name = parseString(request.getParameter("name"));
@@ -221,7 +221,7 @@ public class JspWFPackageController extends AbstractWFPackageController{
 
     @GetMapping("/getData/{id}")
     public ModelAndView getData(@PathVariable int id){
-        ModelAndView modelAndView = new ModelAndView("workflow/wfPackage/wfPackageData");
+        ModelAndView modelAndView = new ModelAndView("workflow/wfPackages/wfPackageData");
         WFPackage wfPackage = super.get(id);
         modelAndView.addObject("wfpData", wfPackage);
         modelAndView.addObject("wfpWFService", super.getWFS(wfPackage.getWfServiceId().getId()));

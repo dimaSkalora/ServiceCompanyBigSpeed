@@ -18,12 +18,12 @@ public class JspWFPackageStatusController extends AbstractWFPackageStatusControl
     @RequestMapping(method = RequestMethod.GET)
     public String wfPackageStatuses(Model model){
         model.addAttribute("wfPackageStatuses",super.getAll());
-        return "workflow/wfPackageStatus/wfPackageStatuses";
+        return "workflow/wfPackageStatuses/wfPackageStatuses";
     }
 
     @GetMapping("/wfPackageStatus")
     public ModelAndView wfPackageStatus(){
-        ModelAndView modelAndView = new ModelAndView("workflow/wfPackageStatus/wfPackageStatus");
+        ModelAndView modelAndView = new ModelAndView("workflow/wfPackageStatuses/wfPackageStatus");
         modelAndView.addObject("wfPackageStatus", new WFPackageStatus());
 
         return modelAndView;
@@ -31,7 +31,7 @@ public class JspWFPackageStatusController extends AbstractWFPackageStatusControl
 
     @RequestMapping(value = "/wfPackageStatusFilter",method = RequestMethod.GET)
     public String newFilter(){
-        return "workflow/wfPackageStatus/wfPackageStatusFilter";
+        return "workflow/wfPackageStatuses/wfPackageStatusFilter";
     }
 
     @RequestMapping(value = "/createRequestParam", method = RequestMethod.POST)
@@ -69,7 +69,7 @@ public class JspWFPackageStatusController extends AbstractWFPackageStatusControl
     public String update(@PathVariable int id, Model model){
         model.addAttribute("wfPackageStatus",super.get(id));
 
-        return "workflow/wfPackageStatus/wfPackageStatus";
+        return "workflow/wfPackageStatuses/wfPackageStatus";
     }
 
     @RequestMapping(value = "/delete",method = RequestMethod.GET)
@@ -84,12 +84,12 @@ public class JspWFPackageStatusController extends AbstractWFPackageStatusControl
     public String get(@PathVariable int id, Model model){
         model.addAttribute("wfPackageStatus",super.get(id));
 
-        return "workflow/wfPackageStatus/wfPackageStatus";
+        return "workflow/wfPackageStatuses/wfPackageStatus";
     }
 
     @RequestMapping(value = "/filter", method = RequestMethod.POST)
     public ModelAndView filter(HttpServletRequest request){
-        ModelAndView modelAndView = new ModelAndView("workflow/wfPackageStatus/wfPackageStatuses");
+        ModelAndView modelAndView = new ModelAndView("workflow/wfPackageStatuses/wfPackageStatuses");
         var id = parseInteger(request.getParameter("id"));
         var name = parseString(request.getParameter("name"));
 
