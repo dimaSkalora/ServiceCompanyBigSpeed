@@ -155,23 +155,25 @@ COMMENT ON COLUMN wf_package.date_registration
 COMMENT ON COLUMN wf_package.customer_name
     IS 'Наименование заказчика';
 COMMENT ON COLUMN wf_package.customer_address
-    IS 'Адреса замовника';
+    IS 'Адрес заказчика';
 COMMENT ON COLUMN wf_package.customer_address_jur
-    IS 'Юридична адреса замовника';
+    IS 'Юридический адрес заказчика';
 COMMENT ON COLUMN wf_package.customer_phone
     IS 'Номер телефона заказчика';
+COMMENT ON COLUMN wf_package.customer_email
+    IS 'Email заказчика';
 COMMENT ON COLUMN wf_package.contract_number
     IS 'Номер договора';
 COMMENT ON COLUMN wf_package.description
     IS 'Краткое описание';
 COMMENT ON COLUMN wf_package.user_add
-    IS 'Користувач, який створив запис';
+    IS 'Пользователь, который создал запись';
 COMMENT ON COLUMN wf_package.date_add
-    IS 'Дата створення';
+    IS 'Дата создания';
 COMMENT ON COLUMN wf_package.user_edit
-    IS 'Користувач, який вніс зміни';
+    IS 'Пользователь, который внес изменения';
 COMMENT ON COLUMN wf_package.date_edit
-    IS 'Дата зміни';
+    IS 'Дата изменения';
 COMMENT ON COLUMN wf_package.package_service_id
     IS 'Услуга';
 COMMENT ON COLUMN wf_package.package_status_id
