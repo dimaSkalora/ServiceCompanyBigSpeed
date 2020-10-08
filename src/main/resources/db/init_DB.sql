@@ -174,9 +174,9 @@ COMMENT ON COLUMN wf_package.user_edit
     IS 'Пользователь, который внес изменения';
 COMMENT ON COLUMN wf_package.date_edit
     IS 'Дата изменения';
-COMMENT ON COLUMN wf_package.package_service_id
+COMMENT ON COLUMN wf_package.wf_service_id
     IS 'Услуга';
-COMMENT ON COLUMN wf_package.package_status_id
+COMMENT ON COLUMN wf_package.wf_package_status_id
     IS 'Статус пакета';
 
 ---------------wf_base_process_type---------------8
