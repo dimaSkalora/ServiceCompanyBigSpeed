@@ -1,0 +1,20 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<html>
+<head>
+    <title><spring:message code="app.workflow"/></title>
+</head>
+<body>
+<jsp:include page="../fragments/bodyHeader.jsp"/>
+
+<div class="jumbotron">
+    <div class="container">
+        <ul>
+            <li><a href="wfPackageStatuses"><spring:message code="app.workflow.wfPackageStatuses"/></a></li>
+            <li><a href="wfServices"><spring:message code="app.workflow.WFServices"/></a></li>
+            <li><a href="wfPackages"><spring:message code="app.workflow.WFPackages"/></a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
