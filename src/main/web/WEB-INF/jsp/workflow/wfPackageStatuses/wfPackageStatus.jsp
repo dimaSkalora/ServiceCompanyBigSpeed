@@ -21,7 +21,7 @@
                     <tr>
                         <td>
                             <form:label path="id">
-                                <spring:message code="wfPackageStatus.id"/>
+                                <spring:message code="workflow.wfPackageStatus.id"/>
                             </form:label>
                         </td>
                         <td>
@@ -30,7 +30,7 @@
                         </td>
                         <td>
                             <form:label path="name">
-                                <spring:message code="wfPackageStatus.name"/>
+                                <spring:message code="workflow.wfPackageStatus.name"/>
                             </form:label>
                         </td>
                         <td>

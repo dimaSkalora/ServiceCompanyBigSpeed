@@ -21,7 +21,7 @@
                     <tr>
                         <td>
                             <form:label path="id">
-                                <spring:message code="wfService.id"/>
+                                <spring:message code="workflow.wfService.id"/>
                             </form:label>
                         </td>
                         <td>
@@ -30,7 +30,7 @@
                         </td>
                         <td>
                             <form:label path="name">
-                                <spring:message code="wfService.name"/>
+                                <spring:message code="workflow.wfService.name"/>
                             </form:label>
                         </td>
                         <td>

@@ -24,8 +24,8 @@
         <table class="table table-striped table-dark">
             <thead>
             <tr>
-                <th><spring:message code="wfPackageStatus.id"/></th>
-                <th><spring:message code="wfPackageStatus.name"/></th>
+                <th><spring:message code="workflow.wfPackageStatus.id"/></th>
+                <th><spring:message code="workflow.wfPackageStatus.name"/></th>
                 <th></th>
                 <th></th>
             </tr>

@@ -24,8 +24,8 @@
         <table class="table table-striped table-dark">
             <thead>
             <tr>
-                <th><spring:message code="wfService.id"/></th>
-                <th><spring:message code="wfService.name"/></th>
+                <th><spring:message code="workflow.wfService.id"/></th>
+                <th><spring:message code="workflow.wfService.name"/></th>
                 <th></th>
                 <th></th>
             </tr>

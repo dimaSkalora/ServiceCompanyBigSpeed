@@ -19,15 +19,15 @@
         <form method="post" action="${createOrUpdateUrl}" >
             <table border="0" cellpadding="8" cellspacing="0">
                 <tr>
-                    <td><spring:message code="wfPackageStatus.id"/></td>
+                    <td><spring:message code="workflow.wfPackageStatus.id"/></td>
                     <td><input type="number" name="id" value="${param.id}"></td>
-                    <td><spring:message code="wfPackageStatus.name"/></td>
+                    <td><spring:message code="workflow.wfPackageStatus.name"/></td>
                     <td><input type="text" name="name" value="${param.name}"></td>
                 </tr>
 
                 <div class="text-right">
                     <a class="btn btn-outline-primary" role="button" href="wfPackageStatuses">
-                        <spring:message code="app.wfPackageStatus"/>
+                        <spring:message code="app.workflow.wfPackageStatuses"/>
                     </a>
                     <button class="btn btn-primary" type="submit"> <spring:message code="app.search"/>
                         <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
