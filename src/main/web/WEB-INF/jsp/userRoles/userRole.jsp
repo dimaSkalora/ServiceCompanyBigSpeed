@@ -37,7 +37,7 @@
                         </td>
                         <td>
                             <form:select path="userId">
-                                <form:option  value="${!empty userRole.id ? userRole.id : ''}"
+                                <form:option  value="${!empty userRole.id ? userRole.userId.id : ''}"
                                               label="${!empty userRole.id ? userRole.userId.name : ''}"/>
                                 <%--<form:option  value="" label=""/>--%>
                                 <c:forEach items="${getAllUser}" var="user">
@@ -53,7 +53,7 @@
                         </td>
                         <td>
                             <form:select path="roleId">
-                                <form:option  value="${!empty userRole.id ? userRole.id : ''}"
+                                <form:option  value="${!empty userRole.id ? userRole.roleId.id : ''}"
                                               label="${!empty userRole.id ? userRole.roleId.name : ''}"/>
                                 <%--<form:option  value="" label=""/>--%>
                                 <c:forEach items="${getAllRole}" var="role">

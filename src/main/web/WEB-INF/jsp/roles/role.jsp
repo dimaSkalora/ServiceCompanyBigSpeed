@@ -53,8 +53,8 @@
                         </td>
                         <td>
                             <form:select path="roleTypeId">
-                                <form:option  value="${!empty role.id ? role.id : ''}"
-                                              label="${!empty role.id ? role.name : ''}"/>
+                                <form:option  value="${!empty role.roleType.id ? role.roleType.id : ''}"
+                                              label="${!empty role.roleType.id ? role.roleType.name : ''}"/>
                                 <%--<form:option  value="" label=""/>--%>
                                 <c:forEach items="${allRoleTypes}" var="roleType">
                                     <jsp:useBean id="roleType" scope="page" type="org.speed.big.company.service.model.RoleType"/>
