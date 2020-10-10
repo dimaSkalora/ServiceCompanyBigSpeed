@@ -36,16 +36,16 @@ public class JdbcWFPackageRepositoryImpl implements WFPackageRepository {
     // указанным только один раз).
     private static RowMapper<WFPackage> ROW_MAPPER_WF_PACKAGE = BeanPropertyRowMapper.newInstance(WFPackage.class);
 
-    private final String sqlQuery = "select wfp.id as wfp_id, wfp.name as wpf_name,\n" +
+    private final String sqlQuery = "select wfp.id as wfp_id, wfp.name as wfp_name,\n" +
             "wfp.date_registration as wfp_date_registration, wfp.customer_name as wfp_customer_name,\n" +
-            "wfp.customer_address as wfp_customer_address, wfp.customer_address_jur as wfp_customer_address_jur\n" +
+            "wfp.customer_address as wfp_customer_address, wfp.customer_address_jur as wfp_customer_address_jur,\n" +
             "wfp.customer_phone as wfp_customer_phone, wfp.customer_email as wfp_customer_email,\n" +
             "wfp.contract_number as wfp_contract_number, wfp.description as wfp_description,\n" +
             "wfp.user_add as wfp_user_add, wfp.date_add as wfp_date_add,\n" +
             "wfp.user_edit as wfp_user_edit, wfp.date_edit as wfp_date_edit,\n" +
             "wfp.wf_service_id as wfp_wf_service_id, wfp.wf_package_status_id as wfp_wf_package_status_id,\n" +
             "wfps.id as wfps_id, wfps.name as wfps_name,\n" +
-            "wfs.id as wfs_id, wfs.name as wfs_name" +
+            "wfs.id as wfs_id, wfs.name as wfs_name\n" +
             "from wf_package wfp " +
             "left join wf_package_status wfps on wfp.wf_package_status_id=wfps.id\n" +
             "left join wf_service wfs on wfp.wf_service_id=wfs.id\n";

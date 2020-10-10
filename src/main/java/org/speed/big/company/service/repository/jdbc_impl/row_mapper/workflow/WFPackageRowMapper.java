@@ -25,7 +25,7 @@ public class WFPackageRowMapper implements RowMapper<WFPackage> {
 
         WFPackage wfPackage = new WFPackage();
         wfPackage.setId(rs.getInt("wfp_id"));
-        wfPackage.setName(rs.getString("wpf_name"));
+        wfPackage.setName(rs.getString("wfp_name"));
         wfPackage.setDateRegistration(rs.getDate("wfp_date_registration").toLocalDate());
         wfPackage.setCustomerName(rs.getString("wfp_customer_name"));
         wfPackage.setCustomerAddress(rs.getString("wfp_customer_address"));
