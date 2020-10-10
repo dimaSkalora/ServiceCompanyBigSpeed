@@ -30,7 +30,7 @@ public class JspWFServiceController extends AbstractWFServiceController{
 
     @GetMapping("/wfsFilter")
     public String wfsFilter(){
-        return "workflow/wfServices/wfServicesFilter";
+        return "workflow/wfServices/wfServiceFilter";
     }
 
     @RequestMapping(value = "/createRequestParam", method = RequestMethod.POST)

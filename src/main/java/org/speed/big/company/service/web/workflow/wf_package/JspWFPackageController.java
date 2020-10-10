@@ -29,7 +29,11 @@ public class JspWFPackageController extends AbstractWFPackageController{
     @RequestMapping(value = "/wfPackage", method = RequestMethod.GET)
     public ModelAndView wfPackage(){
         ModelAndView modelAndView = new ModelAndView("workflow/wfPackages/wfPackage");
-        modelAndView.addObject("wfPackage", new WFPackage());
+        WFPackage wfPackage = new WFPackage();
+        wfPackage.setDateRegistration(LocalDate.now());
+        wfPackage.setDateAdd(LocalDateTime.now());
+        wfPackage.setContractNumber(String.valueOf(LocalDateTime.now().getNano()));
+        modelAndView.addObject("wfPackage", wfPackage);
         modelAndView.addObject("allWFS", super.getAllWFS());
         modelAndView.addObject("allWFPS", super.getAllWFPS());
 
@@ -229,4 +233,15 @@ public class JspWFPackageController extends AbstractWFPackageController{
 
         return modelAndView;
     }
+
+    //Обявил глобально (GlobalBindingInitializer)
+    /*//Method - который преабразовывает обьэкты в строки и наобород (при передачи параметров)
+    @InitBinder
+    public void initBinder(WebDataBinder binder){
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            dateFormat.setLenient(false);
+            binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+            binder.registerCustomEditor(WFPackageStatus.class, new WFPackageStatusPropertyEditor());
+            binder.registerCustomEditor(WFService.class, new WFServicePropertyEditor());
+    }*/
 }

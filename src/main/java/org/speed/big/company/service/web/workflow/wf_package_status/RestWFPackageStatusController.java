@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping(RestWFPackageStatusController.REST_URL)
 public class RestWFPackageStatusController extends AbstractWFPackageStatusController{
-    static final String REST_URL="/rest/wfPackageStatuses";
+    static final String REST_URL="/rest/workflow/wfPackageStatuses";
 
     //produces - Какой формат отправляем клиенту
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
