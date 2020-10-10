@@ -6,14 +6,22 @@ import org.speed.big.company.service.model.User;
 import org.speed.big.company.service.model.propertyeditor.RolePropertyEditor;
 import org.speed.big.company.service.model.propertyeditor.RoleTypePropertyEditor;
 import org.speed.big.company.service.model.propertyeditor.UserPropertyEditor;
+import org.speed.big.company.service.model.propertyeditor.workflow.WFPackageStatusPropertyEditor;
+import org.speed.big.company.service.model.propertyeditor.workflow.WFServicePropertyEditor;
+import org.speed.big.company.service.model.workflow.WFPackageStatus;
+import org.speed.big.company.service.model.workflow.WFService;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.InitBinder;
 
 import java.beans.PropertyEditor;
 import java.beans.PropertyEditorSupport;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 //Глобальный клас который преабразовывает обьэкты в строки и наобород (при передачи параметров)
 @ControllerAdvice
@@ -37,9 +45,30 @@ public class GlobalBindingInitializer {
             }
         };
 
+        PropertyEditor localDateEditor = new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) throws IllegalArgumentException {
+                if (!text.trim().isEmpty())
+                    super.setValue(LocalDateTime.parse(text.trim(), DateTimeFormatter.ISO_LOCAL_DATE));
+            }
+            @Override
+            public String getAsText() {
+                if (super.getValue() == null)
+                    return null;
+                LocalDate value = (LocalDate) super.getValue();
+                return value.format(DateTimeFormatter.ISO_LOCAL_DATE);
+            }
+        };
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+        binder.registerCustomEditor(LocalDate.class, localDateEditor);
         binder.registerCustomEditor(LocalDateTime.class, editor);
         binder.registerCustomEditor(RoleType.class, new RoleTypePropertyEditor());
         binder.registerCustomEditor(User.class, new UserPropertyEditor());
         binder.registerCustomEditor(Role.class, new RolePropertyEditor());
+        binder.registerCustomEditor(WFPackageStatus.class, new WFPackageStatusPropertyEditor());
+        binder.registerCustomEditor(WFService.class, new WFServicePropertyEditor());
     }
 }
