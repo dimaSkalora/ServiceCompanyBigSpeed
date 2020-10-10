@@ -44,7 +44,7 @@
                             </form:label>
                         </td>
                         <td>
-                            <form:input path="dateRegistration"/>
+                            <form:input type="date" path="dateRegistration"/>
                         </td>
                         <td>
                             <form:label path="customerName">

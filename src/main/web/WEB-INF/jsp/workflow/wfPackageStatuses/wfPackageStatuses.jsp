@@ -34,7 +34,7 @@
                 <jsp:useBean id="wfPackageStatus" scope="page" type="org.speed.big.company.service.model.workflow.WFPackageStatus"/>
                 <tr>
                     <td><a href="wfPackageStatuses/get/${wfPackageStatus.id}"/><c:out value="${wfPackageStatus.id}"/></td>
-                    <td><c:out value="${wfService.name}"/></td>
+                    <td><c:out value="${wfPackageStatus.name}"/></td>
                     <td><a href="wfPackageStatuses/update/${wfPackageStatus.id}"/><spring:message code="app.update"/></td>
                     <td><a href="wfPackageStatuses/delete?id=${wfPackageStatus.id}"/><spring:message code="app.delete"/></td>
                 </tr>

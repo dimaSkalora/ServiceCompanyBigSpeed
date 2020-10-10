@@ -33,7 +33,7 @@
             <c:forEach items="${wfServices}" var="wfService">
                 <jsp:useBean id="wfService" scope="page" type="org.speed.big.company.service.model.workflow.WFService"/>
                 <tr>
-                    <td><a href="wfServices/get/${wfService.id}"/><c:out value="${wfServices.id}"/></td>
+                    <td><a href="wfServices/get/${wfService.id}"/><c:out value="${wfService.id}"/></td>
                     <td><c:out value="${wfService.name}"/></td>
                     <td><a href="wfServices/update/${wfService.id}"/><spring:message code="app.update"/></td>
                     <td><a href="wfServices/delete?id=${wfService.id}"/><spring:message code="app.delete"/></td>
