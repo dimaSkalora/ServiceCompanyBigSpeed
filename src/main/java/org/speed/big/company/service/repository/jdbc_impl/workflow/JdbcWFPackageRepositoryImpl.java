@@ -79,7 +79,7 @@ public class JdbcWFPackageRepositoryImpl implements WFPackageRepository {
                 .addValue("userEdit", wfPackage.getUserEdit())
                 .addValue("dateEdit", wfPackage.getDateEdit())
                 .addValue("wfServiceId", wfPackage.getWfServiceId().getId())
-                .addValue("wfPackageStatusId", wfPackage);
+                .addValue("wfPackageStatusId", wfPackage.getWfPackageStatusId().getId());
 
         if (wfPackage.isNew()){
             //Выполните вставку, используя значения, переданные и возвращающие сгенерированный ключ.
