@@ -73,7 +73,7 @@
                                 </form:label>
                             </td>
                             <td>
-                                <form:input type="data" path="registered" />
+                                <form:input type="date" path="registered" />
                             </td>
                             <td>
                                 <form:label path="enabled">
