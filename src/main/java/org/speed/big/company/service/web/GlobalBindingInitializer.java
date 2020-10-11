@@ -49,7 +49,7 @@ public class GlobalBindingInitializer {
             @Override
             public void setAsText(String text) throws IllegalArgumentException {
                 if (!text.trim().isEmpty())
-                    super.setValue(LocalDateTime.parse(text.trim(), DateTimeFormatter.ISO_LOCAL_DATE));
+                    super.setValue(LocalDate.parse(text.trim(), DateTimeFormatter.ISO_LOCAL_DATE));
             }
             @Override
             public String getAsText() {
