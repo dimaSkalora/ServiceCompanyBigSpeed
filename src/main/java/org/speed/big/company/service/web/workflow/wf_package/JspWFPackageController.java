@@ -181,8 +181,12 @@ public class JspWFPackageController extends AbstractWFPackageController{
         var wfServiceId = parseInteger(request.getParameter("wfServiceId"));
         var wfPackageStatusId = parseInteger(request.getParameter("wfPackageStatusId"));
 
-        WFService wfService = super.getWFS(wfServiceId);
-        WFPackageStatus wfPackageStatus = super.getWFPS(wfPackageStatusId);
+        WFService wfService = null;
+        if (wfServiceId != null)
+            wfService = super.getWFS(wfServiceId);
+        WFPackageStatus wfPackageStatus = null;
+        if (wfPackageStatusId != null)
+            wfPackageStatus = super.getWFPS(wfPackageStatusId);
 
         WFPackage wfPackage = new WFPackage();
         if (id != null)
