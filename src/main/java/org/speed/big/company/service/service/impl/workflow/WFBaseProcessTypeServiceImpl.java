@@ -30,7 +30,7 @@ public class WFBaseProcessTypeServiceImpl implements WFBaseProcessTypeService {
     @Override
     public WFBaseProcessType update(WFBaseProcessType wfBaseProcessType) throws NotFoundException {
         Assert.notNull(wfBaseProcessType,"не должно быть null");
-        return checkNotFoundWithId(wfBaseProcessType, wfBaseProcessType.getId());
+        return checkNotFoundWithId(wfBaseProcessTypeRepository.save(wfBaseProcessType), wfBaseProcessType.getId());
     }
 
     @Override

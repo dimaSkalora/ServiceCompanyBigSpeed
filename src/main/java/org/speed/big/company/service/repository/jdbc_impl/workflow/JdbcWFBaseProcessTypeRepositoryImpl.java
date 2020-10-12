@@ -52,7 +52,7 @@ public class JdbcWFBaseProcessTypeRepositoryImpl implements WFBaseProcessTypeRep
             Number newKey = jdbcInsert.executeAndReturnKey(parameterSource);
             wfBaseProcessType.setId(newKey.intValue());
         }else if(namedParameterJdbcTemplate.update("update wf_base_process_type " +
-                "set name=:name where id=:id",parameterSource) != 0){
+                "set name=:name where id=:id",parameterSource) == 0){
             return null;
         }
 
@@ -72,7 +72,7 @@ public class JdbcWFBaseProcessTypeRepositoryImpl implements WFBaseProcessTypeRep
 
     @Override
     public boolean delete(int id) {
-        String queryDelete = sqlQuery + "where wfbpt.id=?";
+        String queryDelete = "delete from wf_base_process_type wfbpt where wfbpt.id=?";
 
         return jdbcTemplate.update(queryDelete,id) != 0;
     }
