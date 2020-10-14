@@ -203,17 +203,17 @@ CREATE TABLE wf_base_process (
 );
 CREATE INDEX wfbpro_idx_wfsserid ON wf_base_process (wf_service_id);
 CREATE INDEX wfbpro_idx_wfbptypeid ON wf_base_process (wf_base_process_type_id);
-COMMENT ON TABLE workflow.wfbaseprocess
+COMMENT ON TABLE wf_base_process
     IS 'Базовый процесс';
-COMMENT ON COLUMN workflow.wfbaseprocess.code
-    IS 'код';
-COMMENT ON COLUMN workflow.wfbaseprocess.name
+COMMENT ON COLUMN wf_base_process.id
+    IS 'ID';
+COMMENT ON COLUMN wf_base_process.name
     IS 'Наименование процесса';
-COMMENT ON COLUMN workflow.wfbaseprocess.description
+COMMENT ON COLUMN wf_base_process.description
     IS 'Описание процесса';
-COMMENT ON COLUMN workflow.wfbaseprocess.package_service_id
+COMMENT ON COLUMN wf_base_process.wf_service_id
     IS 'Услуга';
-COMMENT ON COLUMN workflow.wfbaseprocess.base_process_type_id
+COMMENT ON COLUMN wf_base_process.wf_base_process_type_id
     IS 'Типы базовых процессов';
 
  ---------------wf_process_status---------------10
