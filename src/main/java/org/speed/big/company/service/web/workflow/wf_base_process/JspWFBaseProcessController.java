@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.util.List;
+
 import static org.speed.big.company.service.util.ParseUtil.parseInteger;
 import static org.speed.big.company.service.util.ParseUtil.parseString;
 
@@ -122,7 +124,8 @@ public class JspWFBaseProcessController extends AbstractWFBaseProcessController{
 
     @PostMapping("/filter")
     public ModelAndView filter(HttpServletRequest request){
-        ModelAndView modelAndView = new ModelAndView("workflow/wfBaseProcesses/wfBaseProcessFilter");
+        ModelAndView modelAndView = new ModelAndView("workflow/wfBaseProcesses/wfBaseProcesses");
+        List<WFBaseProcess> list;
 
         var id = parseInteger(request.getParameter("id"));
         var name = parseString(request.getParameter("name"));
@@ -149,7 +152,8 @@ public class JspWFBaseProcessController extends AbstractWFBaseProcessController{
         if (wfBaseProcessType != null)
             wfBaseProcess.setWfBaseProcessTypeId(wfBaseProcessType);
 
-        super.filter(wfBaseProcess);
+        list = super.filter(wfBaseProcess);
+        modelAndView.addObject("wfBaseProcesses",list);
 
         return modelAndView;
     }

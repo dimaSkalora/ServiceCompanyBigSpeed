@@ -24,9 +24,9 @@ public class WFBaseProcessRowMapper implements RowMapper<WFBaseProcess> {
         wfBaseProcessType.setName(rs.getString("wfbpt_name"));
 
         WFBaseProcess wfBaseProcess = new WFBaseProcess();
-        wfBaseProcess.setId(rs.getInt(""));
-        wfBaseProcess.setName(rs.getString(""));
-        wfBaseProcess.setDescription(rs.getString(""));
+        wfBaseProcess.setId(rs.getInt("wfbp_id"));
+        wfBaseProcess.setName(rs.getString("wfbp_name"));
+        wfBaseProcess.setDescription(rs.getString("wfbp_description"));
         wfBaseProcess.setWfServiceId(wfService);
         wfBaseProcess.setWfBaseProcessTypeId(wfBaseProcessType);
 

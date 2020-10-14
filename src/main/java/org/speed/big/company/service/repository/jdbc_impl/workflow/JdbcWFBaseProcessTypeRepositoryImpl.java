@@ -89,10 +89,8 @@ public class JdbcWFBaseProcessTypeRepositoryImpl implements WFBaseProcessTypeRep
         List<WFBaseProcessType> list;
 
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        if (wfBaseProcessType.getId() != null){
+        if (wfBaseProcessType.getId() != null)
             parameterSource.addValue("id",wfBaseProcessType.getId());
-            paramCount++;
-        }
         if (wfBaseProcessType.getName() != null)
             parameterSource.addValue("name", wfBaseProcessType.getName());
 
@@ -109,6 +107,7 @@ public class JdbcWFBaseProcessTypeRepositoryImpl implements WFBaseProcessTypeRep
                     case "name"     -> queryFilter += " and wfbpt.name=:name\n";
                 }
             }
+            paramCount++;
         }
 
         queryFilter += "order by wfbpt.name";

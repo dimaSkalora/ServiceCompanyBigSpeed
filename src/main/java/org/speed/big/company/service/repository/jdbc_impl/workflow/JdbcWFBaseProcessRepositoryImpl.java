@@ -33,7 +33,7 @@ public class JdbcWFBaseProcessRepositoryImpl implements WFBaseProcessRepository 
             " wfs.id as wfs_id, wfs.name as wfs_name, \n" +
             " wfbpt.id as wfbpt_id, wfbpt.name as wfbpt_name\n" +
             " from wf_base_process wfbp" +
-            " left join wf_service wfs on wfbp.wfServiceId=wfs.id\n" +
+            " left join wf_service wfs on wfbp.wf_service_id=wfs.id\n" +
             " left join wf_base_process_type wfbpt on wfbp.wf_base_process_type_id=wfbpt.id\n";
 
     @Autowired
@@ -96,26 +96,16 @@ public class JdbcWFBaseProcessRepositoryImpl implements WFBaseProcessRepository 
         List<WFBaseProcess> list;
 
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        if (wfBaseProcess.getId() != null) {
+        if (wfBaseProcess.getId() != null)
             parameterSource.addValue("id",wfBaseProcess.getId());
-            paramCount++;
-        }
-        if (wfBaseProcess.getName() != null){
+        if (wfBaseProcess.getName() != null)
             parameterSource.addValue("name",wfBaseProcess.getName());
-            paramCount++;
-        }
-        if (wfBaseProcess.getDescription() != null){
+        if (wfBaseProcess.getDescription() != null)
             parameterSource.addValue("description",wfBaseProcess.getDescription());
-            paramCount++;
-        }
-        if(wfBaseProcess.getWfServiceId() != null){
+        if(wfBaseProcess.getWfServiceId() != null)
             parameterSource.addValue("wfServiceId",wfBaseProcess.getWfServiceId());
-            paramCount++;
-        }
-        if (wfBaseProcess.getWfBaseProcessTypeId() != null){
+        if (wfBaseProcess.getWfBaseProcessTypeId() != null)
             parameterSource.addValue("wfBaseProcessTypeId",wfBaseProcess.getWfBaseProcessTypeId());
-            paramCount++;
-        }
 
         for (var entrySet: parameterSource.getValues().entrySet()){
             String paramName = entrySet.getKey();
@@ -136,6 +126,7 @@ public class JdbcWFBaseProcessRepositoryImpl implements WFBaseProcessRepository 
                     case "wfBaseProcessTypeId"  -> queryFilter += " and wfbp.wf_base_process_type_id=:wfBaseProcessTypeId\n";
                 }
             }
+            paramCount++;
         }
 
         queryFilter += " order by wfbp.name";

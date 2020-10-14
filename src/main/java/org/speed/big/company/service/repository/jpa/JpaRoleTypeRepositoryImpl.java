@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository("jpaRoleTypeRepository")
 @Transactional(readOnly = true)
-public class JpaRoleTypeRepository implements RoleTypeRepository {
+public class JpaRoleTypeRepositoryImpl implements RoleTypeRepository {
 
     @PersistenceContext
     EntityManager entityManager;
