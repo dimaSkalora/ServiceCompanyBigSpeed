@@ -222,8 +222,8 @@ CREATE TABLE wf_process_status
     id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     name             VARCHAR NOT NULL
 );
-COMMENT ON TABLE wf_package_status
-    IS 'Статус пакета';
+COMMENT ON TABLE wf_process_status
+    IS 'Статус процесса';
 COMMENT ON COLUMN wf_package_status.id
     IS 'ID';
 COMMENT ON COLUMN wf_package_status.name
