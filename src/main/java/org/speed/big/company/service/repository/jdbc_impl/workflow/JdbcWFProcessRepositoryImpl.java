@@ -115,6 +115,74 @@ public class JdbcWFProcessRepositoryImpl implements WFProcessRepository {
 
     @Override
     public List<WFProcess> filter(WFProcess wfProcess, String sqlCondition) {
-        return null;
+        StringBuilder queryFilter = new StringBuilder();
+        queryFilter.append(sqlQuery);
+        int paramCount = 0;
+        List<WFProcess> list;
+
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+
+        if (wfProcess.getId() != 0)
+            parameterSource.addValue("id", wfProcess.getId());
+        if (wfProcess.getStartDate() != null)
+            parameterSource.addValue("startDate",wfProcess.getStartDate());
+        if (wfProcess.getFinalDate() != null)
+            parameterSource.addValue("finalDate",wfProcess.getFinalDate());
+        if (wfProcess.getDescription() != null)
+            parameterSource.addValue("description",wfProcess.getDescription());
+        if (wfProcess.getDateEdit() != null)
+            parameterSource.addValue("dateEdit",wfProcess.getDateEdit());
+        if (wfProcess.getUserEdit() != null)
+            parameterSource.addValue("userEdit",wfProcess.getUserEdit());
+        if (wfProcess.getWfPackageId() != null)
+            parameterSource.addValue("wfPackageId",wfProcess.getWfPackageId().getId());
+        if (wfProcess.getWfBaseProcessId() != null)
+            parameterSource.addValue("wfBaseProcessId",wfProcess.getWfBaseProcessId().getId());
+        if (wfProcess.getWfProcessStatusId() != null)
+            parameterSource.addValue("wfProcessStatusId",wfProcess.getWfProcessStatusId().getId());
+
+        for (var entrySet: parameterSource.getValues().entrySet()){
+            String paramName = entrySet.getKey();
+            if (paramCount == 0){
+                switch (paramName){
+                    case "id"               -> queryFilter.append(" where wfp.id=:id");
+                    case "startDate"        -> queryFilter.append(" where wfp.start_date=:startDate");
+                    case "finalDate"        -> queryFilter.append(" where wfp.final_date=:finalDate");
+                    case "description"      -> queryFilter.append(" where wfp.description=:description");
+                    case "dateEdit"         -> queryFilter.append(" where wfp.date_edit=:dateEdit");
+                    case "userEdit"         -> queryFilter.append(" where wfp.user_edit=:userEdit");
+                    case "wfPackageId"      -> queryFilter.append(" where wfp.wf_package_id=:wfPackageId");
+                    case "wfBaseProcessId"  -> queryFilter.append(" where wfp.wf_base_process_id=:wfBaseProcessId");
+                    case "wfProcessStatusId"-> queryFilter.append(" where wfp.wf_process_status_id=:wfProcessStatusId");
+                }
+            }else {
+                switch (paramName){
+                    case "id"               -> queryFilter.append(" and wfp.id=:id");
+                    case "startDate"        -> queryFilter.append(" and wfp.start_date=:startDate");
+                    case "finalDate"        -> queryFilter.append(" and wfp.final_date=:finalDate");
+                    case "description"      -> queryFilter.append(" and wfp.description=:description");
+                    case "dateEdit"         -> queryFilter.append(" and wfp.date_edit=:dateEdit");
+                    case "userEdit"         -> queryFilter.append(" and wfp.user_edit=:userEdit");
+                    case "wfPackageId"      -> queryFilter.append(" and wfp.wf_package_id=:wfPackageId");
+                    case "wfBaseProcessId"  -> queryFilter.append(" and wfp.wf_base_process_id=:wfBaseProcessId");
+                    case "wfProcessStatusId"-> queryFilter.append(" and wfp.wf_process_status_id=:wfProcessStatusId");
+                }
+            }
+            paramCount++;
+        }
+
+        if ((sqlCondition != null) && !("".equals(sqlCondition))){
+            if (parameterSource.getParameterNames().length > 0)
+                queryFilter.append(" and ( "+sqlCondition+" )");
+            else
+                queryFilter.append(" where ( "+sqlCondition+" )");
+        }
+
+        queryFilter.append(" order by wfp.start_date DESC");// DESC - по убыванию.
+
+        list = namedParameterJdbcTemplate.query(String.valueOf(queryFilter),
+                parameterSource, new WFProcessRowMapper());
+
+        return list;
     }
 }
