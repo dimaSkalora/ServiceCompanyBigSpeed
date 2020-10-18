@@ -7,9 +7,11 @@ import org.speed.big.company.service.model.propertyeditor.RolePropertyEditor;
 import org.speed.big.company.service.model.propertyeditor.RoleTypePropertyEditor;
 import org.speed.big.company.service.model.propertyeditor.UserPropertyEditor;
 import org.speed.big.company.service.model.propertyeditor.workflow.WFBaseProcessTypePropertyEditor;
+import org.speed.big.company.service.model.propertyeditor.workflow.WFPackagePropertyEditor;
 import org.speed.big.company.service.model.propertyeditor.workflow.WFPackageStatusPropertyEditor;
 import org.speed.big.company.service.model.propertyeditor.workflow.WFServicePropertyEditor;
 import org.speed.big.company.service.model.workflow.WFBaseProcessType;
+import org.speed.big.company.service.model.workflow.WFPackage;
 import org.speed.big.company.service.model.workflow.WFPackageStatus;
 import org.speed.big.company.service.model.workflow.WFService;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -73,5 +75,6 @@ public class GlobalBindingInitializer {
         binder.registerCustomEditor(WFPackageStatus.class, new WFPackageStatusPropertyEditor());
         binder.registerCustomEditor(WFService.class, new WFServicePropertyEditor());
         binder.registerCustomEditor(WFBaseProcessType.class, new WFBaseProcessTypePropertyEditor());
+        binder.registerCustomEditor(WFPackage.class, new WFPackagePropertyEditor());
     }
 }
