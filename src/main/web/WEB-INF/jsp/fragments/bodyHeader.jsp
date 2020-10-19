@@ -20,6 +20,8 @@
                     <a class="dropdown-item" href="wfBaseProcessTypes"><spring:message code="app.workflow.wfBaseProcessTypes"/></a>
                     <a class="dropdown-item" href="wfBaseProcesses"><spring:message code="app.workflow.wfBaseProcesses"/></a>
                     <a class="dropdown-item" href="wfProcessStatuses"><spring:message code="app.workflow.wfProcessStatuses"/></a>
+                    <a class="dropdown-item" href="wfProcesses"><spring:message code="app.workflow.wfProcesses"/></a>
+                    <a class="dropdown-item" href="wfGroups"><spring:message code="app.workflow.wfGroups"/></a>
                  </div>
             </li>
             <a class="navbar-brand" href="restView"><spring:message code="app.rest"/></a>

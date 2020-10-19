@@ -21,6 +21,8 @@
             <li><a href="wfBaseProcessTypes"><spring:message code="app.workflow.wfBaseProcessTypes"/></a></li>
             <li><a href="wfBaseProcesses"><spring:message code="app.workflow.wfBaseProcesses"/></a></li>
             <li><a href="wfProcessStatuses"><spring:message code="app.workflow.wfProcessStatuses"/></a></li>
+            <li><a href="wfProcesses"><spring:message code="app.workflow.wfProcesses"/></a></li>
+            <li><a href="wfGroups"><spring:message code="app.workflow.wfGroups"/></a></li>
         </ul>
     </div>
 </div>

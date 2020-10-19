@@ -5,7 +5,7 @@
 <html>
 <jsp:include page="../../fragments/headTag.jsp"/>
 <head>
-    <title>Role Data</title>
+    <title>WFBaseProcess Data</title>
 </head>
 <body>
 <jsp:include page="../../fragments/bodyHeader.jsp"/>
