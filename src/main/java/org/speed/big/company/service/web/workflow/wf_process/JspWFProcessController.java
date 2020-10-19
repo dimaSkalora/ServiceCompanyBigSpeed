@@ -34,6 +34,9 @@ public class JspWFProcessController extends AbstractWFProcessController{
     public ModelAndView wfProcess(){
         ModelAndView modelAndView = new ModelAndView("workflow/wfProcesses/wfProcess");
         modelAndView.addObject("wfProcess", new WFProcess());
+        modelAndView.addObject("allWFPackages", super.getAllWFPackages());
+        modelAndView.addObject("allWFBaseProcesses", super.getAllWFBaseProcesses());
+        modelAndView.addObject("allWFProcessStatuses", super.getAllWFProcessStatuses());
 
         return modelAndView;
     }
@@ -121,6 +124,9 @@ public class JspWFProcessController extends AbstractWFProcessController{
     public ModelAndView update(@PathVariable int id){
         ModelAndView modelAndView = new ModelAndView("workflow/wfProcesses/wfProcess");
         modelAndView.addObject("wfProcess",super.get(id));
+        modelAndView.addObject("allWFPackages", super.getAllWFPackages());
+        modelAndView.addObject("allWFBaseProcesses", super.getAllWFBaseProcesses());
+        modelAndView.addObject("allWFProcessStatuses", super.getAllWFProcessStatuses());
 
         return modelAndView;
     }
