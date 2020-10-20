@@ -59,13 +59,13 @@ public abstract class AbstractWFProcessStateController {
         return wfProcessStateService.filter(wfProcessState);
     }
 
-    public Role getWFPSRole(int roleId){
-        log.info("getWFPSRole {}",roleId);
+    public Role getRole(int roleId){
+        log.info("getRole {}",roleId);
         return roleService.get(roleId);
     }
 
-    public List<Role> getAllWFPRoles(){
-        log.info("getAllWFPRoles");
+    public List<Role> getAllRoles(){
+        log.info("getAllRoles");
         List<Role> listWF = roleService.getAll().stream()
                 .filter(role -> role.getRoleTypeId().getId()==RoleType.WEB_WORKFLOW)
                 .collect(Collectors.toList());
