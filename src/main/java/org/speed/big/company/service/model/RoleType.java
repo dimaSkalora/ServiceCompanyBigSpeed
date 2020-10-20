@@ -16,6 +16,9 @@ public class RoleType extends AbstractBaseEntity{
 
     public static final String DELETE = "RoleType.delete";
     public static final String ALL_SORTED = "RoleType.allSorted";
+    
+    public static final Integer WEB_APP = 1;
+    public static final Integer WEB_WORKFLOW = 2;
 
     @NotBlank
     @Size(min = 4)
