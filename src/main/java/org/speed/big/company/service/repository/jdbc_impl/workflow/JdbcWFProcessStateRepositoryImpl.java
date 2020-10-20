@@ -97,8 +97,38 @@ public class JdbcWFProcessStateRepositoryImpl implements WFProcessStateRepositor
             parameterSource.addValue("id",wfProcessState.getId());
         if (wfProcessState.getName() != null)
             parameterSource.addValue("name",wfProcessState.getName());
+        if (wfProcessState.getRoleId() != null)
+            parameterSource.addValue("roleId",wfProcessState.getRoleId());
+        if (wfProcessState.getGroupId() != null)
+            parameterSource.addValue("groupId",wfProcessState.getGroupId());
+        if (wfProcessState.getDescription() != null)
+            parameterSource.addValue("description",wfProcessState.getDescription());
 
+        for (var entrySet: parameterSource.getValues().entrySet()){
+            String paramName = entrySet.getKey();
+            if (paramCount == 0){
+                switch (paramName){
+                    case "id"           -> queryFilter = queryFilter + " where wfps.id=:id\n";
+                    case "name"         -> queryFilter += " where wfps.name=:name\n";
+                    case "roleId"       -> queryFilter += " where wfps.roleId=:roleId\n";
+                    case "groupId"      -> queryFilter += " where wfps.groupId=:groupId\n";
+                    case "description"  -> queryFilter += " where wfps.description=:description\n";
+                }
+            }else {
+                switch (paramName){
+                    case "id"           -> queryFilter = queryFilter + " and wfps.id=:id\n";
+                    case "name"         -> queryFilter += " and wfps.name=:name\n";
+                    case "roleId"       -> queryFilter += " and wfps.roleId=:roleId\n";
+                    case "groupId"      -> queryFilter += " and wfps.groupId=:groupId\n";
+                    case "description"  -> queryFilter += " and wfps.description=:description\n";
+                }
+            }
+            paramCount++;
+        }
 
+        queryFilter += "order by wfps.name";
+
+        list = namedParameterJdbcTemplate.query(queryFilter,parameterSource, new WFProcessStateRowMapper());
 
         return list;
     }
