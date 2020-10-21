@@ -15,7 +15,7 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name = "wf_process_state", indexes = {
         @Index(name = "wfps_idx_wfrolekid", columnList = "role_id"),
-        @Index(name = "wfps_idx_wfgroupid", columnList = "group_id")
+        @Index(name = "wfps_idx_wfgroupid", columnList = "wf_group_id")
 })
 public class WFProcessState extends AbstractBaseEntity {
     public static final String DELETE = "WFProcessState.delete";
@@ -29,18 +29,18 @@ public class WFProcessState extends AbstractBaseEntity {
     @JoinColumn(name = "role_id")
     private Role roleId;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_id")
-    private WFGroup groupId;
+    @JoinColumn(name = "wf_group_id")
+    private WFGroup wfGroupId;
     private String description;
 
     public WFProcessState() {
     }
 
-    public WFProcessState(Integer id, String name, Role roleId, WFGroup groupId, String description) {
+    public WFProcessState(Integer id, String name, Role roleId, WFGroup wfGroupId, String description) {
         super(id);
         this.name = name;
         this.roleId = roleId;
-        this.groupId = groupId;
+        this.wfGroupId = wfGroupId;
         this.description = description;
     }
 
@@ -60,12 +60,12 @@ public class WFProcessState extends AbstractBaseEntity {
         this.roleId = roleId;
     }
 
-    public WFGroup getGroupId() {
-        return groupId;
+    public WFGroup getWfGroupId() {
+        return wfGroupId;
     }
 
-    public void setGroupId(WFGroup groupId) {
-        this.groupId = groupId;
+    public void setWfGroupId(WFGroup groupId) {
+        this.wfGroupId = groupId;
     }
 
     public String getDescription() {
