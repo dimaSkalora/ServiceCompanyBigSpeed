@@ -26,10 +26,10 @@ public class WFProcessState extends AbstractBaseEntity {
     @Column(nullable = false)
     private String name;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id")
+    @JoinColumn(name = "role_id", nullable = false)
     private Role roleId;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "wf_group_id")
+    @JoinColumn(name = "wf_group_id", nullable = false)
     private WFGroup wfGroupId;
     private String description;
 

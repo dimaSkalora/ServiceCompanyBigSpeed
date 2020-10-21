@@ -60,10 +60,10 @@ public class WFPackage extends AbstractBaseEntity {
     @Column(name = "date_edit", nullable = false)
     private LocalDateTime dateEdit;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "wf_service_id")
+    @JoinColumn(name = "wf_service_id", nullable = false)
     private WFService wfServiceId;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "wf_package_status_id")
+    @JoinColumn(name = "wf_package_status_id", nullable = false)
     private WFPackageStatus wfPackageStatusId;
 
     public WFPackage() {

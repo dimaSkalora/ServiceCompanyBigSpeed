@@ -25,7 +25,7 @@ public class Role extends AbstractBaseEntity{
     @Column(name = "description", nullable = false)
     private String description;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_type_id")
+    @JoinColumn(name = "role_type_id", nullable = false)
     private RoleType roleTypeId;
 
     public Role() {

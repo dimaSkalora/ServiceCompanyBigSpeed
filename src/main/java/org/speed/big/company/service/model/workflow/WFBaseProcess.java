@@ -25,10 +25,10 @@ public class WFBaseProcess extends AbstractBaseEntity {
     @NotBlank
     private String description;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "wf_service_id")
+    @JoinColumn(name = "wf_service_id", nullable = false)
     private WFService wfServiceId;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "wf_base_process_type_id")
+    @JoinColumn(name = "wf_base_process_type_id", nullable = false)
     private WFBaseProcessType wfBaseProcessTypeId;
 
     public WFBaseProcess() {

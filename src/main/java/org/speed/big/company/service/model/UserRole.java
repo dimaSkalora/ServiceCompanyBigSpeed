@@ -19,10 +19,10 @@ public class UserRole extends AbstractBaseEntity{
     public static final String ALL_SORTED = "UserRole.allSorted";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User userId;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     private Role roleId;
     @NotNull
     @Column(name = "dateTime", nullable = false)

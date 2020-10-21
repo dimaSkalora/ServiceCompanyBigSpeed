@@ -32,13 +32,13 @@ public class WFProcess extends AbstractBaseEntity {
     @Column(name = "user_edit", nullable = false)
     private String userEdit;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "wf_package_id")
+    @JoinColumn(name = "wf_package_id", nullable = false)
     private WFPackage wfPackageId;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "wf_base_process_id")
+    @JoinColumn(name = "wf_base_process_id", nullable = false)
     private WFBaseProcess wfBaseProcessId;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "wf_process_status_id")
+    @JoinColumn(name = "wf_process_status_id", nullable = false)
     private WFProcessStatus wfProcessStatusId;
 
     public WFProcess() {
