@@ -12,7 +12,7 @@
 <div class="jumbotron">
     <div class="container">
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs box taxiOrderAcceptance_nav_tabs">
+        <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#wfBaseProcess"><spring:message code="app.workflow.wfBaseProcesses"/></a>
             </li>
