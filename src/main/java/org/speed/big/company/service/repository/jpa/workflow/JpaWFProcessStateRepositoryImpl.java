@@ -80,11 +80,11 @@ public class JpaWFProcessStateRepositoryImpl implements WFProcessStateRepository
                 queryFilter += " and wfps.role_id=:roleId\n";
             paramCount++;
         }
-        if (wfProcessState.getGroupId() != null){
+        if (wfProcessState.getWfGroupId() != null){
             if (paramCount == 0)
-                queryFilter += " where wfps.group_id=:groupId\n";
+                queryFilter += " where wfps.wf_group_id=:wfGroupId\n";
             else
-                queryFilter += " and wfps.group_id=:groupId\n";
+                queryFilter += " and wfps.wf_groupId=:wfGroupId\n";
             paramCount++;
         }
         if (wfProcessState.getDescription() != null){
@@ -104,8 +104,8 @@ public class JpaWFProcessStateRepositoryImpl implements WFProcessStateRepository
             query.setParameter("name",wfProcessState.getName());
         if (wfProcessState.getRoleId() != null)
             query.setParameter("roleId",wfProcessState.getRoleId());
-        if (wfProcessState.getGroupId() != null)
-            query.setParameter("groupId",wfProcessState.getGroupId());
+        if (wfProcessState.getWfGroupId() != null)
+            query.setParameter("wfGroupId",wfProcessState.getWfGroupId());
         if (wfProcessState.getDescription() != null)
             query.setParameter("description",wfProcessState.getDescription());
 

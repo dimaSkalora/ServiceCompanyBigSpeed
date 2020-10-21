@@ -78,8 +78,8 @@ public abstract class AbstractWFProcessStateController {
         return wfGroupService.get(groupId);
     }
 
-    public List<WFGroup> getAllWFGroup(){
-        log.info("getAllWFGroup");
+    public List<WFGroup> getAllWFGroups(){
+        log.info("getAllWFGroups");
         return wfGroupService.getAll();
     }
 }

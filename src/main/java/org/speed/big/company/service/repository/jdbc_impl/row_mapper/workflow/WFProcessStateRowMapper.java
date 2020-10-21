@@ -36,7 +36,7 @@ public class WFProcessStateRowMapper implements RowMapper<WFProcessState> {
         wfProcessState.setId(rs.getInt("wfps_id"));
         wfProcessState.setName(rs.getString("wfps_name"));
         wfProcessState.setRoleId(role);
-        wfProcessState.setGroupId(wfGroup);
+        wfProcessState.setWfGroupId(wfGroup);
         wfProcessState.setDescription(rs.getString("wfps_description"));
 
         return wfProcessState;

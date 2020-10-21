@@ -23,7 +23,7 @@ public class JdbcWFProcessStateRepositoryImpl implements WFProcessStateRepositor
 
     private final String sqlQuery = "select wfps.id as wfps_id,\n" +
             " wfps.name as wfps_name, wfps.role_id as wfps_role_id,\n" +
-            " wfps.group_id as wfps_group_id, wfps.description as wfps_description,\n" +
+            " wfps.wf_group_id as wfps_wf_group_id, wfps.description as wfps_description,\n" +
             " r.id as r_id, r.name as r_name, r.description as r_description,\n" +
             " r.role_type_id as r_role_type_id, rt.id as rt_id, rt.name as rt_name,\n" +
             " wfg.id as wfg_id, wfg.name as wfg_name, \n" +
@@ -50,7 +50,7 @@ public class JdbcWFProcessStateRepositoryImpl implements WFProcessStateRepositor
                 .addValue("id",wfProcessState.getId())
                 .addValue("name",wfProcessState.getName())
                 .addValue("roleId",wfProcessState.getRoleId().getId())
-                .addValue("groupId",wfProcessState.getGroupId().getId())
+                .addValue("wfGroupId",wfProcessState.getWfGroupId().getId())
                 .addValue("description",wfProcessState.getDescription());
 
         if (wfProcessState.isNew()){
@@ -58,6 +58,7 @@ public class JdbcWFProcessStateRepositoryImpl implements WFProcessStateRepositor
             Number newKey = jdbcInsert.executeAndReturnKey(parameterSource);
             wfProcessState.setId(newKey.intValue());
         }else if (namedParameterJdbcTemplate.update("update wf_process_state set name=:name,\n" +
+                " role_id=:roleId, wf_group_id=:wfGroupId, " +
                 " description=:description where id=:id",parameterSource) == 0){
             return null;
         }
@@ -99,8 +100,8 @@ public class JdbcWFProcessStateRepositoryImpl implements WFProcessStateRepositor
             parameterSource.addValue("name",wfProcessState.getName());
         if (wfProcessState.getRoleId() != null)
             parameterSource.addValue("roleId",wfProcessState.getRoleId());
-        if (wfProcessState.getGroupId() != null)
-            parameterSource.addValue("groupId",wfProcessState.getGroupId());
+        if (wfProcessState.getWfGroupId() != null)
+            parameterSource.addValue("wfGroupId",wfProcessState.getWfGroupId());
         if (wfProcessState.getDescription() != null)
             parameterSource.addValue("description",wfProcessState.getDescription());
 
@@ -111,7 +112,7 @@ public class JdbcWFProcessStateRepositoryImpl implements WFProcessStateRepositor
                     case "id"           -> queryFilter = queryFilter + " where wfps.id=:id\n";
                     case "name"         -> queryFilter += " where wfps.name=:name\n";
                     case "roleId"       -> queryFilter += " where wfps.roleId=:roleId\n";
-                    case "groupId"      -> queryFilter += " where wfps.groupId=:groupId\n";
+                    case "wfGroupId"      -> queryFilter += " where wfps.wf_group_id=:wfGroupId\n";
                     case "description"  -> queryFilter += " where wfps.description=:description\n";
                 }
             }else {
@@ -119,7 +120,7 @@ public class JdbcWFProcessStateRepositoryImpl implements WFProcessStateRepositor
                     case "id"           -> queryFilter = queryFilter + " and wfps.id=:id\n";
                     case "name"         -> queryFilter += " and wfps.name=:name\n";
                     case "roleId"       -> queryFilter += " and wfps.roleId=:roleId\n";
-                    case "groupId"      -> queryFilter += " and wfps.groupId=:groupId\n";
+                    case "wfGroupId"      -> queryFilter += " and wfps.wf_group_id=:wfGroupId\n";
                     case "description"  -> queryFilter += " and wfps.description=:description\n";
                 }
             }
