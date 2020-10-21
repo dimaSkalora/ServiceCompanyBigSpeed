@@ -288,13 +288,13 @@ CREATE TABLE wf_process_state (
   id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   name          VARCHAR(500) NOT NULL,
   role_id       INTEGER NOT NULL,
-  group_id      INTEGER NOT NULL,
+  wf_group_id      INTEGER NOT NULL,
   description   VARCHAR(500),
   FOREIGN KEY (role_id)  REFERENCES roles(id),
   FOREIGN KEY (group_id)  REFERENCES wf_group(id)
 );
 CREATE INDEX wfps_idx_wfrolekid ON roles (role_id);
-CREATE INDEX wfps_idx_wfgroupid ON wf_group (group_id);
+CREATE INDEX wfps_idx_wfgroupid ON wf_group (wf_group_id);
 COMMENT ON TABLE wf_process_state
     IS 'Состояние базового процесса';
 COMMENT ON COLUMN wf_process_state.id
@@ -303,7 +303,7 @@ COMMENT ON COLUMN wf_process_state.name
     IS 'Наименование состояния процесса';
 COMMENT ON COLUMN wf_process_state.role_id
     IS 'Роль';
-COMMENT ON COLUMN wf_process_state.group_id
+COMMENT ON COLUMN wf_process_state.wf_group_id
     IS 'Группа';
 COMMENT ON COLUMN wf_process_state.description
     IS 'Описание';
