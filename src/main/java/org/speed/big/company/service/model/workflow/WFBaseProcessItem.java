@@ -6,8 +6,8 @@ import javax.persistence.*;
 
 @NamedQueries({
         @NamedQuery(name = WFBaseProcessItem.DELETE, query = "delete from WFBaseProcessItem where id=:id"),
-        @NamedQuery(name = WFBaseProcessItem.DELETE, query = "select wfbpi from WFBaseProcessItem wfbpi where wfbpi.id=:id"),
-        @NamedQuery(name = WFBaseProcessItem.DELETE, query = "select wfbpi from WFBaseProcessItem wfbpi " +
+        @NamedQuery(name = WFBaseProcessItem.GET, query = "select wfbpi from WFBaseProcessItem wfbpi where wfbpi.id=:id"),
+        @NamedQuery(name = WFBaseProcessItem.ALL_SORTED, query = "select wfbpi from WFBaseProcessItem wfbpi " +
                 " order by wfbpi.baseProcessId")
 })
 @Entity
