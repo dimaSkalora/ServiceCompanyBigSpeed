@@ -7,8 +7,8 @@ import javax.validation.constraints.NotBlank;
 
 @NamedQueries({
         @NamedQuery(name = WFProcessStatus.DELETE, query = "delete from WFBaseProcess where id=:id"),
-        @NamedQuery(name = WFBaseProcess.GET, query = "select wfps from WFBaseProcess wfps where wfps.id=:id"),
-        @NamedQuery(name = WFBaseProcess.ALL_SORTED, query = "select wfps from WFBaseProcess  wfps " +
+        @NamedQuery(name = WFProcessStatus.GET, query = "select wfps from WFBaseProcess wfps where wfps.id=:id"),
+        @NamedQuery(name = WFProcessStatus.ALL_SORTED, query = "select wfps from WFBaseProcess  wfps " +
                 "order by wfps.name")
 })
 @Entity

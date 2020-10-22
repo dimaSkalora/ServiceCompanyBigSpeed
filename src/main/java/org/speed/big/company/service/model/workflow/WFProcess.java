@@ -13,7 +13,11 @@ import java.time.LocalDateTime;
                 " order by wfp.startDate DESC") // DESC - по убыванию.
 })
 @Entity
-@Table(name = "wf_process")
+@Table(name = "wf_process", indexes = {
+        @Index(name = "wfpro_idx_wfpackid", columnList = "wf_package_id"),
+        @Index(name = "wfpro_idx_wfbprocessid", columnList = "wf_base_process_id"),
+        @Index(name = "wfpro_idx_wfpstatusid", columnList = "wf_process_status_id")
+})
 public class WFProcess extends AbstractBaseEntity {
     public static final String DELETE = "WFProcess.delete";
     public static final String GET = "WFProcess.get";

@@ -12,7 +12,10 @@ import javax.validation.constraints.NotBlank;
                 " order by wfbp.name")
 })
 @Entity
-@Table(name = "wf_base_process")
+@Table(name = "wf_base_process", indexes = {
+        @Index(name = "wfbpro_idx_wfsserid", columnList = "wf_service_id"),
+        @Index(name = "wfbpro_idx_wfbptypeid", columnList = "wf_base_process_type_id")
+})
 public class WFBaseProcess extends AbstractBaseEntity {
 
     public final static String DELETE = "WFBaseProcess.delete";

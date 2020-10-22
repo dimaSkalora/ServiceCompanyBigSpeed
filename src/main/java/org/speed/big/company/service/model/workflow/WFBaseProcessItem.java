@@ -11,7 +11,12 @@ import javax.persistence.*;
                 " order by wfbpi.baseProcessId")
 })
 @Entity
-@Table(name = "wf_base_process_items",uniqueConstraints = @UniqueConstraint(name = "wfbpi_sfid_stid_bpid_unique_idx", columnNames = {"state_from_id","state_to_id","base_process_id"}))
+@Table(name = "wf_base_process_items",uniqueConstraints = @UniqueConstraint(name = "wfbpi_sfid_stid_bpid_unique_idx",
+        columnNames = {"state_from_id","state_to_id","base_process_id"}), indexes = {
+        @Index(name = "wfbpi_idx_statefromid", columnList = "state_from_id"),
+        @Index(name = "wfbpi_idx_statetoid", columnList = "state_to_id"),
+        @Index(name = "wfbpi_idx_baseprocessid", columnList = "base_process_id")
+})
 public class WFBaseProcessItem extends AbstractBaseEntity {
 
     public static final String DELETE = "WFBaseProcessItem.delete";

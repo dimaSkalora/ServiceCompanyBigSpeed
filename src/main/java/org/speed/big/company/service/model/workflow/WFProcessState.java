@@ -7,9 +7,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @NamedQueries({
-    @NamedQuery(name = WFProcessStatus.DELETE, query = "delete from WFProcessState where id=:id"),
-    @NamedQuery(name = WFProcessStatus.GET, query = "select wfps from WFProcessState wfps where wfps.id=:id"),
-    @NamedQuery(name = WFProcessStatus.ALL_SORTED,
+    @NamedQuery(name = WFProcessState.DELETE, query = "delete from WFProcessState where id=:id"),
+    @NamedQuery(name = WFProcessState.GET, query = "select wfps from WFProcessState wfps where wfps.id=:id"),
+    @NamedQuery(name = WFProcessState.ALL_SORTED,
             query = "select wfps from WFProcessState wfps order by wfps.name")
 })
 @Entity
