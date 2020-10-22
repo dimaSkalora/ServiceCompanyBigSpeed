@@ -318,9 +318,9 @@ CREATE TABLE wf_base_process_items (
   FOREIGN KEY (state_to_id)  REFERENCES wf_process_state(id),
   FOREIGN KEY (base_process_id)  REFERENCES wf_base_process(id)
 );
-CREATE INDEX wfps_idx_wfrolekid ON wf_base_process_items (state_from_id);
-CREATE INDEX wfps_idx_wfrolekid ON wf_base_process_items (state_to_id);
-CREATE INDEX wfps_idx_wfrolekid ON wf_base_process_items (base_process_id);
+CREATE INDEX wfbpi_idx_statefromid ON wf_base_process_items (state_from_id);
+CREATE INDEX wfbpi_idx_statetoid ON wf_base_process_items (state_to_id);
+CREATE INDEX wfbpi_idx_baseprocessid ON wf_base_process_items (base_process_id);
 CREATE UNIQUE INDEX wfbpi_sfid_stid_bpid_unique_idx ON wf_base_process_items (state_from_id,state_to_id,base_process_id),
 COMMENT ON TABLE wf_base_process_items
     IS 'Переходы базового процесса';
