@@ -244,9 +244,9 @@ CREATE TABLE wf_process (
   FOREIGN KEY (wf_base_process_id)  REFERENCES wf_base_process(id),
   FOREIGN KEY (wf_process_status_id)  REFERENCES wf_process_status(id)
 );
-CREATE INDEX wfpro_idx_wfpackid ON wf_package (wf_package_id);
-CREATE INDEX wfpro_idx_wfbprocessid ON wf_base_process (wf_base_process_id);
-CREATE INDEX wfpro_idx_wfpstatusid ON wf_process_status (wf_process_status_id);
+CREATE INDEX wfpro_idx_wfpackid ON wf_process (wf_package_id);
+CREATE INDEX wfpro_idx_wfbprocessid ON wf_process (wf_base_process_id);
+CREATE INDEX wfpro_idx_wfpstatusid ON wf_process (wf_process_status_id);
 COMMENT ON TABLE wf_process
     IS 'Процессы пакета';
 COMMENT ON COLUMN wf_process.id
@@ -293,8 +293,8 @@ CREATE TABLE wf_process_state (
   FOREIGN KEY (role_id)  REFERENCES roles(id),
   FOREIGN KEY (group_id)  REFERENCES wf_group(id)
 );
-CREATE INDEX wfps_idx_wfrolekid ON roles (role_id);
-CREATE INDEX wfps_idx_wfgroupid ON wf_group (wf_group_id);
+CREATE INDEX wfps_idx_wfrolekid ON wf_process_state (role_id);
+CREATE INDEX wfps_idx_wfgroupid ON wf_process_state (wf_group_id);
 COMMENT ON TABLE wf_process_state
     IS 'Состояние базового процесса';
 COMMENT ON COLUMN wf_process_state.id
@@ -318,6 +318,9 @@ CREATE TABLE wf_base_process_items (
   FOREIGN KEY (state_to_id)  REFERENCES wf_process_state(id),
   FOREIGN KEY (base_process_id)  REFERENCES wf_base_process(id)
 );
+CREATE INDEX wfps_idx_wfrolekid ON wf_base_process_items (state_from_id);
+CREATE INDEX wfps_idx_wfrolekid ON wf_base_process_items (state_to_id);
+CREATE INDEX wfps_idx_wfrolekid ON wf_base_process_items (base_process_id);
 CREATE UNIQUE INDEX wfbpi_sfid_stid_bpid_unique_idx ON wf_base_process_items (state_from_id,state_to_id,base_process_id),
 COMMENT ON TABLE wf_base_process_items
     IS 'Переходы базового процесса';
@@ -346,11 +349,11 @@ CREATE TABLE wf_process_movement (
   wf_base_process_id    INTEGER NOT NULL,
   is_last               boolean DEFAULT true NOT NULL
 )
-CREATE INDEX wfpm_idx_wfuserid ON users (user_id);
-CREATE INDEX wfpm_idx_wfpackageid ON wf_package (wf_package_id);
-CREATE INDEX wfpm_idx_wfstateid ON wf_state (wf_state_id);
-CREATE INDEX wfpm_idx_wfprocessid ON wf_process (wf_process_id);
-CREATE INDEX wfpm_idx_wfbaseprocessid ON wf_base_process (wf_base_process_id);
+CREATE INDEX wfpm_idx_wfuserid ON wf_process_movement (user_id);
+CREATE INDEX wfpm_idx_wfpackageid ON wf_process_movement (wf_package_id);
+CREATE INDEX wfpm_idx_wfstateid ON wf_process_movement (wf_state_id);
+CREATE INDEX wfpm_idx_wfprocessid ON wf_process_movement (wf_process_id);
+CREATE INDEX wfpm_idx_wfbaseprocessid ON wf_process_movement (wf_base_process_id);
 COMMENT ON TABLE wf_process_movement
     IS 'Движение процесса';
 COMMENT ON COLUMN wf_process_movement.id
