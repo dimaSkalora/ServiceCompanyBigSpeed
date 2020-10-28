@@ -158,6 +158,21 @@ public class JspWFBaseProcessItemController extends AbstractWFBaseProcessItemCon
         return modelAndView;
     }
 
+    @GetMapping("/getData/{id}")
+    public ModelAndView getData(@PathVariable int id){
+        ModelAndView modelAndView = new ModelAndView("workflow/wfBaseProcessItems/wfBaseProcessItemData");
+        WFBaseProcessItem wfBaseProcessItem = super.get(id);
+        WFProcessState wfProcessStateFrom = super.getWFProcessState(wfBaseProcessItem.getStateFromId().getId());
+        WFProcessState wfProcessStateTo = super.getWFProcessState(wfBaseProcessItem.getStateToId().getId());
+        WFBaseProcess wfBaseProcess = super.getWFBaseProcess(wfBaseProcessItem.getBaseProcessId().getId());
+        modelAndView.addObject("wfBaseProcessItemData", wfBaseProcessItem);
+        modelAndView.addObject("wfProcessStateFrom", wfProcessStateFrom);
+        modelAndView.addObject("wfProcessStateTo", wfProcessStateTo);
+        modelAndView.addObject("wfBaseProcess", wfBaseProcess);
+
+        return modelAndView;
+    }
+
     //Обявил глобально (GlobalBindingInitializer)
     //Method - который преабразовывает обьэкты в строки и наобород (при передачи параметров)
 /*    @InitBinder
