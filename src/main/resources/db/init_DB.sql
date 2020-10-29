@@ -338,7 +338,7 @@ CREATE TABLE wf_process_movement (
   id                    INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   start_date_time       TIMESTAMP(6)  NOT NULL,
   final_date_time       TIMESTAMP(6),
-  is_completed          boolean NOT NULL,
+  is_completed          boolean DEFAULT false NOT NULL,
   description           VARCHAR,
   date_edit             TIMESTAMP(6) NOT NULL,
   user_edit             VARCHAR(50) NOT NULL,
