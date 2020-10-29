@@ -20,6 +20,7 @@
             <li><a href="wfProcesses"><spring:message code="app.workflow.wfProcesses"/></a></li>
             <li><a href="wfGroups"><spring:message code="app.workflow.wfGroups"/></a></li>
             <li><a href="wfProcessStates"><spring:message code="app.workflow.wfProcessStates"/></a></li>
+            <li><a href="wfBaseProcessItems"><spring:message code="app.workflow.wfBaseProcessItems"/></a></li>
         </ul>
     </div>
 </div>
