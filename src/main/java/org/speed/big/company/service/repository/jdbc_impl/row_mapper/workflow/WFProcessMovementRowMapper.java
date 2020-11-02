@@ -86,14 +86,14 @@ public class WFProcessMovementRowMapper implements RowMapper<WFProcessMovement> 
         wfProcessStatus.setName(rs.getString("wfpstatus_name"));
 
         WFProcess wfProcess = new WFProcess();
-        wfProcess.setId(rs.getInt("wfp_id"));
-        wfProcess.setStartDate(rs.getTimestamp("wfp_start_date").toLocalDateTime());
-        if (rs.getTimestamp("wfp_final_date").toLocalDateTime() != null)
-            wfProcess.setFinalDate(rs.getTimestamp("wfp_final_date").toLocalDateTime());
-        if (rs.getString("wfp_description") != null)
-            wfProcess.setDescription(rs.getString("wfp_description"));
-        wfProcess.setDateEdit(rs.getTimestamp("wfp_date_edit").toLocalDateTime());
-        wfProcess.setUserEdit(rs.getString("wfp_user_edit"));
+        wfProcess.setId(rs.getInt("wfpro_id"));
+        wfProcess.setStartDate(rs.getTimestamp("wfpro_start_date").toLocalDateTime());
+        if (rs.getTimestamp("wfpro_final_date").toLocalDateTime() != null)
+            wfProcess.setFinalDate(rs.getTimestamp("wfpro_final_date").toLocalDateTime());
+        if (rs.getString("wfpro_description") != null)
+            wfProcess.setDescription(rs.getString("wfpro_description"));
+        wfProcess.setDateEdit(rs.getTimestamp("wfpro_date_edit").toLocalDateTime());
+        wfProcess.setUserEdit(rs.getString("wfpro_user_edit"));
         wfProcess.setWfPackageId(wfPackage);
         wfProcess.setWfBaseProcessId(wfBaseProcess);
         wfProcess.setWfProcessStatusId(wfProcessStatus);
@@ -107,9 +107,22 @@ public class WFProcessMovementRowMapper implements RowMapper<WFProcessMovement> 
         wfBaseProcess.setWfBaseProcessTypeId(wfBaseProcessType);
         /*------------------------------end wfProcess-------------------------------------------------*/
 
-
         WFProcessMovement wfProcessMovement = new WFProcessMovement();
-
+        wfProcessMovement.setId(rs.getInt("wfpm_id"));
+        wfProcessMovement.setStartDateTime(rs.getTimestamp("wfpm_start_date_time").toLocalDateTime());
+        if (rs.getTimestamp("wfpm_final_date_time").toLocalDateTime() != null)
+            wfProcessMovement.setFinalDateTime(rs.getTimestamp("wfpm_final_date_time").toLocalDateTime());
+        wfProcessMovement.setCompleted(rs.getBoolean("wfpm_is_completed"));
+        if (rs.getString("wfpm_description") != null)
+            wfProcessMovement.setDescription(rs.getString("wfpm_description"));
+        wfProcessMovement.setDateEdit(rs.getTimestamp("wfpm_date_edit").toLocalDateTime());
+        wfProcessMovement.setUserEdit(rs.getString("wfpm_user_edit"));
+        wfProcessMovement.setUserId(user);
+        wfProcessMovement.setWfPackageId(wfPackage);
+        wfProcessMovement.setWfStateId(wfProcessState);
+        wfProcessMovement.setWfProcessId(wfProcess);
+        wfProcessMovement.setWfBaseProcessId(wfBaseProcess);
+        wfProcessMovement.setLast(rs.getBoolean("wfpm_is_last"));
 
         return wfProcessMovement;
     }

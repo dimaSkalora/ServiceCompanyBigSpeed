@@ -55,10 +55,10 @@ public class JdbcWFProcessMovementRepositoryImpl implements WFProcessMovementRep
             " wfg.id as wfg_id, wfg.name as wfg_name, \n" +
             " wfg.description as wfg_description\n" +
             /*------------------------------wf_process-----------------------------------------*/
-            " wfpro.id as wfp_id, wfpro.start_date as wfp_start_date,\n" +
-            " wfpro.final_date as wfp_final_date, wfpro.description as wfp_description,\n" +
-            " wfpro.date_edit as wfp_date_edit, wfpro.user_edit as wfp_user_edit, wfpro.wf_package_id as wfp_wf_package_id,\n" +
-            " wfpro.wf_base_process_id as wfp_wf_base_process_id, wfpro.wf_process_status_id as wfp_wf_process_status_id,\n" +
+            " wfpro.id as wfpro_id, wfpro.start_date as wfpro_start_date,\n" +
+            " wfpro.final_date as wfpro_final_date, wfpro.description as wfpro_description,\n" +
+            " wfpro.date_edit as wfpro_date_edit, wfpro.user_edit as wfpro_user_edit, wfpro.wf_package_id as wfpro_wf_package_id,\n" +
+            " wfpro.wf_base_process_id as wfpro_wf_base_process_id, wfpro.wf_process_status_id as wfpro_wf_process_status_id,\n" +
             " wfps.id as wfps_id, wfps.name as wfps_name,\n" +
             " wfs.id as wfs_id, wfs.name as wfs_name,\n" +
             " wfbp.id as wfbp_id, wfbp.name as wfbp_name,\n" +
@@ -78,7 +78,6 @@ public class JdbcWFProcessMovementRepositoryImpl implements WFProcessMovementRep
             " left join wf_group wfg on wfg.id=wfprostate.group_id\n"+
             /*------------------------------left join wf_process-----------------------------------*/
             " left join wf_process wfpro on wfpro.id=wfpm.wf_process_id" +
-            " left join wf_package wfpack ON wfpack.id = wfpro.wf_package_id\n" +
             " left join wf_base_process wfbp ON wfbp.id = wfpro.wf_base_process_id\n" +
             " left join wf_process_status_id wfpstatus ON wfpstatus.id = wfpro.wf_process_status_id\n"+
             "";
