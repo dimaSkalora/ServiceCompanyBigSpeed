@@ -17,7 +17,7 @@ import java.util.List;
 import static org.speed.big.company.service.util.ValidationUtil.checkNew;
 import static org.speed.big.company.service.util.ValidationUtil.checkNotNew;
 
-public class AbstractWFProcessController {
+public abstract class AbstractWFProcessController {
     private Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
