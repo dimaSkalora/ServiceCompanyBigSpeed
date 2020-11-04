@@ -9,6 +9,7 @@ import org.speed.big.company.service.service.workflow.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.speed.big.company.service.util.ValidationUtil.checkNew;
 import static org.speed.big.company.service.util.ValidationUtil.checkNotNew;
@@ -74,7 +75,9 @@ public abstract class AbstractWFProcessMovementController {
 
     public List<User> getAllUsers(){
         log.info("getAllUser");
-        return userService.getAll();
+        return userService.getAll().stream()
+                .filter(u->u.isEnabled() == true)
+                .collect(Collectors.toList());
     }
 
     public WFPackage getWFPackage(int wfPackageId){
@@ -92,6 +95,12 @@ public abstract class AbstractWFProcessMovementController {
         WFProcessState wfProcessState = wfProcessStateService.get(wfProcessStateId);
         log.info("getWFProcessState {}",wfProcessStateId);
         return wfProcessState;
+    }
+
+    public List<WFProcessState> getAllWFProcessStates(){
+        List<WFProcessState> wfProcessStates = wfProcessStateService.getAll();
+        log.info("getAllWFProcessStates {}");
+        return wfProcessStates;
     }
 
     public WFProcess getWFProcess(int wfProcessId){

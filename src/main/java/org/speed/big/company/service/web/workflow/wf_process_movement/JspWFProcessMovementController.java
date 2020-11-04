@@ -33,6 +33,11 @@ public class JspWFProcessMovementController extends AbstractWFProcessMovementCon
     public ModelAndView wfProcessMovement(){
         ModelAndView modelAndView = new ModelAndView("workflow/wfProcessMovements/wfProcessMovement");
         modelAndView.addObject("wfProcessMovement", new WFProcessMovement());
+        modelAndView.addObject("allUsers", super.getAllUsers());
+        modelAndView.addObject("allWFPackages", super.getAllWFPackages());
+        modelAndView.addObject("allWFProcessStates", super.getAllWFProcessStates());
+        modelAndView.addObject("allWFProcesses", super.getAllWFProcesses());
+        modelAndView.addObject("allWFBaseProcesses", super.getAllWFBaseProcesses());
 
         return modelAndView;
     }
@@ -141,6 +146,11 @@ public class JspWFProcessMovementController extends AbstractWFProcessMovementCon
         ModelAndView modelAndView = new ModelAndView("workflow/wfProcessMovements/wfProcessMovement");
         WFProcessMovement wfProcessMovement = super.get(id);
         modelAndView.addObject("wfProcessMovement",wfProcessMovement);
+        modelAndView.addObject("allUsers", super.getAllUsers());
+        modelAndView.addObject("allWFPackages", super.getAllWFPackages());
+        modelAndView.addObject("allWFProcessStates", super.getAllWFProcessStates());
+        modelAndView.addObject("allWFProcesses", super.getAllWFProcesses());
+        modelAndView.addObject("allWFBaseProcesses", super.getAllWFBaseProcesses());
 
         return modelAndView;
     }
