@@ -71,5 +71,6 @@ public class GlobalBindingInitializer {
         binder.registerCustomEditor(WFBaseProcessType.class, new WFBaseProcessTypePropertyEditor());
         binder.registerCustomEditor(WFPackage.class, new WFPackagePropertyEditor());
         binder.registerCustomEditor(WFProcessState.class,new WFProcessStatePropertyEditor());
+        binder.registerCustomEditor(WFProcess.class,new WFProcessPropertyEditor());
     }
 }
