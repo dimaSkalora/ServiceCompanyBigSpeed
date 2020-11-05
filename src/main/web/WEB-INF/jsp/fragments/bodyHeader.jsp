@@ -24,6 +24,7 @@
                     <a class="dropdown-item" href="wfGroups"><spring:message code="app.workflow.wfGroups"/></a>
                     <a class="dropdown-item" href="wfProcessStates"><spring:message code="app.workflow.wfProcessStates"/></a>
                     <a class="dropdown-item" href="wfBaseProcessItems"><spring:message code="app.workflow.wfBaseProcessItems"/></a>
+                    <a class="dropdown-item" href="wfProcessMovements"><spring:message code="app.workflow.wfProcessMovements"/></a>
                  </div>
             </li>
             <a class="navbar-brand" href="restView"><spring:message code="app.rest"/></a>
