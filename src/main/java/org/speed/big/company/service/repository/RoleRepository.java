@@ -10,4 +10,6 @@ public interface RoleRepository {
     boolean delete(int id);
     List<Role> getAll();
     List<Role> filter(Role role);
+    List<Role> getRoleFromUserRoleByUser(int userId);
+    List<Role> getRoleFromUserRoleByUserRoleType(int userId,int roleTypeId);
 }

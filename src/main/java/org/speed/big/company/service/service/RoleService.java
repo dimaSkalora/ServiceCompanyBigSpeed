@@ -12,4 +12,6 @@ public interface RoleService {
     boolean delete(int id) throws NotFoundException;
     List<Role> getAll();
     List<Role> filter(Role role);
+    List<Role> getRoleFromUserRoleByUser(int userId)throws NotFoundException;
+    List<Role> getRoleFromUserRoleByUserRoleType(int userId,int roleTypeId)throws NotFoundException;
 }

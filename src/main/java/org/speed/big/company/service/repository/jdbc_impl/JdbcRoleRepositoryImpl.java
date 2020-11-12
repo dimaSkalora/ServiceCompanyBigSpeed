@@ -136,4 +136,29 @@ public class JdbcRoleRepositoryImpl implements RoleRepository {
 
         return list;
     }
+
+    @Override
+    public List<Role> getRoleFromUserRoleByUser(int userId) {
+        return getRoleFromUserRoleByUserRoleType(userId,Integer.MIN_VALUE);
+    }
+
+    @Override
+    public List<Role> getRoleFromUserRoleByUserRoleType(int userId, int roleTypeId) {
+        String sqlGetRoleFromUserRoleByUser = sqlQuery +
+                " left join user_roles ur on ur.role_id=r.id\n" +
+                " where ur.user_id =: userId\n ";
+
+        List<Role> list;
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource()
+                .addValue("userId",userId);
+        if (roleTypeId != Integer.MIN_VALUE) {
+            sqlGetRoleFromUserRoleByUser += " and r.role_type_id:=roleTypeId\n";
+            parameterSource.addValue("roleTypeId",roleTypeId);
+        }
+
+        list = namedParameterJdbcTemplate.query(sqlGetRoleFromUserRoleByUser
+                ,parameterSource, new RoleRowMapper());
+
+        return list;
+    }
 }
