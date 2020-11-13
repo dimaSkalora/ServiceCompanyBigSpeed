@@ -1,5 +1,6 @@
 package org.speed.big.company.service.repository.workflow;
 
+import org.speed.big.company.service.model.Role;
 import org.speed.big.company.service.model.workflow.WFService;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface WFServiceRepository {
     boolean delete(int id);
     List<WFService> getAll();
     List<WFService> filter(WFService wfService);
+    List<WFService> getWFServiceFromRoles(List<Role> roles);
 }

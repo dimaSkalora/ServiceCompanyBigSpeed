@@ -1,5 +1,6 @@
 package org.speed.big.company.service.repository.jdbc_impl.workflow;
 
+import org.speed.big.company.service.model.Role;
 import org.speed.big.company.service.model.workflow.WFService;
 import org.speed.big.company.service.repository.jdbc_impl.row_mapper.workflow.WFServiceRowMapper;
 import org.speed.big.company.service.repository.workflow.WFServiceRepository;
@@ -124,5 +125,18 @@ public class JdbcWFServiceRepositoryImpl implements WFServiceRepository {
 
         return namedParameterJdbcTemplate.query(queryFilter,
                 parameterSource,new WFServiceRowMapper());
+    }
+
+    @Override
+    public List<WFService> getWFServiceFromRoles(List<Role> roles) {
+        StringBuilder sbRoles = new StringBuilder();
+        for (Role role: roles)
+            sbRoles.append("\'"+role+"\',");
+        String sqlGetWFServiceFromUserRoleByUser = sqlQuery +
+                " where wfs.name in ( "+sbRoles+" )";
+        List<WFService> list = jdbcTemplate.query(sqlGetWFServiceFromUserRoleByUser
+                    ,new WFServiceRowMapper());
+
+        return list;
     }
 }
