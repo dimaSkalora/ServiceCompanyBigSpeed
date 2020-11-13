@@ -1,5 +1,6 @@
 package org.speed.big.company.service.service.workflow;
 
+import org.speed.big.company.service.model.Role;
 import org.speed.big.company.service.model.workflow.WFService;
 import org.speed.big.company.service.util.exception.NotFoundException;
 
@@ -12,4 +13,5 @@ public interface WFServiceService {
     boolean delete(int id)throws NotFoundException;
     List<WFService> getAll();
     List<WFService> filter(WFService wfService);
+    List<WFService> getWFServiceFromRoles(List<Role> roles);
 }

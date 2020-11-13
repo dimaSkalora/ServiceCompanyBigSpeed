@@ -1,5 +1,6 @@
 package org.speed.big.company.service.service.impl.workflow;
 
+import org.speed.big.company.service.model.Role;
 import org.speed.big.company.service.model.workflow.WFService;
 import org.speed.big.company.service.repository.workflow.WFServiceRepository;
 import org.speed.big.company.service.service.workflow.WFServiceService;
@@ -53,5 +54,11 @@ public class WFServiceServiceImpl implements WFServiceService {
     public List<WFService> filter(WFService wfService) {
         Assert.notNull(wfService,"не должно быть null");
         return wfServiceRepository.filter(wfService);
+    }
+
+    @Override
+    public List<WFService> getWFServiceFromRoles(List<Role> roles) {
+        Assert.notNull(roles,"не должно быть null");
+        return wfServiceRepository.getWFServiceFromRoles(roles);
     }
 }
