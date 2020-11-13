@@ -144,4 +144,26 @@ public class JdbcUserRoleRepositoryImpl implements UserRoleRepository {
 
         return list;
     }
+
+    @Override
+    public List<UserRole> getByUser(int userId) {
+        String sqlGetByUser = sqlQuery + " where ur.user_id=:userId";
+
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource()
+                .addValue("userId",userId);
+
+        return namedParameterJdbcTemplate.query(sqlGetByUser
+                ,parameterSource,new UserRoleRowMapper());
+    }
+
+    @Override
+    public List<UserRole> getByRole(int roleId) {
+        String sqlGetByRole = sqlQuery + " where ur.role_id=:roleId";
+
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource()
+                .addValue("roleId",roleId);
+
+        return namedParameterJdbcTemplate.query(sqlGetByRole
+                ,parameterSource,new UserRoleRowMapper());
+    }
 }

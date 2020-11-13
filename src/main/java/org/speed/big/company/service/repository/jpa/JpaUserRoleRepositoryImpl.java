@@ -130,4 +130,26 @@ public class JpaUserRoleRepositoryImpl implements UserRoleRepository {
 
         return list;
     }
+
+    @Override
+    public List<UserRole> getByUser(int userId) {
+        String queryGetByUser = "select ur from UserRole ur where ur.userId.id=:userId\n" +
+                " order by ur.roleId.id";
+        List<UserRole> userRoles = entityManager.createQuery(queryGetByUser,UserRole.class)
+                .setParameter("userId",userId)
+                .getResultList();
+
+        return userRoles;
+    }
+
+    @Override
+    public List<UserRole> getByRole(int roleId) {
+        String queryGetByRole = "select ur from UserRole ur where ur.roleId.id=:roleId\n" +
+                " order by ur.userId.id";
+        List<UserRole> userRoles = entityManager.createQuery(queryGetByRole,UserRole.class)
+                .setParameter("roleId",roleId)
+                .getResultList();
+
+        return userRoles;
+    }
 }
