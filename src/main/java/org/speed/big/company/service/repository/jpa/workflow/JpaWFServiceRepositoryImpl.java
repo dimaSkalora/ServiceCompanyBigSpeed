@@ -1,5 +1,6 @@
 package org.speed.big.company.service.repository.jpa.workflow;
 
+import org.speed.big.company.service.model.Role;
 import org.speed.big.company.service.model.workflow.WFService;
 import org.speed.big.company.service.repository.workflow.WFServiceRepository;
 import org.springframework.stereotype.Repository;
@@ -96,5 +97,20 @@ public class JpaWFServiceRepositoryImpl implements WFServiceRepository {
         List<WFService> list = query.getResultList();
 
         return list;
+    }
+
+    @Override
+    public List<WFService> getWFServiceFromRoles(List<Role> roles) {
+        StringBuilder sbRoles = new StringBuilder();
+        for (Role role: roles)
+            sbRoles.append("\'"+role+"\',");
+
+        String queryGetWFServiceFromRoles = "select wfs from WFService wfs\n" +
+                " where wfs.name in ( "+sbRoles+" )";
+
+        List<WFService> wfServices = entityManager.createQuery(queryGetWFServiceFromRoles)
+                .getResultList();
+
+        return wfServices;
     }
 }
