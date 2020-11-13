@@ -11,6 +11,7 @@ import org.springframework.util.Assert;
 
 import java.util.List;
 
+import static org.speed.big.company.service.util.ValidationUtil.checkNotFound;
 import static org.speed.big.company.service.util.ValidationUtil.checkNotFoundWithId;
 
 @Service("userRoleServiceImpl")
@@ -57,5 +58,17 @@ public class UserRoleServiceImpl implements UserRoleService {
     public List<UserRole> filter(UserRole userRole) {
         Assert.notNull(userRole,"не должно быть null");
         return userRoleRepository.filter(userRole);
+    }
+
+    @Override
+    public List<UserRole> getByUser(int userId) throws NotFoundException {
+        //Проверка - не найден
+        return checkNotFound(userRoleRepository.getByUser(userId),"userId = "+userId);
+    }
+
+    @Override
+    public List<UserRole> getByRole(int roleId) throws NotFoundException {
+        //Проверка - не найден
+        return checkNotFound(userRoleRepository.getByRole(roleId),"roleId = "+roleId);
     }
 }
