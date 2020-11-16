@@ -13,4 +13,5 @@ public interface WFProcessMovementService {
     List<WFProcessMovement> getAll();
     List<WFProcessMovement> filter(WFProcessMovement wfProcessMovement);
     List<WFProcessMovement> filter(WFProcessMovement wfProcessMovement, String sqlCondition);
+    List<WFProcessMovement> getListWFProcessMovement(int roleId, int wfServiceId, int processStatus, boolean isCompleted, boolean isLast);
 }

@@ -60,4 +60,9 @@ public class WFProcessMovementServiceImpl implements WFProcessMovementService {
         Assert.notNull(wfProcessMovement,"must not be null");
         return wfProcessMovementRepository.filter(wfProcessMovement,sqlCondition);
     }
+
+    @Override
+    public List<WFProcessMovement> getListWFProcessMovement(int roleId, int wfServiceId, int processStatus, boolean isCompleted, boolean isLast) {
+        return wfProcessMovementRepository.getListWFProcessMovement(roleId,wfServiceId,processStatus,isCompleted,isLast);
+    }
 }
