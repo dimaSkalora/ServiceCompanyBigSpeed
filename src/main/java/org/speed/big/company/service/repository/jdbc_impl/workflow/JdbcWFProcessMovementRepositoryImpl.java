@@ -27,7 +27,7 @@ public class JdbcWFProcessMovementRepositoryImpl implements WFProcessMovementRep
     // указанным только один раз).
     private static RowMapper<WFProcessMovement> ROW_MAPPER_WF_PROCESS_MOVEMENT = BeanPropertyRowMapper.newInstance(WFProcessMovement.class);
 
-    private final String sqlQuerty = "select wfpm.id as wfpm_id, wfpm.start_date_time as wfpm_start_date_time, wfpm.final_date_time as wfpm_final_date_time,\n" +
+    private final String sqlQuery = "select wfpm.id as wfpm_id, wfpm.start_date_time as wfpm_start_date_time, wfpm.final_date_time as wfpm_final_date_time,\n" +
             "wfpm.is_completed as wfpm_is_completed, wfpm.description as wfpm_description, wfpm.date_edit as wfpm_date_edit,\n" +
             "wfpm.user_edit as wfpm_user_edit, wfpm.user_id as wfpm_user_id, wfpm.wf_package_id as wfpm_wf_package_id,\n" +
             "wfpm.wf_state_id as wfpm_wf_state_id, wfpm.wf_process_id as wfpm_wf_process_id,\n" +
@@ -127,7 +127,7 @@ public class JdbcWFProcessMovementRepositoryImpl implements WFProcessMovementRep
 
     @Override
     public WFProcessMovement get(int id) {
-        String queryGet = sqlQuerty + " wfpm.id=:id";
+        String queryGet = sqlQuery + " wfpm.id=:id";
         MapSqlParameterSource parameterSource = new MapSqlParameterSource()
                 .addValue("id",id);
 
@@ -145,7 +145,7 @@ public class JdbcWFProcessMovementRepositoryImpl implements WFProcessMovementRep
 
     @Override
     public List<WFProcessMovement> getAll() {
-        return jdbcTemplate.query(sqlQuerty, new WFProcessMovementRowMapper());
+        return jdbcTemplate.query(sqlQuery, new WFProcessMovementRowMapper());
     }
 
     @Override
@@ -155,7 +155,7 @@ public class JdbcWFProcessMovementRepositoryImpl implements WFProcessMovementRep
 
     @Override
     public List<WFProcessMovement> filter(WFProcessMovement wfProcessMovement, String sqlCondition) {
-        String queryFilter = sqlQuerty;
+        String queryFilter = sqlQuery;
         int paramCount = 0;
         List<WFProcessMovement> list = null;
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
@@ -236,4 +236,30 @@ public class JdbcWFProcessMovementRepositoryImpl implements WFProcessMovementRep
 
         return list;
     }
+
+    @Override
+    public List<WFProcessMovement> getListWFProcessMovement(int roleId, int wfServiceId, int processStatus, boolean isCompleted, boolean isLast) {
+        String queryGetListWFProcessMovement = sqlQuery;
+
+        queryGetListWFProcessMovement +=
+                " where wfps.role_id=:roleId \n" +
+                " and wfbp.wf_service_id=:wfServiceId\n "+
+                " and wfpro.wf_process_status_id=:processStatus\n"+
+                " and wfpm.is_completed=:isCompleted\n"+
+                " and wfpm.is_last=:isLast\n "+
+                " order by wfpm.start_date_time desc "; // по убиванию
+
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource()
+                .addValue("roleId",roleId)
+                .addValue("wfServiceId",wfServiceId)
+                .addValue("processStatus",processStatus)
+                .addValue("isCompleted",isCompleted)
+                .addValue("isLast",isLast);
+
+        List<WFProcessMovement> list = namedParameterJdbcTemplate.query(queryGetListWFProcessMovement,
+                parameterSource,new WFProcessMovementRowMapper());
+
+        return list;
+    }
+
 }

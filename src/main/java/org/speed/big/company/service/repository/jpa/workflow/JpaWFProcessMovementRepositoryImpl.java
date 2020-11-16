@@ -200,4 +200,25 @@ public class JpaWFProcessMovementRepositoryImpl implements WFProcessMovementRepo
 
         return list;
     }
+
+    @Override
+    public List<WFProcessMovement> getListWFProcessMovement(int roleId, int wfServiceId, int processStatus, boolean isCompleted, boolean isLast) {
+        String queryGetListWFProcessMovement = "select wfpm from WFProcessMovement wfpm\n"+
+                " where wfpm.wfStateId.roleId.id=:roleId\n" +
+                        " and wfpm.wfBaseProcessId.wfServiceId.id=:wfServiceId\n "+
+                        " and wfpm.wfProcessId.wfProcessStatusId.id=:processStatus\n"+
+                        " and wfpm.isCompleted=:isCompleted\n"+
+                        " and wfpm.isLast=:isLast\n "+
+                        " order by wfpm.startDateTime desc "; // по убиванию
+
+        List<WFProcessMovement> list = (List<WFProcessMovement>) entityManager.createQuery(queryGetListWFProcessMovement, WFProcessMovement.class)
+                .setParameter("roleId",roleId)
+                .setParameter("wfServiceId",wfServiceId)
+                .setParameter("processStatus",processStatus)
+                .setParameter("isCompleted",isCompleted)
+                .setParameter("isLast",isLast)
+                .getSingleResult();
+
+        return list;
+    }
 }
