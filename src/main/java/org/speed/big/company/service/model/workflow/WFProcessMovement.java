@@ -28,6 +28,11 @@ public class WFProcessMovement extends AbstractBaseEntity {
     public static final String GET = "WFProcessMovement.get";
     public static final String ALL_SORTED = "WFProcessMovement.allSorted";
 
+    public static final boolean NOT_COMPLETED = false;
+    public static final boolean IS_COMPLETED = true;
+    public static final boolean IS_LAST = true;
+    public static final boolean NOT_LAST = false;
+
     @NotNull
     @Column(name = "start_date_time", nullable = false)
     private LocalDateTime startDateTime;
