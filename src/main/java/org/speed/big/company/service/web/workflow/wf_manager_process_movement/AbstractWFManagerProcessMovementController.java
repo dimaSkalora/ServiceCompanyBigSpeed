@@ -34,6 +34,10 @@ public abstract class AbstractWFManagerProcessMovementController {
     @Autowired
     private WFProcessMovementService wfProcessMovementService;
 
+    /**
+     * Получить доступные роли которые есть у юзера
+     * @return - список ролей
+     */
     public List<Role> getRoleFromUserRoles(){
         int userId=100;//admin
 
@@ -44,6 +48,10 @@ public abstract class AbstractWFManagerProcessMovementController {
         return roles;
     }
 
+    /**
+     * Получить доступные сервисы которые есть у юзера
+     * @return - список сервисов
+     */
     public List<WFService> getWFServiceFromRoles(){
         int userId=100;//admin
 
@@ -54,6 +62,10 @@ public abstract class AbstractWFManagerProcessMovementController {
         return wfServices;
     }
 
+    /**
+     * Получить доступные роли которые есть у юзера(с использованием Stream)
+     * @return - список ролей
+     */
     public List<Role> getRoleFromUserRolesViaStream(){
         int userId=100;//admin
 
@@ -66,6 +78,10 @@ public abstract class AbstractWFManagerProcessMovementController {
         return roles;
     }
 
+    /**
+     * Получить доступные сервисы которые есть у юзера(с использованием Stream)
+     * @return - список сервисов
+     */
     public List<WFService> getWFServiceFromUserRolesViaStream(){
         int userId=100;//admin
 
@@ -91,8 +107,26 @@ public abstract class AbstractWFManagerProcessMovementController {
         return wfServices;
     }
 
+    /**
+     * Получить список движений (ролям, сервисам)
+     * @param roleId            -   Роль
+     * @param wfServiceId       -   Сервис
+     * @param indexList         -   Номер индекса (входящие, завершонные, ожыдание, архив, ...)
+     * @return
+     */
     public List<WFProcessMovement> getListWFProcessMovement(int roleId, int wfServiceId, int indexList){
-        List<WFProcessMovement> list = wfProcessMovementService.getAll();
+        List<WFProcessMovement> list = null;
+
+        switch (indexList){
+            case 1 ->  list = wfProcessMovementService.getListWFProcessMovement(roleId,wfServiceId,
+                    WFProcessStatus.IN_WORK,WFProcessMovement.NOT_COMPLETED,WFProcessMovement.IS_LAST);
+            case 2 -> list = wfProcessMovementService.getListWFProcessMovement(roleId,wfServiceId,
+                    WFProcessStatus.COMPLETED,WFProcessMovement.IS_COMPLETED,WFProcessMovement.IS_LAST);
+            case 3 -> list = wfProcessMovementService.getListWFProcessMovement(roleId,wfServiceId,
+                    WFProcessStatus.WAITING,WFProcessMovement.NOT_COMPLETED,WFProcessMovement.IS_LAST);
+            case 4 -> list = wfProcessMovementService.getListWFProcessMovement(roleId,wfServiceId,
+                    WFProcessStatus.ARCHIVE,WFProcessMovement.IS_COMPLETED,WFProcessMovement.IS_LAST);
+        }
 
         return list;
     }
