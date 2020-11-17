@@ -3,12 +3,14 @@ package org.speed.big.company.service.web.workflow.wf_manager_process_movement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.speed.big.company.service.model.Role;
+import org.speed.big.company.service.model.workflow.WFPackage;
 import org.speed.big.company.service.model.workflow.WFProcessMovement;
 import org.speed.big.company.service.model.workflow.WFProcessStatus;
 import org.speed.big.company.service.model.workflow.WFService;
 import org.speed.big.company.service.service.RoleService;
 import org.speed.big.company.service.service.UserRoleService;
 import org.speed.big.company.service.service.UserService;
+import org.speed.big.company.service.service.workflow.WFPackageService;
 import org.speed.big.company.service.service.workflow.WFProcessMovementService;
 import org.speed.big.company.service.service.workflow.WFProcessStatusService;
 import org.speed.big.company.service.service.workflow.WFServiceService;
@@ -33,6 +35,8 @@ public abstract class AbstractWFManagerProcessMovementController {
     private WFProcessStatusService wfProcessStatusService;
     @Autowired
     private WFProcessMovementService wfProcessMovementService;
+    @Autowired
+    private WFPackageService wfPackageService;
 
     /**
      * Получить доступные роли которые есть у юзера
@@ -44,6 +48,8 @@ public abstract class AbstractWFManagerProcessMovementController {
         List<Role> roles = roleService.getRoleFromUserRoleByUser(userId).stream()
                 .filter(role -> role.getRoleTypeId().getId() == 1)
                 .collect(Collectors.toList());
+
+        log.info("getRoleFromUserRoles",roles);
 
         return roles;
     }
@@ -58,6 +64,8 @@ public abstract class AbstractWFManagerProcessMovementController {
         List<Role> roles = roleService.getRoleFromUserRoleByUserRoleType(userId,2);
 
         List<WFService> wfServices = wfServiceService.getWFServiceFromRoles(roles);
+
+        log.info("getWFServiceFromRoles",wfServices);
 
         return wfServices;
     }
@@ -74,6 +82,8 @@ public abstract class AbstractWFManagerProcessMovementController {
                 .filter(ur -> ur.getRoleId().getRoleTypeId().getId()==1)
                 .map(ur -> ur.getRoleId())
                 .collect(Collectors.toList());
+
+        log.info("getRoleFromUserRolesViaStream",roles);
 
         return roles;
     }
@@ -104,6 +114,8 @@ public abstract class AbstractWFManagerProcessMovementController {
                 })
                 .collect(Collectors.toList());
 
+        log.info("getWFServiceFromUserRolesViaStream",wfServices);
+
         return wfServices;
     }
 
@@ -128,9 +140,26 @@ public abstract class AbstractWFManagerProcessMovementController {
                     WFProcessStatus.ARCHIVE,WFProcessMovement.IS_COMPLETED,WFProcessMovement.IS_LAST);
         }
 
+        log.info("getListWFProcessMovement",list);
+
         return list;
     }
 
+    /**
+     * Получаем пакет по текущему двежению процесса
+     *
+     * @param wfPackId      -   Id Пакета
+     * @return
+     */
+    public WFPackage getWFPackageOfProcessMovement(int wfPackId){
+        WFPackage wfPackage = wfPackageService.get(wfPackId);
+
+        log.info("getWFPackageOfProcessMovement",wfPackage);
+
+        return wfPackage;
+    }
+
+    
 
 
 }
