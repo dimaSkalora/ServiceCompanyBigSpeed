@@ -109,4 +109,28 @@ public class JpaRoleRepositoryImpl implements RoleRepository {
 
         return list;
     }
+
+    @Override
+    public List<Role> getRoleFromUserRoleByUser(int userId) {
+        return getRoleFromUserRoleByUserRoleType(userId,Integer.MIN_VALUE);
+    }
+
+    @Override
+    public List<Role> getRoleFromUserRoleByUserRoleType(int userId, int roleTypeId) {
+        String queryGetRoleFromUserRoleByUserRoleType = "select r from Role r " +
+                " left join UserRole ur on r.id = ur.roleId.id " +
+                " where ur.userId.id=:userId ";
+        if(roleTypeId != Integer.MIN_VALUE)
+            queryGetRoleFromUserRoleByUserRoleType += " and r.roleTypeId.id=:roleTypeId";
+
+        Query query =  entityManager.createQuery(queryGetRoleFromUserRoleByUserRoleType,Role.class)
+                .setParameter("userId",userId);
+
+        if(roleTypeId != Integer.MIN_VALUE)
+            query.setParameter("roleTypeId",roleTypeId);
+
+        List<Role> list = query.getResultList();
+
+        return list;
+    }
 }

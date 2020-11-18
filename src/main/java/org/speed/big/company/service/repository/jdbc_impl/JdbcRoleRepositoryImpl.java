@@ -152,7 +152,7 @@ public class JdbcRoleRepositoryImpl implements RoleRepository {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource()
                 .addValue("userId",userId);
         if (roleTypeId != Integer.MIN_VALUE) {
-            sqlGetRoleFromUserRoleByUser += " and r.role_type_id:=roleTypeId\n";
+            sqlGetRoleFromUserRoleByUser += " and r.role_type_id=:roleTypeId\n";
             parameterSource.addValue("roleTypeId",roleTypeId);
         }
 
