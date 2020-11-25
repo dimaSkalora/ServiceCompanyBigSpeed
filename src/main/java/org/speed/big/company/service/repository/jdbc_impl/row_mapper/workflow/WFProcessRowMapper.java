@@ -1,9 +1,6 @@
 package org.speed.big.company.service.repository.jdbc_impl.row_mapper.workflow;
 
-import org.speed.big.company.service.model.workflow.WFBaseProcess;
-import org.speed.big.company.service.model.workflow.WFPackage;
-import org.speed.big.company.service.model.workflow.WFProcess;
-import org.speed.big.company.service.model.workflow.WFProcessStatus;
+import org.speed.big.company.service.model.workflow.*;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -29,10 +26,15 @@ public class WFProcessRowMapper implements RowMapper<WFProcess> {
         wfPackage.setUserEdit(rs.getString("wfp_user_edit"));
         wfPackage.setDateEdit(rs.getTimestamp("wfp_date_edit").toLocalDateTime());
 
+        WFService wfService = new WFService();
+        wfService.setId(rs.getInt("wfs_id"));
+        wfService.setName(rs.getString("wfs_name"));
+
         WFBaseProcess wfBaseProcess = new WFBaseProcess();
         wfBaseProcess.setId(rs.getInt("wfbp_id"));
         wfBaseProcess.setName(rs.getString("wfbp_name"));
         wfBaseProcess.setDescription(rs.getString("wfbp_description"));
+        wfBaseProcess.setWfServiceId(wfService);
 
         WFProcessStatus wfProcessStatus = new WFProcessStatus();
         wfProcessStatus.setId(rs.getInt("wfpstatus_id"));

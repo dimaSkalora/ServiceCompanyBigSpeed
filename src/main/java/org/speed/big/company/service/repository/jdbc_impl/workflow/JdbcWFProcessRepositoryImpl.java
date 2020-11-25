@@ -44,10 +44,12 @@ public class JdbcWFProcessRepositoryImpl implements WFProcessRepository {
             " wfbp.id as wfbp_id, wfbp.name as wfbp_name,\n" +
             " wfbp.description as wfbp_description, wfbp.wf_service_id as wfbp_wf_service_id,\n" +
             " wfbp.wf_base_process_type_id as wfbp_wf_base_process_type_id,\n" +
-            " wfpstatus.id as wfpstatus_id, wfpstatus.name as wfpstatus_name\n"+
+            " wfpstatus.id as wfpstatus_id, wfpstatus.name as wfpstatus_name,\n"+
+            " wfs.id as wfs_id, wfs.name as wfs_name \n" +
             " from wf_process wfp" +
             " left join wf_package wfpack ON wfpack.id = wfp.wf_package_id\n" +
             " left join wf_base_process wfbp ON wfbp.id = wfp.wf_base_process_id\n" +
+            " left join wf_service wfs on wfbp.wf_service_id=wfs.id\n"+
             " left join wf_process_status_id wfps ON wfps.id = wfp.wf_process_status_id\n";
 
     @Autowired
@@ -182,6 +184,25 @@ public class JdbcWFProcessRepositoryImpl implements WFProcessRepository {
 
         list = namedParameterJdbcTemplate.query(String.valueOf(queryFilter),
                 parameterSource, new WFProcessRowMapper());
+
+        return list;
+    }
+
+    @Override
+    public List<WFProcess> getListWFProcess(int wfServiceId, int wfProcessStatusId) {
+        String queryGetListWFProcess = sqlQuery;
+        List<WFProcess> list = null;
+
+        queryGetListWFProcess +=
+                " where wfbp.wf_service_id=:wfServiceId\n " +
+                        " and wfpro.wf_process_status_id=:wfProcessStatusId\n"+
+                        " order by wfpm.start_date_time desc "; // по убиванию
+
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource()
+                .addValue("wfServiceId",wfServiceId)
+                .addValue("wfProcessStatusId",wfProcessStatusId);
+
+        list = namedParameterJdbcTemplate.query(queryGetListWFProcess,parameterSource,new WFProcessRowMapper());
 
         return list;
     }

@@ -164,4 +164,19 @@ public class JpaWFProcessRepositoryImpl implements WFProcessRepository {
 
         return list;
     }
+
+    @Override
+    public List<WFProcess> getListWFProcess(int wfServiceId, int wfProcessStatusId) {
+        String queryGetListWFProcess = "select wfp from WFProcess wfp\n"+
+                " where wfp.wfBaseProcessId.wfServiceId.id=:wfServiceId\n "+
+                " and wfp.wfProcessStatusId.id=:wfProcessStatusId\n"+
+                " order by wfp.startDate desc "; // по убиванию
+
+        List<WFProcess> list = (List<WFProcess>) entityManager.createQuery(queryGetListWFProcess, WFProcess.class)
+                .setParameter("wfServiceId",wfServiceId)
+                .setParameter("wfProcessStatusId",wfProcessStatusId)
+                .getSingleResult();
+
+        return list;
+    }
 }
