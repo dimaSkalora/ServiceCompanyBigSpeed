@@ -13,4 +13,5 @@ public interface WFProcessService {
     List<WFProcess> getAll();
     List<WFProcess> filter(WFProcess wfProcess);
     List<WFProcess> filter(WFProcess wfProcess, String sqlCondition);
+    List<WFProcess> getListWFProcess(int wfServiceId, int wfProcessStatusId);
 }

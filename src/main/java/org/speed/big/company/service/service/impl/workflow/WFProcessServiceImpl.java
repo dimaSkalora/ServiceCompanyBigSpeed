@@ -60,4 +60,9 @@ public class WFProcessServiceImpl implements WFProcessService {
     public List<WFProcess> filter(WFProcess wfProcess, String sqlCondition) {
         return wfProcessRepository.filter(wfProcess,sqlCondition);
     }
+
+    @Override
+    public List<WFProcess> getListWFProcess(int wfServiceId, int wfProcessStatusId) {
+        return wfProcessRepository.getListWFProcess(wfServiceId,wfProcessStatusId);
+    }
 }
