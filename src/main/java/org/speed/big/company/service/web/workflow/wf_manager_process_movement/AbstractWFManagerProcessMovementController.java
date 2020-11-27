@@ -3,17 +3,11 @@ package org.speed.big.company.service.web.workflow.wf_manager_process_movement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.speed.big.company.service.model.Role;
-import org.speed.big.company.service.model.workflow.WFPackage;
-import org.speed.big.company.service.model.workflow.WFProcessMovement;
-import org.speed.big.company.service.model.workflow.WFProcessStatus;
-import org.speed.big.company.service.model.workflow.WFService;
+import org.speed.big.company.service.model.workflow.*;
 import org.speed.big.company.service.service.RoleService;
 import org.speed.big.company.service.service.UserRoleService;
 import org.speed.big.company.service.service.UserService;
-import org.speed.big.company.service.service.workflow.WFPackageService;
-import org.speed.big.company.service.service.workflow.WFProcessMovementService;
-import org.speed.big.company.service.service.workflow.WFProcessStatusService;
-import org.speed.big.company.service.service.workflow.WFServiceService;
+import org.speed.big.company.service.service.workflow.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -35,6 +29,8 @@ public abstract class AbstractWFManagerProcessMovementController {
     private WFProcessStatusService wfProcessStatusService;
     @Autowired
     private WFProcessMovementService wfProcessMovementService;
+    @Autowired
+    private WFProcessService wfProcessService;
     @Autowired
     private WFPackageService wfPackageService;
 
@@ -123,7 +119,7 @@ public abstract class AbstractWFManagerProcessMovementController {
      * Получить список движений (ролям, сервисам)
      * @param roleId            -   Роль
      * @param wfServiceId       -   Сервис
-     * @param indexList         -   Номер индекса (входящие, завершонные, ожыдание, архив, ...)
+     * @param indexList         -   Номер индекса (входящие, ожыдание, ...)
      * @return
      */
     public List<WFProcessMovement> getListWFProcessMovement(int roleId, int wfServiceId, int indexList){
@@ -132,15 +128,30 @@ public abstract class AbstractWFManagerProcessMovementController {
         switch (indexList){
             case 1 ->  list = wfProcessMovementService.getListWFProcessMovement(roleId,wfServiceId,
                     WFProcessStatus.IN_WORK,WFProcessMovement.NOT_COMPLETED,WFProcessMovement.IS_LAST);
-            case 2 -> list = wfProcessMovementService.getListWFProcessMovement(roleId,wfServiceId,
-                    WFProcessStatus.COMPLETED,WFProcessMovement.IS_COMPLETED,WFProcessMovement.IS_LAST);
             case 3 -> list = wfProcessMovementService.getListWFProcessMovement(roleId,wfServiceId,
                     WFProcessStatus.WAITING,WFProcessMovement.NOT_COMPLETED,WFProcessMovement.IS_LAST);
-            case 4 -> list = wfProcessMovementService.getListWFProcessMovement(roleId,wfServiceId,
-                    WFProcessStatus.ARCHIVE,WFProcessMovement.IS_COMPLETED,WFProcessMovement.IS_LAST);
         }
 
         log.info("getListWFProcessMovement",list);
+
+        return list;
+    }
+
+    /**
+     * Получить список движений (сервисам)
+     * @param wfServiceId       -   Сервис
+     * @param indexList         -   Номер индекса (завершонные, архив, ...)
+     * @return
+     */
+    public List<WFProcess> getListWFProcess(int wfServiceId, int indexList){
+        List<WFProcess> list = null;
+
+        switch (indexList){
+            case 2 -> list = wfProcessService.getListWFProcess(wfServiceId,WFProcessStatus.COMPLETED);
+            case 4 -> list = wfProcessService.getListWFProcess(wfServiceId,WFProcessStatus.ARCHIVE);
+        }
+
+        log.info("getListWFProcess",list);
 
         return list;
     }
@@ -159,7 +170,20 @@ public abstract class AbstractWFManagerProcessMovementController {
         return wfPackage;
     }
 
-    
+    /**
+     * Получаем Id тексущего состояние процесса
+     *
+     * @param wfProcessMovementId      -   Id движения процесса
+     * @return
+     */
+    public int currentWfProcessState(int wfProcessMovementId){
+        int currentWfProcessState = wfProcessMovementService.get(wfProcessMovementId).getWfStateId().getId();
+
+        log.info("currentWfProcessState {}",currentWfProcessState);
+
+        return currentWfProcessState;
+    }
+
 
 
 }
