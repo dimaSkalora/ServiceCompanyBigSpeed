@@ -206,4 +206,21 @@ public class JdbcWFProcessRepositoryImpl implements WFProcessRepository {
 
         return list;
     }
+
+    @Override
+    public List<WFProcess> getByWFPackageId(int wfPackageId) {
+        String queryGetByWFPackageId = sqlQuery;
+        List<WFProcess> list = null;
+
+        queryGetByWFPackageId +=
+                " where wfbp.wf_package_id=:wfPackageId\n " +
+                        " order by wfpm.start_date_time desc "; // по убиванию
+
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource()
+                .addValue("wfPackageId",wfPackageId);
+
+        list = namedParameterJdbcTemplate.query(queryGetByWFPackageId,parameterSource,new WFProcessRowMapper());
+
+        return list;
+    }
 }

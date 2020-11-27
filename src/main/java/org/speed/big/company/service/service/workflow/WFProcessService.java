@@ -13,5 +13,6 @@ public interface WFProcessService {
     List<WFProcess> getAll();
     List<WFProcess> filter(WFProcess wfProcess);
     List<WFProcess> filter(WFProcess wfProcess, String sqlCondition);
-    List<WFProcess> getListWFProcess(int wfServiceId, int wfProcessStatusId);
+    List<WFProcess> getListWFProcess(int wfServiceId, int wfProcessStatusId) throws NotFoundException;
+    List<WFProcess> getByWFPackageId(int wfPackageId) throws NotFoundException;
 }

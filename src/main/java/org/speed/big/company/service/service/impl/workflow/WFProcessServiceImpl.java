@@ -3,6 +3,7 @@ package org.speed.big.company.service.service.impl.workflow;
 import org.speed.big.company.service.model.workflow.WFProcess;
 import org.speed.big.company.service.repository.workflow.WFProcessRepository;
 import org.speed.big.company.service.service.workflow.WFProcessService;
+import org.speed.big.company.service.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import org.springframework.util.Assert;
 
 import java.util.List;
 
+import static org.speed.big.company.service.util.ValidationUtil.checkNotFound;
 import static org.speed.big.company.service.util.ValidationUtil.checkNotFoundWithId;
 
 @Service("wfProcessServiceImpl")
@@ -62,7 +64,14 @@ public class WFProcessServiceImpl implements WFProcessService {
     }
 
     @Override
-    public List<WFProcess> getListWFProcess(int wfServiceId, int wfProcessStatusId) {
-        return wfProcessRepository.getListWFProcess(wfServiceId,wfProcessStatusId);
+    public List<WFProcess> getListWFProcess(int wfServiceId, int wfProcessStatusId) throws NotFoundException{
+        return checkNotFound(wfProcessRepository.getListWFProcess(wfServiceId,wfProcessStatusId),
+                "wfServiceId = "+wfServiceId+"; wfProcessStatusId = "+wfProcessStatusId);
+    }
+
+    @Override
+    public List<WFProcess> getByWFPackageId(int wfPackageId) throws NotFoundException {
+        //Проверка - не найден
+        return checkNotFound(wfProcessRepository.getByWFPackageId(wfPackageId),"wfPackageId = "+wfPackageId);
     }
 }

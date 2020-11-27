@@ -15,6 +15,8 @@ public class JpaWFProcessRepositoryImpl implements WFProcessRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+    private static final String sqlQuery = "select wfp from WFProcess wfp\n";
+
     @Override
     public WFProcess save(WFProcess wfProcess) {
         if (wfProcess.isNew())
@@ -167,7 +169,7 @@ public class JpaWFProcessRepositoryImpl implements WFProcessRepository {
 
     @Override
     public List<WFProcess> getListWFProcess(int wfServiceId, int wfProcessStatusId) {
-        String queryGetListWFProcess = "select wfp from WFProcess wfp\n"+
+        String queryGetListWFProcess = sqlQuery+
                 " where wfp.wfBaseProcessId.wfServiceId.id=:wfServiceId\n "+
                 " and wfp.wfProcessStatusId.id=:wfProcessStatusId\n"+
                 " order by wfp.startDate desc "; // по убиванию
@@ -175,6 +177,19 @@ public class JpaWFProcessRepositoryImpl implements WFProcessRepository {
         List<WFProcess> list = (List<WFProcess>) entityManager.createQuery(queryGetListWFProcess, WFProcess.class)
                 .setParameter("wfServiceId",wfServiceId)
                 .setParameter("wfProcessStatusId",wfProcessStatusId)
+                .getSingleResult();
+
+        return list;
+    }
+
+    @Override
+    public List<WFProcess> getByWFPackageId(int wfPackageId) {
+        String queryGetByWFPackageId = sqlQuery+
+                " where wfp.wfPackageId.id=:wfPackageId\n "+
+                " order by wfp.startDate desc "; // по убиванию
+
+        List<WFProcess> list = (List<WFProcess>) entityManager.createQuery(queryGetByWFPackageId, WFProcess.class)
+                .setParameter("wfPackageId",wfPackageId)
                 .getSingleResult();
 
         return list;
