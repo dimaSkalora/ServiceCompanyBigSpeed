@@ -184,6 +184,17 @@ public abstract class AbstractWFManagerProcessMovementController {
         return currentWfProcessState;
     }
 
+    /**
+     * Получить все процессы пакета
+     * @param wfPackageId
+     * @return
+     */
+    public List<WFProcess> getAllWFProcessByWFPackageId(int wfPackageId){
+        List<WFProcess> list = wfProcessService.getByWFPackageId(wfPackageId);
 
+        log.info("getAllWFProcessByWFPackageId {}",wfPackageId);
+
+        return list;
+    }
 
 }
