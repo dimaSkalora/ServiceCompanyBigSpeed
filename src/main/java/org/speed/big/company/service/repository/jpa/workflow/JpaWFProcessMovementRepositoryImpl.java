@@ -221,4 +221,19 @@ public class JpaWFProcessMovementRepositoryImpl implements WFProcessMovementRepo
 
         return list;
     }
+
+    @Override
+    public List<WFProcessMovement> getListWFPMByProcessAndBaseProcess(int wfProcessId, int wfBaseProcessId) {
+        String queryGetListWFProcessMovement = "select wfpm from WFProcessMovement wfpm\n"+
+                " where wfpm.wfProcessId.id=:wfProcessId\n" +
+                " and wfpm.wfBaseProcessId.id=:wfBaseProcessId\n "+
+                " order by wfpm.startDateTime desc "; // по убиванию
+
+        List<WFProcessMovement> list = (List<WFProcessMovement>) entityManager.createQuery(queryGetListWFProcessMovement, WFProcessMovement.class)
+                .setParameter("wfProcessId",wfProcessId)
+                .setParameter("wfBaseProcessId",wfBaseProcessId)
+                .getSingleResult();
+
+        return list;
+    }
 }

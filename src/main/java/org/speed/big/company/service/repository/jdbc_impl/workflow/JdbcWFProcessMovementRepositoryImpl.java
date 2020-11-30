@@ -262,4 +262,23 @@ public class JdbcWFProcessMovementRepositoryImpl implements WFProcessMovementRep
         return list;
     }
 
+    @Override
+    public List<WFProcessMovement> getListWFPMByProcessAndBaseProcess(int wfProcessId, int wfBaseProcessId) {
+        String queryGetListWFMByProcessAndBaseProcess = sqlQuery;
+
+        queryGetListWFMByProcessAndBaseProcess +=
+                " where wfps.wf_process_id=:wfProcessId \n" +
+                        " and wfbp.wf_base_process_id=:wfBaseProcessId\n "+
+                        " order by wfpm.start_date_time desc "; // по убиванию
+
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource()
+                .addValue("wfProcessId",wfProcessId)
+                .addValue("wfBaseProcessId",wfBaseProcessId);
+
+        List<WFProcessMovement> list = namedParameterJdbcTemplate.query(queryGetListWFMByProcessAndBaseProcess,
+                parameterSource,new WFProcessMovementRowMapper());
+
+        return list;
+    }
+
 }
