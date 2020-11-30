@@ -43,7 +43,7 @@ public class JspWFProcessStateController extends AbstractWFProcessStateControlle
                                      @RequestParam Integer roleId,
                                      @RequestParam Integer groupId,
                                      @RequestParam(required = false) String description){
-        //createRequestParam?name=nameTest?roleId=0000?...
+        //createRequestParam?name=nameTest&roleId=0000&...
 
         Role role = super.getRole(roleId);
         WFGroup wfGroup = super.getWFGroup(groupId);

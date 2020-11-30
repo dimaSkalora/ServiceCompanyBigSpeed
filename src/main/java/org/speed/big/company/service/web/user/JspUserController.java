@@ -42,7 +42,7 @@ public class JspUserController extends AbstractUserController{
                                      @RequestParam String email, @RequestParam String password,
                                      @RequestParam String phone, @RequestParam LocalDate registered,
                                      @RequestParam Boolean enabled){
-        //createRequestParam?name=test?email=test@test.....
+        //createRequestParam?name=test&email=test@test.....
 
         User user = new User();
         user.setName(name);

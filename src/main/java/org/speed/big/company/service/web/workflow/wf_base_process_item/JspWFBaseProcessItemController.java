@@ -45,7 +45,7 @@ public class JspWFBaseProcessItemController extends AbstractWFBaseProcessItemCon
     public String createRequestParam(@RequestParam(required = false) Integer stateFromId,
                                      @RequestParam int stateToId,
                                      @RequestParam int baseProcessId){
-        //createRequestParam?stateFromId=000?stateToId=111?....
+        //createRequestParam?stateFromId=000&stateToId=111&....
 
         WFProcessState wfProcessStateFrom = null;
         if (stateFromId != null)

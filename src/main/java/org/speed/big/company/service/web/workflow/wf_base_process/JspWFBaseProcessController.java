@@ -49,7 +49,7 @@ public class JspWFBaseProcessController extends AbstractWFBaseProcessController{
                                      @RequestParam(required = false) String description,
                                      @RequestParam int wfServiceId,
                                      @RequestParam int wfBaseProcessTypeId){
-        //createRequestParam?name=testName?description=testDescription?....
+        //createRequestParam?name=testName&description=testDescription&....
 
         WFService wfService = super.getWFS(wfServiceId);
         WFBaseProcessType wfBaseProcessType = super.getWFBPT(wfBaseProcessTypeId);

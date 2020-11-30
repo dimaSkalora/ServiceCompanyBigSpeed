@@ -55,7 +55,7 @@ public class JspWFProcessController extends AbstractWFProcessController{
                                      @RequestParam int wfPackageId,
                                      @RequestParam int wfBaseProcessId,
                                      @RequestParam int wfProcessStatusId){
-        //createRequestParam?startDate=01.01.20?finalDate=...
+        //createRequestParam?startDate=01.01.20&finalDate=...
 
         WFPackage wfPackage = super.getWFPackage(wfPackageId);
         WFBaseProcess wfBaseProcess = super.getWFBaseProcess(wfBaseProcessId);

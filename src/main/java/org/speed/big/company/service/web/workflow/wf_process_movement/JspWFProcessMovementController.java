@@ -60,7 +60,7 @@ public class JspWFProcessMovementController extends AbstractWFProcessMovementCon
                                      @RequestParam int wfProcessId,
                                      @RequestParam int wfBaseProcessId,
                                      @RequestParam boolean isLast){
-        //createRequestParam?startDateTime=00.00.0000?isCompleted=true?.....
+        //createRequestParam?startDateTime=00.00.0000&isCompleted=true&.....
 
         User user = super.getUser(userId);
         WFPackage wfPackage = super.getWFPackage(wfPackageId);

@@ -36,7 +36,7 @@ public class JspWFGroupController extends AbstractWFGroupController {
     @RequestMapping(value = "/createRequestParam", method = RequestMethod.POST)
     public String createRequestParam(@RequestParam String name,
                                      @RequestParam(required = false) String description){
-        //createRequestParam?name=nameTest?description...
+        //createRequestParam?name=nameTest&description=...
         WFGroup wfGroup = new WFGroup();
         wfGroup.setName(name);
         if (description != null)

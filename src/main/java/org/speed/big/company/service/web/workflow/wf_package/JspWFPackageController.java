@@ -55,7 +55,7 @@ public class JspWFPackageController extends AbstractWFPackageController{
                                      @RequestParam  LocalDateTime dateEdit, @RequestParam Integer wfServiceId,
                                      @RequestParam  Integer wfPackageStatusId){
 
-        //createRequestParam?name=testName?dateRegistration=...
+        //createRequestParam?name=testName&dateRegistration=...
 
         WFService wfService = super.getWFS(wfServiceId);
         WFPackageStatus wfPackageStatus = super.getWFPS(wfPackageStatusId);
