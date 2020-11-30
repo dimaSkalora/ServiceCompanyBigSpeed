@@ -56,7 +56,7 @@ public class JspUserRoleController extends AbstractUserRoleController{
                                      @RequestParam int roleId,
                                      @RequestParam LocalDateTime dateTime,
                                      @RequestParam String comment){
-        //createRequestParam?userId=000?roleId=555?.....
+        //createRequestParam?userId=000&roleId=555&.....
 
         User user = super.getUser(userId);
         Role role = super.getRole(roleId);
