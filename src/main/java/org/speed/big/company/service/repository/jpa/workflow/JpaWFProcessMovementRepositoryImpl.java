@@ -211,13 +211,13 @@ public class JpaWFProcessMovementRepositoryImpl implements WFProcessMovementRepo
                         " and wfpm.isLast=:isLast\n "+
                         " order by wfpm.startDateTime desc "; // по убиванию
 
-        List<WFProcessMovement> list = (List<WFProcessMovement>) entityManager.createQuery(queryGetListWFProcessMovement, WFProcessMovement.class)
+        List<WFProcessMovement> list = entityManager.createQuery(queryGetListWFProcessMovement, WFProcessMovement.class)
                 .setParameter("roleId",roleId)
                 .setParameter("wfServiceId",wfServiceId)
                 .setParameter("processStatus",processStatus)
                 .setParameter("isCompleted",isCompleted)
                 .setParameter("isLast",isLast)
-                .getSingleResult();
+                .getResultList();
 
         return list;
     }
@@ -232,8 +232,40 @@ public class JpaWFProcessMovementRepositoryImpl implements WFProcessMovementRepo
         List<WFProcessMovement> list = (List<WFProcessMovement>) entityManager.createQuery(queryGetListWFProcessMovement, WFProcessMovement.class)
                 .setParameter("wfProcessId",wfProcessId)
                 .setParameter("wfBaseProcessId",wfBaseProcessId)
-                .getSingleResult();
+                .getResultList();
 
         return list;
+    }
+
+    @Override
+    public int currentStateIdOfWFProcessMovementById(int id) {
+        String queryCurrentStateWFPMByWFPackageId = "select wfpm from WFProcessMovement wfpm\n"+
+                " where wfpm.id=:id\n" +
+                " and wfpm.isCompleted=" + WFProcessMovement.NOT_COMPLETED +"\n"+
+                " and wfpm.isLast=" + WFProcessMovement.IS_LAST;
+
+        WFProcessMovement wfProcessMovement =  entityManager.createQuery(queryCurrentStateWFPMByWFPackageId, WFProcessMovement.class)
+                .setParameter("id",id)
+                .getSingleResult();
+
+        return wfProcessMovement.getWfStateId().getId();
+    }
+
+    @Override
+    public int currentStateIdOfWFProcessMovement(int wfPackageId, int wfProcessId, int wfBaseProcessId) {
+        String queryCurrentStateWFPMByWFPackageId = "select wfpm from WFProcessMovement wfpm\n"+
+                " where wfpm.wfPackageId.id=:wfPackageId\n" +
+                " and wfpm.wfProcessId.id=:wfProcessId\n"+
+                " and wfpm.wfBaseProcessId.id=:wfBaseProcessId\n"+
+                " and wfpm.isCompleted=" + WFProcessMovement.NOT_COMPLETED +"\n"+
+                " and wfpm.isLast=" + WFProcessMovement.IS_LAST;
+
+        WFProcessMovement wfProcessMovement =  entityManager.createQuery(queryCurrentStateWFPMByWFPackageId, WFProcessMovement.class)
+                .setParameter("wfPackageId",wfPackageId)
+                .setParameter("wfProcessId",wfProcessId)
+                .setParameter("wfBaseProcessId",wfBaseProcessId)
+                .getSingleResult();
+
+        return wfProcessMovement.getWfStateId().getId();
     }
 }

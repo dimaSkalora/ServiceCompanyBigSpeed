@@ -281,4 +281,44 @@ public class JdbcWFProcessMovementRepositoryImpl implements WFProcessMovementRep
         return list;
     }
 
+    @Override
+    public int currentStateIdOfWFProcessMovementById(int id) {
+        String queryCurrentStateWFPMByWFPackageId = sqlQuery;
+
+        queryCurrentStateWFPMByWFPackageId += " where wfpm.id=:id \n" +
+                " and wfpm.is_completed=" + WFProcessMovement.NOT_COMPLETED +"\n"+
+                " and wfpm.is_last=" + WFProcessMovement.IS_LAST;
+
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource()
+                .addValue("id",id);
+
+
+        List<WFProcessMovement> list = namedParameterJdbcTemplate.query(queryCurrentStateWFPMByWFPackageId,parameterSource, new WFProcessMovementRowMapper());
+
+        //DataAccessUtils.singleResult - Возвращает один объект результата из данной коллекции.
+        return DataAccessUtils.singleResult(list).getWfStateId().getId();
+    }
+
+    @Override
+    public int currentStateIdOfWFProcessMovement(int wfPackageId, int wfProcessId, int wfBaseProcessId) {
+        String queryCurrentStateWFPMByWFPackageId = sqlQuery;
+
+        queryCurrentStateWFPMByWFPackageId += " where wfpm.wf_package_id=:wfPackageId \n" +
+                " and wfpm.wf_process_id=:wfProcessId\n"+
+                " and wfpm.wf_base_process_id=:wfBaseProcessId\n"+
+                " and wfpm.is_completed=" + WFProcessMovement.NOT_COMPLETED +"\n"+
+                " and wfpm.is_last=" + WFProcessMovement.IS_LAST;
+
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource()
+                .addValue("wfPackageId",wfPackageId)
+                .addValue("wfProcessId",wfProcessId)
+                .addValue("wfBaseProcessId",wfBaseProcessId);
+
+
+        List<WFProcessMovement> list = namedParameterJdbcTemplate.query(queryCurrentStateWFPMByWFPackageId,parameterSource, new WFProcessMovementRowMapper());
+
+        //DataAccessUtils.singleResult - Возвращает один объект результата из данной коллекции.
+        return DataAccessUtils.singleResult(list).getWfStateId().getId();
+    }
+
 }
