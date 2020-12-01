@@ -171,13 +171,13 @@ public abstract class AbstractWFManagerProcessMovementController {
     }
 
     /**
-     * Получаем Id тексущего состояние процесса
+     * Получаем Id тексущего состояние процесса по id пакета
      *
-     * @param wfProcessMovementId      -   Id движения процесса
+     * @param wfPackageId      -   Id дпакета
      * @return
      */
-    public int currentWfProcessState(int wfProcessMovementId){
-        int currentWfProcessState = wfProcessMovementService.get(wfProcessMovementId).getWfStateId().getId();
+    public int currentStateWFPMByWFPackageId(int wfPackageId){
+        int currentWfProcessState = wfProcessMovementService.get(wfPackageId).getWfStateId().getId();
 
         log.info("currentWfProcessState {}",currentWfProcessState);
 
@@ -193,6 +193,22 @@ public abstract class AbstractWFManagerProcessMovementController {
         List<WFProcess> list = wfProcessService.getByWFPackageId(wfPackageId);
 
         log.info("getAllWFProcessByWFPackageId {}",wfPackageId);
+
+        return list;
+    }
+
+    /**
+     *
+     * Получить список движений по id процессу и id базового процесса
+     *
+     * @param wfProcessId
+     * @param wfBaseProcessId
+     * @return
+     */
+    public List<WFProcessMovement> getListWFPMByProcessAndBaseProcess(int wfProcessId, int wfBaseProcessId){
+        List<WFProcessMovement> list = wfProcessMovementService.getListWFPMByProcessAndBaseProcess(wfProcessId,wfBaseProcessId);
+
+        log.info("getListWFPMByProcessAndBaseProcess: wfProcessId - {}, wfBaseProcessId - {}",wfProcessId,wfBaseProcessId);
 
         return list;
     }
