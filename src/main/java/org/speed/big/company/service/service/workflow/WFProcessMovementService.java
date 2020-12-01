@@ -15,4 +15,6 @@ public interface WFProcessMovementService {
     List<WFProcessMovement> filter(WFProcessMovement wfProcessMovement, String sqlCondition);
     List<WFProcessMovement> getListWFProcessMovement(int roleId, int wfServiceId, int processStatus, boolean isCompleted, boolean isLast);
     List<WFProcessMovement> getListWFPMByProcessAndBaseProcess(int wfProcessId, int wfBaseProcessId);
+    int currentStateIdOfWFProcessMovementById(int id);
+    int currentStateIdOfWFProcessMovement(int wfPackageId, int wfProcessId, int wfBaseProcessId);
 }

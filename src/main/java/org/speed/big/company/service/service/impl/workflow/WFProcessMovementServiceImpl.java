@@ -70,4 +70,14 @@ public class WFProcessMovementServiceImpl implements WFProcessMovementService {
     public List<WFProcessMovement> getListWFPMByProcessAndBaseProcess(int wfProcessId, int wfBaseProcessId) {
         return wfProcessMovementRepository.getListWFPMByProcessAndBaseProcess(wfProcessId,wfBaseProcessId);
     }
+
+    @Override
+    public int currentStateIdOfWFProcessMovementById(int id) {
+        return wfProcessMovementRepository.currentStateIdOfWFProcessMovementById(id);
+    }
+
+    @Override
+    public int currentStateIdOfWFProcessMovement(int wfPackageId, int wfProcessId, int wfBaseProcessId) {
+        return currentStateIdOfWFProcessMovement(wfPackageId,wfProcessId,wfBaseProcessId);
+    }
 }
