@@ -1,6 +1,7 @@
 package org.speed.big.company.service.repository.jdbc_impl.workflow;
 
 import org.speed.big.company.service.model.workflow.WFBaseProcessItem;
+import org.speed.big.company.service.model.workflow.WFProcessState;
 import org.speed.big.company.service.repository.jdbc_impl.row_mapper.workflow.WFBaseProcessItemRowMapper;
 import org.speed.big.company.service.repository.workflow.WFBaseProcessItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository("jdbcWFBaseProcessItemRepositoryImpl")
 public class JdbcWFBaseProcessItemRepositoryImpl implements WFBaseProcessItemRepository {
@@ -136,5 +138,24 @@ public class JdbcWFBaseProcessItemRepositoryImpl implements WFBaseProcessItemRep
         list = namedParameterJdbcTemplate.query(queryFilter,parameterSource, new WFBaseProcessItemRowMapper());
 
         return list;
+    }
+
+    @Override
+    public List<WFProcessState> getListTransferWFProcessState(int processStateFromId, int baseProcessId) {
+        String queryGetListTransferWFProcessState = sqlQuery +
+                " where wfbpi.state_from_id=:processStateFromId\n"+
+                " and wfbpi.base_process_id=:baseProcessId\n";
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource()
+                .addValue("processStateFromId",processStateFromId)
+                .addValue("baseProcessId",baseProcessId);
+
+        List<WFBaseProcessItem> list = namedParameterJdbcTemplate.query(queryGetListTransferWFProcessState,
+                parameterSource, new WFBaseProcessItemRowMapper());
+
+        List<WFProcessState> listTransferWFProcessStates = list.stream()
+                .map(wbpi -> wbpi.getStateFromId())
+                .collect(Collectors.toList());
+
+        return listTransferWFProcessStates;
     }
 }

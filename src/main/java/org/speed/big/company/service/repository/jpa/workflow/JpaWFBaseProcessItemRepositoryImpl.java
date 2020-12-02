@@ -1,6 +1,7 @@
 package org.speed.big.company.service.repository.jpa.workflow;
 
 import org.speed.big.company.service.model.workflow.WFBaseProcessItem;
+import org.speed.big.company.service.model.workflow.WFProcessState;
 import org.speed.big.company.service.repository.workflow.WFBaseProcessItemRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository("jpaWFBaseProcessItemRepositoryImpl")
 public class JpaWFBaseProcessItemRepositoryImpl implements WFBaseProcessItemRepository {
@@ -103,5 +105,23 @@ public class JpaWFBaseProcessItemRepositoryImpl implements WFBaseProcessItemRepo
         list = query.getResultList();
 
         return list;
+    }
+
+    @Override
+    public List<WFProcessState> getListTransferWFProcessState(int processStateFromId, int baseProcessId) {
+        String queryGetListTransferWFProcessState = "select wfbpi from WFBaseProcessItem wfbpi \n" +
+                " where wfbpi.stateFromId=:processStateFromId\n" +
+                " and wfbpi.baseProcessId=:baseProcessId";
+
+        List<WFBaseProcessItem> list = entityManager.createQuery(queryGetListTransferWFProcessState, WFBaseProcessItem.class)
+                .setParameter("processStateFromId",processStateFromId)
+                .setParameter("baseProcessId",baseProcessId)
+                .getResultList();
+
+        List<WFProcessState> listTransferWFProcessStates = list.stream()
+                .map(wbpi -> wbpi.getStateFromId())
+                .collect(Collectors.toList());
+
+        return listTransferWFProcessStates;
     }
 }
