@@ -1,6 +1,7 @@
 package org.speed.big.company.service.service.impl.workflow;
 
 import org.speed.big.company.service.model.workflow.WFBaseProcessItem;
+import org.speed.big.company.service.model.workflow.WFProcessState;
 import org.speed.big.company.service.repository.workflow.WFBaseProcessItemRepository;
 import org.speed.big.company.service.service.workflow.WFBaseProcessItemService;
 import org.speed.big.company.service.util.exception.NotFoundException;
@@ -53,5 +54,10 @@ public class WFBaseProcessItemServiceImpl implements WFBaseProcessItemService {
     public List<WFBaseProcessItem> filter(WFBaseProcessItem wfBaseProcessItem) {
         Assert.notNull(wfBaseProcessItem,"must not be null");
         return wfBaseProcessItemRepository.filter(wfBaseProcessItem);
+    }
+
+    @Override
+    public List<WFProcessState> getListTransferWFProcessState(int processStateFromId, int baseProcessId) {
+        return wfBaseProcessItemRepository.getListTransferWFProcessState(processStateFromId,baseProcessId);
     }
 }
