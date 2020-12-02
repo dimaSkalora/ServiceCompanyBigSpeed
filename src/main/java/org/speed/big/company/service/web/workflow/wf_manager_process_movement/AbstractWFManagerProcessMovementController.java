@@ -33,6 +33,8 @@ public abstract class AbstractWFManagerProcessMovementController {
     private WFProcessService wfProcessService;
     @Autowired
     private WFPackageService wfPackageService;
+    @Autowired
+    private WFBaseProcessItemService wfBaseProcessItemService;
 
     /**
      * Получить доступные роли которые есть у юзера
@@ -209,6 +211,21 @@ public abstract class AbstractWFManagerProcessMovementController {
         List<WFProcessMovement> list = wfProcessMovementService.getListWFPMByProcessAndBaseProcess(wfProcessId,wfBaseProcessId);
 
         log.info("getListWFPMByProcessAndBaseProcess: wfProcessId - {}, wfBaseProcessId - {}",wfProcessId,wfBaseProcessId);
+
+        return list;
+    }
+
+    /**
+     * Получить список состояний процесса для передачи задания
+     *
+     * @param processStateFromId
+     * @param baseProcessId
+     * @return
+     */
+    List<WFProcessState> getListTransferWFProcessState(int processStateFromId, int baseProcessId){
+        List<WFProcessState> list = wfBaseProcessItemService.getListTransferWFProcessState(processStateFromId,baseProcessId);
+
+        log.info("getListTransferWFProcessState: processStateFromId - {}; baseProcessId - {}",processStateFromId,baseProcessId);
 
         return list;
     }
