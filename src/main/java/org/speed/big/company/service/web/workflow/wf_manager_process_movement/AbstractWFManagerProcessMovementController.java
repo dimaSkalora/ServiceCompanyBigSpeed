@@ -3,6 +3,7 @@ package org.speed.big.company.service.web.workflow.wf_manager_process_movement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.speed.big.company.service.model.Role;
+import org.speed.big.company.service.model.User;
 import org.speed.big.company.service.model.workflow.*;
 import org.speed.big.company.service.service.RoleService;
 import org.speed.big.company.service.service.UserRoleService;
@@ -10,6 +11,7 @@ import org.speed.big.company.service.service.UserService;
 import org.speed.big.company.service.service.workflow.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +37,8 @@ public abstract class AbstractWFManagerProcessMovementController {
     private WFPackageService wfPackageService;
     @Autowired
     private WFBaseProcessItemService wfBaseProcessItemService;
+    @Autowired
+    private WFProcessStateService wfProcessStateService;
 
     /**
      * Получить доступные роли которые есть у юзера
@@ -229,5 +233,46 @@ public abstract class AbstractWFManagerProcessMovementController {
 
         return list;
     }
+
+    /**
+     * Передать задание на другую стадию
+     *
+     * @param wfProcessMovementId
+     * @param processStateToId
+     * @param description
+     * @return
+     */
+    WFProcessMovement wfProcessMovementTransferTasks(int wfProcessMovementId, int processStateToId, String description){
+        WFProcessMovement wfProcessMovement = wfProcessMovementService.get(wfProcessMovementId);
+        WFProcessState wfProcessState = wfProcessStateService.get(processStateToId);
+
+        WFProcessMovement newWFProcessMovement = new WFProcessMovement();
+        newWFProcessMovement.setStartDateTime(LocalDateTime.now());
+        newWFProcessMovement.setCompleted(WFProcessMovement.NOT_COMPLETED);
+        newWFProcessMovement.setDescription(description);
+        newWFProcessMovement.setDateEdit(LocalDateTime.now());
+        newWFProcessMovement.setUserEdit("test");
+        newWFProcessMovement.setUserId(new User());
+        newWFProcessMovement.setWfPackageId(wfProcessMovement.getWfPackageId());
+        newWFProcessMovement.setWfStateId(wfProcessState);
+        newWFProcessMovement.setWfProcessId(wfProcessMovement.getWfProcessId());
+        newWFProcessMovement.setWfBaseProcessId(wfProcessMovement.getWfBaseProcessId());
+        newWFProcessMovement.setLast(WFProcessMovement.IS_LAST);
+
+        wfProcessMovementService.create(newWFProcessMovement);
+
+        wfProcessMovement.setFinalDateTime(LocalDateTime.now());
+        wfProcessMovement.setCompleted(WFProcessMovement.IS_COMPLETED);
+        wfProcessMovement.setDateEdit(LocalDateTime.now());
+        wfProcessMovement.setUserEdit("test");
+        wfProcessMovement.setUserId(new User());
+        wfProcessMovement.setLast(WFProcessMovement.NOT_LAST);
+
+        wfProcessMovementService.update(wfProcessMovement);
+
+        return newWFProcessMovement;
+    }
+
+
 
 }
