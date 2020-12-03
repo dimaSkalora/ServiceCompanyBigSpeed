@@ -15,9 +15,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class AbstractWFManagerProcessMovementController {
+public abstract class AbstractManagerWFProcessMovementController {
 
-    private Logger log = LoggerFactory.getLogger(AbstractWFManagerProcessMovementController.class);
+    private Logger log = LoggerFactory.getLogger(AbstractManagerWFProcessMovementController.class);
 
     @Autowired
     private UserService userService;
