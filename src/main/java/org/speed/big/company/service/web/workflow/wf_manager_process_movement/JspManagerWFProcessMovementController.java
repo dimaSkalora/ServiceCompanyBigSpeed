@@ -41,6 +41,8 @@ public class JspManagerWFProcessMovementController extends AbstractManagerWFProc
 
         model.addAttribute("managerWFProcessMovements",
                 wfProcessMovementList != null ? wfProcessMovementList : wfProcessList);
+        model.addAttribute("managerWFProcessMovementsCount",
+                wfProcessMovementList != null ? wfProcessMovementList.size() : wfProcessList.size());
 
         return "workflow/managerWFProcessMovements/managerWFProcessMovements";
     }
