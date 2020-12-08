@@ -3,6 +3,7 @@ package org.speed.big.company.service.web.workflow.wf_manager_process_movement;
 import org.speed.big.company.service.model.Role;
 import org.speed.big.company.service.model.workflow.WFProcess;
 import org.speed.big.company.service.model.workflow.WFProcessMovement;
+import org.speed.big.company.service.model.workflow.WFProcessStatus;
 import org.speed.big.company.service.model.workflow.WFService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,9 +34,9 @@ public class JspManagerWFProcessMovementController extends AbstractManagerWFProc
         List<WFProcessMovement> wfProcessMovementList = null;
         List<WFProcess> wfProcessList = null;
 
-        if ((indexList == 1) || (indexList == 3))
+        if ((indexList == WFProcessStatus.IN_WORK) || (indexList == WFProcessStatus.WAITING))
             wfProcessMovementList = super.getListWFProcessMovement(roleId,wfServiceId,indexList);
-        if ((indexList == 2) || (indexList == 4))
+        if ((indexList == WFProcessStatus.COMPLETED) || (indexList == WFProcessStatus.ARCHIVE))
             wfProcessList = super.getListWFProcess(wfServiceId,indexList);
 
         model.addAttribute("managerWFProcessMovements",
