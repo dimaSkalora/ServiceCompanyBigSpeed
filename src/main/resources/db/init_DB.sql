@@ -7,13 +7,13 @@ CREATE SEQUENCE global_seq START 100000;
 ---------------users---------------1
 CREATE TABLE users
 (
-  id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  name             VARCHAR NOT NULL,
-  email            VARCHAR NOT NULL,
-  password         VARCHAR NOT NULL,
-  phone            VARCHAR NOT NULL,
-  registered       date DEFAULT now()      NOT NULL,
-  enabled          BOOL DEFAULT TRUE       NOT NULL
+    id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    name             VARCHAR NOT NULL,
+    email            VARCHAR NOT NULL,
+    password         VARCHAR NOT NULL,
+    phone            VARCHAR NOT NULL,
+    registered       date DEFAULT now()      NOT NULL,
+    enabled          BOOL DEFAULT TRUE       NOT NULL
 );
 CREATE UNIQUE INDEX users_unique_email_idx ON users (email); --email каждого пользователя должен быть уникальным
 CREATE UNIQUE INDEX users_unique_phone_idx ON users (phone); --phone каждого пользователя должен быть уникальным
@@ -123,24 +123,24 @@ COMMENT ON COLUMN wf_service.name
 
 ---------------wf_package---------------7
 CREATE TABLE wf_package (
-  id                    INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  name                  VARCHAR(500) NOT NULL,
-  date_registration     DATE NOT NULL,
-  customer_name         VARCHAR(500) NOT NULL,
-  customer_address      VARCHAR(500) NOT NULL,
-  customer_address_jur  VARCHAR(500),
-  customer_phone        VARCHAR NOT NULL,
-  customer_email        VARCHAR(50),
-  contract_number       VARCHAR(150) NOT NULL,
-  description           VARCHAR,
-  user_add              VARCHAR(50) NOT NULL,
-  date_add              TIMESTAMP NOT NULL,
-  user_edit             VARCHAR(50) NOT NULL,
-  date_edit             TIMESTAMP NOT NULL,
-  wf_service_id         INTEGER NOT NULL,
-  wf_package_status_id  INTEGER NOT NULL,
-  FOREIGN KEY (wf_package_status_id)   REFERENCES wf_package_status(id),
-  FOREIGN KEY (wf_service_id)  REFERENCES wf_service(id)
+                            id                    INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+                            name                  VARCHAR(500) NOT NULL,
+                            date_registration     DATE NOT NULL,
+                            customer_name         VARCHAR(500) NOT NULL,
+                            customer_address      VARCHAR(500) NOT NULL,
+                            customer_address_jur  VARCHAR(500),
+                            customer_phone        VARCHAR NOT NULL,
+                            customer_email        VARCHAR(50),
+                            contract_number       VARCHAR(150) NOT NULL,
+                            description           VARCHAR,
+                            user_add              VARCHAR(50) NOT NULL,
+                            date_add              TIMESTAMP NOT NULL,
+                            user_edit             VARCHAR(50) NOT NULL,
+                            date_edit             TIMESTAMP NOT NULL,
+                            wf_service_id         INTEGER NOT NULL,
+                            wf_package_status_id  INTEGER NOT NULL,
+                            FOREIGN KEY (wf_package_status_id)   REFERENCES wf_package_status(id),
+                            FOREIGN KEY (wf_service_id)  REFERENCES wf_service(id)
 );
 CREATE INDEX wfpack_idx_wfsserid ON wf_package (wf_service_id);
 CREATE INDEX wfpack_idx_wfpackstatid ON wf_package (wf_package_status_id);
@@ -181,8 +181,8 @@ COMMENT ON COLUMN wf_package.wf_package_status_id
 
 ---------------wf_base_process_type---------------8
 CREATE TABLE wf_base_process_type (
-  id    INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  name  VARCHAR(20) NOT NULL
+                                      id    INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+                                      name  VARCHAR(20) NOT NULL
 );
 COMMENT ON TABLE wf_base_process_type
     IS 'Типы базовых процессов';
@@ -193,13 +193,13 @@ COMMENT ON COLUMN wf_base_process_type.name
 
 ---------------wf_base_process---------------9
 CREATE TABLE wf_base_process (
-  id                    INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  name                  VARCHAR(500) NOT NULL,
-  description           VARCHAR(500),
-  wf_service_id         INTEGER NOT NULL,
-  wf_base_process_type_id  INTEGER NOT NULL,
-  FOREIGN KEY (wf_service_id)  REFERENCES wf_service(id),
-  FOREIGN KEY (wf_base_process_type_id)  REFERENCES wf_base_process_type(id)
+                                 id                    INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+                                 name                  VARCHAR(500) NOT NULL,
+                                 description           VARCHAR(500),
+                                 wf_service_id         INTEGER NOT NULL,
+                                 wf_base_process_type_id  INTEGER NOT NULL,
+                                 FOREIGN KEY (wf_service_id)  REFERENCES wf_service(id),
+                                 FOREIGN KEY (wf_base_process_type_id)  REFERENCES wf_base_process_type(id)
 );
 CREATE INDEX wfbpro_idx_wfsserid ON wf_base_process (wf_service_id);
 CREATE INDEX wfbpro_idx_wfbptypeid ON wf_base_process (wf_base_process_type_id);
@@ -216,7 +216,7 @@ COMMENT ON COLUMN wf_base_process.wf_service_id
 COMMENT ON COLUMN wf_base_process.wf_base_process_type_id
     IS 'Типы базовых процессов';
 
- ---------------wf_process_status---------------10
+---------------wf_process_status---------------10
 CREATE TABLE wf_process_status
 (
     id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
@@ -229,20 +229,20 @@ COMMENT ON COLUMN wf_package_status.id
 COMMENT ON COLUMN wf_package_status.name
     IS 'Найменование(В работе, Завершен, Архив, Ожидание)';
 
- ---------------wf_process---------------11
+---------------wf_process---------------11
 CREATE TABLE wf_process (
-  id                    INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  start_date            TIMESTAMP NOT NULL,
-  final_date            TIMESTAMP,
-  description           VARCHAR,
-  date_edit             TIMESTAMP   NOT NULL,
-  user_edit             VARCHAR(50) NOT NULL,
-  wf_package_id        INTEGER NOT NULL,
-  wf_base_process_id   INTEGER NOT NULL,
-  wf_process_status_id INTEGER NOT NULL,
-  FOREIGN KEY (wf_package_id)  REFERENCES wf_package(id),
-  FOREIGN KEY (wf_base_process_id)  REFERENCES wf_base_process(id),
-  FOREIGN KEY (wf_process_status_id)  REFERENCES wf_process_status(id)
+                            id                    INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+                            start_date            TIMESTAMP NOT NULL,
+                            final_date            TIMESTAMP,
+                            description           VARCHAR,
+                            date_edit             TIMESTAMP   NOT NULL,
+                            user_edit             VARCHAR(50) NOT NULL,
+                            wf_package_id        INTEGER NOT NULL,
+                            wf_base_process_id   INTEGER NOT NULL,
+                            wf_process_status_id INTEGER NOT NULL,
+                            FOREIGN KEY (wf_package_id)  REFERENCES wf_package(id),
+                            FOREIGN KEY (wf_base_process_id)  REFERENCES wf_base_process(id),
+                            FOREIGN KEY (wf_process_status_id)  REFERENCES wf_process_status(id)
 );
 CREATE INDEX wfpro_idx_wfpackid ON wf_process (wf_package_id);
 CREATE INDEX wfpro_idx_wfbprocessid ON wf_process (wf_base_process_id);
@@ -261,18 +261,18 @@ COMMENT ON COLUMN wf_process.date_edit
     IS 'Дата изменений';
 COMMENT ON COLUMN wf_process.user_edit
     IS 'Користувач, який змінив запис';
-COMMENT ON COLUMN wf_process.package_id
+COMMENT ON COLUMN wf_process.wf_package_id
     IS 'Пакет документов';
-COMMENT ON COLUMN wf_process.base_process_id
+COMMENT ON COLUMN wf_process.wf_base_process_id
     IS 'Базовый процесс';
-COMMENT ON COLUMN wf_process.process_status_id
+COMMENT ON COLUMN wf_process.wf_process_status_id
     IS 'Статус процесса';
 
 ---------------wf_group---------------12
 CREATE TABLE wf_group (
-  id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  name          VARCHAR(500) NOT NULL,
-  description   VARCHAR(500)
+                          id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+                          name          VARCHAR(500) NOT NULL,
+                          description   VARCHAR(500)
 );
 COMMENT ON TABLE wf_group
     IS 'Группа состояний';
@@ -285,13 +285,13 @@ COMMENT ON COLUMN wf_group.description
 
 ----------------wf_process_state---------------13
 CREATE TABLE wf_process_state (
-  id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  name          VARCHAR(500) NOT NULL,
-  role_id       INTEGER NOT NULL,
-  wf_group_id      INTEGER NOT NULL,
-  description   VARCHAR(500),
-  FOREIGN KEY (role_id)  REFERENCES roles(id),
-  FOREIGN KEY (group_id)  REFERENCES wf_group(id)
+                                  id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+                                  name          VARCHAR(500) NOT NULL,
+                                  role_id       INTEGER NOT NULL,
+                                  wf_group_id      INTEGER NOT NULL,
+                                  description   VARCHAR(500),
+                                  FOREIGN KEY (role_id)  REFERENCES roles(id),
+                                  FOREIGN KEY (wf_group_id)  REFERENCES wf_group(id)
 );
 CREATE INDEX wfps_idx_wfrolekid ON wf_process_state (role_id);
 CREATE INDEX wfps_idx_wfgroupid ON wf_process_state (wf_group_id);
@@ -310,18 +310,18 @@ COMMENT ON COLUMN wf_process_state.description
 
 ----------------wf_base_process_items---------------14
 CREATE TABLE wf_base_process_items (
-  id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  state_from_id     INTEGER,
-  state_to_id       INTEGER NOT NULL,
-  base_process_id   INTEGER NOT NULL,
-  FOREIGN KEY (state_from_id)  REFERENCES wf_process_state(id),
-  FOREIGN KEY (state_to_id)  REFERENCES wf_process_state(id),
-  FOREIGN KEY (base_process_id)  REFERENCES wf_base_process(id)
+                                       id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+                                       state_from_id     INTEGER,
+                                       state_to_id       INTEGER NOT NULL,
+                                       base_process_id   INTEGER NOT NULL,
+                                       FOREIGN KEY (state_from_id)  REFERENCES wf_process_state(id),
+                                       FOREIGN KEY (state_to_id)  REFERENCES wf_process_state(id),
+                                       FOREIGN KEY (base_process_id)  REFERENCES wf_base_process(id)
 );
 CREATE INDEX wfbpi_idx_statefromid ON wf_base_process_items (state_from_id);
 CREATE INDEX wfbpi_idx_statetoid ON wf_base_process_items (state_to_id);
 CREATE INDEX wfbpi_idx_baseprocessid ON wf_base_process_items (base_process_id);
-CREATE UNIQUE INDEX wfbpi_sfid_stid_bpid_unique_idx ON wf_base_process_items (state_from_id,state_to_id,base_process_id),
+CREATE UNIQUE INDEX wfbpi_sfid_stid_bpid_unique_idx ON wf_base_process_items (state_from_id,state_to_id,base_process_id)
 COMMENT ON TABLE wf_base_process_items
     IS 'Переходы базового процесса';
 COMMENT ON COLUMN wf_base_process_items.id
@@ -335,20 +335,20 @@ COMMENT ON COLUMN wf_base_process_items.base_process_id
 
 ----------------wf_process_movement---------------15
 CREATE TABLE wf_process_movement (
-  id                    INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  start_date_time       TIMESTAMP(6)  NOT NULL,
-  final_date_time       TIMESTAMP(6),
-  is_completed          boolean DEFAULT false NOT NULL,
-  description           VARCHAR,
-  date_edit             TIMESTAMP(6) NOT NULL,
-  user_edit             VARCHAR(50) NOT NULL,
-  user_id               INTEGER NOT NULL,
-  wf_package_id         INTEGER NOT NULL,
-  wf_state_id           INTEGER NOT NULL,
-  wf_process_id         INTEGER NOT NULL,
-  wf_base_process_id    INTEGER NOT NULL,
-  is_last               boolean DEFAULT true NOT NULL
-)
+                                     id                    INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+                                     start_date_time       TIMESTAMP(6)  NOT NULL,
+                                     final_date_time       TIMESTAMP(6),
+                                     is_completed          boolean DEFAULT false NOT NULL,
+                                     description           VARCHAR,
+                                     date_edit             TIMESTAMP(6) NOT NULL,
+                                     user_edit             VARCHAR(50) NOT NULL,
+                                     user_id               INTEGER NOT NULL,
+                                     wf_package_id         INTEGER NOT NULL,
+                                     wf_state_id           INTEGER NOT NULL,
+                                     wf_process_id         INTEGER NOT NULL,
+                                     wf_base_process_id    INTEGER NOT NULL,
+                                     is_last               boolean DEFAULT true NOT NULL
+);
 CREATE INDEX wfpm_idx_wfuserid ON wf_process_movement (user_id);
 CREATE INDEX wfpm_idx_wfpackageid ON wf_process_movement (wf_package_id);
 CREATE INDEX wfpm_idx_wfstateid ON wf_process_movement (wf_state_id);
@@ -380,7 +380,7 @@ COMMENT ON COLUMN wf_process_movement.wf_process_id
     IS 'Процессы пакета';
 COMMENT ON COLUMN wf_process_movement.wf_base_process_id
     IS 'Базовый процесс';
-COMMENT ON COLUMN wf_process_movement.islast
+COMMENT ON COLUMN wf_process_movement.is_last
     IS 'Признак последнего движения для пакета(true - последний)';
 
 
