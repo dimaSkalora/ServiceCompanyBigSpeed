@@ -204,6 +204,19 @@ public abstract class AbstractManagerWFProcessMovementController {
     }
 
     /**
+     *  Получить процесс текущего пакета
+     * @param id - id процесса
+     * @return
+     */
+    public WFProcess getWFProcessById(int id){
+        WFProcess wfProcess = wfProcessService.get(id);
+
+        log.info("getWFProcessById {}",id);
+
+        return wfProcess;
+    }
+
+    /**
      *
      * Получить список движений по id процессу и id базового процесса
      *
