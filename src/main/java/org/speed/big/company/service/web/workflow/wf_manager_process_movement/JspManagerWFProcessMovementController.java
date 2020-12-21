@@ -16,6 +16,12 @@ import java.util.List;
 @RequestMapping("managerWFProcessMovements")
 public class JspManagerWFProcessMovementController extends AbstractManagerWFProcessMovementController {
 
+    /**
+     * Получить список ролей и сервисов которые есть у юзера
+     *
+     * @param model
+     * @return
+     */
     @GetMapping
     public String managerWFProcessMovements(Model model){
         List<Role> getRoleFromUserRoles = super.getRoleFromUserRoles();
@@ -27,6 +33,16 @@ public class JspManagerWFProcessMovementController extends AbstractManagerWFProc
         return "workflow/managerWFProcessMovements/managerWFProcessMovements";
     }
 
+    /**
+     * Получаем список движения по ролях сервисах и статуса процесса: (В работе, Завершен, Архив, Ожидание)
+     *
+     *
+     * @param roleId            - Роль
+     * @param wfServiceId       - Сервис
+     * @param indexList         - (В работе, Завершен, Архив, Ожидание)
+     * @param model
+     * @return
+     */
     @GetMapping("/wfProcessMovements")
     public String wfProcessMovements(@RequestParam int roleId, @RequestParam int wfServiceId,
                                      @RequestParam int indexList, Model model){
@@ -46,6 +62,14 @@ public class JspManagerWFProcessMovementController extends AbstractManagerWFProc
         return "workflow/managerWFProcessMovements/managerWFProcessMovements";
     }
 
+    /**
+     * Получаем процесс пакета по текущему движению
+     *
+     * @param wfPackId              -   Пакет
+     * @param wfProcessId           -   Процесс
+     * @param wfBaseProcessId       -   Базовый процесс
+     * @return
+     */
     @GetMapping("/wfProcessPackage/{wfPackId}/{wfProcessId}/{wfBaseProcessId}")
     public ModelAndView getWFProcessPackages(@PathVariable int wfPackId, @PathVariable int wfProcessId,
                                              @PathVariable int wfBaseProcessId){
