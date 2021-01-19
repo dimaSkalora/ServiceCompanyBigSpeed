@@ -41,19 +41,19 @@
                     <ul>
                         <li>
                             <a class="btn btn-primary" role="button" href="managerWFProcessMovements/wfProcessMovements?roleId=${param.roleId}&
-                            wfServiceId=${param.wfServiceId}&indexList=1">Входящие</a>
+                            wfServiceId=${param.wfServiceId}&indexList=1"><spring:message code="workflow.managerWFProcessMovements.inWork"/></a>
                         </li>
                         <li>
                             <a class="btn btn-primary" role="button" href="managerWFProcessMovements/wfProcessMovements?roleId=${param.roleId}&
-                            wfServiceId=${param.wfServiceId}&indexList=2">Завершено</a>
+                            wfServiceId=${param.wfServiceId}&indexList=2"><spring:message code="workflow.managerWFProcessMovements.completed"/></a>
                         </li>
                         <li>
                             <a class="btn btn-primary" role="button" href="managerWFProcessMovements/wfProcessMovements?roleId=${param.roleId}&
-                            wfServiceId=${param.wfServiceId}&indexList=3">Ожидание</a>
+                            wfServiceId=${param.wfServiceId}&indexList=3"><spring:message code="workflow.managerWFProcessMovements.waiting"/></a>
                         </li>
                         <li>
                             <a class="btn btn-primary" role="button" href="managerWFProcessMovements/wfProcessMovements?roleId=${param.roleId}&
-                            wfServiceId=${param.wfServiceId}&indexList=4">Архив</a>
+                            wfServiceId=${param.wfServiceId}&indexList=4"><spring:message code="workflow.managerWFProcessMovements.archive"/></a>
                         </li>
                     </ul>
                 </td>
