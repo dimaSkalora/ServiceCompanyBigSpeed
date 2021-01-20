@@ -15,7 +15,7 @@
 
     <import resource="spring_web_db.xml"/>
     <import resource="spring_web_app.xml"/>
-    <!--сообщает spring, что он должен искать путь к классам для всех классов в com.mycompany.maventestweapp
+    <!--сообщает spring, что он должен искать путь к классам для всех классов
     и просматривать каждый класс, чтобы увидеть, имеет ли он @Controller или @Repository, или @Service, или @Component-->
     <context:component-scan base-package="org.speed.big.company.service.**.web"/>
     <!-- <context:component-scan base-package="com.taxi.speedy.company.**.config"/>-->
@@ -59,11 +59,11 @@
     <!--Локаль по умолчанию-->
     <!--Работает с локалью и хранить в обределеной области допустим Cookie-->
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-        <property name="defaultLocale" value="ru"/>
+        <property name="defaultLocale" value="uk"/>
     </bean>
     <!--Работает с локалью и хранить в обределеной области допустим Session-->
     <!--    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-            <property name="defaultLocale" value="ru" />
+            <property name="defaultLocale" value="uk" />
         </bean>-->
 
 </beans>
