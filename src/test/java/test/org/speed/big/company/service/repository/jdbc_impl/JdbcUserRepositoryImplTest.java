@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class JdbcUserRepositoryImplTest {
-    private Logger log = LoggerFactory.getLogger(getClass());
+    /*private Logger log = LoggerFactory.getLogger(getClass());
 
     private ApplicationContext applicationContext;
     private UserRepository userRepository;
@@ -111,6 +111,6 @@ public class JdbcUserRepositoryImplTest {
         log.info("filterUserCondition");
         List<User> users = userRepository.filterUser(user,sqlCondition);
         users.forEach(u -> log.info("user {}",u));
-    }
+    }*/
 
 }
