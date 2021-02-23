@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class UserServiceImplTest {
-    private Logger log = LoggerFactory.getLogger(getClass());
+    /*private Logger log = LoggerFactory.getLogger(getClass());
 
     private ApplicationContext applicationContext;
     private UserService userService;
@@ -111,6 +111,6 @@ public class UserServiceImplTest {
         log.info("filterUserCondition");
         List<User> users = userService.filterUser(user,sqlCondition);
         users.forEach(u -> log.info("user {}",u));
-    }
+    }*/
 
 }

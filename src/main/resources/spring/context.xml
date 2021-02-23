@@ -15,7 +15,7 @@
     <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>
 
     <context:component-scan base-package="org.speed.big.company.service.repository.jdbc_impl" />
-    <context:component-scan base-package="org.speed.big.company.service.repository.jpa" />
+    <!--<context:component-scan base-package="org.speed.big.company.service.repository.jpa" />-->
     <context:component-scan base-package="org.speed.big.company.service.service" />
 
   <!--  <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">
