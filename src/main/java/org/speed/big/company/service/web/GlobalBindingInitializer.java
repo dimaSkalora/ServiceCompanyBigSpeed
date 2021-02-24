@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-//Глобальный клас который преабразовывает обьэкты в строки и наобород (при передачи параметров)
+//Глобальный клас который
 @ControllerAdvice
 public class GlobalBindingInitializer {
 
@@ -71,6 +71,9 @@ public class GlobalBindingInitializer {
         binder.registerCustomEditor(WFBaseProcessType.class, new WFBaseProcessTypePropertyEditor());
         binder.registerCustomEditor(WFPackage.class, new WFPackagePropertyEditor());
         binder.registerCustomEditor(WFProcessState.class,new WFProcessStatePropertyEditor());
+        binder.registerCustomEditor(WFProcessStatus.class,new WFProcessStatusPropertyEditor());
+        binder.registerCustomEditor(WFBaseProcess.class,new WFBaseProcessPropertyEditor());
         binder.registerCustomEditor(WFProcess.class,new WFProcessPropertyEditor());
+        binder.registerCustomEditor(WFGroup.class,new WFGroupPropertyEditor());
     }
 }
