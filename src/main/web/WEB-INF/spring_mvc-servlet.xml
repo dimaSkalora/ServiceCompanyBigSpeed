@@ -13,12 +13,8 @@
     <!--объявляет поддержку общих аннотаций , таких как @Resource, @Required, @Autowired, @PostConstruct и так далее.-->
     <context:annotation-config />
 
-    <!--<import resource="spring_web_db_jdbc.xml"/>-->
-    <import resource="spring_web_db_jpa_hibernate.xml"/>
-    <!--<import resource="spring_web_db_hibernate.xml"/>-->
-
+    <import resource="spring_web_db_jdbc.xml"/>
     <import resource="spring_web_app.xml"/>
-
     <!--сообщает spring, что он должен искать путь к классам для всех классов
     и просматривать каждый класс, чтобы увидеть, имеет ли он @Controller или @Repository, или @Service, или @Component-->
     <context:component-scan base-package="org.speed.big.company.service.**.web"/>
