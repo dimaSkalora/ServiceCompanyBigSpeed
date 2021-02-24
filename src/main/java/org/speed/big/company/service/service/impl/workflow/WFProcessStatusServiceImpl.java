@@ -17,7 +17,7 @@ public class WFProcessStatusServiceImpl implements WFProcessStatusService {
 
     private WFProcessStatusRepository wfProcessStatusRepository;
 
-    public WFProcessStatusServiceImpl(@Qualifier("jdbcWFProcessStatusRepositoryImpl") WFProcessStatusRepository wfProcessStatusRepository) {
+    public WFProcessStatusServiceImpl(WFProcessStatusRepository wfProcessStatusRepository) {
         this.wfProcessStatusRepository = wfProcessStatusRepository;
     }
 

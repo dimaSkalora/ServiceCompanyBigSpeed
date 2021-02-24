@@ -18,7 +18,7 @@ public class WFServiceServiceImpl implements WFServiceService {
 
     private WFServiceRepository wfServiceRepository;
 
-    public WFServiceServiceImpl(@Qualifier("jdbcWFServiceRepositoryImpl") WFServiceRepository wfServiceRepository) {
+    public WFServiceServiceImpl(WFServiceRepository wfServiceRepository) {
         this.wfServiceRepository = wfServiceRepository;
     }
 

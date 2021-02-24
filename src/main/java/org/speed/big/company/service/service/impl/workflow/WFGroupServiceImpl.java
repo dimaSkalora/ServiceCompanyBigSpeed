@@ -17,7 +17,7 @@ public class WFGroupServiceImpl implements WFGroupService {
 
     private WFGroupRepository wfGroupRepository;
 
-    public WFGroupServiceImpl(@Qualifier("jdbcWFGroupRepositoryImpl") WFGroupRepository wfGroupRepository) {
+    public WFGroupServiceImpl(WFGroupRepository wfGroupRepository) {
         this.wfGroupRepository = wfGroupRepository;
     }
 

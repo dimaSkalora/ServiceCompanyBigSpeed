@@ -21,7 +21,7 @@ public class RoleServiceImpl implements RoleService {
     private final RoleRepository roleRepository;
 
     @Autowired
-    public RoleServiceImpl(@Qualifier("jdbcRoleRepositoryImpl") RoleRepository roleRepository) {
+    public RoleServiceImpl(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
 

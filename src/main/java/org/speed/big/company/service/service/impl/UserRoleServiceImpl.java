@@ -22,7 +22,7 @@ public class UserRoleServiceImpl implements UserRoleService {
     private UserRoleRepository userRoleRepository;
 
     @Autowired
-    public UserRoleServiceImpl(@Qualifier("jdbcUserRoleRepositoryImpl")UserRoleRepository userRoleRepository) {
+    public UserRoleServiceImpl(UserRoleRepository userRoleRepository) {
         this.userRoleRepository = userRoleRepository;
     }
 

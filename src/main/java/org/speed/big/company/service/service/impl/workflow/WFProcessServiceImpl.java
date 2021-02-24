@@ -20,7 +20,7 @@ public class WFProcessServiceImpl implements WFProcessService {
     private WFProcessRepository wfProcessRepository;
 
     //@Autowired
-    public WFProcessServiceImpl(@Qualifier("jdbcWFProcessRepositoryImpl") WFProcessRepository wfProcessRepository) {
+    public WFProcessServiceImpl(WFProcessRepository wfProcessRepository) {
         this.wfProcessRepository = wfProcessRepository;
     }
 

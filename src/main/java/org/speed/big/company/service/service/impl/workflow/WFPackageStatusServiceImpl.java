@@ -19,7 +19,7 @@ public class WFPackageStatusServiceImpl implements WFPackageStatusService {
     private WFPackageStatusRepository wfPackageStatusRepository;
 
     @Autowired
-    public WFPackageStatusServiceImpl(@Qualifier("jdbcWFPackageStatusRepositoryImpl")WFPackageStatusRepository wfPackageStatusRepository) {
+    public WFPackageStatusServiceImpl(WFPackageStatusRepository wfPackageStatusRepository) {
         this.wfPackageStatusRepository = wfPackageStatusRepository;
     }
 

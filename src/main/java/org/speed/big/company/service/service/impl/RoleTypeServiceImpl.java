@@ -20,7 +20,7 @@ public class RoleTypeServiceImpl implements RoleTypeService {
     private RoleTypeRepository roleTypeRepository;
 
     @Autowired
-    public RoleTypeServiceImpl(@Qualifier("jdbcRoleTypeRepositoryImpl")RoleTypeRepository roleTypeRepository) {
+    public RoleTypeServiceImpl(RoleTypeRepository roleTypeRepository) {
         this.roleTypeRepository = roleTypeRepository;
     }
 
