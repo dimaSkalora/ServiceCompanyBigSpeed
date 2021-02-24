@@ -49,20 +49,20 @@ public class WFProcessMovement extends AbstractBaseEntity {
     @NotBlank
     @Column(name = "user_edit", nullable = false)
     private String userEdit;
-    @NotNull
-    @Column(name = "user_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
     private User userId;
-    @NotNull
-    @Column(name = "wf_package_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "wf_package_id", nullable = false)
     private WFPackage wfPackageId;
-    @NotNull
-    @Column(name = "wf_state_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "wf_state_id", nullable = false)
     private WFProcessState wfStateId;
-    @NotNull
-    @Column(name = "wf_process_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "wf_process_id", nullable = false)
     private WFProcess wfProcessId;
-    @NotNull
-    @Column(name = "wf_base_process_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "wf_base_process_id", nullable = false)
     private WFBaseProcess wfBaseProcessId;
     @NotNull
     @Column(name = "is_last", nullable = false)

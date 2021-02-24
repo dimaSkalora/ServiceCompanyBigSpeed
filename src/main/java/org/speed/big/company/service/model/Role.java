@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
         @NamedQuery(name = Role.ALL_SORTED, query = "select r from Role r order by r.name")
 })
 @Entity
-@Table(name = "role", uniqueConstraints = @UniqueConstraint(columnNames = {"name", "role_type_id"},
+@Table(name = "roles", uniqueConstraints = @UniqueConstraint(columnNames = {"name", "role_type_id"},
                         name = "roles_unique_name_role_type_idx"))
 public class Role extends AbstractBaseEntity{
 
