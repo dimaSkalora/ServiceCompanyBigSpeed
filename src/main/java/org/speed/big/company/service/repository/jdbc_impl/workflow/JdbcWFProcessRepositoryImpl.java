@@ -31,26 +31,24 @@ public class JdbcWFProcessRepositoryImpl implements WFProcessRepository {
             " wfp.final_date as wfp_final_date, wfp.description as wfp_description,\n" +
             " wfp.date_edit as wfp_date_edit, wfp.user_edit as wfp_user_edit, wfp.wf_package_id as wfp_wf_package_id,\n" +
             " wfp.wf_base_process_id as wfp_wf_base_process_id, wfp.wf_process_status_id as wfp_wf_process_status_id,\n" +
-            " wfp.id as wfp_id, wfp.name as wfp_name,\n" +
-            " wfp.date_registration as wfp_date_registration, wfp.customer_name as wfp_customer_name,\n" +
-            " wfp.customer_address as wfp_customer_address, wfp.customer_address_jur as wfp_customer_address_jur,\n" +
-            " wfp.customer_phone as wfp_customer_phone, wfp.customer_email as wfp_customer_email,\n" +
-            " wfp.contract_number as wfp_contract_number, wfp.description as wfp_description,\n" +
-            " wfp.user_add as wfp_user_add, wfp.date_add as wfp_date_add,\n" +
-            " wfp.user_edit as wfp_user_edit, wfp.date_edit as wfp_date_edit,\n" +
-            " wfp.wf_service_id as wfp_wf_service_id, wfp.wf_package_status_id as wfp_wf_package_status_id,\n" +
-            " wfps.id as wfps_id, wfps.name as wfps_name,\n" +
+            " wfpack.id as wfpack_id, wfpack.name as wfpack_name,\n" +
+            " wfpack.date_registration as wfpack_date_registration, wfpack.customer_name as wfpack_customer_name,\n" +
+            " wfpack.customer_address as wfpack_customer_address, wfpack.customer_address_jur as wfpack_customer_address_jur,\n" +
+            " wfpack.customer_phone as wfpack_customer_phone, wfpack.customer_email as wfpack_customer_email,\n" +
+            " wfpack.contract_number as wfpack_contract_number, wfpack.description as wfpack_description,\n" +
+            " wfpack.user_add as wfpack_user_add, wfpack.date_add as wfpack_date_add,\n" +
+            " wfpack.user_edit as wfpack_user_edit, wfpack.date_edit as wfpack_date_edit,\n" +
+            " wfpack.wf_service_id as wfpack_wf_service_id, wfpack.wf_package_status_id as wfpack_wf_package_status_id,\n" +
             " wfs.id as wfs_id, wfs.name as wfs_name,\n" +
             " wfbp.id as wfbp_id, wfbp.name as wfbp_name,\n" +
             " wfbp.description as wfbp_description, wfbp.wf_service_id as wfbp_wf_service_id,\n" +
             " wfbp.wf_base_process_type_id as wfbp_wf_base_process_type_id,\n" +
-            " wfpstatus.id as wfpstatus_id, wfpstatus.name as wfpstatus_name,\n"+
-            " wfs.id as wfs_id, wfs.name as wfs_name \n" +
+            " wfpstatus.id as wfpstatus_id, wfpstatus.name as wfpstatus_name\n"+
             " from wf_process wfp" +
             " left join wf_package wfpack ON wfpack.id = wfp.wf_package_id\n" +
             " left join wf_base_process wfbp ON wfbp.id = wfp.wf_base_process_id\n" +
             " left join wf_service wfs on wfbp.wf_service_id=wfs.id\n"+
-            " left join wf_process_status_id wfps ON wfps.id = wfp.wf_process_status_id\n";
+            " left join wf_process_status wfpstatus ON wfpstatus.id = wfp.wf_process_status_id\n";
 
     @Autowired
     public JdbcWFProcessRepositoryImpl(DataSource dataSource, JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
