@@ -4,6 +4,7 @@ import org.speed.big.company.service.model.Role;
 import org.speed.big.company.service.model.workflow.WFService;
 import org.speed.big.company.service.repository.workflow.WFServiceRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,6 +12,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository("jpaWFServiceRepositoryImpl")
+@Transactional(readOnly = true)
 public class JpaWFServiceRepositoryImpl implements WFServiceRepository {
 
       /* @Autowired
@@ -24,6 +26,7 @@ public class JpaWFServiceRepositoryImpl implements WFServiceRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Transactional
     @Override
     public WFService save(WFService wfService) {
         if (wfService.isNew())
@@ -45,6 +48,7 @@ public class JpaWFServiceRepositoryImpl implements WFServiceRepository {
         return wfService;
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
        /* WFService wfService = entityManager.getReference(WFService.class, id);

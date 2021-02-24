@@ -3,6 +3,7 @@ package org.speed.big.company.service.repository.jpa.workflow;
 import org.speed.big.company.service.model.workflow.WFGroup;
 import org.speed.big.company.service.repository.workflow.WFGroupRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,11 +11,13 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository("jpaWFGroupRepositoryImpl")
+@Transactional(readOnly = true)
 public class JpaWFGroupRepositoryImpl implements WFGroupRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Transactional
     @Override
     public WFGroup save(WFGroup wfGroup) {
         if (wfGroup.isNew())
@@ -33,6 +36,7 @@ public class JpaWFGroupRepositoryImpl implements WFGroupRepository {
         return entityManager.find(WFGroup.class,id);
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
         /*WFGroup wfGroup = entityManager.getReference(WFGroup.class, id);

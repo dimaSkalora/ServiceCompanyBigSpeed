@@ -3,6 +3,7 @@ package org.speed.big.company.service.repository.jpa.workflow;
 import org.speed.big.company.service.model.workflow.WFProcessMovement;
 import org.speed.big.company.service.repository.workflow.WFProcessMovementRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,11 +11,13 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository("jpaWFProcessMovementRepositoryImpl")
+@Transactional(readOnly = true)
 public class JpaWFProcessMovementRepositoryImpl implements WFProcessMovementRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Transactional
     @Override
     public WFProcessMovement save(WFProcessMovement wfProcessMovement) {
         if (wfProcessMovement.isNew())
@@ -34,6 +37,7 @@ public class JpaWFProcessMovementRepositoryImpl implements WFProcessMovementRepo
         return entityManager.find(WFProcessMovement.class,id);
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
         /*WFProcessMovement wfProcessMovement = entityManager.getReference(WFProcessMovement.class,id);

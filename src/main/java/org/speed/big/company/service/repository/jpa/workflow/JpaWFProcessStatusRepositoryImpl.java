@@ -4,6 +4,7 @@ import org.speed.big.company.service.model.workflow.WFBaseProcess;
 import org.speed.big.company.service.model.workflow.WFProcessStatus;
 import org.speed.big.company.service.repository.workflow.WFProcessStatusRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,11 +12,13 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository("jpaWFProcessStatusRepositoryImpl")
+@Transactional(readOnly = true)
 public class JpaWFProcessStatusRepositoryImpl implements WFProcessStatusRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Transactional
     @Override
     public WFProcessStatus save(WFProcessStatus wfProcessStatus) {
         if (wfProcessStatus.isNew())
@@ -34,6 +37,7 @@ public class JpaWFProcessStatusRepositoryImpl implements WFProcessStatusReposito
         return entityManager.find(WFProcessStatus.class,id);
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
  /*       WFProcessStatus wfProcessStatus = entityManager.getReference(WFProcessStatus.class,id);

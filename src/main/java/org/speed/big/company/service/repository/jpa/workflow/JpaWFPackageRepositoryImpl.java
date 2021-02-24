@@ -3,6 +3,7 @@ package org.speed.big.company.service.repository.jpa.workflow;
 import org.speed.big.company.service.model.workflow.WFPackage;
 import org.speed.big.company.service.repository.workflow.WFPackageRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,11 +11,13 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository("jpaWFPackageRepositoryImpl")
+@Transactional(readOnly = true)
 public class JpaWFPackageRepositoryImpl implements WFPackageRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Transactional
     @Override
     public WFPackage save(WFPackage wfPackage) {
         if (wfPackage.isNew())
@@ -36,6 +39,7 @@ public class JpaWFPackageRepositoryImpl implements WFPackageRepository {
         return wfPackage;
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
         WFPackage wfPackage = entityManager.getReference(WFPackage.class, id);

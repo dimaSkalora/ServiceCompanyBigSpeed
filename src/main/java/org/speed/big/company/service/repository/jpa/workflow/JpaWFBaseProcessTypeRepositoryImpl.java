@@ -3,6 +3,7 @@ package org.speed.big.company.service.repository.jpa.workflow;
 import org.speed.big.company.service.model.workflow.WFBaseProcessType;
 import org.speed.big.company.service.repository.workflow.WFBaseProcessTypeRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,11 +11,13 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository("jpaWFBaseProcessTypeRepositoryImpl")
+@Transactional(readOnly = true)
 public class JpaWFBaseProcessTypeRepositoryImpl implements WFBaseProcessTypeRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Transactional
     @Override
     public WFBaseProcessType save(WFBaseProcessType wfBaseProcessType) {
         if (wfBaseProcessType.isNew())
@@ -34,6 +37,7 @@ public class JpaWFBaseProcessTypeRepositoryImpl implements WFBaseProcessTypeRepo
         return entityManager.find(WFBaseProcessType.class,id);
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
         /*WFBaseProcessType wfBaseProcessType = entityManager.getReference(WFBaseProcessType.class, id);

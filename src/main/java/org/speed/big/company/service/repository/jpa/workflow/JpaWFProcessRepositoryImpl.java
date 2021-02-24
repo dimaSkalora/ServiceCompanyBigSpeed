@@ -3,6 +3,7 @@ package org.speed.big.company.service.repository.jpa.workflow;
 import org.speed.big.company.service.model.workflow.WFProcess;
 import org.speed.big.company.service.repository.workflow.WFProcessRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,6 +11,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository("jpaWFProcessRepositoryImpl")
+@Transactional(readOnly = true)
 public class JpaWFProcessRepositoryImpl implements WFProcessRepository {
 
     @PersistenceContext
@@ -17,6 +19,7 @@ public class JpaWFProcessRepositoryImpl implements WFProcessRepository {
 
     private static final String sqlQuery = "select wfp from WFProcess wfp\n";
 
+    @Transactional
     @Override
     public WFProcess save(WFProcess wfProcess) {
         if (wfProcess.isNew())
@@ -36,6 +39,7 @@ public class JpaWFProcessRepositoryImpl implements WFProcessRepository {
         return entityManager.find(WFProcess.class,id);
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
       /*  WFProcess wfProcess = entityManager.getReference(WFProcess.class, id);

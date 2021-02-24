@@ -25,6 +25,7 @@ public class JpaUserRoleRepositoryImpl implements UserRoleRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Transactional
     @Override
     public UserRole save(UserRole userRole) {
         if (userRole.isNew())

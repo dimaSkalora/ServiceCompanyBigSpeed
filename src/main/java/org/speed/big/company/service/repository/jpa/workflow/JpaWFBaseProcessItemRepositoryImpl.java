@@ -4,6 +4,7 @@ import org.speed.big.company.service.model.workflow.WFBaseProcessItem;
 import org.speed.big.company.service.model.workflow.WFProcessState;
 import org.speed.big.company.service.repository.workflow.WFBaseProcessItemRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,11 +13,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository("jpaWFBaseProcessItemRepositoryImpl")
+@Transactional(readOnly = true)
 public class JpaWFBaseProcessItemRepositoryImpl implements WFBaseProcessItemRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Transactional
     @Override
     public WFBaseProcessItem save(WFBaseProcessItem wfBaseProcessItem) {
         if (wfBaseProcessItem.isNew())
@@ -37,6 +40,7 @@ public class JpaWFBaseProcessItemRepositoryImpl implements WFBaseProcessItemRepo
         return entityManager.find(WFBaseProcessItem.class,id);
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
       /*  WFBaseProcessItem wfBaseProcessItem = entityManager.getReference(WFBaseProcessItem.class, id);

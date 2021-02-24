@@ -17,6 +17,7 @@ public class JpaRoleTypeRepositoryImpl implements RoleTypeRepository {
     @PersistenceContext
     EntityManager entityManager;
 
+    @Transactional
     @Override
     public RoleType save(RoleType roleType) {
         if (roleType.isNew()){
