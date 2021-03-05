@@ -26,7 +26,9 @@
             <map>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).FORMAT_SQL}" value="true"/>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}" value="true"/>
-<!--                <entry key="#{T(org.hibernate.cfg.AvailableSettings).HBM2DDL_AUTO}" value="${hibernate.hbm2ddl.auto}"/>-->
+                <!--ENABLE_LAZY_LOAD_NO_TRANS - решение проблемы(org.hibernate.LazyInitializationException: could not initialize proxy no Session)  но рекомендуеться-->
+                <!--<entry key="#{T(org.hibernate.cfg.AvailableSettings).ENABLE_LAZY_LOAD_NO_TRANS}" value="true"/>-->
+                <!--<entry key="#{T(org.hibernate.cfg.AvailableSettings).HBM2DDL_AUTO}" value="${hibernate.hbm2ddl.auto}"/>-->
             </map>
         </property>
 
