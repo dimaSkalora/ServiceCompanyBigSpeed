@@ -70,7 +70,8 @@ public class JpaWFServiceRepositoryImpl implements WFServiceRepository {
 
     @Override
     public List<WFService> getAll() {
-        return entityManager.createNamedQuery(WFService.ALL_SORTED).getResultList();
+        return entityManager.createNamedQuery(WFService.ALL_SORTED,
+                WFService.class).getResultList();
     }
 
     @Override

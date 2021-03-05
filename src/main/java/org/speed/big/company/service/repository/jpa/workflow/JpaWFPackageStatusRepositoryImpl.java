@@ -61,7 +61,8 @@ public class JpaWFPackageStatusRepositoryImpl implements WFPackageStatusReposito
 
     @Override
     public List<WFPackageStatus> getAll() {
-        return entityManager.createNamedQuery(WFPackageStatus.ALL_SORTED).getResultList();
+        return entityManager.createNamedQuery(WFPackageStatus.ALL_SORTED,
+                WFPackageStatus.class).getResultList();
     }
 
     @Override

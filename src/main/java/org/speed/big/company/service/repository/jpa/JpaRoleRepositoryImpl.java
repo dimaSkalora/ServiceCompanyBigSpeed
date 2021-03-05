@@ -59,7 +59,7 @@ public class JpaRoleRepositoryImpl implements RoleRepository {
 
     @Override
     public List<Role> getAll() {
-        return entityManager.createNamedQuery(Role.ALL_SORTED).getResultList();
+        return entityManager.createNamedQuery(Role.ALL_SORTED, Role.class).getResultList();
     }
 
     @Override

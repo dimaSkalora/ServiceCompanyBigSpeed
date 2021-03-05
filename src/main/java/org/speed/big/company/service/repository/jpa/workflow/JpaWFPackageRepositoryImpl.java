@@ -61,7 +61,8 @@ public class JpaWFPackageRepositoryImpl implements WFPackageRepository {
 
     @Override
     public List<WFPackage> getAll() {
-        return entityManager.createNamedQuery(WFPackage.ALL_SORTED).getResultList();
+        return entityManager.createNamedQuery(WFPackage.ALL_SORTED,
+                WFPackage.class).getResultList();
     }
 
     @Override

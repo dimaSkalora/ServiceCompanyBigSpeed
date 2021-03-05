@@ -57,7 +57,8 @@ public class JpaWFProcessStateRepositoryImpl implements WFProcessStateRepository
 
     @Override
     public List<WFProcessState> getAll() {
-        return entityManager.createNamedQuery(WFProcessState.ALL_SORTED).getResultList();
+        return entityManager.createNamedQuery(WFProcessState.ALL_SORTED,
+                WFProcessState.class).getResultList();
     }
 
     @Override

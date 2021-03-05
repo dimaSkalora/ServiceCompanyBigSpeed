@@ -58,7 +58,8 @@ public class JpaWFBaseProcessTypeRepositoryImpl implements WFBaseProcessTypeRepo
 
     @Override
     public List<WFBaseProcessType> getAll() {
-        return entityManager.createNamedQuery(WFBaseProcessType.ALL_SORTED).getResultList();
+        return entityManager.createNamedQuery(WFBaseProcessType.ALL_SORTED,
+                WFBaseProcessType.class).getResultList();
     }
 
     @Override
