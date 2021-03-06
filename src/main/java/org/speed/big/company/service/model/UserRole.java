@@ -19,26 +19,19 @@ public class UserRole extends AbstractBaseEntity{
     public static final String ALL_SORTED = "UserRole.allSorted";
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User userId;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "role_id", nullable = false)
     private Role roleId;
     @NotNull
-    @Column(name = "dateTime", nullable = false)
+    @Column(name = "date_time", nullable = false)
     private LocalDateTime dateTime;
     @NotNull
     @Column(name = "comment", nullable = false)
     private String comment;
 
     public UserRole() {
-    }
-
-    public UserRole(User userId, Role roleId, @NotNull LocalDateTime dateTime, @NotNull String comment) {
-        this.userId = userId;
-        this.roleId = roleId;
-        this.dateTime = dateTime;
-        this.comment = comment;
     }
 
     public UserRole(Integer id, User userId, Role roleId, @NotNull LocalDateTime dateTime, @NotNull String comment) {
