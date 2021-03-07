@@ -6,8 +6,10 @@ import javax.validation.constraints.NotBlank;
 
 @NamedQueries({
         @NamedQuery(name = Role.DELETE, query = "DELETE from Role r where r.id=:id"),
-        @NamedQuery(name = Role.GET, query = "select r from Role r where r.id=:id"),
-        @NamedQuery(name = Role.ALL_SORTED, query = "select r from Role r order by r.name")
+        //@NamedQuery(name = Role.GET, query = "select r from Role r where r.id=:id"),
+        @NamedQuery(name = Role.GET, query = "select r from Role r join fetch r.roleTypeId where r.id=:id"),
+        @NamedQuery(name = Role.ALL_SORTED, query = "select r from Role r join fetch r.roleTypeId order by r.name")
+        //@NamedQuery(name = Role.ALL_SORTED, query = "select r from Role r order by r.name")
 })
 @Entity
 @Table(name = "roles", uniqueConstraints = @UniqueConstraint(columnNames = {"name", "role_type_id"},
