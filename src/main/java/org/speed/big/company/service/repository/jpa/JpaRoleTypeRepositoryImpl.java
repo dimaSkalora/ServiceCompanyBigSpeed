@@ -3,6 +3,7 @@ package org.speed.big.company.service.repository.jpa;
 import org.speed.big.company.service.model.RoleType;
 import org.speed.big.company.service.repository.RoleTypeRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -11,7 +12,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository("jpaRoleTypeRepository")
-@Transactional(readOnly = true)
+@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class JpaRoleTypeRepositoryImpl implements RoleTypeRepository {
 
     @PersistenceContext
@@ -33,6 +34,7 @@ public class JpaRoleTypeRepositoryImpl implements RoleTypeRepository {
         return entityManager.find(RoleType.class,id);
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
 /*      RoleType ref = em.getReference(RoleType.class, id);

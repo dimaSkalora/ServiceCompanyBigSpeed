@@ -29,14 +29,15 @@ public class JpaRoleRepositoryImpl implements RoleRepository {
 
     @Override
     public Role get(int id) {
-     /*   Role role = entityManager.createNamedQuery(Role.GET, Role.class)
+        /*Role role = entityManager.find(Role.class, id);*/
+
+        Role role = entityManager.createNamedQuery(Role.GET, Role.class)
                 .setParameter("id",id)
-                .getSingleResult();*/
-        Role role = entityManager.find(Role.class, id);
+                .getSingleResult();
         return role;
     }
 
-    @Transactional
+   @Transactional
     @Override
     public boolean delete(int id) {
         // getReference - выбросить  EntityNotFoundException если не найдено (загружаеть часть полей)
@@ -64,7 +65,7 @@ public class JpaRoleRepositoryImpl implements RoleRepository {
 
     @Override
     public List<Role> filter(Role role) {
-        String queryFilter = "select r from Role r ";
+        String queryFilter = "select r from Role r join fetch r.roleTypeId";
         int paramCount = 0;
 
         if (role.getId() != null){
