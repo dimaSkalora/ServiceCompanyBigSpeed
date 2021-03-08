@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-//Глобальный клас который
+//Глобальный клас
 @ControllerAdvice
 public class GlobalBindingInitializer {
 
