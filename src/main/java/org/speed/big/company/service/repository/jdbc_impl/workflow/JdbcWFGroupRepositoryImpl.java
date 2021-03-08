@@ -11,11 +11,13 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.List;
 
 @Repository("jdbcWFGroupRepositoryImpl")
+@Transactional(readOnly = true)
 public class JdbcWFGroupRepositoryImpl implements WFGroupRepository {
 
     private JdbcTemplate jdbcTemplate;
@@ -39,6 +41,7 @@ public class JdbcWFGroupRepositoryImpl implements WFGroupRepository {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+    @Transactional
     @Override
     public WFGroup save(WFGroup wfGroup) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource()
@@ -67,6 +70,7 @@ public class JdbcWFGroupRepositoryImpl implements WFGroupRepository {
         return DataAccessUtils.singleResult(list);//Возвращает один объект результата из данной коллекции.
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
         return jdbcTemplate.update("delete from wf_group where id=?",id) != 0;

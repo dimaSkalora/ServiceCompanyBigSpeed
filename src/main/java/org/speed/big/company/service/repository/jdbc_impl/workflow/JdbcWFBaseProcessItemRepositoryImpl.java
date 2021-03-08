@@ -11,12 +11,14 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository("jdbcWFBaseProcessItemRepositoryImpl")
+@Transactional(readOnly = true)
 public class JdbcWFBaseProcessItemRepositoryImpl implements WFBaseProcessItemRepository {
     private JdbcTemplate jdbcTemplate;
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -49,6 +51,7 @@ public class JdbcWFBaseProcessItemRepositoryImpl implements WFBaseProcessItemRep
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+    @Transactional
     @Override
     public WFBaseProcessItem save(WFBaseProcessItem wfBaseProcessItem) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource()
@@ -80,6 +83,7 @@ public class JdbcWFBaseProcessItemRepositoryImpl implements WFBaseProcessItemRep
         return DataAccessUtils.singleResult(list);//Возвращает один объект результата из данной коллекции.
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
         String queryDelete = "delete from wf_base_process_items where id=?";

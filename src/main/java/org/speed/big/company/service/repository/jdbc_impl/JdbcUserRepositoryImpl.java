@@ -12,12 +12,14 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.time.LocalDate;
 import java.util.List;
 
 @Repository("jdbcUserRepositoryImpl")
+@Transactional(readOnly = true)
 public class JdbcUserRepositoryImpl implements UserRepository {
     /*
      *  JdbcTemplate - это мощный механизм для подключения к базе данных и выполнения SQL-запросов.
@@ -53,6 +55,7 @@ public class JdbcUserRepositoryImpl implements UserRepository {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+    @Transactional
     @Override
     public User save(User user) {
         //Этот класс предназначен для передачи в простой Map значений параметров методам NamedParameterJdbcTemplate класса.
@@ -98,6 +101,7 @@ public class JdbcUserRepositoryImpl implements UserRepository {
         return DataAccessUtils.singleResult(list);//Возвращает один объект результата из данной коллекции.
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
         return jdbcTemplate.update("DELETE FROM users WHERE id=?",id) != 0;

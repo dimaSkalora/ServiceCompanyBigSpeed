@@ -11,11 +11,13 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.List;
 
 @Repository("jdbcUserRoleRepositoryImpl")
+@Transactional(readOnly = true)
 public class JdbcUserRoleRepositoryImpl implements UserRoleRepository {
     /*
      *  JdbcTemplate - это мощный механизм для подключения к базе данных и выполнения SQL-запросов.
@@ -58,6 +60,7 @@ public class JdbcUserRoleRepositoryImpl implements UserRoleRepository {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+    @Transactional
     @Override
     public UserRole save(UserRole userRole) {
         //Этот класс предназначен для передачи в простой Map значений параметров методам NamedParameterJdbcTemplate класса.
@@ -90,6 +93,7 @@ public class JdbcUserRoleRepositoryImpl implements UserRoleRepository {
         return DataAccessUtils.singleResult(list); //Возвращает один объект результата из данной коллекции.
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
         return jdbcTemplate.update("delete from user_roles where id=?",id) != 0;

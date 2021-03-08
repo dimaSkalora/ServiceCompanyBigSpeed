@@ -10,11 +10,13 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.List;
 
 @Repository("jdbcWFProcessStateRepositoryImpl")
+@Transactional(readOnly = true)
 public class JdbcWFProcessStateRepositoryImpl implements WFProcessStateRepository {
 
     private JdbcTemplate jdbcTemplate;
@@ -43,6 +45,7 @@ public class JdbcWFProcessStateRepositoryImpl implements WFProcessStateRepositor
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+    @Transactional
     @Override
     public WFProcessState save(WFProcessState wfProcessState) {
         //Этот класс предназначен для передачи в простой Map значений параметров методам NamedParameterJdbcTemplate класса.
@@ -77,6 +80,7 @@ public class JdbcWFProcessStateRepositoryImpl implements WFProcessStateRepositor
         return DataAccessUtils.singleResult(list);//Возвращает один объект результата из данной коллекции.
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
         return jdbcTemplate.update("delete from wf_process_state where id=?",id) != 0;
