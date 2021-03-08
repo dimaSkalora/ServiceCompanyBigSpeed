@@ -56,12 +56,12 @@
                                     <form:input path="description" readonly="true"/>
                                 </td>
                                 <td>
-                                    <form:label path="roleTypeId">
+                                    <form:label path="roleTypeId.id">
                                         <spring:message code="role.roleTypeId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="roleTypeId" readonly="true"/>
+                                    <form:input path="roleTypeId.id" readonly="true"/>
                                 </td>
                             </tr>
                         </table>

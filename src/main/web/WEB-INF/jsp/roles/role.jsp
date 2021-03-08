@@ -47,14 +47,14 @@
                             <form:input path="description"/>
                         </td>
                         <td>
-                            <form:label path="roleTypeId">
+                            <form:label path="roleTypeId.id">
                                 <spring:message code="role.roleTypeId"/>
                             </form:label>
                         </td>
                         <td>
-                            <form:select path="roleTypeId">
-                                <form:option  value="${!empty role.roleType.id ? role.roleType.id : ''}"
-                                              label="${!empty role.roleType.id ? role.roleType.name : ''}"/>
+                            <form:select path="roleTypeId.id">
+                                <form:option  value="${!empty role.roleTypeId.id ? role.roleTypeId.id : ''}"
+                                              label="${!empty role.roleTypeId.id ? role.roleTypeId.name : ''}"/>
                                 <%--<form:option  value="" label=""/>--%>
                                 <c:forEach items="${allRoleTypes}" var="roleType">
                                     <jsp:useBean id="roleType" scope="page" type="org.speed.big.company.service.model.RoleType"/>
