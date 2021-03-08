@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
         @NamedQuery(name = WFBaseProcessType.DELETE,query = "delete from WFBaseProcessType wfbpt where wfbpt.id=:id"),
         @NamedQuery(name = WFBaseProcessType.GET,query = "select wfbpt from WFBaseProcessType wfbpt where wfbpt.id=:id"),
         @NamedQuery(name = WFBaseProcessType.ALL_SORTED,query = "select wfbpt from WFBaseProcessType wfbpt " +
-                " where wfbpt.id=:id order by wfbpt.name")
+                " order by wfbpt.name")
 })
 @Entity
 @Table(name = "wf_base_process_type")

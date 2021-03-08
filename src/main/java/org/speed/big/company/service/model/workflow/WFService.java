@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
         @NamedQuery(name = WFService.DELETE, query = "delete from WFService wfs where wfs.id=:id"),
         @NamedQuery(name = WFService.GET, query = "select wfs from WFService wfs where wfs.id=:id"),
         @NamedQuery(name = WFService.ALL_SORTED, query = "select wfs from WFService wfs \n" +
-                " where wfs.id=:id order by wfs.name")
+                " order by wfs.name")
 })
 @Entity
 @Table(name = "wf_service")

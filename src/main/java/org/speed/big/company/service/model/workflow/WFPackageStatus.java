@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
         @NamedQuery(name = WFPackageStatus.DELETE, query = "delete from WFPackageStatus wfps where wfps.id=:id"),
         @NamedQuery(name = WFPackageStatus.GET, query = "select wfps from WFPackageStatus wfps where wfps.id=:id"),
         @NamedQuery(name = WFPackageStatus.ALL_SORTED, query = "select wfps from WFPackageStatus wfps " +
-                " where wfps.id=:id order by wfps.name")
+                " order by wfps.name")
 })
 @Entity
 @Table(name = "wf_package_status")
