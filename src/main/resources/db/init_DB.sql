@@ -4,7 +4,7 @@ DROP SEQUENCE IF EXISTS global_seq;
 DROP SEQUENCE IF EXISTS global_seq_workflow;
 
 CREATE SEQUENCE global_seq START 100000;
-CREATE SEQUENCE global_seq_workflow START 1;
+CREATE SEQUENCE workflow_global_seq START 1;
 
 ---------------users---------------1
 CREATE TABLE users
@@ -98,7 +98,7 @@ COMMENT ON COLUMN user_roles.comment
 ---------------wf_package_status---------------5
 CREATE TABLE wf_package_status
 (
-    id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq_workflow'),
+    id               INTEGER PRIMARY KEY DEFAULT nextval('workflow_global_seq'),
     name             VARCHAR NOT NULL
 );
 CREATE UNIQUE INDEX wfpackstatus_unique_name_idx ON wf_package_status (name);
@@ -112,7 +112,7 @@ COMMENT ON COLUMN wf_package_status.name
 ---------------wf_service---------------6
 CREATE TABLE wf_service
 (
-    id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq_workflow'),
+    id               INTEGER PRIMARY KEY DEFAULT nextval('workflow_global_seq'),
     name             VARCHAR NOT NULL
 );
 CREATE UNIQUE INDEX wfservice_unique_name_idx ON wf_service (name);
@@ -125,7 +125,7 @@ COMMENT ON COLUMN wf_service.name
 
 ---------------wf_package---------------7
 CREATE TABLE wf_package (
-    id                    INTEGER PRIMARY KEY DEFAULT nextval('global_seq_workflow'),
+    id                    INTEGER PRIMARY KEY DEFAULT nextval('workflow_global_seq'),
     name                  VARCHAR(500) NOT NULL,
     date_registration     DATE NOT NULL,
     customer_name         VARCHAR(500) NOT NULL,
@@ -183,7 +183,7 @@ COMMENT ON COLUMN wf_package.wf_package_status_id
 
 ---------------wf_base_process_type---------------8
 CREATE TABLE wf_base_process_type (
-    id    INTEGER PRIMARY KEY DEFAULT nextval('global_seq_workflow'),
+    id    INTEGER PRIMARY KEY DEFAULT nextval('workflow_global_seq'),
     name  VARCHAR(20) NOT NULL
 );
 COMMENT ON TABLE wf_base_process_type
@@ -195,7 +195,7 @@ COMMENT ON COLUMN wf_base_process_type.name
 
 ---------------wf_base_process---------------9
 CREATE TABLE wf_base_process (
-     id                         INTEGER PRIMARY KEY DEFAULT nextval('global_seq_workflow'),
+     id                         INTEGER PRIMARY KEY DEFAULT nextval('workflow_global_seq'),
      name                       VARCHAR(500) NOT NULL,
      description                VARCHAR(500),
      wf_service_id              INTEGER NOT NULL,
@@ -221,7 +221,7 @@ COMMENT ON COLUMN wf_base_process.wf_base_process_type_id
 ---------------wf_process_status---------------10
 CREATE TABLE wf_process_status
 (
-    id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq_workflow'),
+    id               INTEGER PRIMARY KEY DEFAULT nextval('workflow_global_seq'),
     name             VARCHAR NOT NULL
 );
 COMMENT ON TABLE wf_process_status
@@ -233,7 +233,7 @@ COMMENT ON COLUMN wf_package_status.name
 
 ---------------wf_process---------------11
 CREATE TABLE wf_process (
-    id                    INTEGER PRIMARY KEY DEFAULT nextval('global_seq_workflow'),
+    id                    INTEGER PRIMARY KEY DEFAULT nextval('workflow_global_seq'),
     start_date            TIMESTAMP NOT NULL,
     final_date            TIMESTAMP,
     description           VARCHAR,
@@ -272,7 +272,7 @@ COMMENT ON COLUMN wf_process.wf_process_status_id
 
 ---------------wf_group---------------12
 CREATE TABLE wf_group (
-    id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq_workflow'),
+    id            INTEGER PRIMARY KEY DEFAULT nextval('workflow_global_seq'),
     name          VARCHAR(500) NOT NULL,
     description   VARCHAR(500)
 );
@@ -287,7 +287,7 @@ COMMENT ON COLUMN wf_group.description
 
 ----------------wf_process_state---------------13
 CREATE TABLE wf_process_state (
-    id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq_workflow'),
+    id            INTEGER PRIMARY KEY DEFAULT nextval('workflow_global_seq'),
     name          VARCHAR(500) NOT NULL,
     role_id       INTEGER NOT NULL,
     wf_group_id      INTEGER NOT NULL,
@@ -312,7 +312,7 @@ COMMENT ON COLUMN wf_process_state.description
 
 ----------------wf_base_process_items---------------14
 CREATE TABLE wf_base_process_items (
-    id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq_workflow'),
+    id                INTEGER PRIMARY KEY DEFAULT nextval('workflow_global_seq'),
     state_from_id     INTEGER,
     state_to_id       INTEGER NOT NULL,
     base_process_id   INTEGER NOT NULL,
@@ -337,7 +337,7 @@ COMMENT ON COLUMN wf_base_process_items.base_process_id
 
 ----------------wf_process_movement---------------15
 CREATE TABLE wf_process_movement (
-    id                    INTEGER PRIMARY KEY DEFAULT nextval('global_seq_workflow'),
+    id                    INTEGER PRIMARY KEY DEFAULT nextval('workflow_global_seq'),
     start_date_time       TIMESTAMP(6)  NOT NULL,
     final_date_time       TIMESTAMP(6),
     is_completed          boolean DEFAULT false NOT NULL,
