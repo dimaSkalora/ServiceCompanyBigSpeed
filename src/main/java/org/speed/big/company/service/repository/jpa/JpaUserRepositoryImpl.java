@@ -4,11 +4,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.speed.big.company.service.model.User;
 import org.speed.big.company.service.repository.UserRepository;
-import org.speed.big.company.service.repository.jdbc_impl.row_mapper.UserRowMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -18,7 +16,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository("jpaUserRepositoryImpl")
-@Transactional(readOnly = true)
+@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class JpaUserRepositoryImpl implements UserRepository {
 
    /* @Autowired

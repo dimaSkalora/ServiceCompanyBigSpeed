@@ -3,6 +3,7 @@ package org.speed.big.company.service.repository.jpa;
 import org.speed.big.company.service.model.Role;
 import org.speed.big.company.service.repository.RoleRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -65,7 +66,7 @@ public class JpaRoleRepositoryImpl implements RoleRepository {
 
     @Override
     public List<Role> filter(Role role) {
-        String queryFilter = "select r from Role r join fetch r.roleTypeId";
+        String queryFilter = "select r from Role r join fetch r.roleTypeId ";
         int paramCount = 0;
 
         if (role.getId() != null){
@@ -88,11 +89,11 @@ public class JpaRoleRepositoryImpl implements RoleRepository {
         }
         if (role.getRoleTypeId() != null)
             if (paramCount == 0)
-                queryFilter += " where r.role_type_id=:roleTypeId ";
+                queryFilter += " where r.roleTypeId=:roleTypeId ";
             else
-                queryFilter += " and r.role_type_id=:roleTypeId ";
+                queryFilter += " and r.roleTypeId=:roleTypeId ";
 
-        queryFilter += "order by r.name "; //default ASC -  по возрастанию
+        queryFilter += " order by r.name "; //default ASC -  по возрастанию
 
         Query query = entityManager.createQuery(queryFilter);
         List<Role> list;

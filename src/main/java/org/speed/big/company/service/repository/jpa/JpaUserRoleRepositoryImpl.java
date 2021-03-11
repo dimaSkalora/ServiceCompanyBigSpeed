@@ -38,11 +38,12 @@ public class JpaUserRoleRepositoryImpl implements UserRoleRepository {
 
     @Override
     public UserRole get(int id) {
-/*        UserRole userRole = entityManager.createNamedQuery(UserRole.GET,UserRole.class)
-                .setParameter("id",id)
-                .getSingleResult();*/
+        /*UserRole userRole = entityManager.find(UserRole.class,id);*/
 
-         UserRole userRole = entityManager.find(UserRole.class,id);
+        UserRole userRole = entityManager.createNamedQuery(UserRole.GET,UserRole.class)
+                .setParameter("id",id)
+                .getSingleResult();
+
         return userRole;
     }
 
@@ -75,43 +76,43 @@ public class JpaUserRoleRepositoryImpl implements UserRoleRepository {
 
     @Override
     public List<UserRole> filter(UserRole userRole) {
-        String queryFilter = "select ur from UserRole ur ";
+        String queryFilter = "select ur from UserRole ur join fetch ur.userId join fetch ur.roleId ";
         int paramCount = 0;
 
         if (userRole.getId() != null) {
-            queryFilter = queryFilter + " where ur.id=:id";
+            queryFilter = queryFilter + " where ur.id=:id ";
             paramCount++;
         }
         if (userRole.getUserId() != null){
             if (paramCount == 0)
-                queryFilter += " where ur.user_id=:userId";
+                queryFilter += " where ur.userId=:userId ";
             else
-                queryFilter += " and ur.user_id=:userId";
+                queryFilter += " and ur.userId=:userId ";
             paramCount++;
         }
         if (userRole.getRoleId() != null){
             if (paramCount == 0)
-                queryFilter += " where ur.role_id=:roleId";
+                queryFilter += " where ur.roleId=:roleId ";
             else
-                queryFilter += " and ur.role_id=:roleId";
+                queryFilter += " and ur.roleId=:roleId ";
             paramCount++;
         }
         if (userRole.getDateTime() != null){
             if (paramCount == 0)
-                queryFilter += " where ur.date_time=:dateTime";
+                queryFilter += " where ur.dateTime=:dateTime ";
             else
-                queryFilter += " and ur.date_time=:dateTime";
+                queryFilter += " and ur.dateTime=:dateTime ";
             paramCount++;
         }
         if (userRole.getComment() != null){
             if (paramCount == 0)
-                queryFilter += " where ur.comment=:comment";
+                queryFilter += " where ur.comment=:comment ";
             else
-                queryFilter += " and ur.comment=:comment";
+                queryFilter += " and ur.comment=:comment ";
             paramCount++;
         }
 
-        queryFilter += "order by ur.user_id "; //default ASC -  по возрастанию
+        queryFilter += " order by ur.dateTime "; //default ASC -  по возрастанию
 
         Query query = entityManager.createQuery(queryFilter);
         List<UserRole> list;
@@ -134,7 +135,8 @@ public class JpaUserRoleRepositoryImpl implements UserRoleRepository {
 
     @Override
     public List<UserRole> getByUser(int userId) {
-        String queryGetByUser = "select ur from UserRole ur where ur.userId.id=:userId\n" +
+        String queryGetByUser = "select ur from UserRole ur join fetch ur.userId join fetch ur.roleId " +
+                " where ur.userId.id=:userId\n" +
                 " order by ur.roleId.id";
         List<UserRole> userRoles = entityManager.createQuery(queryGetByUser,UserRole.class)
                 .setParameter("userId",userId)
@@ -145,7 +147,8 @@ public class JpaUserRoleRepositoryImpl implements UserRoleRepository {
 
     @Override
     public List<UserRole> getByRole(int roleId) {
-        String queryGetByRole = "select ur from UserRole ur where ur.roleId.id=:roleId\n" +
+        String queryGetByRole = "select ur from UserRole ur join fetch ur.userId join fetch ur.roleId " +
+                " where ur.roleId.id=:roleId\n" +
                 " order by ur.userId.id";
         List<UserRole> userRoles = entityManager.createQuery(queryGetByRole,UserRole.class)
                 .setParameter("roleId",roleId)
