@@ -16,7 +16,7 @@ import javax.validation.constraints.NotBlank;
         @Index(name = "wfbpro_idx_wfsserid", columnList = "wf_service_id"),
         @Index(name = "wfbpro_idx_wfbptypeid", columnList = "wf_base_process_type_id")
 })
-public class WFBaseProcess extends AbstractBaseEntity {
+public class WFBaseProcess extends WFAbstractBaseEntity {
 
     public final static String DELETE = "WFBaseProcess.delete";
     public final static String GET = "WFBaseProcess.get";

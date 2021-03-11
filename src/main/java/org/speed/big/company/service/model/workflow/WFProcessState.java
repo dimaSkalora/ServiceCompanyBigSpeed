@@ -17,7 +17,7 @@ import javax.validation.constraints.NotBlank;
         @Index(name = "wfps_idx_wfrolekid", columnList = "role_id"),
         @Index(name = "wfps_idx_wfgroupid", columnList = "wf_group_id")
 })
-public class WFProcessState extends AbstractBaseEntity {
+public class WFProcessState extends WFAbstractBaseEntity {
     public static final String DELETE = "WFProcessState.delete";
     public static final String GET = "WFProcessState.get";
     public static final String ALL_SORTED = "WFProcessState.allSorted";

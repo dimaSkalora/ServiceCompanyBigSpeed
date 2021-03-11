@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
         @Index(name = "wfpack_idx_wfsserid", columnList = "wf_service_id"),
         @Index(name = "wfpack_idx_wfpackstatid", columnList = "wf_package_status_id")
 })
-public class WFPackage extends AbstractBaseEntity {
+public class WFPackage extends WFAbstractBaseEntity {
 
     public static final String DELETE = "WFPackage.delete";
     public static final String GET = "WFPackage.get";

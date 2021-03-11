@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 })
 @Entity
 @Table(name = "wf_service")
-public class WFService extends AbstractBaseEntity {
+public class WFService extends WFAbstractBaseEntity {
     public static final String DELETE = "WFService.delete";
     public static final String GET = "WFService.get";
     public static final String ALL_SORTED = "WFService.allSorted";

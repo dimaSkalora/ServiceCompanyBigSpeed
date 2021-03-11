@@ -17,7 +17,7 @@ import javax.persistence.*;
         @Index(name = "wfbpi_idx_statetoid", columnList = "state_to_id"),
         @Index(name = "wfbpi_idx_baseprocessid", columnList = "base_process_id")
 })
-public class WFBaseProcessItem extends AbstractBaseEntity {
+public class WFBaseProcessItem extends WFAbstractBaseEntity {
 
     public static final String DELETE = "WFBaseProcessItem.delete";
     public static final String GET = "WFBaseProcessItem.get";

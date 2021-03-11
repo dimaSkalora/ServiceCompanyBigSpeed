@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
         @Index(name = "wfpm_idx_wfprocessid", columnList = "wf_process_id"),
         @Index(name = "wfpm_idx_wfbaseprocessid", columnList = "wf_base_process_id")
 })
-public class WFProcessMovement extends AbstractBaseEntity {
+public class WFProcessMovement extends WFAbstractBaseEntity {
 
     public static final String DELETE = "WFProcessMovement.delete";
     public static final String GET = "WFProcessMovement.get";

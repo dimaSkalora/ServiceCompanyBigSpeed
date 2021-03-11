@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 })
 @Entity
 @Table(name = "wf_process_status")
-public class WFProcessStatus extends AbstractBaseEntity {
+public class WFProcessStatus extends WFAbstractBaseEntity {
 
     public static final String DELETE = "WFProcessStatus.delete";
     public static final String GET = "WFProcessStatus.get";

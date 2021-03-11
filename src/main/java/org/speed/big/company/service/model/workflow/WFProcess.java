@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
         @Index(name = "wfpro_idx_wfbprocessid", columnList = "wf_base_process_id"),
         @Index(name = "wfpro_idx_wfpstatusid", columnList = "wf_process_status_id")
 })
-public class WFProcess extends AbstractBaseEntity {
+public class WFProcess extends WFAbstractBaseEntity {
     public static final String DELETE = "WFProcess.delete";
     public static final String GET = "WFProcess.get";
     public static final String ALL_SORTED = "WFProcess.allSorted";

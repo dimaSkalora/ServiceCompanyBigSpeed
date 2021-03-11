@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 })
 @Entity
 @Table(name = "wf_base_process_type")
-public class WFBaseProcessType extends AbstractBaseEntity {
+public class WFBaseProcessType extends WFAbstractBaseEntity {
     public static final String DELETE = "WFBaseProcessType.delete";
     public static final String GET = "WFBaseProcessType.get";
     public static final String ALL_SORTED = "WFBaseProcessType.allSorted";
