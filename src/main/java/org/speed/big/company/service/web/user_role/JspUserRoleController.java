@@ -166,7 +166,7 @@ public class JspUserRoleController extends AbstractUserRoleController{
         if (comment != null)
             userRole.setComment(comment);
 
-        super.filter(userRole);
+        modelAndView.addObject("userRoles",super.filter(userRole));
 
         return modelAndView;
     }
