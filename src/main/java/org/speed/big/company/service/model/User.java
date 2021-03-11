@@ -1,7 +1,5 @@
 package org.speed.big.company.service.model;
 
-import org.speed.big.company.service.HasId;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -27,7 +25,6 @@ public class User extends AbstractBaseEntity{
     public static final String DELETE = "User.delete";
     public static final String ALL_SORTED = "User.getAllSorted";
     public static final String BETWEEN_REGISTERED = "User.betweenRegistered";
-
 
     @NotBlank
     @Size(min = 2, max = 100)
@@ -65,16 +62,6 @@ public class User extends AbstractBaseEntity{
     private Set<UserRole> userRoles;
 
     public User() {
-    }
-
-    public User(@NotBlank @Size(min = 2, max = 100) String name, @Email @NotBlank @Size(max = 100) String email, @NotBlank @Size(min = 5, max = 64) String password, @NotNull String phone, @NotNull LocalDate registered, boolean enabled, Set<UserRole> userRoles) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.phone = phone;
-        this.registered = registered;
-        this.enabled = enabled;
-        this.userRoles = userRoles;
     }
 
     public User(Integer id, String name, String email, String password, String phone, LocalDate registered, boolean enabled) {

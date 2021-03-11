@@ -6,8 +6,10 @@ import java.time.LocalDateTime;
 
 @NamedQueries({
         @NamedQuery(name = UserRole.DELETE, query = "DELETE FROM UserRole ur where ur.id=:id"),
-        @NamedQuery(name = UserRole.GET, query = "select ur from UserRole ur where ur.id=:id"),
-        @NamedQuery(name = UserRole.ALL_SORTED, query = "select ur from UserRole ur order by ur.id")
+        @NamedQuery(name = UserRole.GET, query = "select ur from UserRole ur " +
+                "join fetch ur.userId join fetch ur.roleId where ur.id=:id"),
+        @NamedQuery(name = UserRole.ALL_SORTED, query = "select ur from UserRole ur " +
+                "join fetch ur.userId join fetch ur.roleId order by ur.id")
 })
 @Entity
 @Table(name = "user_roles", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id","role_id"},
@@ -18,10 +20,10 @@ public class UserRole extends AbstractBaseEntity{
     public static final String GET = "UserRole.get";
     public static final String ALL_SORTED = "UserRole.allSorted";
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User userId;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id", nullable = false)
     private Role roleId;
     @NotNull
@@ -77,7 +79,7 @@ public class UserRole extends AbstractBaseEntity{
     @Override
     public String toString() {
         return "UserRole{" +
-                "userId=" + userId.getId() +
+                "userId=" + userId +
                 ", roleId=" + roleId+
                 ", dateTime=" + dateTime +
                 ", comment='" + comment + '\'' +
