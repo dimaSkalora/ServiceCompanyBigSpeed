@@ -43,12 +43,12 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <form:label path="userId">
+                                    <form:label path="userId.id">
                                         <spring:message code="userRole.userId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input type="text" path="userId" readonly="true" />
+                                    <form:input type="text" path="userId.id" readonly="true" />
                                    <%-- <form:select path="userId">
                                         <form:option  value="${!empty userRole.id ? userRole.id : ''}"
                                                       label="${!empty userRole.id ? userRole.userId.name : ''}"/>
@@ -56,12 +56,12 @@
                                     </form:select>--%>
                                 </td>
                                 <td>
-                                    <form:label path="roleId">
+                                    <form:label path="roleId.id">
                                         <spring:message code="userRole.roleId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input type="text" path="roleId" readonly="true" />
+                                    <form:input type="text" path="roleId.id" readonly="true" />
                                <%--     <form:select path="roleId">
                                         <form:option  value="${!empty userRole.id ? userRole.id : ''}"
                                                       label="${!empty userRole.id ? userRole.roleId.name : ''}"/>
@@ -209,12 +209,12 @@
                                     <form:input path="description" readonly="true" />
                                 </td>
                                 <td>
-                                    <form:label path="roleTypeId">
+                                    <form:label path="roleTypeId.id">
                                         <spring:message code="role.roleTypeId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="roleTypeId" readonly="true" />
+                                    <form:input path="roleTypeId.id" readonly="true" />
                                   <%--  <form:select path="roleTypeId">
                                         <form:option  value="${!empty role.id ? role.id : ''}"
                                                       label="${!empty role.id ? role.name : ''}"/>

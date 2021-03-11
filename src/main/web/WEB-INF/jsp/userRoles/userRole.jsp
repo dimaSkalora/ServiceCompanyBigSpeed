@@ -31,12 +31,12 @@
                     </tr>
                     <tr>
                         <td>
-                            <form:label path="userId">
+                            <form:label path="userId.id">
                                 <spring:message code="userRole.userId"/>
                             </form:label>
                         </td>
                         <td>
-                            <form:select path="userId">
+                            <form:select path="userId.id">
                                 <form:option  value="${!empty userRole.id ? userRole.userId.id : ''}"
                                               label="${!empty userRole.id ? userRole.userId.name : ''}"/>
                                 <%--<form:option  value="" label=""/>--%>
@@ -47,12 +47,12 @@
                             </form:select>
                         </td>
                         <td>
-                            <form:label path="roleId">
+                            <form:label path="roleId.id">
                                 <spring:message code="userRole.roleId"/>
                             </form:label>
                         </td>
                         <td>
-                            <form:select path="roleId">
+                            <form:select path="roleId.id">
                                 <form:option  value="${!empty userRole.id ? userRole.roleId.id : ''}"
                                               label="${!empty userRole.id ? userRole.roleId.name : ''}"/>
                                 <%--<form:option  value="" label=""/>--%>
