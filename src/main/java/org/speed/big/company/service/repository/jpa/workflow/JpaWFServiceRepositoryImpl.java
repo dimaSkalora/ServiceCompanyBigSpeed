@@ -81,16 +81,16 @@ public class JpaWFServiceRepositoryImpl implements WFServiceRepository {
         int paramCount = 0;
 
         if(wfService.getId() != null){
-            queryFilter.append(" where wfp.id=:id \n");
+            queryFilter.append(" where wfs.id=:id \n");
             paramCount++;
         }
         if (wfService.getName() != null)
             if (paramCount == 0)
-                queryFilter.append(" where wfp.name=:name \n");
+                queryFilter.append(" where wfs.name=:name \n");
             else
-                queryFilter.append(" and wfp.name=:name \n");
+                queryFilter.append(" and wfs.name=:name \n");
 
-        queryFilter.append("order by wfp.name "); //default ASC -  по возрастанию
+        queryFilter.append(" order by wfs.name "); //default ASC -  по возрастанию
 
         Query query = entityManager.createQuery(queryFilter.toString());
 

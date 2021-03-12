@@ -82,7 +82,7 @@ public class JpaWFPackageStatusRepositoryImpl implements WFPackageStatusReposito
                 queryFilter += " and wfps.name=:name";
         }
 
-        queryFilter += "order by wfps.name "; //default ASC -  по возрастанию
+        queryFilter += " order by wfps.name "; //default ASC -  по возрастанию
 
         Query query = entityManager.createQuery(queryFilter);
 
