@@ -31,7 +31,7 @@ public class WFServiceServiceImpl implements WFServiceService {
     @Override
     public WFService update(WFService wfService) throws NotFoundException {
         Assert.notNull(wfService,"не должно быть null");
-        return checkNotFoundWithId(wfServiceRepository.get(wfService.getId()),wfService.getId());
+        return checkNotFoundWithId(wfServiceRepository.save(wfService),wfService.getId());
     }
 
     @Override
