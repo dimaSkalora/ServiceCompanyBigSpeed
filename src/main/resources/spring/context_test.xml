@@ -13,7 +13,7 @@
 
     <!-- Change DB by comment/uncomment property-placeholder -->
     <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>
-<!--____________________________Spring context.xml for TEST__________________________________________-->
+<!--____________________________Spring context_test.xml for TEST__________________________________________-->
     <context:component-scan base-package="org.speed.big.company.service.repository.jdbc_impl" />
     <!--<context:component-scan base-package="org.speed.big.company.service.repository.jpa" />-->
     <context:component-scan base-package="org.speed.big.company.service.service" />
