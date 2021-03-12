@@ -24,7 +24,7 @@ public class JdbcUserRepositoryImplTest {
 
     @Before
     public void setUp() {
-        applicationContext = new ClassPathXmlApplicationContext("/spring/context.xml");
+        applicationContext = new ClassPathXmlApplicationContext("/spring/context_test.xml");
         userRepository = (UserRepository) applicationContext.getBean("jdbcUserRepositoryImpl");
     }
 
