@@ -147,7 +147,7 @@
                     </tr>
                     <tr>
                          <td>
-                             <form:label path="wfServiceId">
+                             <form:label path="wfServiceId.id">
                                  <spring:message code="workflow.wfPackage.wfServiceId"/>
                              </form:label>
                          </td>
@@ -163,7 +163,7 @@
                              </form:select>
                          </td>
                          <td>
-                             <form:label path="wfPackageStatusId">
+                             <form:label path="wfPackageStatusId.id">
                                  <spring:message code="workflow.wfPackage.wfPackageStatusId"/>
                              </form:label>
                          </td>

@@ -61,8 +61,8 @@
                     <td><c:out value="${wfPackage.dateAdd}"/></td>
                     <td><c:out value="${wfPackage.userEdit}"/></td>
                     <td><c:out value="${wfPackage.dateEdit}"/></td>
-                    <td><c:out value="${wfPackage.wfServiceId}"/></td>
-                    <td><c:out value="${wfPackage.wfPackageStatusId}"/></td>
+                    <td><c:out value="${wfPackage.wfServiceId.id}"/></td>
+                    <td><c:out value="${wfPackage.wfPackageStatusId.id}"/></td>
                     <td><a href="wfPackages/update/${wfPackage.id}"/><spring:message code="app.update"/></td>
                     <td><a href="wfPackages/delete?id=${wfPackage.id}"/><spring:message code="app.delete"/></td>
                 </tr>

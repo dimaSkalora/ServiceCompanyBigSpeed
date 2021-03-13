@@ -158,20 +158,20 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <form:label path="wfServiceId">
+                                    <form:label path="wfServiceId.id">
                                         <spring:message code="workflow.wfPackage.wfServiceId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfServiceId" readonly="true"/>
+                                    <form:input path="wfServiceId.id" readonly="true"/>
                                 </td>
                                 <td>
-                                    <form:label path="wfPackageStatusId">
+                                    <form:label path="wfPackageStatusId.id">
                                         <spring:message code="workflow.wfPackage.wfPackageStatusId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfPackageStatusId" readonly="true"/>
+                                    <form:input path="wfPackageStatusId.id" readonly="true"/>
                                 </td>
                             </tr>
                         </table>
