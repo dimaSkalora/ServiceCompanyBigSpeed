@@ -9,10 +9,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @NamedQueries({
-        @NamedQuery(name = WFPackage.DELETE, query = "delete from WFPackage wfp where wfp.id=:id"),
-        @NamedQuery(name = WFPackage.GET, query = "select wfp from WFPackage wfp where wfp.id=:id"),
-        @NamedQuery(name = WFPackage.ALL_SORTED, query = "select wfp from WFPackage  wfp" +
-                " order by wfp.dateRegistration, wfp.name")
+        @NamedQuery(name = WFPackage.DELETE, query = "delete from WFPackage wfp where wfp.id=:id "),
+        @NamedQuery(name = WFPackage.GET, query = "select wfp from WFPackage wfp join fetch wfp.wfServiceId " +
+                " join fetch wfp.wfPackageStatusId where wfp.id=:id "),
+        @NamedQuery(name = WFPackage.ALL_SORTED, query = "select wfp from WFPackage wfp join fetch wfp.wfServiceId " +
+                " join fetch wfp.wfPackageStatusId order by wfp.dateRegistration, wfp.name")
 })
 @Entity
 @Table(name = "wf_package", indexes = {
