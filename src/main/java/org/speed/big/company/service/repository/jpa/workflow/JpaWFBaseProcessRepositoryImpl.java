@@ -29,12 +29,12 @@ public class JpaWFBaseProcessRepositoryImpl implements WFBaseProcessRepository {
 
     @Override
     public WFBaseProcess get(int id) {
-     /*   WFBaseProcess wfBaseProcess = (WFBaseProcess) entityManager
+        /*return entityManager.find(WFBaseProcess.class, id);*/
+
+        return (WFBaseProcess) entityManager
                 .createNamedQuery(WFBaseProcess.GET)
                 .setParameter("id",id)
-                .getSingleResult();*/
-
-        return entityManager.find(WFBaseProcess.class, id);
+                .getSingleResult();
     }
 
     @Transactional
@@ -63,7 +63,8 @@ public class JpaWFBaseProcessRepositoryImpl implements WFBaseProcessRepository {
 
     @Override
     public List<WFBaseProcess> filter(WFBaseProcess wfBaseProcess) {
-        String queryFilter = "select wfbp from WFBaseProcess wfbp\n";
+        String queryFilter = "select wfbp from WFBaseProcess wfbp \n"+
+        " join fetch wfbp.wfServiceId join fetch wfbp.wfBaseProcessTypeId \n" ;
         int paramCount = 0;
         List<WFBaseProcess> list;
 
@@ -87,16 +88,16 @@ public class JpaWFBaseProcessRepositoryImpl implements WFBaseProcessRepository {
         }
         if(wfBaseProcess.getWfServiceId() != null){
             if (paramCount == 0)
-                queryFilter += " where wfbp.wf_service_id=:wfServiceId\n";
+                queryFilter += " where wfbp.wfServiceId=:wfServiceId\n";
             else
-                queryFilter += " and wfbp.wf_service_id=:wfServiceId\n";
+                queryFilter += " and wfbp.wfServiceId=:wfServiceId\n";
             paramCount++;
         }
         if(wfBaseProcess.getWfBaseProcessTypeId() != null){
             if (paramCount == 0)
-                queryFilter += " where wfbp.wf_base_process_type_id=:wfBaseProcessTypeId\n";
+                queryFilter += " where wfbp.wfBaseProcessTypeId=:wfBaseProcessTypeId\n";
             else
-                queryFilter += " and wfbp.wf_base_process_type_id=:wfBaseProcessTypeId\n";
+                queryFilter += " and wfbp.wfBaseProcessTypeId=:wfBaseProcessTypeId\n";
             paramCount++;
         }
 
