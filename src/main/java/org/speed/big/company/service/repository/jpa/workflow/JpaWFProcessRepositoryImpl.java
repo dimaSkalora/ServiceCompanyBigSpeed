@@ -17,7 +17,7 @@ public class JpaWFProcessRepositoryImpl implements WFProcessRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    private static final String sqlQuery = "select wfp from WFProcess wfp\n";
+    private static final String sqlQuery = "select wfpro from WFProcess wfpro\n";
 
     @Transactional
     @Override
@@ -31,12 +31,12 @@ public class JpaWFProcessRepositoryImpl implements WFProcessRepository {
 
     @Override
     public WFProcess get(int id) {
-      /*  WFProcess wfProcess = entityManager
+        /*return entityManager.find(WFProcess.class,id);*/
+
+        return entityManager
                 .createNamedQuery(WFProcess.GET, WFProcess.class)
                 .setParameter("id",id)
-                .getSingleResult();*/
-
-        return entityManager.find(WFProcess.class,id);
+                .getSingleResult();
     }
 
     @Transactional
@@ -71,68 +71,70 @@ public class JpaWFProcessRepositoryImpl implements WFProcessRepository {
     @Override
     public List<WFProcess> filter(WFProcess wfProcess, String sqlCondition) {
         StringBuilder queryFilter = new StringBuilder();
-        queryFilter.append("select wfp from WFProcess wfp \n");
+        queryFilter.append("select wfpro from WFProcess wfpro " +
+                " join fetch wfpro.wfPackageId join fetch wfpro.wfBaseProcessId " +
+                " join fetch wfpro.wfProcessStatusId ");
         List<WFProcess> list;
         int paramCount = 0;
 
         if (wfProcess.getId() != null) {
-            queryFilter.append("where wfp.id=:id\n");
+            queryFilter.append("where wfpro.id=:id\n");
             paramCount++;
         }
         if (wfProcess.getStartDate() != null){
             if (paramCount == 0)
-                queryFilter.append("where wfp.start_date=:startDate\n");
+                queryFilter.append("where wfpro.startDate=:startDate\n");
             else
-                queryFilter.append("and wfp.start_date=:startDate\n");
+                queryFilter.append("and wfpro.startDate=:startDate\n");
             paramCount++;
         }
         if (wfProcess.getFinalDate() != null){
             if (paramCount == 0)
-                queryFilter.append("where wfp.final_date=:finalDate\n");
+                queryFilter.append("where wfpro.finalDate=:finalDate\n");
             else
-                queryFilter.append("and wfp.final_date=:finalDate\n");
+                queryFilter.append("and wfpro.finalDate=:finalDate\n");
             paramCount++;
         }
         if (wfProcess.getDescription() != null){
             if (paramCount == 0)
-                queryFilter.append("where wfp.description=:description\n");
+                queryFilter.append("where wfpro.description=:description\n");
             else
-                queryFilter.append("and wfp.description=:description\n");
+                queryFilter.append("and wfpro.description=:description\n");
             paramCount++;
         }
         if (wfProcess.getDateEdit() != null){
             if (paramCount == 0)
-                queryFilter.append("where wfp.date_edit=:dateEdit\n");
+                queryFilter.append("where wfpro.dateEdit=:dateEdit\n");
             else
-                queryFilter.append("and wfp.date_edit=:dateEdit\n");
+                queryFilter.append("and wfpro.dateEdit=:dateEdit\n");
             paramCount++;
         }
         if (wfProcess.getUserEdit() != null){
             if (paramCount == 0)
-                queryFilter.append("where wfp.user_edit=:userEdit\n");
+                queryFilter.append("where wfpro.userEdit=:userEdit\n");
             else
-                queryFilter.append("and wfp.user_edit=:userEdit\n");
+                queryFilter.append("and wfpro.userEdit=:userEdit\n");
             paramCount++;
         }
         if (wfProcess.getWfPackageId() != null){
             if (paramCount == 0)
-                queryFilter.append("where wfp.wf_package_id=:wfPackageId\n");
+                queryFilter.append("where wfpro.wfPackageId=:wfPackageId\n");
             else
-                queryFilter.append("and wfp.wf_package_id=:wfPackageId\n");
+                queryFilter.append("and wfpro.wfPackageId=:wfPackageId\n");
             paramCount++;
         }
         if (wfProcess.getWfBaseProcessId() != null){
             if (paramCount == 0)
-                queryFilter.append("where wfp.wf_base_process_id=:wfBaseProcessId\n");
+                queryFilter.append("where wfpro.wfBaseProcessId=:wfBaseProcessId\n");
             else
-                queryFilter.append("and wfp.wf_base_process_id=:wfBaseProcessId\n");
+                queryFilter.append("and wfpro.wfBaseProcessId=:wfBaseProcessId\n");
             paramCount++;
         }
         if (wfProcess.getWfProcessStatusId() != null){
             if (paramCount == 0)
-                queryFilter.append("where wfp.wf_process_status_id=:wfProcessStatusId\n");
+                queryFilter.append("where wfpro.wfProcessStatusId=:wfProcessStatusId\n");
             else
-                queryFilter.append("and wfp.wf_process_status_id=:wfProcessStatusId\n");
+                queryFilter.append("and wfpro.wfProcessStatusId=:wfProcessStatusId\n");
             paramCount++;
         }
 
@@ -143,9 +145,9 @@ public class JpaWFProcessRepositoryImpl implements WFProcessRepository {
                queryFilter.append(" and ( \n"+sqlCondition+"\n )");
         }
 
-        queryFilter.append("order by wfp.start_date DESC");// DESC - по убыванию.
+        queryFilter.append("order by wfpro.startDate DESC");// DESC - по убыванию.
 
-        Query query = entityManager.createNamedQuery(String.valueOf(queryFilter), WFProcess.class);
+        Query query = entityManager.createQuery(String.valueOf(queryFilter), WFProcess.class);
 
         if (wfProcess.getId() != null)
             query.setParameter("id",wfProcess.getId());
@@ -160,11 +162,11 @@ public class JpaWFProcessRepositoryImpl implements WFProcessRepository {
         if (wfProcess.getUserEdit() != null)
             query.setParameter("userEdit",wfProcess.getUserEdit());
         if (wfProcess.getWfPackageId() != null)
-            query.setParameter("wfPackageId",wfProcess.getWfPackageId().getId());
+            query.setParameter("wfPackageId",wfProcess.getWfPackageId());
         if (wfProcess.getWfBaseProcessId() != null)
-            query.setParameter("wfBaseProcessId",wfProcess.getWfBaseProcessId().getId());
+            query.setParameter("wfBaseProcessId",wfProcess.getWfBaseProcessId());
         if (wfProcess.getWfProcessStatusId() != null)
-            query.setParameter("wfProcessStatusId",wfProcess.getWfProcessStatusId().getId());
+            query.setParameter("wfProcessStatusId",wfProcess.getWfProcessStatusId());
 
         list = query.getResultList();
 
@@ -174,9 +176,9 @@ public class JpaWFProcessRepositoryImpl implements WFProcessRepository {
     @Override
     public List<WFProcess> getListWFProcess(int wfServiceId, int wfProcessStatusId) {
         String queryGetListWFProcess = sqlQuery+
-                " where wfp.wfBaseProcessId.wfServiceId.id=:wfServiceId\n "+
-                " and wfp.wfProcessStatusId.id=:wfProcessStatusId\n"+
-                " order by wfp.startDate desc "; // по убиванию
+                " where wfpro.wfBaseProcessId.wfServiceId.id=:wfServiceId\n "+
+                " and wfpro.wfProcessStatusId.id=:wfProcessStatusId\n"+
+                " order by wfpro.startDate desc "; // по убиванию
 
         List<WFProcess> list = (List<WFProcess>) entityManager.createQuery(queryGetListWFProcess, WFProcess.class)
                 .setParameter("wfServiceId",wfServiceId)
@@ -189,8 +191,8 @@ public class JpaWFProcessRepositoryImpl implements WFProcessRepository {
     @Override
     public List<WFProcess> getByWFPackageId(int wfPackageId) {
         String queryGetByWFPackageId = sqlQuery+
-                " where wfp.wfPackageId.id=:wfPackageId\n "+
-                " order by wfp.startDate desc "; // по убиванию
+                " where wfpro.wfPackageId.id=:wfPackageId\n "+
+                " order by wfpro.startDate desc "; // по убиванию
 
         List<WFProcess> list = (List<WFProcess>) entityManager.createQuery(queryGetByWFPackageId, WFProcess.class)
                 .setParameter("wfPackageId",wfPackageId)

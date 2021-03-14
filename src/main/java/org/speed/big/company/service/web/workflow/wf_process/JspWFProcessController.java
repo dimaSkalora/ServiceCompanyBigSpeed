@@ -164,7 +164,7 @@ public class JspWFProcessController extends AbstractWFProcessController{
 
     @PostMapping("/filter")
     public ModelAndView filter(HttpServletRequest request){
-        ModelAndView modelAndView = new ModelAndView("workflow/wfProcesses/wfProcessFilter");
+        ModelAndView modelAndView = new ModelAndView("workflow/wfProcesses/wfProcesses");
         WFPackage wfPackage = null;
         WFBaseProcess wfBaseProcess = null;
         WFProcessStatus wfProcessStatus = null;
@@ -194,6 +194,8 @@ public class JspWFProcessController extends AbstractWFProcessController{
             wfProcessStatus = super.getWFProcessStatus(wfProcessStatusId);
 
         WFProcess wfProcess = new WFProcess();
+        if (id != null)
+            wfProcess.setId(id);
         if (startDate != null)
             wfProcess.setStartDate(startDate);
         if (finalDate != null)

@@ -8,9 +8,12 @@ import java.time.LocalDateTime;
 
 @NamedQueries({
         @NamedQuery(name = WFProcess.DELETE, query = "delete from WFProcess where id=:id"),
-        @NamedQuery(name = WFProcess.GET, query = "select wfp from WFProcess wfp where wfp.id=:id"),
-        @NamedQuery(name = WFProcess.ALL_SORTED, query = "select wfp from WFProcess wfp " +
-                " order by wfp.startDate DESC") // DESC - по убыванию.
+        @NamedQuery(name = WFProcess.GET, query = "select wfpro from WFProcess wfpro \n" +
+                " join fetch wfpro.wfPackageId join fetch wfpro.wfBaseProcessId \n" +
+                " join fetch wfpro.wfProcessStatusId where wfpro.id=:id"),
+        @NamedQuery(name = WFProcess.ALL_SORTED, query = "select wfpro from WFProcess wfpro " +
+                " join fetch wfpro.wfPackageId join fetch wfpro.wfBaseProcessId \n" +
+                " join fetch wfpro.wfProcessStatusId order by wfpro.startDate DESC") // DESC - по убыванию.
 })
 @Entity
 @Table(name = "wf_process", indexes = {
