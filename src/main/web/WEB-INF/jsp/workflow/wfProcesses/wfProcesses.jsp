@@ -46,9 +46,9 @@
                     <td><c:out value="${wfProcess.description}"/></td>
                     <td><c:out value="${wfProcess.dateEdit}"/></td>
                     <td><c:out value="${wfProcess.userEdit}"/></td>
-                    <td><c:out value="${wfProcess.wfPackageId}"/></td>
-                    <td><c:out value="${wfProcess.wfBaseProcessId}"/></td>
-                    <td><c:out value="${wfProcess.wfProcessStatusId}"/></td>
+                    <td><c:out value="${wfProcess.wfPackageId.id}"/></td>
+                    <td><c:out value="${wfProcess.wfBaseProcessId.id}"/></td>
+                    <td><c:out value="${wfProcess.wfProcessStatusId.id}"/></td>
                     <td><a href="wfProcesses/update/${wfProcess.id}"/><spring:message code="app.update"/></td>
                     <td><a href="wfProcesses/delete?id=${wfProcess.id}"/><spring:message code="app.delete"/></td>
                 </tr>

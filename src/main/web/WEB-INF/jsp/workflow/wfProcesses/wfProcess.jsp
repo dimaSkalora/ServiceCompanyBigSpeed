@@ -75,12 +75,12 @@
                     </tr>
                     <tr>
                          <td>
-                             <form:label path="wfPackageId">
+                             <form:label path="wfPackageId.id">
                                  <spring:message code="workflow.wfProcess.wfPackageId"/>
                              </form:label>
                          </td>
                          <td>
-                             <form:select path="wfPackageId">
+                             <form:select path="wfPackageId.id">
                                  <form:option  value="${!empty wfProcess.id ? wfProcess.wfPackageId.id : ''}"
                                                label="${!empty wfProcess.id ? wfProcess.wfPackageId.name : ''}"/>
                                  <%--<form:option  value="" label=""/>--%>
@@ -91,12 +91,12 @@
                              </form:select>
                          </td>
                          <td>
-                             <form:label path="wfBaseProcessId">
+                             <form:label path="wfBaseProcessId.id">
                                  <spring:message code="workflow.wfProcess.wfBaseProcessId"/>
                              </form:label>
                          </td>
                          <td>
-                             <form:select path="wfBaseProcessId">
+                             <form:select path="wfBaseProcessId.id">
                                  <form:option  value="${!empty wfProcess.id ? wfProcess.wfBaseProcessId.id : ''}"
                                                label="${!empty wfProcess.id ? wfProcess.wfBaseProcessId.name : ''}"/>
                                  <%--<form:option  value="" label=""/>--%>
@@ -109,12 +109,12 @@
                     </tr>
                     <tr>
                         <td>
-                            <form:label path="wfProcessStatusId">
+                            <form:label path="wfProcessStatusId.id">
                                 <spring:message code="workflow.wfProcess.wfProcessStatusId"/>
                             </form:label>
                         </td>
                         <td>
-                            <form:select path="wfProcessStatusId">
+                            <form:select path="wfProcessStatusId.id">
                                 <form:option  value="${!empty wfProcess.id ? wfProcess.wfProcessStatusId.id : ''}"
                                               label="${!empty wfProcess.id ? wfProcess.wfProcessStatusId.name : ''}"/>
                                 <%--<form:option  value="" label=""/>--%>

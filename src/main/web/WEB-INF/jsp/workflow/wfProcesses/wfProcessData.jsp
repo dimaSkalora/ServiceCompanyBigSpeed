@@ -89,30 +89,30 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <form:label path="wfPackageId">
+                                    <form:label path="wfPackageId.id">
                                         <spring:message code="workflow.wfProcess.wfPackageId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfPackageId" readonly="true"/>
+                                    <form:input path="wfPackageId.id" readonly="true"/>
                                 </td>
                                 <td>
-                                    <form:label path="wfBaseProcessId">
+                                    <form:label path="wfBaseProcessId.id">
                                         <spring:message code="workflow.wfProcess.wfBaseProcessId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfBaseProcessId" readonly="true"/>
+                                    <form:input path="wfBaseProcessId.id" readonly="true"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <form:label path="wfProcessStatusId">
+                                    <form:label path="wfProcessStatusId.id">
                                         <spring:message code="workflow.wfProcess.wfProcessStatusId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfProcessStatusId" readonly="true"/>
+                                    <form:input path="wfProcessStatusId.id" readonly="true"/>
                                 </td>
                             </tr>
                         </table>
