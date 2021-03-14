@@ -49,12 +49,12 @@
                     </tr>
                     <tr>
                          <td>
-                             <form:label path="wfServiceId">
+                             <form:label path="wfServiceId.id">
                                  <spring:message code="workflow.wfBaseProcess.wfServiceId"/>
                              </form:label>
                          </td>
                          <td>
-                             <form:select path="wfServiceId">
+                             <form:select path="wfServiceId.id">
                                  <form:option  value="${!empty wfBaseProcess.id ? wfPackage.wfBaseProcess.id : ''}"
                                                label="${!empty wfBaseProcess.id ? wfPackage.wfBaseProcess.name : ''}"/>
                                  <%--<form:option  value="" label=""/>--%>
@@ -65,12 +65,12 @@
                              </form:select>
                          </td>
                          <td>
-                             <form:label path="wfBaseProcessTypeId">
+                             <form:label path="wfBaseProcessTypeId.id">
                                  <spring:message code="workflow.wfBaseProcess.wfBaseProcessTypeId"/>
                              </form:label>
                          </td>
                          <td>
-                             <form:select path="wfBaseProcessTypeId">
+                             <form:select path="wfBaseProcessTypeId.id">
                                  <form:option  value="${!empty wfBaseProcess.id ? wfBaseProcess.wfBaseProcessTypeId.id : ''}"
                                                label="${!empty wfBaseProcess.id ? wfBaseProcess.wfBaseProcessTypeId.name : ''}"/>
                                  <%--<form:option  value="" label=""/>--%>

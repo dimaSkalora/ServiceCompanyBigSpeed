@@ -39,10 +39,10 @@
                     <td><a href="wfBaseProcesses/getData/${wfBaseProcess.id}"/><c:out value="${wfBaseProcess.id}"/></td>
                     <td><c:out value="${wfBaseProcess.name}"/></td>
                     <td><c:out value="${wfBaseProcess.description}"/></td>
-                    <td><c:out value="${wfBaseProcess.wfServiceId}"/></td>
-                    <td><c:out value="${wfBaseProcess.wfBaseProcessTypeId}"/></td>
-                    <td><a href="wfBaseProcesses/update/${wfPackage.id}"/><spring:message code="app.update"/></td>
-                    <td><a href="wfBaseProcesses/delete?id=${wfPackage.id}"/><spring:message code="app.delete"/></td>
+                    <td><c:out value="${wfBaseProcess.wfServiceId.id}"/></td>
+                    <td><c:out value="${wfBaseProcess.wfBaseProcessTypeId.id}"/></td>
+                    <td><a href="wfBaseProcesses/update/${wfBaseProcess.id}"/><spring:message code="app.update"/></td>
+                    <td><a href="wfBaseProcesses/delete?id=${wfBaseProcess.id}"/><spring:message code="app.delete"/></td>
                 </tr>
             </c:forEach>
         </table>
