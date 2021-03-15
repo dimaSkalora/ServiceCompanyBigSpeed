@@ -17,7 +17,7 @@
             <li><a class="btn btn-primary" role="button" href="wfGroups/wfGroup">add WorkFlow Group</a></li>
         </ul>
         <ul>
-            <li><a href="wfGroups/wfGroupFilter" class="btnSearchBy" role="button">Search by WorkFlow Group</a> </li>
+            <li><a href="wfGroups/newFilter" class="btnSearchBy" role="button">Search by WorkFlow Group</a> </li>
         </ul>
     </div>
     <div>
