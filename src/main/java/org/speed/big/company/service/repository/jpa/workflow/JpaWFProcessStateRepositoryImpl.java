@@ -29,11 +29,11 @@ public class JpaWFProcessStateRepositoryImpl implements WFProcessStateRepository
 
     @Override
     public WFProcessState get(int id) {
-      /*  WFProcessState wfProcessState = (WFProcessState) entityManager.createNamedQuery(WFProcessState.GET)
-                .setParameter("id",id)
-                .getSingleResult();*/
+        /*return entityManager.find(WFProcessState.class,id);*/
 
-        return entityManager.find(WFProcessState.class,id);
+        return (WFProcessState) entityManager.createNamedQuery(WFProcessState.GET)
+                .setParameter("id",id)
+                .getSingleResult();
     }
 
     @Transactional
@@ -63,43 +63,43 @@ public class JpaWFProcessStateRepositoryImpl implements WFProcessStateRepository
 
     @Override
     public List<WFProcessState> filter(WFProcessState wfProcessState) {
-        String queryFilter = "select wfps from WFProcessState wfps\n";
+        String queryFilter = "select wfpstate from WFProcessState wfpstate\n";
         int paramCount = 0;
         List<WFProcessState> list = null;
 
         if (wfProcessState.getId() != null) {
-            queryFilter = queryFilter + " where wfps.id=:id\n";
+            queryFilter = queryFilter + " where wfpstate.id=:id\n";
             paramCount++;
         }
         if (wfProcessState.getName() != null){
             if (paramCount == 0)
-                queryFilter += " where wfps.name=:name\n";
+                queryFilter += " where wfpstate.name=:name\n";
             else
-                queryFilter += " and wfps.name=:name\n";
+                queryFilter += " and wfpstate.name=:name\n";
             paramCount++;
         }
         if (wfProcessState.getRoleId() != null){
             if (paramCount == 0)
-                queryFilter += " where wfps.role_id=:roleId\n";
+                queryFilter += " where wfpstate.roleId=:roleId\n";
             else
-                queryFilter += " and wfps.role_id=:roleId\n";
+                queryFilter += " and wfpstate.roleId=:roleId\n";
             paramCount++;
         }
         if (wfProcessState.getWfGroupId() != null){
             if (paramCount == 0)
-                queryFilter += " where wfps.wf_group_id=:wfGroupId\n";
+                queryFilter += " where wfpstate.wfGroupId=:wfGroupId\n";
             else
-                queryFilter += " and wfps.wf_groupId=:wfGroupId\n";
+                queryFilter += " and wfpstate.wfGroupId=:wfGroupId\n";
             paramCount++;
         }
         if (wfProcessState.getDescription() != null){
             if (paramCount == 0)
-                queryFilter += " where wfps.description=:description\n";
+                queryFilter += " where wfpstate.description=:description\n";
             else
-                queryFilter += " and wfps.description=:description\n";
+                queryFilter += " and wfpstate.description=:description\n";
         }
 
-        queryFilter += " order by wfps.name";
+        queryFilter += " order by wfpstate.name";
 
         Query query = entityManager.createQuery(queryFilter, WFProcessState.class);
 

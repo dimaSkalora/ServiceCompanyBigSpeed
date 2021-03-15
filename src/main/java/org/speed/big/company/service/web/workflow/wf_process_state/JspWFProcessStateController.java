@@ -100,7 +100,7 @@ public class JspWFProcessStateController extends AbstractWFProcessStateControlle
     }
 
     @GetMapping("/update/{id}")
-    public String update(int id, Model model){
+    public String update(@PathVariable int id, Model model){
         model.addAttribute("wfProcessState",super.get(id));
         model.addAttribute("getAllRoles",super.getAllRoles());
         model.addAttribute("getAllWFGroups",super.getAllWFGroups());
@@ -149,7 +149,7 @@ public class JspWFProcessStateController extends AbstractWFProcessStateControlle
         return modelAndView;
     }
 
-    @GetMapping("/getData/{id")
+    @GetMapping("/getData/{id}")
     public String getData(@PathVariable int id, Model model){
         WFProcessState wfProcessState = super.get(id);
         Role role = super.getRole(wfProcessState.getRoleId().getId());

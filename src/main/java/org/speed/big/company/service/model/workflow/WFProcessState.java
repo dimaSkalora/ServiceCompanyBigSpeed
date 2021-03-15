@@ -8,9 +8,13 @@ import javax.validation.constraints.NotBlank;
 
 @NamedQueries({
     @NamedQuery(name = WFProcessState.DELETE, query = "delete from WFProcessState where id=:id"),
-    @NamedQuery(name = WFProcessState.GET, query = "select wfps from WFProcessState wfps where wfps.id=:id"),
+    @NamedQuery(name = WFProcessState.GET, query = "select wfpstate from WFProcessState wfpstate " +
+            " join fetch wfpstate.roleId join fetch wfpstate.wfGroupId " +
+            " where wfpstate.id=:id"),
     @NamedQuery(name = WFProcessState.ALL_SORTED,
-            query = "select wfps from WFProcessState wfps order by wfps.name")
+            query = "select wfpstate from WFProcessState wfpstate  " +
+                    " join fetch wfpstate.roleId join fetch wfpstate.wfGroupId " +
+                    " order by wfpstate.name")
 })
 @Entity
 @Table(name = "wf_process_state", indexes = {
