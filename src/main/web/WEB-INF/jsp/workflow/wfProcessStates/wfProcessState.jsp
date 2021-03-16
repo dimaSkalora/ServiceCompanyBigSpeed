@@ -39,12 +39,12 @@
                     </tr>
                     <tr>
                          <td>
-                             <form:label path="roleId">
+                             <form:label path="roleId.id">
                                  <spring:message code="workflow.wfProcessState.roleId"/>
                              </form:label>
                          </td>
                          <td>
-                             <form:select path="roleId">
+                             <form:select path="roleId.id">
                                  <form:option  value="${!empty wfProcessState.id ? wfProcessState.roleId.id : ''}"
                                                label="${!empty wfProcessState.id ? wfProcessState.roleId.name : ''}"/>
                                  <%--<form:option  value="" label=""/>--%>
@@ -55,12 +55,12 @@
                              </form:select>
                          </td>
                          <td>
-                             <form:label path="wfGroupId">
+                             <form:label path="wfGroupId.id">
                                  <spring:message code="workflow.wfProcessState.wfGroupId"/>
                              </form:label>
                          </td>
                          <td>
-                             <form:select path="wfGroupId">
+                             <form:select path="wfGroupId.id">
                                  <form:option  value="${!empty wfProcessState.id ? wfProcessState.wfGroupId.id : ''}"
                                                label="${!empty wfProcessState.id ? wfProcessState.wfGroupId.name : ''}"/>
                                  <%--<form:option  value="" label=""/>--%>

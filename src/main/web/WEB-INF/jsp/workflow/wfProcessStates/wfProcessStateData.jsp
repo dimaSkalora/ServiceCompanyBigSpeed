@@ -50,20 +50,20 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <form:label path="roleId">
+                                    <form:label path="roleId.id">
                                         <spring:message code="workflow.wfProcessState.roleId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="roleId" readonly="true"/>
+                                    <form:input path="roleId.id" readonly="true"/>
                                 </td>
                                 <td>
-                                    <form:label path="wfGroupId">
+                                    <form:label path="wfGroupId.id">
                                         <spring:message code="workflow.wfProcessState.wfGroupId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfGroupId" readonly="true"/>
+                                    <form:input path="wfGroupId.id" readonly="true"/>
                                 </td>
                             </tr>
                             <tr>
@@ -118,12 +118,12 @@
                                     <form:input path="description" readonly="true"/>
                                 </td>
                                 <td>
-                                    <form:label path="roleTypeId">
+                                    <form:label path="roleTypeId.id">
                                         <spring:message code="role.roleTypeId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="roleTypeId" readonly="true"/>
+                                    <form:input path="roleTypeId.id" readonly="true"/>
                                 </td>
                             </tr>
                         </table>

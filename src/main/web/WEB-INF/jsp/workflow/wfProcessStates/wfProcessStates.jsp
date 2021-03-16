@@ -38,11 +38,11 @@
                 <tr>
                     <td><a href="wfProcessStates/getData/${wfProcessState.id}"/><c:out value="${wfProcessState.id}"/></td>
                     <td><c:out value="${wfProcessState.name}"/></td>
-                    <td><c:out value="${wfProcessState.roleId}"/></td>
-                    <td><c:out value="${wfProcessState.wfGroupId}"/></td>
+                    <td><c:out value="${wfProcessState.roleId.id} ${wfProcessState.roleId.name}"/></td>
+                    <td><c:out value="${wfProcessState.wfGroupId.id} ${wfProcessState.wfGroupId.name}"/></td>
                     <td><c:out value="${wfProcessState.description}"/></td>
-                    <td><a href="wfProcessStates/update/${wfProcess.id}"/><spring:message code="app.update"/></td>
-                    <td><a href="wfProcessStates/delete?id=${wfProcess.id}"/><spring:message code="app.delete"/></td>
+                    <td><a href="wfProcessStates/update/${wfProcessState.id}"/><spring:message code="app.update"/></td>
+                    <td><a href="wfProcessStates/delete?id=${wfProcessState.id}"/><spring:message code="app.delete"/></td>
                 </tr>
             </c:forEach>
         </table>
