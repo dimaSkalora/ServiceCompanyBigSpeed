@@ -63,7 +63,8 @@ public class JpaWFProcessStateRepositoryImpl implements WFProcessStateRepository
 
     @Override
     public List<WFProcessState> filter(WFProcessState wfProcessState) {
-        String queryFilter = "select wfpstate from WFProcessState wfpstate\n";
+        String queryFilter = "select wfpstate from WFProcessState wfpstate\n" +
+                " join fetch wfpstate.roleId join fetch wfpstate.wfGroupId \n";
         int paramCount = 0;
         List<WFProcessState> list = null;
 

@@ -122,15 +122,15 @@ public class JspWFProcessStateController extends AbstractWFProcessStateControlle
         var id = parseInteger(request.getParameter("id"));
         var name = parseString(request.getParameter("name"));
         var roleId = parseInteger(request.getParameter("roleId"));
-        var groupId = parseInteger(request.getParameter("groupId"));
+        var wfGroupId = parseInteger(request.getParameter("wfGroupId"));
         var description = parseString(request.getParameter("description"));
 
         Role role = null;
         WFGroup wfGroup = null;
         if (roleId != null)
             role = super.getRole(roleId);
-        if (groupId != null)
-            wfGroup = super.getWFGroup(groupId);
+        if (wfGroupId != null)
+            wfGroup = super.getWFGroup(wfGroupId);
 
         WFProcessState wfProcessState = new WFProcessState();
         if (id != null)
