@@ -124,7 +124,7 @@ public class JspWFBaseProcessItemController extends AbstractWFBaseProcessItemCon
 
     @PostMapping("/filter")
     public ModelAndView filter(HttpServletRequest request){
-        ModelAndView modelAndView = new ModelAndView("workflow/wfBaseProcessItems/wfBaseProcessItemFilter");
+        ModelAndView modelAndView = new ModelAndView("workflow/wfBaseProcessItems/wfBaseProcessItems");
         var id = parseInteger(request.getParameter("id"));
         var stateFromId = parseInteger(request.getParameter("stateFromId"));
         var stateToId = parseInteger(request.getParameter("stateToId"));
@@ -138,7 +138,7 @@ public class JspWFBaseProcessItemController extends AbstractWFBaseProcessItemCon
             wfProcessStateFrom = super.getWFProcessState(stateFromId);
         if (stateToId != null)
             wfProcessStateTo = super.getWFProcessState(stateToId);
-        if (wfBaseProcess != null)
+        if (baseProcessId != null)
             wfBaseProcess = super.getWFBaseProcess(baseProcessId);
 
         WFBaseProcessItem wfBaseProcessItem = new WFBaseProcessItem();
