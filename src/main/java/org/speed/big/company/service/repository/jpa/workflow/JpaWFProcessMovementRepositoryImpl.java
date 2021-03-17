@@ -30,11 +30,11 @@ public class JpaWFProcessMovementRepositoryImpl implements WFProcessMovementRepo
 
     @Override
     public WFProcessMovement get(int id) {
-      /*  WFProcessMovement wfProcessMovement = (WFProcessMovement) entityManager.createNamedQuery(WFProcessMovement.GET)
-                .setParameter("id",id)
-                .getSingleResult();*/
+        /*return entityManager.find(WFProcessMovement.class,id);*/
 
-        return entityManager.find(WFProcessMovement.class,id);
+        return (WFProcessMovement) entityManager.createNamedQuery(WFProcessMovement.GET)
+                .setParameter("id",id)
+                .getSingleResult();
     }
 
     @Transactional
@@ -69,7 +69,10 @@ public class JpaWFProcessMovementRepositoryImpl implements WFProcessMovementRepo
 
     @Override
     public List<WFProcessMovement> filter(WFProcessMovement wfProcessMovement, String sqlCondition) {
-        String queryFilter = "select wfpm from WFProcessMovement wfpm";
+        String queryFilter = "select wfpm from WFProcessMovement wfpm " +
+                " join fetch wfpm.userId join fetch wfpm.wfPackageId " +
+                " join fetch wfpm.wfStateId join fetch wfpm.wfProcessId " +
+                " join fetch wfpm.wfBaseProcessId " ;
         int paramCount = 0;
         List<WFProcessMovement> list = null;
 
@@ -171,11 +174,8 @@ public class JpaWFProcessMovementRepositoryImpl implements WFProcessMovementRepo
 
         Query query = entityManager.createQuery(queryFilter,WFProcessMovement.class);
 
-        if (wfProcessMovement.getId() != null){
+        if (wfProcessMovement.getId() != null)
             query.setParameter("id",wfProcessMovement.getId());
-            queryFilter = queryFilter + " where wfpm.id=:id\n";
-            paramCount++;
-        }
         if (wfProcessMovement.getStartDateTime() != null)
             query.setParameter("startDateTime",wfProcessMovement.getStartDateTime());
         if (wfProcessMovement.getFinalDateTime() != null)
@@ -207,13 +207,16 @@ public class JpaWFProcessMovementRepositoryImpl implements WFProcessMovementRepo
 
     @Override
     public List<WFProcessMovement> getListWFProcessMovement(int roleId, int wfServiceId, int processStatus, boolean isCompleted, boolean isLast) {
-        String queryGetListWFProcessMovement = "select wfpm from WFProcessMovement wfpm\n"+
+        String queryGetListWFProcessMovement = "select wfpm from WFProcessMovement wfpm\n" +
+                " join fetch wfpm.userId join fetch wfpm.wfPackageId " +
+                " join fetch wfpm.wfStateId join fetch wfpm.wfProcessId " +
+                " join fetch wfpm.wfBaseProcessId " +
                 " where wfpm.wfStateId.roleId.id=:roleId\n" +
-                        " and wfpm.wfBaseProcessId.wfServiceId.id=:wfServiceId\n "+
-                        " and wfpm.wfProcessId.wfProcessStatusId.id=:processStatus\n"+
-                        " and wfpm.isCompleted=:isCompleted\n"+
-                        " and wfpm.isLast=:isLast\n "+
-                        " order by wfpm.startDateTime desc "; // по убиванию
+                " and wfpm.wfBaseProcessId.wfServiceId.id=:wfServiceId\n "+
+                " and wfpm.wfProcessId.wfProcessStatusId.id=:processStatus\n"+
+                " and wfpm.isCompleted=:isCompleted\n"+
+                " and wfpm.isLast=:isLast\n "+
+                " order by wfpm.startDateTime desc "; // по убиванию
 
         List<WFProcessMovement> list = entityManager.createQuery(queryGetListWFProcessMovement, WFProcessMovement.class)
                 .setParameter("roleId",roleId)
@@ -228,7 +231,10 @@ public class JpaWFProcessMovementRepositoryImpl implements WFProcessMovementRepo
 
     @Override
     public List<WFProcessMovement> getListWFPMByProcessAndBaseProcess(int wfProcessId, int wfBaseProcessId) {
-        String queryGetListWFProcessMovement = "select wfpm from WFProcessMovement wfpm\n"+
+        String queryGetListWFProcessMovement = "select wfpm from WFProcessMovement wfpm\n" +
+                " join fetch wfpm.userId join fetch wfpm.wfPackageId " +
+                " join fetch wfpm.wfStateId join fetch wfpm.wfProcessId " +
+                " join fetch wfpm.wfBaseProcessId " +
                 " where wfpm.wfProcessId.id=:wfProcessId\n" +
                 " and wfpm.wfBaseProcessId.id=:wfBaseProcessId\n "+
                 " order by wfpm.startDateTime desc "; // по убиванию
@@ -243,7 +249,10 @@ public class JpaWFProcessMovementRepositoryImpl implements WFProcessMovementRepo
 
     @Override
     public int currentStateIdOfWFProcessMovementById(int id) {
-        String queryCurrentStateWFPMByWFPackageId = "select wfpm from WFProcessMovement wfpm\n"+
+        String queryCurrentStateWFPMByWFPackageId = "select wfpm from WFProcessMovement wfpm\n" +
+                " join fetch wfpm.userId join fetch wfpm.wfPackageId " +
+                " join fetch wfpm.wfStateId join fetch wfpm.wfProcessId " +
+                " join fetch wfpm.wfBaseProcessId " +
                 " where wfpm.id=:id\n" +
                 " and wfpm.isCompleted=" + WFProcessMovement.NOT_COMPLETED +"\n"+
                 " and wfpm.isLast=" + WFProcessMovement.IS_LAST;
@@ -257,7 +266,10 @@ public class JpaWFProcessMovementRepositoryImpl implements WFProcessMovementRepo
 
     @Override
     public int currentStateIdOfWFProcessMovement(int wfPackageId, int wfProcessId, int wfBaseProcessId) {
-        String queryCurrentStateWFPMByWFPackageId = "select wfpm from WFProcessMovement wfpm\n"+
+        String queryCurrentStateWFPMByWFPackageId = "select wfpm from WFProcessMovement wfpm\n" +
+                " join fetch wfpm.userId join fetch wfpm.wfPackageId " +
+                " join fetch wfpm.wfStateId join fetch wfpm.wfProcessId " +
+                " join fetch wfpm.wfBaseProcessId " +
                 " where wfpm.wfPackageId.id=:wfPackageId\n" +
                 " and wfpm.wfProcessId.id=:wfProcessId\n"+
                 " and wfpm.wfBaseProcessId.id=:wfBaseProcessId\n"+

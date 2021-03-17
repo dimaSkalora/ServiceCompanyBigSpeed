@@ -172,23 +172,23 @@ public class JspWFProcessMovementController extends AbstractWFProcessMovementCon
 
     @PostMapping("/filter")
     public ModelAndView filter(HttpServletRequest request){
-        ModelAndView modelAndView = new ModelAndView("workflow/wfProcessMovements/wfProcessMovementFilter");
+        ModelAndView modelAndView = new ModelAndView("workflow/wfProcessMovements/wfProcessMovements");
         List<WFProcessMovement> list = null;
         StringBuilder sqlCondition = new StringBuilder();
         //WFProcessMovement
         var id = parseInteger(request.getParameter("id"));
         var startDateTime = parseLocalDateTime(request.getParameter("startDateTime"));
         var finalDateTime = parseLocalDateTime(request.getParameter("finalDateTime"));
-        var isCompleted = parseBoolean(request.getParameter("isCompleted"));
+        var isCompleted = request.getParameter("isCompleted");
         var description = parseString(request.getParameter("description"));
         var dateEdit = parseLocalDateTime(request.getParameter("dateEdit"));
-        var userEdit = request.getParameter("userEdit");
+        var userEdit = parseString(request.getParameter("userEdit"));
         var userId = parseInteger(request.getParameter("userId"));
         var wfPackageId = parseInteger(request.getParameter("wfPackageId"));
         var wfStateId = parseInteger(request.getParameter("wfStateId"));
         var wfProcessId = parseInteger(request.getParameter("wfProcessId"));
         var wfBaseProcessId = parseInteger(request.getParameter("wfBaseProcessId"));
-        var isLast = parseBoolean(request.getParameter("isLast"));
+        var isLast = request.getParameter("isLast");
         //sqlCondition
         var startDateTimeFrom = parseLocalDateTime(request.getParameter("startDateTimeFrom"));
         var startDateTimeTo = parseLocalDateTime(request.getParameter("startDateTimeTo"));
@@ -200,15 +200,16 @@ public class JspWFProcessMovementController extends AbstractWFProcessMovementCon
         WFProcessState wfProcessState = null;
         WFProcess wfProcess = null;
         WFBaseProcess wfBaseProcess = null;
+
         if (userId != null)
             user = super.getUser(userId);
         if (wfPackageId != null)
             wfPackage = super.getWFPackage(wfPackageId);
-        if (wfProcessState != null)
+        if (wfStateId != null)
             wfProcessState = super.getWFProcessState(wfStateId);
-        if (wfProcess != null)
+        if (wfProcessId != null)
             wfProcess = super.getWFProcess(wfProcessId);
-        if (wfBaseProcess != null)
+        if (wfBaseProcessId != null)
             wfBaseProcess = super.getWFBaseProcess(wfBaseProcessId);
 
         WFProcessMovement wfProcessMovement = new WFProcessMovement();
@@ -218,7 +219,10 @@ public class JspWFProcessMovementController extends AbstractWFProcessMovementCon
             wfProcessMovement.setStartDateTime(startDateTime);
         if (finalDateTime != null)
             wfProcessMovement.setFinalDateTime(finalDateTime);
-        wfProcessMovement.setCompleted(isCompleted);
+        if ("on".equals(isCompleted))
+            wfProcessMovement.setCompleted(true);
+        else if (isCompleted == null)
+            wfProcessMovement.setCompleted(false);
         if (description != null)
             wfProcessMovement.setDescription(description);
         if (dateEdit != null)
@@ -235,8 +239,12 @@ public class JspWFProcessMovementController extends AbstractWFProcessMovementCon
             wfProcessMovement.setWfProcessId(wfProcess);
         if (wfBaseProcess != null)
             wfProcessMovement.setWfBaseProcessId(wfBaseProcess);
-        wfProcessMovement.setLast(isLast);
+        if ("on".equals(isLast))
+            wfProcessMovement.setLast(true);
+        else if (isLast == null)
+            wfProcessMovement.setLast(false);
 
+/*
         if ((startDateTimeFrom != null) && (startDateTimeTo != null))
             sqlCondition.append(" wfpm.start_date_time between "+startDateTimeFrom+" and "+startDateTimeTo+"\n");
         if ((finalDateTimeFrom != null) && (finalDateTimeTo != null))
@@ -244,6 +252,7 @@ public class JspWFProcessMovementController extends AbstractWFProcessMovementCon
                 sqlCondition.append(" and wfpm.final_date_time between "+finalDateTimeFrom+" and "+finalDateTimeTo+"\n");
             else
                 sqlCondition.append(" wfpm.final_date_time between "+finalDateTimeFrom+" and "+finalDateTimeTo+"\n");
+*/
 
         list = super.filter(wfProcessMovement, String.valueOf(sqlCondition));
 
