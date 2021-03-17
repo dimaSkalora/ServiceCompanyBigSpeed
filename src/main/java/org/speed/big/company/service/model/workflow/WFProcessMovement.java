@@ -10,9 +10,16 @@ import java.time.LocalDateTime;
 
 @NamedQueries({
         @NamedQuery(name = WFProcessMovement.DELETE, query = "delete from WFProcessMovement where id=:id"),
-        @NamedQuery(name = WFProcessMovement.GET, query = "select wfpm from WFProcessMovement wfpm where wfpm.id=:id"),
+        @NamedQuery(name = WFProcessMovement.GET, query = "select wfpm from WFProcessMovement wfpm " +
+                " join fetch wfpm.userId join fetch wfpm.wfPackageId " +
+                " join fetch wfpm.wfStateId join fetch wfpm.wfProcessId " +
+                " join fetch wfpm.wfBaseProcessId " +
+                " where wfpm.id=:id"),
         @NamedQuery(name = WFProcessMovement.ALL_SORTED, query = "select wfpm from WFProcessMovement wfpm " +
-                "order by wfpm.startDateTime desc ")
+                " join fetch wfpm.userId join fetch wfpm.wfPackageId " +
+                " join fetch wfpm.wfStateId join fetch wfpm.wfProcessId " +
+                " join fetch wfpm.wfBaseProcessId " +
+                " order by wfpm.startDateTime desc ")
 })
 @Entity
 @Table(name = "wf_process_movement", indexes = {
@@ -39,7 +46,7 @@ public class WFProcessMovement extends WFAbstractBaseEntity {
     @Column(name = "final_date_time")
     private LocalDateTime finalDateTime;
     @NotNull
-    @Column(name = "is_completed", nullable = false)
+    @Column(name = "is_completed", nullable = false, columnDefinition = "bool default true")
     private boolean isCompleted;
     @Column(name = "description")
     private String description;
