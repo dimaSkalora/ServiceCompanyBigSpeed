@@ -5,10 +5,14 @@ import org.speed.big.company.service.model.AbstractBaseEntity;
 import javax.persistence.*;
 
 @NamedQueries({
-        @NamedQuery(name = WFBaseProcessItem.DELETE, query = "delete from WFBaseProcessItem where id=:id"),
-        @NamedQuery(name = WFBaseProcessItem.GET, query = "select wfbpi from WFBaseProcessItem wfbpi where wfbpi.id=:id"),
+        @NamedQuery(name = WFBaseProcessItem.DELETE, query = "delete from WFBaseProcessItem wfbpi where wfbpi.id=:id"),
+        @NamedQuery(name = WFBaseProcessItem.GET, query = "select wfbpi from WFBaseProcessItem wfbpi " +
+                " join fetch wfbpi.stateFromId join fetch wfbpi.stateToId " +
+                " join fetch wfbpi.baseProcessId " +
+                " where wfbpi.id=:id"),
         @NamedQuery(name = WFBaseProcessItem.ALL_SORTED, query = "select wfbpi from WFBaseProcessItem wfbpi " +
-                " order by wfbpi.baseProcessId")
+                " join fetch wfbpi.stateFromId join fetch wfbpi.stateToId " +
+                " join fetch wfbpi.baseProcessId order by wfbpi.baseProcessId ")
 })
 @Entity
 @Table(name = "wf_base_process_items",uniqueConstraints = @UniqueConstraint(name = "wfbpi_sfid_stid_bpid_unique_idx",

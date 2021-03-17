@@ -30,7 +30,7 @@
         <!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane container active" id="wfBaseProcessItem">
-                <form:form method="POST" modelAttribute="wfProcessData">
+                <form:form method="POST" modelAttribute="wfBaseProcessItemData">
                     <fieldset>
                         <table>
                             <tr>
@@ -43,30 +43,30 @@
                                     <form:input path="id" readonly="true" size="8" disabled="true"/>
                                 </td>
                                 <td>
-                                    <form:label path="baseProcessId">
+                                    <form:label path="baseProcessId.id">
                                         <spring:message code="workflow.wfBaseProcessItem.baseProcessId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="baseProcessId" readonly="true"/>
+                                    <form:input path="baseProcessId.id" readonly="true"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <form:label path="stateFromId">
+                                    <form:label path="stateFromId.id">
                                         <spring:message code="workflow.wfBaseProcessItem.stateFromId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="stateFromId" readonly="true"/>
+                                    <form:input path="stateFromId.id" readonly="true"/>
                                 </td>
                                 <td>
-                                    <form:label path="stateToId">
+                                    <form:label path="stateToId.id">
                                         <spring:message code="workflow.wfBaseProcessItem.stateToId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="stateToId" readonly="true"/>
+                                    <form:input path="stateToId.id" readonly="true"/>
                                 </td>
                             </tr>
 
@@ -103,20 +103,20 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <form:label path="roleId">
+                                    <form:label path="roleId.id">
                                         <spring:message code="workflow.wfProcessState.roleId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="roleId" readonly="true"/>
+                                    <form:input path="roleId.id" readonly="true"/>
                                 </td>
                                 <td>
-                                    <form:label path="wfGroupId">
+                                    <form:label path="wfGroupId.id">
                                         <spring:message code="workflow.wfProcessState.wfGroupId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfGroupId" readonly="true"/>
+                                    <form:input path="wfGroupId.id" readonly="true"/>
                                 </td>
                             </tr>
                             <tr>
@@ -162,20 +162,20 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <form:label path="roleId">
+                                    <form:label path="roleId.id">
                                         <spring:message code="workflow.wfProcessState.roleId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="roleId" readonly="true"/>
+                                    <form:input path="roleId.id" readonly="true"/>
                                 </td>
                                 <td>
-                                    <form:label path="wfGroupId">
+                                    <form:label path="wfGroupId.id">
                                         <spring:message code="workflow.wfProcessState.wfGroupId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfGroupId" readonly="true"/>
+                                    <form:input path="wfGroupId.id" readonly="true"/>
                                 </td>
                             </tr>
                             <tr>
@@ -198,7 +198,7 @@
             </div>
 
             <div class="tab-pane container fade" id="wfBaseProcess">
-                <form:form method="POST" modelAttribute="wfpWFBaseProcess" >
+                <form:form method="POST" modelAttribute="wfBaseProcess" >
                     <fieldset>
                         <table>
                             <tr>
@@ -231,20 +231,20 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <form:label path="wfServiceId">
+                                    <form:label path="wfServiceId.id">
                                         <spring:message code="workflow.wfBaseProcess.wfServiceId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfServiceId" readonly="true"/>
+                                    <form:input path="wfServiceId.id" readonly="true"/>
                                 </td>
                                 <td>
-                                    <form:label path="wfBaseProcessTypeId">
+                                    <form:label path="wfBaseProcessTypeId.id">
                                         <spring:message code="workflow.wfBaseProcess.wfBaseProcessTypeId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfBaseProcessTypeId" readonly="true"/>
+                                    <form:input path="wfBaseProcessTypeId.id" readonly="true"/>
                                 </td>
                             </tr>
                         </table>

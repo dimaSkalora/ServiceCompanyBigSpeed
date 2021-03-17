@@ -29,52 +29,52 @@
                             <form:hidden path="id"/>
                         </td>
                         <td>
-                            <form:label path="baseProcessId">
+                            <form:label path="baseProcessId.id">
                                 <spring:message code="workflow.wfBaseProcessItem.baseProcessId"/>
                             </form:label>
                         </td>
                         <td>
-                            <form:select path="baseProcessId">
-                                <form:option  value="${!empty wfBaseProcessItem.id ? wfBaseProcessItem.baseProcessId : ''}"
+                            <form:select path="baseProcessId.id">
+                                <form:option  value="${!empty wfBaseProcessItem.id ? wfBaseProcessItem.baseProcessId.id : ''}"
                                               label="${!empty wfBaseProcessItem.id ? wfBaseProcessItem.baseProcessId.name : ''}"/>
                                 <%--<form:option  value="" label=""/>--%>
-                                <c:forEach items="${allWFPackages}" var="wfPackage">
-                                    <jsp:useBean id="wfPackage" scope="page" type="org.speed.big.company.service.model.workflow.WFPackage"/>
-                                    <form:option  value="${wfPackage.id}" label="${wfPackage.name}"/>
+                                <c:forEach items="${getAllWFBaseProcesses}" var="wfBaseProcess">
+                                    <jsp:useBean id="wfBaseProcess" scope="page" type="org.speed.big.company.service.model.workflow.WFBaseProcess"/>
+                                    <form:option  value="${wfBaseProcess.id}" label="${wfBaseProcess.name}"/>
                                 </c:forEach>
                             </form:select>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <form:label path="stateFromId">
+                            <form:label path="stateFromId.id">
                                 <spring:message code="workflow.wfBaseProcessItem.stateFromId"/>
                             </form:label>
                         </td>
                         <td>
-                            <form:select path="stateFromId">
+                            <form:select path="stateFromId.id">
                                 <form:option  value="${!empty wfBaseProcessItem.id ? wfBaseProcessItem.stateFromId.id : ''}"
                                               label="${!empty wfBaseProcessItem.id ? wfBaseProcessItem.stateFromId.name : ''}"/>
                                 <%--<form:option  value="" label=""/>--%>
                                 <c:forEach items="${getAllWFProcessStates}" var="wfProcessStateFrom">
                                     <jsp:useBean id="wfProcessStateFrom" scope="page" type="org.speed.big.company.service.model.workflow.WFProcessState"/>
-                                    <form:option  value="${wfProcessStateFrom.id}" label="${wfProcessStateFrom.name + wfProcessStateFrom.roleId.name}"/>
+                                    <form:option  value="${wfProcessStateFrom.id}" label="${wfProcessStateFrom.name} ${wfProcessStateFrom.roleId.name}"/>
                                 </c:forEach>
                             </form:select>
                         </td>
                         <td>
-                            <form:label path="stateToId">
+                            <form:label path="stateToId.id">
                                 <spring:message code="workflow.wfBaseProcessItem.stateToId"/>
                             </form:label>
                         </td>
                         <td>
-                            <form:select path="stateToId">
+                            <form:select path="stateToId.id">
                                 <form:option  value="${!empty wfBaseProcessItem.id ? wfBaseProcessItem.stateToId.id : ''}"
                                               label="${!empty wfBaseProcessItem.id ? wfBaseProcessItem.stateToId.name : ''}"/>
                                 <%--<form:option  value="" label=""/>--%>
                                 <c:forEach items="${getAllWFProcessStates}" var="wfProcessStateTo">
                                     <jsp:useBean id="wfProcessStateTo" scope="page" type="org.speed.big.company.service.model.workflow.WFProcessState"/>
-                                    <form:option  value="${wfProcessStateTo.id}" label="${wfProcessStateTo.name + wfProcessStateTo.roleId.name}"/>
+                                    <form:option  value="${wfProcessStateTo.id}" label="${wfProcessStateTo.name} ${wfProcessStateTo.roleId.name}"/>
                                 </c:forEach>
                             </form:select>
                         </td>

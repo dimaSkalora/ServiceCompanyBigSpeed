@@ -36,9 +36,9 @@
                 <jsp:useBean id="wfBaseProcessItem" scope="page" type="org.speed.big.company.service.model.workflow.WFBaseProcessItem"/>
                 <tr>
                     <td><a href="wfBaseProcessItems/getData/${wfBaseProcessItem.id}"/><c:out value="${wfBaseProcessItem.id}"/></td>
-                    <td><c:out value="${wfBaseProcessItem.stateFromId}"/></td>
-                    <td><c:out value="${wfBaseProcessItem.stateToId}"/></td>
-                    <td><c:out value="${wfBaseProcessItem.baseProcessId}"/></td>
+                    <td><c:out value="${wfBaseProcessItem.stateFromId.id}"/></td>
+                    <td><c:out value="${wfBaseProcessItem.stateToId.id}"/></td>
+                    <td><c:out value="${wfBaseProcessItem.baseProcessId.id} ${wfBaseProcessItem.baseProcessId.name}"/></td>
                     <td><a href="wfBaseProcessItems/update/${wfBaseProcessItem.id}"/><spring:message code="app.update"/></td>
                     <td><a href="wfBaseProcessItems/delete?id=${wfBaseProcessItem.id}"/><spring:message code="app.delete"/></td>
                 </tr>
