@@ -67,12 +67,12 @@
                                     <form:input type="datetime-local" path="finalDateTime" readonly="true"/>
                                 </td>
                                 <td>
-                                    <form:label path="isCompleted">
+                                    <form:label path="completed">
                                         <spring:message code="workflow.wfProcessMovement.isCompleted"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:checkbox path="isCompleted" readonly="true"/>
+                                    <form:checkbox path="completed" readonly="true"/>
                                 </td>
                             </tr>
                             <tr>
@@ -103,58 +103,58 @@
                                     <form:input path="userEdit" readonly="true"/>
                                 </td>
                                 <td>
-                                    <form:label path="userId">
+                                    <form:label path="userId.id">
                                         <spring:message code="workflow.wfProcessMovement.userId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="userId" readonly="true"/>
+                                    <form:input path="userId.id" readonly="true"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <form:label path="wfPackageId">
+                                    <form:label path="wfPackageId.id">
                                         <spring:message code="workflow.wfProcessMovement.wfPackageId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfPackageId" readonly="true"/>
+                                    <form:input path="wfPackageId.id" readonly="true"/>
                                 </td>
                                 <td>
-                                    <form:label path="wfStateId">
+                                    <form:label path="wfStateId.id">
                                         <spring:message code="workflow.wfProcessMovement.wfStateId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfStateId" readonly="true"/>
+                                    <form:input path="wfStateId.id" readonly="true"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <form:label path="wfProcessId">
+                                    <form:label path="wfProcessId.id">
                                         <spring:message code="workflow.wfProcessMovement.wfProcessId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfProcessId" readonly="true"/>
+                                    <form:input path="wfProcessId.id" readonly="true"/>
                                 </td>
                                 <td>
-                                    <form:label path="wfBaseProcessId">
+                                    <form:label path="wfBaseProcessId.id">
                                         <spring:message code="workflow.wfProcessMovement.wfBaseProcessId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfBaseProcessId" readonly="true"/>
+                                    <form:input path="wfBaseProcessId.id" readonly="true"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <form:label path="isLast">
+                                    <form:label path="last">
                                         <spring:message code="workflow.wfProcessMovement.isLast"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:checkbox path="isLast" readonly="true"/>
+                                    <form:checkbox path="last" readonly="true"/>
                                 </td>
                             </tr>
                         </table>
@@ -376,20 +376,20 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <form:label path="wfServiceId">
+                                    <form:label path="wfServiceId.id">
                                         <spring:message code="workflow.wfPackage.wfServiceId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfServiceId" readonly="true"/>
+                                    <form:input path="wfServiceId.id" readonly="true"/>
                                 </td>
                                 <td>
-                                    <form:label path="wfPackageStatusId">
+                                    <form:label path="wfPackageStatusId.id">
                                         <spring:message code="workflow.wfPackage.wfPackageStatusId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfPackageStatusId" readonly="true"/>
+                                    <form:input path="wfPackageStatusId.id" readonly="true"/>
                                 </td>
                             </tr>
                         </table>
@@ -492,30 +492,30 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <form:label path="wfPackageId">
+                                    <form:label path="wfPackageId.id">
                                         <spring:message code="workflow.wfProcess.wfPackageId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfPackageId" readonly="true"/>
+                                    <form:input path="wfPackageId.id" readonly="true"/>
                                 </td>
                                 <td>
-                                    <form:label path="wfBaseProcessId">
+                                    <form:label path="wfBaseProcessId.id">
                                         <spring:message code="workflow.wfProcess.wfBaseProcessId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfBaseProcessId" readonly="true"/>
+                                    <form:input path="wfBaseProcessId.id" readonly="true"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <form:label path="wfProcessStatusId">
+                                    <form:label path="wfProcessStatusId.id">
                                         <spring:message code="workflow.wfProcess.wfProcessStatusId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfProcessStatusId" readonly="true"/>
+                                    <form:input path="wfProcessStatusId.id" readonly="true"/>
                                 </td>
                             </tr>
                         </table>
@@ -561,20 +561,20 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <form:label path="wfServiceId">
+                                    <form:label path="wfServiceId.id">
                                         <spring:message code="workflow.wfBaseProcess.wfServiceId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfServiceId" readonly="true"/>
+                                    <form:input path="wfServiceId.id" readonly="true"/>
                                 </td>
                                 <td>
-                                    <form:label path="wfBaseProcessTypeId">
+                                    <form:label path="wfBaseProcessTypeId.id">
                                         <spring:message code="workflow.wfBaseProcess.wfBaseProcessTypeId"/>
                                     </form:label>
                                 </td>
                                 <td>
-                                    <form:input path="wfBaseProcessTypeId" readonly="true"/>
+                                    <form:input path="wfBaseProcessTypeId.id" readonly="true"/>
                                 </td>
                             </tr>
                         </table>

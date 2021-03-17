@@ -47,12 +47,12 @@
                             <form:input type="datetime-local" path="finalDateTime"/>
                         </td>
                         <td>
-                            <form:label path="isCompleted">
+                            <form:label path="completed">
                                 <spring:message code="workflow.wfProcessMovement.isCompleted"/>
                             </form:label>
                         </td>
                         <td>
-                            <form:checkbox path="isCompleted"/>
+                            <form:checkbox path="completed"/>
                         </td>
                     </tr>
                     <tr>
@@ -83,12 +83,12 @@
                             <form:input path="userEdit"/>
                         </td>
                         <td>
-                            <form:label path="userId">
+                            <form:label path="userId.id">
                                 <spring:message code="workflow.wfProcessMovement.userId"/>
                             </form:label>
                         </td>
                         <td>
-                            <form:select path="userId">
+                            <form:select path="userId.id">
                                 <form:option  value="${!empty wfProcessMovement.id ? wfProcessMovement.userId.id : ''}"
                                               label="${!empty wfProcessMovement.id ? wfProcessMovement.userId.name : ''}"/>
                                 <%--<form:option  value="" label=""/>--%>
@@ -101,12 +101,12 @@
                     </tr>
                     <tr>
                          <td>
-                             <form:label path="wfPackageId">
+                             <form:label path="wfPackageId.id">
                                  <spring:message code="workflow.wfProcessMovement.wfPackageId"/>
                              </form:label>
                          </td>
                          <td>
-                             <form:select path="wfPackageId">
+                             <form:select path="wfPackageId.id">
                                  <form:option  value="${!empty wfProcessMovement.id ? wfProcessMovement.wfPackageId.id : ''}"
                                                label="${!empty wfProcessMovement.id ? wfProcessMovement.wfPackageId.name : ''}"/>
                                  <%--<form:option  value="" label=""/>--%>
@@ -117,12 +117,12 @@
                              </form:select>
                          </td>
                          <td>
-                             <form:label path="wfStateId">
+                             <form:label path="wfStateId.id">
                                  <spring:message code="workflow.wfProcessMovement.wfStateId"/>
                              </form:label>
                          </td>
                          <td>
-                             <form:select path="wfStateId">
+                             <form:select path="wfStateId.id">
                                  <form:option  value="${!empty wfProcessMovement.id ? wfProcessMovement.wfStateId.id : ''}"
                                                label="${!empty wfProcessMovement.id ? wfProcessMovement.wfStateId.name : ''}"/>
                                  <%--<form:option  value="" label=""/>--%>
@@ -135,28 +135,28 @@
                     </tr>
                     <tr>
                         <td>
-                            <form:label path="wfProcessId">
+                            <form:label path="wfProcessId.id">
                                 <spring:message code="workflow.wfProcessMovement.wfProcessId"/>
                             </form:label>
                         </td>
                         <td>
-                            <form:select path="wfProcessId">
+                            <form:select path="wfProcessId.id">
                                 <form:option  value="${!empty wfProcessMovement.id ? wfProcessMovement.wfProcessId.id : ''}"
-                                              label="${!empty wfProcessMovement.id ? wfProcessMovement.wfProcessId.name : ''}"/>
+                                              label="${!empty wfProcessMovement.id ? wfProcessMovement.wfProcessId.description : ''}"/>
                                 <%--<form:option  value="" label=""/>--%>
                                 <c:forEach items="${allWFProcesses}" var="wfProcess">
                                     <jsp:useBean id="wfProcess" scope="page" type="org.speed.big.company.service.model.workflow.WFProcess"/>
-                                    <form:option  value="${wfProcess.id}" label="${wfProcess.name}"/>
+                                    <form:option  value="${wfProcess.id}" label="${wfProcess.description}"/>
                                 </c:forEach>
                             </form:select>
                         </td>
                         <td>
-                            <form:label path="wfBaseProcessId">
+                            <form:label path="wfBaseProcessId.id">
                                 <spring:message code="workflow.wfProcessMovement.wfBaseProcessId"/>
                             </form:label>
                         </td>
                         <td>
-                            <form:select path="wfBaseProcessId">
+                            <form:select path="wfBaseProcessId.id">
                                 <form:option  value="${!empty wfProcessMovement.id ? wfProcessMovement.wfBaseProcessId.id : ''}"
                                               label="${!empty wfProcessMovement.id ? wfProcessMovement.wfBaseProcessId.name : ''}"/>
                                 <%--<form:option  value="" label=""/>--%>
@@ -169,12 +169,12 @@
                     </tr>
                     <tr>
                         <td>
-                            <form:label path="isLast">
+                            <form:label path="last">
                                 <spring:message code="workflow.wfProcessMovement.isLast"/>
                             </form:label>
                         </td>
                         <td>
-                            <form:checkbox path="isLast"/>
+                            <form:checkbox path="last"/>
                         </td>
                     </tr>
                 </table>

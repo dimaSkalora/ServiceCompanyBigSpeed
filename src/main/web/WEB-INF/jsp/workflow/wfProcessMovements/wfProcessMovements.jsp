@@ -51,11 +51,11 @@
                     <td><c:out value="${wfProcessMovement.description}"/></td>
                     <td><c:out value="${wfProcessMovement.dateEdit}"/></td>
                     <td><c:out value="${wfProcessMovement.userEdit}"/></td>
-                    <td><c:out value="${wfProcessMovement.userId}"/></td>
-                    <td><c:out value="${wfProcessMovement.wfPackageId}"/></td>
-                    <td><c:out value="${wfProcessMovement.wfStateId}"/></td>
-                    <td><c:out value="${wfProcessMovement.wfProcessId}"/></td>
-                    <td><c:out value="${wfProcessMovement.wfBaseProcessId}"/></td>
+                    <td><c:out value="${wfProcessMovement.userId.id}"/></td>
+                    <td><c:out value="${wfProcessMovement.wfPackageId.id}"/></td>
+                    <td><c:out value="${wfProcessMovement.wfStateId.id}"/></td>
+                    <td><c:out value="${wfProcessMovement.wfProcessId.id}"/></td>
+                    <td><c:out value="${wfProcessMovement.wfBaseProcessId.id}"/></td>
                     <td><c:out value="${wfProcessMovement.last}"/></td>
                     <td><a href="wfProcessMovements/update/${wfProcessMovement.id}"/><spring:message code="app.update"/></td>
                     <td><a href="wfProcessMovements/delete?id=${wfProcessMovement.id}"/><spring:message code="app.delete"/></td>
