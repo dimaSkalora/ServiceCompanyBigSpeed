@@ -22,7 +22,7 @@
             <li><a href="wfProcessStates"><spring:message code="app.workflow.wfProcessStates"/></a></li>
             <li><a href="wfBaseProcessItems"><spring:message code="app.workflow.wfBaseProcessItems"/></a></li>
             <li><a href="wfProcessMovements"><spring:message code="app.workflow.wfProcessMovements"/></a></li>
-            <li><a href="managerWFProcessMovements"><spring:message code="app.workflow.wfProcessMovements"/></a></li>
+            <li><a href="managerWFProcessMovements"><spring:message code="app.workflow.managerWFProcessMovements"/></a></li>
         </ul>
     </div>
 </div>
