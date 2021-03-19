@@ -120,6 +120,7 @@ public class JpaRoleRepositoryImpl implements RoleRepository {
     @Override
     public List<Role> getRoleFromUserRoleByUserRoleType(int userId, int roleTypeId) {
         String queryGetRoleFromUserRoleByUserRoleType = "select r from Role r " +
+                " join fetch r.roleTypeId " +
                 " left join UserRole ur on r.id = ur.roleId.id " +
                 " where ur.userId.id=:userId ";
         if(roleTypeId != Integer.MIN_VALUE)
