@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository("jpaWFServiceRepositoryImpl")
 @Transactional(readOnly = true)
@@ -106,14 +107,15 @@ public class JpaWFServiceRepositoryImpl implements WFServiceRepository {
 
     @Override
     public List<WFService> getWFServiceFromRoles(List<Role> roles) {
-        StringBuilder sbRoles = new StringBuilder();
-        for (Role role: roles)
-            sbRoles.append("\'"+role+"\',");
+        List<String> listNameRoles = roles.stream()
+                .map(r -> r.getName())
+                .collect(Collectors.toList());
 
-        String queryGetWFServiceFromRoles = "select wfs from WFService wfs\n" +
-                " where wfs.name in ( "+sbRoles+" )";
+        String queryGetWFServiceFromRoles = "select wfs from WFService wfs where wfs.name in :nameRoles";
 
-        List<WFService> wfServices = entityManager.createQuery(queryGetWFServiceFromRoles)
+        List<WFService> wfServices = entityManager
+                .createQuery(queryGetWFServiceFromRoles,WFService.class)
+                .setParameter("nameRoles",listNameRoles)
                 .getResultList();
 
         return wfServices;
