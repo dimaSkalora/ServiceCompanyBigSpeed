@@ -3,6 +3,7 @@ package org.speed.big.company.service.web.workflow.wf_manager_process_movement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.speed.big.company.service.model.Role;
+import org.speed.big.company.service.model.RoleType;
 import org.speed.big.company.service.model.User;
 import org.speed.big.company.service.model.workflow.*;
 import org.speed.big.company.service.service.RoleService;
@@ -48,7 +49,7 @@ public abstract class AbstractManagerWFProcessMovementController {
         int userId=100;//admin
 
         List<Role> roles = roleService.getRoleFromUserRoleByUser(userId).stream()
-                .filter(role -> role.getRoleTypeId().getId() == 1)
+                .filter(role -> role.getRoleTypeId().getId() == RoleType.WEB_WORKFLOW)
                 .collect(Collectors.toList());
 
         log.info("getRoleFromUserRoles",roles);
@@ -63,7 +64,8 @@ public abstract class AbstractManagerWFProcessMovementController {
     public List<WFService> getWFServiceFromRoles(){
         int userId=100;//admin
 
-        List<Role> roles = roleService.getRoleFromUserRoleByUserRoleType(userId,2);
+        List<Role> roles = roleService.
+                getRoleFromUserRoleByUserRoleType(userId, RoleType.WEB_WORKFLOW);
 
         List<WFService> wfServices = wfServiceService.getWFServiceFromRoles(roles);
 
@@ -81,8 +83,8 @@ public abstract class AbstractManagerWFProcessMovementController {
 
         List<Role> roles = userRoleService.getAll()
                 .stream().filter(ur -> ur.getUserId().getId()==userId)
-                .filter(ur -> ur.getRoleId().getRoleTypeId().getId()==1)
-                .map(ur -> ur.getRoleId())
+                .filter(urs -> urs.getRoleId().getRoleTypeId().getId()== RoleType.WEB_WORKFLOW)
+                .map(urs -> urs.getRoleId())
                 .collect(Collectors.toList());
 
         log.info("getRoleFromUserRolesViaStream",roles);
@@ -98,9 +100,9 @@ public abstract class AbstractManagerWFProcessMovementController {
         int userId=100;//admin
 
         List<Role> roles = userRoleService.getAll().stream()
-                .filter(ur -> ur.getUserId().getId()==userId)
-                .filter(ur -> ur.getRoleId().getRoleTypeId().getId()==2)
-                .map(ur -> ur.getRoleId())
+                .filter(urs -> urs.getUserId().getId()==userId)
+                .filter(urs -> urs.getRoleId().getRoleTypeId().getId()== RoleType.WEB_WORKFLOW)
+                .map(urs -> urs.getRoleId())
                 .collect(Collectors.toList());
 
         List<WFService> wfServices = wfServiceService.getAll().stream()
