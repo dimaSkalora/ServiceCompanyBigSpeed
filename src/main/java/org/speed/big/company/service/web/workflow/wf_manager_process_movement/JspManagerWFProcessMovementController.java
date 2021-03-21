@@ -4,13 +4,13 @@ import org.speed.big.company.service.model.Role;
 import org.speed.big.company.service.model.workflow.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
+import static org.speed.big.company.service.util.ParseUtil.parseInteger;
 
 @Controller
 @RequestMapping("managerWFProcessMovements")
@@ -34,25 +34,33 @@ public class JspManagerWFProcessMovementController extends AbstractManagerWFProc
     }
 
     /**
-     * Получаем список движения по ролях сервисах и статуса процесса: (В работе, Завершен, Архив, Ожидание)
+     * Получаем список движения по ролях, сервисах
+     * и статуса процесса: (В работе, Завершен, Архив, Ожидание)
      *
-     *
-     * @param roleId            - Роль
-     * @param wfServiceId       - Сервис
-     * @param indexList         - (В работе, Завершен, Архив, Ожидание)
      * @param model
      * @return
      */
-    @GetMapping("/wfProcessMovements")
-    public String wfProcessMovements(@RequestParam int roleId, @RequestParam int wfServiceId,
-                                     @RequestParam int indexList, Model model){
+    @PostMapping("/processMovements")
+    public String processMovements(HttpServletRequest request, Model model){
+        var roleId = parseInteger(request.getParameter("roleId"));
+        var wfServiceId = parseInteger(request.getParameter("wfServiceId"));
+        var indexInWork = parseInteger(request.getParameter("indexInWork"));
+        var indexCompleted = parseInteger(request.getParameter("indexCompleted"));
+        var indexWaiting = parseInteger(request.getParameter("indexWaiting"));
+        var indexArchive = parseInteger(request.getParameter("indexArchive"));
+
         List<WFProcessMovement> wfProcessMovementList = null;
         List<WFProcess> wfProcessList = null;
 
-        if ((indexList == WFProcessStatus.IN_WORK) || (indexList == WFProcessStatus.WAITING))
-            wfProcessMovementList = super.getListWFProcessMovement(roleId,wfServiceId,indexList);
-        if ((indexList == WFProcessStatus.COMPLETED) || (indexList == WFProcessStatus.ARCHIVE))
-            wfProcessList = super.getListWFProcess(wfServiceId,indexList);
+        if (indexInWork != null)
+            wfProcessMovementList = super.getListWFProcessMovement(roleId,wfServiceId, indexInWork);
+        if (indexWaiting != null)
+            wfProcessMovementList = super.getListWFProcessMovement(roleId,wfServiceId,indexWaiting);
+
+        if (indexCompleted != null)
+            wfProcessList = super.getListWFProcess(wfServiceId,indexCompleted);
+        if (indexArchive != null)
+            wfProcessList = super.getListWFProcess(wfServiceId,indexArchive);
 
         model.addAttribute("managerWFProcessMovements",
                 wfProcessMovementList != null ? wfProcessMovementList : wfProcessList);
@@ -87,6 +95,5 @@ public class JspManagerWFProcessMovementController extends AbstractManagerWFProc
 
         return modelAndView;
     }
-
 
 }
