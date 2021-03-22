@@ -3,6 +3,7 @@ package org.speed.big.company.service.repository.jpa;
 import org.speed.big.company.service.model.UserRole;
 import org.speed.big.company.service.repository.UserRoleRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -11,7 +12,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-@Transactional(readOnly = true)
+@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class JpaUserRoleRepositoryImpl implements UserRoleRepository {
 
     /* @Autowired

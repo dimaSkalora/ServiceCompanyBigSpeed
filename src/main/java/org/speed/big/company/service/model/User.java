@@ -58,9 +58,6 @@ public class User extends AbstractBaseEntity{
     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;*/
 
-    @OneToMany(mappedBy = "userId")
-    private Set<UserRole> userRoles;
-
     public User() {
     }
 
@@ -136,14 +133,6 @@ public class User extends AbstractBaseEntity{
         this.enabled = enabled;
     }
 
-    public Set<UserRole> getUserRoles() {
-        return userRoles;
-    }
-
-    public void setUserRoles(Set<UserRole> userRoles) {
-        this.userRoles = userRoles;
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -153,9 +142,6 @@ public class User extends AbstractBaseEntity{
                 ", phone='" + phone + '\'' +
                 ", registered=" + registered +
                 ", enabled=" + enabled +
-             /*   ", userRoles= "+ (userRoles != null ? userRoles.stream().
-                                                        map(UserRole::getRoleId).map(Role::getName).
-                                                        collect(Collectors.toList()) : "")+*/
                 ", id=" + id +
                 '}';
     }
