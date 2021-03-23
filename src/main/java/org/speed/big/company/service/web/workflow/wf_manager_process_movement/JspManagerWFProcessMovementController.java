@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 import static org.speed.big.company.service.util.ParseUtil.parseInteger;
+import static org.speed.big.company.service.util.ParseUtil.parseString;
 
 @Controller
 @RequestMapping("managerWFProcessMovements")
@@ -92,6 +93,24 @@ public class JspManagerWFProcessMovementController extends AbstractManagerWFProc
         modelAndView.addObject("wfProcess",wfProcess);
         modelAndView.addObject("wfProcessList",wfProcessList);
         modelAndView.addObject("wfProcessMovementList",wfProcessMovementList);
+
+        return modelAndView;
+    }
+
+    /*Передать задание*/
+    @GetMapping("/transferTasks")
+    public ModelAndView transferTasks(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView("workflow/managerWFProcessMovements/wfProcessPackage");
+
+        var processStateFromId = parseInteger(request.getParameter("processStateFromId"));
+        var baseProcessId = parseInteger(request.getParameter("baseProcessId"));
+        var wfProcessMovementId = parseInteger(request.getParameter("wfProcessMovementId"));
+
+        //Список состояний по которым можно передать задания
+        List<WFProcessState> processStateList = super.getListTransferWFProcessState(processStateFromId,baseProcessId);
+
+        modelAndView.addObject("processStateList", processStateList);
+        modelAndView.addObject("wfProcessMovementId", wfProcessMovementId);
 
         return modelAndView;
     }
