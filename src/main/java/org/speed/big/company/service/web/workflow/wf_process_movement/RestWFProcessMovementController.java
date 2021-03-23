@@ -15,7 +15,6 @@ import java.util.List;
 public class RestWFProcessMovementController extends AbstractWFProcessMovementController{
     final static String REST_URL = "/rest/workflow/wfProcessMovements";
 
-    //produces - Какой формат отправляем клиенту
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<WFProcessMovement>> wfProcessMovements(){
         List<WFProcessMovement> list = super.getAll();
@@ -34,9 +33,6 @@ public class RestWFProcessMovementController extends AbstractWFProcessMovementCo
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    //consumes - Какой формат получаем(от клиента)
-    //produces - Какой формат отправляем клиенту
-    //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<WFProcessMovement> createWithLocation(@RequestBody WFProcessMovement wfProcessMovement){
         WFProcessMovement created = super.create(wfProcessMovement);
@@ -67,9 +63,6 @@ public class RestWFProcessMovementController extends AbstractWFProcessMovementCo
         super.delete(id);
     }
 
-    //consumes - Какой формат получаем(от клиента)
-    //produces - Какой формат отправляем клиенту
-    //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.
     @PostMapping(value = "/filter", consumes = MediaType.APPLICATION_JSON_VALUE,
                 produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<WFProcessMovement>> filterWFPM(@RequestBody WFProcessMovement wfProcessMovement){

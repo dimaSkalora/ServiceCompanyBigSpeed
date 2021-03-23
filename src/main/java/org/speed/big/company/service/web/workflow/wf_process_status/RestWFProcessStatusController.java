@@ -15,7 +15,6 @@ import java.util.List;
 public class RestWFProcessStatusController extends AbstractWFProcessStatusController{
     final static String REST_URL = "/rest/workflow/wfProcessStatuses";
 
-    //produces - Какой формат отправляем клиенту
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<WFProcessStatus>> wfProcessStatuses(){
         List<WFProcessStatus> list = super.getAll();
@@ -34,9 +33,6 @@ public class RestWFProcessStatusController extends AbstractWFProcessStatusContro
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    //consumes - Какой формат получаем(от клиента)
-    //produces - Какой формат отправляем клиенту
-    //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<WFProcessStatus> createWithLocation(@RequestBody WFProcessStatus wfProcessStatus){
         WFProcessStatus created = super.create(wfProcessStatus);
@@ -65,9 +61,6 @@ public class RestWFProcessStatusController extends AbstractWFProcessStatusContro
         super.delete(id);
     }
 
-    //consumes - Какой формат получаем(от клиента)
-    //produces - Какой формат отправляем клиенту
-    //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса
     @GetMapping(value = "/filter", consumes = MediaType.APPLICATION_JSON_VALUE,
                 produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<WFProcessStatus>> filterWFPS(@RequestBody WFProcessStatus wfProcessStatus){
@@ -77,5 +70,4 @@ public class RestWFProcessStatusController extends AbstractWFProcessStatusContro
                 ? new ResponseEntity<>(list,HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
 }

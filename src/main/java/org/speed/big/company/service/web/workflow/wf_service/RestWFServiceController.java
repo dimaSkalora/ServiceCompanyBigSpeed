@@ -15,13 +15,11 @@ import java.util.List;
 public class RestWFServiceController extends AbstractWFServiceController{
     static final String REST_URL = "/rest/workflow/wfServices";
 
-    //produces - Какой формат отправляем клиенту
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<WFService> getAll(){
         return super.getAll();
     }
 
-    //@PathVariable - Аннотации, указывающие, что параметр метода должен быть привязан к переменной шаблона UR
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<WFService> getWFS(@PathVariable int id){
         WFService wfService = super.get(id);
@@ -31,9 +29,6 @@ public class RestWFServiceController extends AbstractWFServiceController{
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    //consumes - Какой формат получаем(от клиента)
-    //produces - Какой формат отправляем клиенту
-    //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<WFService> createWithLocation(@RequestBody WFService wfService){
         WFService created = super.create(wfService);
@@ -63,9 +58,6 @@ public class RestWFServiceController extends AbstractWFServiceController{
         super.delete(id);
     }
 
-    //consumes - Какой формат получаем(от клиента)
-    //produces - Какой формат отправляем клиенту
-    //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.
     @PostMapping(value = "/filter",
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<WFService>> filterWFS(@RequestBody WFService wfService){
@@ -75,5 +67,4 @@ public class RestWFServiceController extends AbstractWFServiceController{
                 ? new ResponseEntity<>(list, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
 }

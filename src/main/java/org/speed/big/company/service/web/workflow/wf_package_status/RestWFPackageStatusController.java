@@ -15,13 +15,11 @@ import java.util.List;
 public class RestWFPackageStatusController extends AbstractWFPackageStatusController{
     static final String REST_URL="/rest/workflow/wfPackageStatuses";
 
-    //produces - Какой формат отправляем клиенту
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<WFPackageStatus> getAll(){
         return super.getAll();
     }
 
-    //@PathVariable - Аннотации, указывающие, что параметр метода должен быть привязан к переменной шаблона UR
     @GetMapping("/{id}")
     public ResponseEntity<WFPackageStatus> getWFPS(@PathVariable int id){
         WFPackageStatus wfPackageStatus = super.get(id);
@@ -31,9 +29,6 @@ public class RestWFPackageStatusController extends AbstractWFPackageStatusContro
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    //consumes - Какой формат получаем(от клиента)
-    //produces - Какой формат отправляем клиенту
-    //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<WFPackageStatus> createWithLocation(@RequestBody WFPackageStatus wfPackageStatus){
         WFPackageStatus created = super.create(wfPackageStatus);
@@ -63,9 +58,6 @@ public class RestWFPackageStatusController extends AbstractWFPackageStatusContro
         super.delete(id);
     }
 
-    //consumes - Какой формат получаем(от клиента)
-    //produces - Какой формат отправляем клиенту
-    //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.
     @PostMapping(value = "/filter"
             ,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<WFPackageStatus>> filterWFPS(@RequestBody WFPackageStatus wfPackageStatus){

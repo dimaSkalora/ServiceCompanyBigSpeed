@@ -15,7 +15,6 @@ import java.util.List;
 public class RestWFBaseProcessItemController extends AbstractWFBaseProcessItemController{
     final static String REST_URL = "/rest/workflow/wfBaseProcessItems";
 
-    //produces - Какой формат отправляем клиенту
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<WFBaseProcessItem>> wfBaseProcessItems(){
         List<WFBaseProcessItem> list = super.getAll();
@@ -34,9 +33,6 @@ public class RestWFBaseProcessItemController extends AbstractWFBaseProcessItemCo
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    //consumes - Какой формат получаем(от клиента)
-    //produces - Какой формат отправляем клиенту
-    //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<WFBaseProcessItem> createWithLocation(@RequestBody WFBaseProcessItem wfBaseProcessItem){
         WFBaseProcessItem created = super.create(wfBaseProcessItem);
@@ -67,9 +63,6 @@ public class RestWFBaseProcessItemController extends AbstractWFBaseProcessItemCo
         super.delete(id);
     }
 
-    //consumes - Какой формат получаем(от клиента)
-    //produces - Какой формат отправляем клиенту
-    //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.
     @PostMapping(value = "/filter", consumes = MediaType.APPLICATION_JSON_VALUE,
                 produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<WFBaseProcessItem>> filterWFBPI(@RequestBody WFBaseProcessItem wfBaseProcessItem){

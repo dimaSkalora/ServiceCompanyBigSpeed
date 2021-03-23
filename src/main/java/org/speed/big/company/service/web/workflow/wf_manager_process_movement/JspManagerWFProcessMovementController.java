@@ -98,13 +98,14 @@ public class JspManagerWFProcessMovementController extends AbstractManagerWFProc
     }
 
     /*Передать задание*/
-    @GetMapping("/transferTasks")
-    public ModelAndView transferTasks(HttpServletRequest request){
-        ModelAndView modelAndView = new ModelAndView("workflow/managerWFProcessMovements/wfProcessPackage");
+    @GetMapping("/transferTasks/{processStateFromId}/{baseProcessId}/{wfProcessMovementId}")
+    public ModelAndView transferTasks(@PathVariable int processStateFromId,
+                                      @PathVariable int baseProcessId,@PathVariable int wfProcessMovementId){
+        ModelAndView modelAndView = new ModelAndView("workflow/managerWFProcessMovements/transferTasks");
 
-        var processStateFromId = parseInteger(request.getParameter("processStateFromId"));
+/*        var processStateFromId = parseInteger(request.getParameter("processStateFromId"));
         var baseProcessId = parseInteger(request.getParameter("baseProcessId"));
-        var wfProcessMovementId = parseInteger(request.getParameter("wfProcessMovementId"));
+        var wfProcessMovementId = parseInteger(request.getParameter("wfProcessMovementId"));*/
 
         //Список состояний по которым можно передать задания
         List<WFProcessState> processStateList = super.getListTransferWFProcessState(processStateFromId,baseProcessId);
@@ -119,8 +120,12 @@ public class JspManagerWFProcessMovementController extends AbstractManagerWFProc
     @PostMapping("/transferOnState")
     public String transferOnState(HttpServletRequest request){
         var wfProcessMovementId = parseInteger(request.getParameter("wfProcessMovementId"));
+        var wfProcessMovementId2 = parseInteger(request.getParameter("wfProcessMovementId2"));
         var processStateToId = parseInteger(request.getParameter("processStateToId"));
         var description = parseString(request.getParameter("description"));
+
+        System.out.println(wfProcessMovementId+"  "+wfProcessMovementId2+"  "+
+                processStateToId+"  "+description);
 
         super.wfProcessMovementTransferTasks(wfProcessMovementId,processStateToId,description);
 

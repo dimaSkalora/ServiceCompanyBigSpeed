@@ -15,7 +15,6 @@ import java.util.List;
 public class RestWFGroupController extends AbstractWFGroupController{
     final static String REST_URL = "/rest/workflow/wfGroups";
 
-    //produces - Какой формат отправляем клиенту
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<WFGroup>> wfGroups(){
         List<WFGroup> list = super.getAll();
@@ -34,9 +33,6 @@ public class RestWFGroupController extends AbstractWFGroupController{
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    //consumes - Какой формат получаем(от клиента)
-    //produces - Какой формат отправляем клиенту
-    //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<WFGroup> createWithLocation(@RequestBody WFGroup wfGroup){
         WFGroup created = super.create(wfGroup);
@@ -67,9 +63,6 @@ public class RestWFGroupController extends AbstractWFGroupController{
         super.delete(id);
     }
 
-    //consumes - Какой формат получаем(от клиента)
-    //produces - Какой формат отправляем клиенту
-    //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.
     @PostMapping(value = "/filter",consumes = MediaType.APPLICATION_JSON_VALUE,
                 produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<WFGroup>> filterWFG(@RequestBody WFGroup wfGroup){
