@@ -1,0 +1,49 @@
+GET http://localhost:8080/ServiceCompanyBigSpeed/rest/userRoles
+Accept: application/json
+
+###
+GET http://localhost:8080/ServiceCompanyBigSpeed/rest/userRoles/100247
+Accept: application/json
+
+###
+POST http://localhost:8080/ServiceCompanyBigSpeed/rest/roles
+Content-Type: application/json
+
+{
+  "name": "test ",
+  "description": "testik rest",
+  "roleTypeId": {
+    "id": 100058,
+    "name": "docFlow",
+    "new": false
+  }
+}
+
+###
+PUT http://localhost:8080/ServiceCompanyBigSpeed/rest/roles
+Content-Type: application/json
+
+{
+  "id": 100260,
+  "name": "test update",
+  "description": "testik rest update",
+  "roleTypeId": {
+    "id": 100058,
+    "name": "docFlow",
+    "new": false
+  }
+}
+
+###
+DELETE http://localhost:8080/ServiceCompanyBigSpeed/rest/roles/100259
+Accept: application/json
+
+###
+POST http://localhost:8080/ServiceCompanyBigSpeed/rest/roles/filter
+Content-Type: application/json
+
+{
+  "name": "test update"
+}
+
+

@@ -1,0 +1,56 @@
+###
+GET http://localhost:8080/ServiceCompanyBigSpeed/rest/admin/users
+Accept: application/json
+
+###
+GET http://localhost:8080/ServiceCompanyBigSpeed/rest/admin/users/100
+Accept: application/json
+
+###
+POST http://localhost:8080/ServiceCompanyBigSpeed/rest/admin/users
+Content-Type: application/json
+
+{
+  "name": "test name hihuo",
+  "email": "test_email@jhjg.jbj",
+  "password": "test password",
+  "phone": "+3804544281",
+  "registered": [2021, 3, 22],
+  "enabled": true
+}
+
+###
+PUT http://localhost:8080/ServiceCompanyBigSpeed/rest/admin/users
+Content-Type: application/json
+
+{
+  "id": 100263,
+  "name": "test name hihuo update",
+  "email": "test_email@jhjg.jbj",
+  "password": "test password update",
+  "phone": "+3804544281",
+  "registered": [
+    2021,
+    3,
+    22
+  ],
+  "enabled": true,
+  "new": false
+}
+
+###
+DELETE http://localhost:8080/ServiceCompanyBigSpeed/rest/admin/users/100259
+Accept: application/json
+
+###
+POST http://localhost:8080/ServiceCompanyBigSpeed/rest/admin/users/filter
+Content-Type: application/json
+
+{
+  "password": "test password update",
+  "enabled":true
+}
+
+
+
+

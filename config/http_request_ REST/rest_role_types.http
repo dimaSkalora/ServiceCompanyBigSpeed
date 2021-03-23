@@ -1,0 +1,38 @@
+GET http://localhost:8080/ServiceCompanyBigSpeed/rest/roleTypes
+Accept: application/json
+
+###
+GET http://localhost:8080/ServiceCompanyBigSpeed/rest/roleTypes/1
+Accept: application/json
+
+###
+POST http://localhost:8080/ServiceCompanyBigSpeed/rest/roleTypes
+Content-Type: application/json
+
+{
+  "name": "console test"
+}
+
+###
+PUT http://localhost:8080/ServiceCompanyBigSpeed/rest/roleTypes
+Content-Type: application/json
+
+{
+"id": 100258,
+"name": "console test update",
+"new": false
+}
+
+###
+DELETE http://localhost:8080/ServiceCompanyBigSpeed/rest/roleTypes/100259
+Accept: application/json
+
+###
+POST http://localhost:8080/ServiceCompanyBigSpeed/rest/roleTypes/filter
+Content-Type: application/json
+
+{
+  "name": "console test"
+}
+
+
