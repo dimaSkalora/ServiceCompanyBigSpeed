@@ -237,8 +237,8 @@ public abstract class AbstractManagerWFProcessMovementController {
     /**
      * Получить список состояний процесса для передачи задания
      *
-     * @param processStateFromId
-     * @param baseProcessId
+     * @param processStateFromId    - Id процесс состояния текущего движение процесса
+     * @param baseProcessId         - Id базовый процесс текущего движение процессса
      * @return
      */
     List<WFProcessState> getListTransferWFProcessState(int processStateFromId, int baseProcessId){
