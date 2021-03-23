@@ -115,4 +115,16 @@ public class JspManagerWFProcessMovementController extends AbstractManagerWFProc
         return modelAndView;
     }
 
+    /*Передать задания на выбраное состояние*/
+    @PostMapping("/transferOnState")
+    public String transferOnState(HttpServletRequest request){
+        var wfProcessMovementId = parseInteger(request.getParameter("wfProcessMovementId"));
+        var processStateToId = parseInteger(request.getParameter("processStateToId"));
+        var description = parseString(request.getParameter("description"));
+
+        super.wfProcessMovementTransferTasks(wfProcessMovementId,processStateToId,description);
+
+        return "redirect:/managerWFProcessMovements";
+    }
+
 }
