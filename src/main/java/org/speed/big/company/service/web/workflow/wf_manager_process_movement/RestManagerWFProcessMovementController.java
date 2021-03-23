@@ -1,6 +1,7 @@
 package org.speed.big.company.service.web.workflow.wf_manager_process_movement;
 
 import org.speed.big.company.service.model.Role;
+import org.speed.big.company.service.model.workflow.WFPackage;
 import org.speed.big.company.service.model.workflow.WFProcess;
 import org.speed.big.company.service.model.workflow.WFProcessMovement;
 import org.speed.big.company.service.model.workflow.WFService;
@@ -85,5 +86,73 @@ public class RestManagerWFProcessMovementController extends AbstractManagerWFPro
                 ? new ResponseEntity<>(wfProcessList, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    /**
+     * Получить пакет по текущему движению процесса
+     *
+     * @param wfPackId - Id пакета по текущему движению процесса
+     * @return
+     */
+    @GetMapping(value = "/wfPackageOfProcessMovement/{wfPackId}/",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<WFPackage> wfPackageOfProcessMovement(@PathVariable int wfPackId){
+        WFPackage wfPackage = super.getWFPackageOfProcessMovement(wfPackId);
+
+        return wfPackage != null
+                ? new ResponseEntity<>(wfPackage, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    /**
+     * Получить процес по текущему движению процесса
+     *
+     * @param wfProcessId - Id процеса по текущему движению процесса
+     * @return
+     */
+    @GetMapping(value = "/wfProcessOfProcessMovement/{wfProcessId}/",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<WFProcess> wfProcessOfProcessMovement(@PathVariable int wfProcessId){
+        WFProcess wfProcess = super.getWFProcessById(wfProcessId);
+
+        return wfProcess != null
+                ? new ResponseEntity<>(wfProcess, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    /**
+     * Получаем список процесов по пакету
+     * produces - Какой формат отправляем клиенту
+     *
+     * @param wfPackId - Id пакета по текущему движению процесса
+     */
+    @GetMapping(value = "/allWFProcessByWFPackageId/{wfPackId}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<WFProcess>> allWFProcessByWFPackageId(@PathVariable int wfPackId){
+        List<WFProcess> wfProcessList = super.getAllWFProcessByWFPackageId(wfPackId);
+
+        return wfProcessList != null
+                ? new ResponseEntity<>(wfProcessList, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    /**
+     * Получаем список движения по процессу, базового процесса
+     * produces - Какой формат отправляем клиенту
+     *
+     * @param wfProcessId            - Id процесса
+     * @param wfBaseProcessId       - Id базового процесса
+     */
+    @GetMapping(value = "/processMovementsByProcessIdByBaseProcess/{wfProcessId}/{wfBaseProcessId}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<WFProcessMovement>> processMovementsByProcessIdByBaseProcessId(@PathVariable int wfProcessId,
+                                                                    @PathVariable int wfBaseProcessId){
+        List<WFProcessMovement> wfProcessMovementsByProcessIdByBaseProcessId =
+                super.getListWFPMByProcessAndBaseProcess(wfProcessId,wfBaseProcessId);
+
+        return wfProcessMovementsByProcessIdByBaseProcessId != null
+                ? new ResponseEntity<>(wfProcessMovementsByProcessIdByBaseProcessId, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
 
 }
