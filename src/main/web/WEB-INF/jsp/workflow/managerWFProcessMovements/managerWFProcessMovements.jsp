@@ -85,6 +85,7 @@
         <table class="table table-bordered">
             <thead>
             <tr>
+                <th>transferTasks</th>
                 <th><spring:message code="workflow.wfProcessMovement.id"/></th>
                 <th><spring:message code="workflow.wfProcessMovement.startDateTime"/></th>
                 <th><spring:message code="workflow.wfProcessMovement.finalDateTime"/></th>
@@ -103,6 +104,8 @@
             <c:forEach items="${managerWFProcessMovements}" var="managerWFProcessMovements">
                 <jsp:useBean id="managerWFProcessMovements" scope="page" type="org.speed.big.company.service.model.workflow.WFProcessMovement"/>
                 <tr>
+                    <td><a href="managerWFProcessMovements/transferTasks/${managerWFProcessMovements.wfStateId.id}/${managerWFProcessMovements.wfBaseProcessId.id}/${managerWFProcessMovements.id}"/>
+                        <c:out value="transferTasks"/></td>
                     <td><a href="managerWFProcessMovements/wfProcessPackage/${managerWFProcessMovements.wfPackageId.id}"/><c:out value="${managerWFProcessMovements.wfPackageId.id}"/></td>
                     <td><c:out value="${managerWFProcessMovements.startDateTime}"/></td>
                     <td><c:out value="${managerWFProcessMovements.finalDateTime}"/></td>
