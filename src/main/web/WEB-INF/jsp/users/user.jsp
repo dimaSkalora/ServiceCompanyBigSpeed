@@ -35,6 +35,7 @@
                         </td>
                         <td>
                             <form:input path="name" placeholder="Name Test"/>
+                            <form:errors path="name" cssStyle="color:red"/>
                         </td>
                     </tr>
                     <tr>
@@ -45,6 +46,7 @@
                         </td>
                         <td>
                             <form:password path="password" placeholder="Password Test"/>
+                            <form:errors path="password" cssStyle="color:red"/>
                         </td>
                         <td>
                             <form:label path="email">
@@ -53,6 +55,7 @@
                         </td>
                         <td>
                             <form:input path="email" placeholder="test@test.com"/>
+                            <form:errors path="email" cssStyle="color:red"/>
                         </td>
                     </tr>
                     <tr>
@@ -63,9 +66,10 @@
                         </td>
                         <td>
                             <form:input path="phone" placeholder="+30....."/>
+                            <form:errors path="phone" cssStyle="color:red"/>
                         </td>
                     </tr>
-                    <c:if test="${!empty user.name}">
+                    <c:if test="${!empty user.id}">
                         <tr>
                             <td>
                                 <form:label path="registered">
@@ -74,6 +78,7 @@
                             </td>
                             <td>
                                 <form:input type="date" path="registered" />
+                                <form:errors path="registered" cssStyle="color:red"/>
                             </td>
                             <td>
                                 <form:label path="enabled">
