@@ -3,7 +3,6 @@ package org.speed.big.company.service.model;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
@@ -27,14 +26,14 @@ public class User extends AbstractBaseEntity{
     public static final String BETWEEN_REGISTERED = "User.betweenRegistered";
 
     @NotBlank
-    @Size(min = 2, max = 100)
+    @Size(min = 3, max = 100)
     @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "email", nullable = false, unique = true)
     @Email
     @NotBlank
-    @Size(max = 100)
+    @Size(min = 5,max = 100)
     private String email;
 
     @Column(name = "password", nullable = false)
@@ -43,11 +42,11 @@ public class User extends AbstractBaseEntity{
     private String password;
 
     @Column(name = "phone", nullable = false, unique = true)
-    @NotNull
+    @NotBlank
+    @Size(min = 5, max = 20)
     private String phone;
 
     @Column(name = "registered", nullable = false)
-    @NotNull
     private LocalDate registered;        //Дата регистраиции пользователя
 
     @Column(name = "enabled", nullable = false, columnDefinition = "bool default true")
