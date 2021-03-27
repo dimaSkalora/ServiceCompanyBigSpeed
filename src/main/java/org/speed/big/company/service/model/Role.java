@@ -2,7 +2,7 @@ package org.speed.big.company.service.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-
+import javax.validation.constraints.Size;
 
 @NamedQueries({
         @NamedQuery(name = Role.DELETE, query = "DELETE from Role r where r.id=:id"),
@@ -21,9 +21,11 @@ public class Role extends AbstractBaseEntity{
     public static final String ALL_SORTED = "Role.allSorted";
 
     @NotBlank
+    @Size(min = 3, max = 100)
     @Column(name = "name", nullable = false)
     private String name;
     @NotBlank
+    @Size(min = 5)
     @Column(name = "description", nullable = false)
     private String description;
     @ManyToOne(fetch = FetchType.LAZY)
