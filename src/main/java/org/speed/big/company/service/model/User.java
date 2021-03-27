@@ -5,9 +5,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @NamedQueries({
         @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
@@ -51,11 +48,6 @@ public class User extends AbstractBaseEntity{
 
     @Column(name = "enabled", nullable = false, columnDefinition = "bool default true")
     private boolean enabled;        //true - активный, false - не активный
-
-   /* @ManyToMany
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;*/
 
     public User() {
     }
