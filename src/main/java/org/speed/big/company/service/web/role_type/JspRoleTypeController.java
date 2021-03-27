@@ -3,11 +3,13 @@ package org.speed.big.company.service.web.role_type;
 import org.speed.big.company.service.model.RoleType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import static org.speed.big.company.service.util.ParseUtil.parseInteger;
 import static org.speed.big.company.service.util.ParseUtil.parseString;
@@ -56,7 +58,10 @@ public class JspRoleTypeController extends AbstractRoleTypeController{
     }
 
     @RequestMapping(value = "/createOrUpdate",method = RequestMethod.POST)
-    public String createOrUpdate(@ModelAttribute RoleType roleType){
+    public String createOrUpdate(@Valid @ModelAttribute RoleType roleType, BindingResult  bindingResult){
+        if (bindingResult.hasErrors())
+            return "roleTypes/roleType";
+
         if (roleType.isNew())
             super.create(roleType);
         else

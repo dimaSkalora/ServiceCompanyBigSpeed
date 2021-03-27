@@ -6,10 +6,12 @@ import org.speed.big.company.service.util.ParseUtil;
 import org.springframework.mock.web.DelegatingServletInputStream;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.time.LocalDate;
 
 @Controller
@@ -72,7 +74,10 @@ public class JspUserController extends AbstractUserController{
     }
 
     @PostMapping("/createOrUpdate")
-    public String createOrUpdate(@ModelAttribute("user") User user){
+    public String createOrUpdate(@Valid @ModelAttribute("user") User user, BindingResult bindingResult){
+        if (bindingResult.hasErrors())
+            return "users/user";
+
         if (user.isNew()){
             user.setRegistered(LocalDate.now());
             user.setEnabled(true);
