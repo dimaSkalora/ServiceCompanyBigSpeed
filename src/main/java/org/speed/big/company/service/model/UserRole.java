@@ -1,7 +1,9 @@
 package org.speed.big.company.service.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @NamedQueries({
@@ -29,14 +31,15 @@ public class UserRole extends AbstractBaseEntity{
     @NotNull
     @Column(name = "date_time", nullable = false)
     private LocalDateTime dateTime;
-    @NotNull
+    @NotBlank
+    @Size(min = 5)
     @Column(name = "comment", nullable = false)
     private String comment;
 
     public UserRole() {
     }
 
-    public UserRole(Integer id, User userId, Role roleId, @NotNull LocalDateTime dateTime, @NotNull String comment) {
+    public UserRole(Integer id, User userId, Role roleId, @NotNull LocalDateTime dateTime, @NotBlank String comment) {
         super(id);
         this.userId = userId;
         this.roleId = roleId;
