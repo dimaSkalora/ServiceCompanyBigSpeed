@@ -8,11 +8,13 @@ import org.speed.big.company.service.model.propertyeditor.UserPropertyEditor;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.beans.PropertyEditor;
 import java.beans.PropertyEditorSupport;
 import java.text.SimpleDateFormat;
@@ -93,7 +95,14 @@ public class JspUserRoleController extends AbstractUserRoleController{
     }
 
     @PostMapping("/createOrUpdate")
-    public String createOrUpdate(@ModelAttribute UserRole userRole){
+    public String createOrUpdate(@Valid @ModelAttribute UserRole userRole, BindingResult bindingResult,
+                                 Model model){
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("getAllUser", super.getAllUser());
+            model.addAttribute("getAllRole",super.getAllRole());
+            return "userRoles/userRole";
+        }
+
         if (userRole.isNew())
             super.create(userRole);
         else
