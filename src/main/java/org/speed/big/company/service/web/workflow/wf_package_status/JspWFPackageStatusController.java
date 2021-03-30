@@ -3,10 +3,12 @@ package org.speed.big.company.service.web.workflow.wf_package_status;
 import org.speed.big.company.service.model.workflow.WFPackageStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import static org.speed.big.company.service.util.ParseUtil.parseInteger;
 import static org.speed.big.company.service.util.ParseUtil.parseString;
@@ -56,7 +58,10 @@ public class JspWFPackageStatusController extends AbstractWFPackageStatusControl
     }
 
     @PostMapping("/createOrUpdate")
-    public String createOrUpdate(@ModelAttribute WFPackageStatus wfPackageStatus){
+    public String createOrUpdate(@Valid @ModelAttribute WFPackageStatus wfPackageStatus, BindingResult bindingResult){
+        if (bindingResult.hasErrors())
+            return "workflow/wfPackageStatuses/wfPackageStatus";
+
         if (wfPackageStatus.isNew())
             super.create(wfPackageStatus);
         else

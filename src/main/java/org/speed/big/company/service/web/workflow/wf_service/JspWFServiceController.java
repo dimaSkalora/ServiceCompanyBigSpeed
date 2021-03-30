@@ -3,10 +3,12 @@ package org.speed.big.company.service.web.workflow.wf_service;
 import org.speed.big.company.service.model.workflow.WFService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import static org.speed.big.company.service.util.ParseUtil.parseInteger;
 import static org.speed.big.company.service.util.ParseUtil.parseString;
@@ -54,7 +56,10 @@ public class JspWFServiceController extends AbstractWFServiceController{
     }
 
     @PostMapping("/createOrUpdate")
-    public String createOrUpdate(@ModelAttribute WFService wfService){
+    public String createOrUpdate(@Valid @ModelAttribute WFService wfService, BindingResult bindingResult){
+        if (bindingResult.hasErrors())
+            return "workflow/wfServices/wfService";
+
         if (wfService.isNew())
             super.create(wfService);
         else

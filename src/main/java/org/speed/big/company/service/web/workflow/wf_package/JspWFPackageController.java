@@ -5,10 +5,12 @@ import org.speed.big.company.service.model.workflow.WFPackageStatus;
 import org.speed.big.company.service.model.workflow.WFService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -127,7 +129,15 @@ public class JspWFPackageController extends AbstractWFPackageController{
     }
 
     @PostMapping("/createOrUpdate")
-    public String createOrUpdate(@ModelAttribute WFPackage wfPackage){
+    public String createOrUpdate(@Valid @ModelAttribute WFPackage wfPackage, BindingResult bindingResult,
+                                 Model model){
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("allWFS", super.getAllWFS());
+            model.addAttribute("allWFPS", super.getAllWFPS());
+
+            return "workflow/wfPackages/wfPackage";
+        }
+
         if (wfPackage.isNew())
             super.create(wfPackage);
         else
