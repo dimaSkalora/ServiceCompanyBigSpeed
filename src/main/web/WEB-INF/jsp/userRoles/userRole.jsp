@@ -71,6 +71,7 @@
                         </td>
                         <td>
                             <form:input type="datetime-local" path="dateTime" />
+                            <form:errors path="dateTime" cssStyle="color:red"/>
                         </td>
                         <td>
                             <form:label path="comment">
@@ -79,6 +80,7 @@
                         </td>
                         <td>
                             <form:input type="text" path="comment" />
+                            <form:errors path="comment" cssStyle="color:red"/>
                         </td>
                     </tr>
                 </table>
