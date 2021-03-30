@@ -35,6 +35,7 @@
                         </td>
                         <td>
                             <form:input path="name"/>
+                            <form:errors path="name" cssStyle="color:red"/>
                         </td>
                     </tr>
                 </table>

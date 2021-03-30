@@ -35,6 +35,7 @@
                         </td>
                         <td>
                             <form:input path="name"/>
+                            <form:errors path="name" cssStyle="color:red"/>
                         </td>
                     </tr>
                     <tr>
@@ -45,6 +46,7 @@
                         </td>
                         <td>
                             <form:input type="date" path="dateRegistration"/>
+                            <form:errors path="dateRegistration" cssStyle="color:red"/>
                         </td>
                         <td>
                             <form:label path="customerName">
@@ -54,6 +56,7 @@
                         <td>
                             <form:input path="customerName"/>
                         </td>
+                        <form:errors path="customerName" cssStyle="color:red"/>
                     </tr>
                     <tr>
                         <td>
@@ -63,6 +66,7 @@
                         </td>
                         <td>
                             <form:input path="customerAddress"/>
+                            <form:errors path="customerAddress" cssStyle="color:red"/>
                         </td>
                         <td>
                             <form:label path="customerAddressJur">
@@ -81,6 +85,7 @@
                         </td>
                         <td>
                             <form:input path="customerPhone"/>
+                            <form:errors path="customerPhone" cssStyle="color:red"/>
                         </td>
                         <td>
                             <form:label path="customerEmail">
@@ -89,6 +94,7 @@
                         </td>
                         <td>
                             <form:input path="customerEmail"/>
+                            <form:errors path="customerEmail" cssStyle="color:red"/>
                         </td>
                     </tr>
                     <tr>
@@ -99,6 +105,7 @@
                         </td>
                         <td>
                             <form:input path="contractNumber"/>
+                            <form:errors path="contractNumber" cssStyle="color:red"/>
                         </td>
                         <td>
                             <form:label path="description">
@@ -117,6 +124,7 @@
                         </td>
                         <td>
                             <form:input path="userAdd"/>
+                            <form:errors path="userAdd" cssStyle="color:red"/>
                         </td>
                         <td>
                             <form:label path="dateAdd">
@@ -125,6 +133,7 @@
                         </td>
                         <td>
                             <form:input type="datetime-local" path="dateAdd"/>
+                            <form:errors path="dateAdd" cssStyle="color:red"/>
                         </td>
                     </tr>
                     <tr>
@@ -135,6 +144,7 @@
                         </td>
                         <td>
                             <form:input path="userEdit"/>
+                            <form:errors path="userEdit" cssStyle="color:red"/>
                         </td>
                         <td>
                             <form:label path="dateEdit">
@@ -143,6 +153,7 @@
                         </td>
                         <td>
                             <form:input type="datetime-local" path="dateEdit"/>
+                            <form:errors path="dateEdit" cssStyle="color:red"/>
                         </td>
                     </tr>
                     <tr>
