@@ -1,9 +1,8 @@
 package org.speed.big.company.service.model.workflow;
 
-import org.speed.big.company.service.model.AbstractBaseEntity;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @NamedQueries({
         @NamedQuery(name = WFPackageStatus.DELETE, query = "delete from WFPackageStatus wfps where wfps.id=:id"),
@@ -19,14 +18,14 @@ public class WFPackageStatus extends WFAbstractBaseEntity {
     public static final String ALL_SORTED = "WFPackageStatus.allSorted";
 
     @NotBlank
+    @Size(min = 4, max = 100)
     @Column(nullable = false)
     private String name;
 
     public WFPackageStatus() {
     }
 
-    public WFPackageStatus(Integer id, String name) {
-        super(id);
+    public WFPackageStatus(String name) {
         this.name = name;
     }
 

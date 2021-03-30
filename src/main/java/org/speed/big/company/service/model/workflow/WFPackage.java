@@ -1,10 +1,10 @@
 package org.speed.big.company.service.model.workflow;
 
-import org.speed.big.company.service.model.AbstractBaseEntity;
-
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -27,29 +27,33 @@ public class WFPackage extends WFAbstractBaseEntity {
     public static final String ALL_SORTED = "WFPackage.allSorted";
 
     @NotBlank
+    @Size(min = 5)
+    @Column(nullable = false)
     private String name;
     @NotNull
     @Column(name = "date_registration", nullable = false)
     private LocalDate dateRegistration;
     @NotBlank
+    @Size(min = 5)
     @Column(name = "customer_name", nullable = false)
     private String customerName;
     @NotBlank
+    @Size(min = 10)
     @Column(name = "customer_address", nullable = false)
     private String customerAddress;
-    @NotBlank
     @Column(name = "customer_address_jur")
     private String customerAddressJur;
     @NotBlank
+    @Size(min = 5)
     @Column(name = "customer_phone", nullable = false)
     private String customerPhone;
-    @NotBlank
+    @Email
     @Column(name = "customer_email")
     private String customerEmail;
     @NotBlank
+    @Size(min = 6)
     @Column(name = "contract_number", nullable = false)
     private String contractNumber;
-    @NotBlank
     private String description;
     @NotBlank
     @Column(name = "user_add", nullable = false)
