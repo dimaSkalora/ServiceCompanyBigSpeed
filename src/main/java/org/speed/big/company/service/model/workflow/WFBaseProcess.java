@@ -1,9 +1,8 @@
 package org.speed.big.company.service.model.workflow;
 
-import org.speed.big.company.service.model.AbstractBaseEntity;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @NamedQueries({
         @NamedQuery(name = WFBaseProcess.DELETE, query = "delete from WFBaseProcess wfbp where wfbp.id=:id"),
@@ -26,9 +25,9 @@ public class WFBaseProcess extends WFAbstractBaseEntity {
     public final static String ALL_SORTED = "WFBaseProcess.allSorted";
 
     @NotBlank
+    @Size(min = 5, max = 150)
     @Column(nullable = false)
     private String name;
-    @NotBlank
     private String description;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wf_service_id", nullable = false)
@@ -40,7 +39,7 @@ public class WFBaseProcess extends WFAbstractBaseEntity {
     public WFBaseProcess() {
     }
 
-    public WFBaseProcess(Integer id, @NotBlank String name, @NotBlank String description, WFService wfServiceId, WFBaseProcessType wfBaseProcessTypeId) {
+    public WFBaseProcess(Integer id, @NotBlank String name, String description, WFService wfServiceId, WFBaseProcessType wfBaseProcessTypeId) {
         super(id);
         this.name = name;
         this.description = description;

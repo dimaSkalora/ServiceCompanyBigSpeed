@@ -1,9 +1,8 @@
 package org.speed.big.company.service.model.workflow;
 
-import org.speed.big.company.service.model.AbstractBaseEntity;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @NamedQueries({
         @NamedQuery(name = WFBaseProcessType.DELETE,query = "delete from WFBaseProcessType wfbpt where wfbpt.id=:id"),
@@ -19,6 +18,7 @@ public class WFBaseProcessType extends WFAbstractBaseEntity {
     public static final String ALL_SORTED = "WFBaseProcessType.allSorted";
 
     @NotBlank
+    @Size(min = 4, max = 1150)
     @Column(nullable = false)
     public String name;
 
