@@ -3,10 +3,12 @@ package org.speed.big.company.service.web.workflow.wf_group;
 import org.speed.big.company.service.model.workflow.WFGroup;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import static org.speed.big.company.service.util.ParseUtil.parseInteger;
 import static org.speed.big.company.service.util.ParseUtil.parseString;
@@ -63,7 +65,10 @@ public class JspWFGroupController extends AbstractWFGroupController {
     }
 
     @PostMapping("/createOrUpdate")
-    public String createOrUpdate(@ModelAttribute WFGroup wfGroup){
+    public String createOrUpdate(@Valid @ModelAttribute WFGroup wfGroup, BindingResult bindingResult){
+        if (bindingResult.hasErrors())
+            return "workflow/wfGroups/wfGroup";
+
         if (wfGroup.isNew())
             super.create(wfGroup);
         else

@@ -3,10 +3,12 @@ package org.speed.big.company.service.web.workflow.wf_base_process_type;
 import org.speed.big.company.service.model.workflow.WFBaseProcessType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import static org.speed.big.company.service.util.ParseUtil.parseInteger;
 import static org.speed.big.company.service.util.ParseUtil.parseString;
@@ -56,7 +58,10 @@ public class JspWFBaseProcessTypeController extends AbstractWFBaseProcessTypeCon
     }
 
     @PostMapping("/createOrUpdate")
-    public String createOrUpdate(@ModelAttribute WFBaseProcessType wfBaseProcessType){
+    public String createOrUpdate(@Valid @ModelAttribute WFBaseProcessType wfBaseProcessType, BindingResult bindingResult){
+        if (bindingResult.hasErrors())
+            return "workflow/wfBaseProcessTypes/wfBaseProcessType";
+
         if (wfBaseProcessType.isNew())
             super.create(wfBaseProcessType);
         else
