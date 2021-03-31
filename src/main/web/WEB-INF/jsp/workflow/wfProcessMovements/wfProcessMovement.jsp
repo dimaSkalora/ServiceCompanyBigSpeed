@@ -35,6 +35,7 @@
                         </td>
                         <td>
                             <form:input type="datetime-local" path="startDateTime"/>
+                            <form:errors path="startDateTime" cssStyle="color:red"/>
                         </td>
                     </tr>
                     <tr>
@@ -71,6 +72,7 @@
                         </td>
                         <td>
                             <form:input type="datetime-local" path="dateEdit"/>
+                            <form:errors path="dateEdit" cssStyle="color:red"/>
                         </td>
                     </tr>
                     <tr>
@@ -81,6 +83,7 @@
                         </td>
                         <td>
                             <form:input path="userEdit"/>
+                            <form:errors path="userEdit" cssStyle="color:red"/>
                         </td>
                         <td>
                             <form:label path="userId.id">
