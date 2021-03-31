@@ -9,11 +9,13 @@ import org.speed.big.company.service.model.workflow.WFProcess;
 import org.speed.big.company.service.model.workflow.WFProcessStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -111,7 +113,16 @@ public class JspWFProcessController extends AbstractWFProcessController{
     }
 
     @PostMapping("/createOrUpdate")
-    public String createOrUpdate(@ModelAttribute WFProcess wfProcess){
+    public String createOrUpdate(@Valid @ModelAttribute WFProcess wfProcess, BindingResult bindingResult,
+                                 Model model){
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("allWFPackages", super.getAllWFPackages());
+            model.addAttribute("allWFBaseProcesses", super.getAllWFBaseProcesses());
+            model.addAttribute("allWFProcessStatuses", super.getAllWFProcessStatuses());
+
+            return "workflow/wfProcesses/wfProcess";
+        }
+
         if (wfProcess.isNew())
             super.create(wfProcess);
         else

@@ -9,11 +9,13 @@ import org.speed.big.company.service.model.propertyeditor.workflow.WFProcessStat
 import org.speed.big.company.service.model.workflow.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -132,7 +134,18 @@ public class JspWFProcessMovementController extends AbstractWFProcessMovementCon
     }
 
     @PostMapping("/createOrUpdate")
-    public String createOrUpdate(@ModelAttribute WFProcessMovement wfProcessMovement){
+    public String createOrUpdate(@Valid @ModelAttribute WFProcessMovement wfProcessMovement, BindingResult bindingResult,
+                                 Model model){
+        if (bindingResult.hasErrors()){
+            model.addAttribute("allUsers", super.getAllUsers());
+            model.addAttribute("allWFPackages", super.getAllWFPackages());
+            model.addAttribute("allWFProcessStates", super.getAllWFProcessStates());
+            model.addAttribute("allWFProcesses", super.getAllWFProcesses());
+            model.addAttribute("allWFBaseProcesses", super.getAllWFBaseProcesses());
+
+            return "workflow/wfProcessMovements/wfProcessMovement";
+        }
+
         if (wfProcessMovement.isNew())
             super.create(wfProcessMovement);
         else

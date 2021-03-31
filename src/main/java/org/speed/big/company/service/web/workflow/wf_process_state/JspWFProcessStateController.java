@@ -5,10 +5,12 @@ import org.speed.big.company.service.model.workflow.WFGroup;
 import org.speed.big.company.service.model.workflow.WFProcessState;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import static org.speed.big.company.service.util.ParseUtil.parseInteger;
 import static org.speed.big.company.service.util.ParseUtil.parseString;
@@ -82,7 +84,15 @@ public class JspWFProcessStateController extends AbstractWFProcessStateControlle
     }
 
     @PostMapping("/createOrUpdate")
-    public String createOrUpdate(@ModelAttribute WFProcessState wfProcessState){
+    public String createOrUpdate(@Valid @ModelAttribute WFProcessState wfProcessState, BindingResult bindingResult,
+                                 Model model){
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("getAllRoles",super.getAllRoles());
+            model.addAttribute("getAllWFGroups",super.getAllWFGroups());
+
+            return "workflow/wfProcessStates/wfProcessState";
+        }
+
         if (wfProcessState.isNew())
             super.create(wfProcessState);
         else

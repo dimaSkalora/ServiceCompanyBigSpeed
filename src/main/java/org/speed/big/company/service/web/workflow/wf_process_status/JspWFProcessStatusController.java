@@ -3,10 +3,12 @@ package org.speed.big.company.service.web.workflow.wf_process_status;
 import org.speed.big.company.service.model.workflow.WFProcessStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import static org.speed.big.company.service.util.ParseUtil.parseInteger;
 import static org.speed.big.company.service.util.ParseUtil.parseString;
@@ -58,7 +60,10 @@ public class JspWFProcessStatusController extends AbstractWFProcessStatusControl
     }
 
     @PostMapping("/createOrUpdate")
-    public String createOrUpdate(@ModelAttribute WFProcessStatus wfProcessStatus){
+    public String createOrUpdate(@Valid @ModelAttribute WFProcessStatus wfProcessStatus, BindingResult bindingResult){
+        if (bindingResult.hasErrors())
+            return "workflow/wfProcessStatuses/wfProcessStatus";
+
         if (wfProcessStatus.isNew())
             super.create(wfProcessStatus);
         else
