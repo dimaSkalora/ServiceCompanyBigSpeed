@@ -35,6 +35,7 @@
                         </td>
                         <td>
                             <form:input path="name"/>
+                            <form:errors path="name" cssStyle="color:red"/>
                         </td>
                     </tr>
                     <tr>
@@ -45,6 +46,7 @@
                         </td>
                         <td>
                             <form:input path="description"/>
+                            <form:errors path="description" cssStyle="color:red"/>
                         </td>
                     </tr>
                     <tr>
