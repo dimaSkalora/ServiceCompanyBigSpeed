@@ -1,9 +1,9 @@
 package org.speed.big.company.service.model.workflow;
 
-import org.speed.big.company.service.model.AbstractBaseEntity;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @NamedQueries({
@@ -35,7 +35,8 @@ public class WFProcess extends WFAbstractBaseEntity {
     @NotNull
     @Column(name = "date_edit", nullable = false)
     private LocalDateTime dateEdit;
-    @NotNull
+    @NotBlank
+    @Size(min = 5, max = 50)
     @Column(name = "user_edit", nullable = false)
     private String userEdit;
     @ManyToOne(fetch = FetchType.LAZY)

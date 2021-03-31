@@ -1,10 +1,10 @@
 package org.speed.big.company.service.model.workflow;
 
-import org.speed.big.company.service.model.AbstractBaseEntity;
 import org.speed.big.company.service.model.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @NamedQueries({
     @NamedQuery(name = WFProcessState.DELETE, query = "delete from WFProcessState where id=:id"),
@@ -27,6 +27,7 @@ public class WFProcessState extends WFAbstractBaseEntity {
     public static final String ALL_SORTED = "WFProcessState.allSorted";
 
     @NotBlank
+    @Size(min = 5)
     @Column(nullable = false)
     private String name;
     @ManyToOne(fetch = FetchType.LAZY)

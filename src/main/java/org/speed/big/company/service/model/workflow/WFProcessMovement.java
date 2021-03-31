@@ -1,11 +1,11 @@
 package org.speed.big.company.service.model.workflow;
 
-import org.speed.big.company.service.model.AbstractBaseEntity;
 import org.speed.big.company.service.model.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @NamedQueries({
@@ -45,7 +45,6 @@ public class WFProcessMovement extends WFAbstractBaseEntity {
     private LocalDateTime startDateTime;
     @Column(name = "final_date_time")
     private LocalDateTime finalDateTime;
-    @NotNull
     @Column(name = "is_completed", nullable = false, columnDefinition = "bool default true")
     private boolean isCompleted;
     @Column(name = "description")
@@ -54,6 +53,7 @@ public class WFProcessMovement extends WFAbstractBaseEntity {
     @Column(name = "date_edit", nullable = false)
     private LocalDateTime dateEdit;
     @NotBlank
+    @Size(min = 5, max = 50)
     @Column(name = "user_edit", nullable = false)
     private String userEdit;
     @ManyToOne(fetch = FetchType.LAZY)
@@ -71,7 +71,6 @@ public class WFProcessMovement extends WFAbstractBaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wf_base_process_id", nullable = false)
     private WFBaseProcess wfBaseProcessId;
-    @NotNull
     @Column(name = "is_last", nullable = false)
     private boolean isLast;
 

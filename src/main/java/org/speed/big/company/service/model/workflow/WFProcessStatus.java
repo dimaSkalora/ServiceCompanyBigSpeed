@@ -1,9 +1,8 @@
 package org.speed.big.company.service.model.workflow;
 
-import org.speed.big.company.service.model.AbstractBaseEntity;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @NamedQueries({
         @NamedQuery(name = WFProcessStatus.DELETE, query = "delete from WFProcessStatus where id=:id"),
@@ -25,6 +24,7 @@ public class WFProcessStatus extends WFAbstractBaseEntity {
     public static final int ARCHIVE = 4;
 
     @NotBlank
+    @Size(min = 5)
     @Column(nullable = false)
     private String name;
 
