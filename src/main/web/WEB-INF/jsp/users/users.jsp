@@ -38,7 +38,7 @@
                 <c:forEach items="${users}" var="user">
                     <jsp:useBean id="user" scope="page" type="org.speed.big.company.service.model.User"/>
                     <tr>
-                        <td><a href="users/get/${user.id}"/><c:out value="${user.name}"/></td>
+                        <td><a href="users/getUserFromAllRoles/${user.id}"/><c:out value="${user.name}"/></td>
                         <td><c:out value="${user.email}"/></td>
                         <td><c:out value="${user.password}"/></td>
                         <td><c:out value="${user.phone}"/></td>
