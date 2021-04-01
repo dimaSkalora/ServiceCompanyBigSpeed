@@ -5,10 +5,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.List;
 
 @NamedQueries({
         @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
         @NamedQuery(name = User.ALL_SORTED, query = "SELECT u FROM User u ORDER BY u.name, u.email"),
+        @NamedQuery(name = User.GET_FROM_ALL_ROLES, query = "SELECT DISTINCT u FROM User u join fetch u.roleList where u.id=:id "),
         @NamedQuery(name = User.BETWEEN_REGISTERED, query = "SELECT u FROM User u " +
                 " where u.registered between :startDate and :endDate " +
                 " ORDER BY u.registered")
@@ -21,6 +23,7 @@ public class User extends AbstractBaseEntity{
     public static final String DELETE = "User.delete";
     public static final String ALL_SORTED = "User.getAllSorted";
     public static final String BETWEEN_REGISTERED = "User.betweenRegistered";
+    public static final String GET_FROM_ALL_ROLES = "User.getFromAllRoles";
 
     @NotBlank
     @Size(min = 3, max = 100)
@@ -48,6 +51,12 @@ public class User extends AbstractBaseEntity{
 
     @Column(name = "enabled", nullable = false, columnDefinition = "bool default true")
     private boolean enabled;        //true - активный, false - не активный
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable (name="user_roles",
+            joinColumns=@JoinColumn (name="user_id"),
+            inverseJoinColumns=@JoinColumn(name="role_id"))
+    List<Role> roleList;
 
     public User() {
     }
@@ -122,6 +131,14 @@ public class User extends AbstractBaseEntity{
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
     }
 
     @Override
