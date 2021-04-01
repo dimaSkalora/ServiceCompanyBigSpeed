@@ -10,6 +10,7 @@ public interface UserService {
     User create(User user);
     User update(User user) throws NotFoundException;//NotFoundException - Об'экт не обнаружен
     User get(int id) throws NotFoundException;
+    User getFromAllRoles(int id) throws NotFoundException;
     boolean delete(int id) throws NotFoundException;
     List<User> getAll();
     List<User> getBetweenRegistered(LocalDate startDate, LocalDate endDate);

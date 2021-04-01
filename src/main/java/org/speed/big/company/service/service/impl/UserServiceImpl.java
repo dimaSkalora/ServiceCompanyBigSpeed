@@ -45,6 +45,12 @@ public class UserServiceImpl  implements UserService {
     }
 
     @Override
+    public User getFromAllRoles(int id) throws NotFoundException {
+        //Проверка - не найден с идентификатором
+        return checkNotFoundWithId(userRepository.getFromAllRoles(id),id);
+    }
+
+    @Override
     public boolean delete(int id) throws NotFoundException {
         //Проверка - не найден с идентификатором
         return checkNotFoundWithId(Boolean.valueOf(userRepository.delete(id)),id);
