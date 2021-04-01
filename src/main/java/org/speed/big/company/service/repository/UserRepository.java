@@ -8,6 +8,7 @@ import java.util.List;
 public interface UserRepository {
     User save(User user);
     User get(int id);
+    User getFromAllRoles(int id);
     boolean delete(int id);
     List<User> getAll();
     List<User> getBetweenRegistered(LocalDate startDate, LocalDate endDate);

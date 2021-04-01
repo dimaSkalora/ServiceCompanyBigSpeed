@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.speed.big.company.service.model.User;
 import org.speed.big.company.service.repository.UserRepository;
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -44,6 +45,17 @@ public class JpaUserRepositoryImpl implements UserRepository {
     @Override
     public User get(int id) {
         return em.find(User.class, id);
+    }
+
+    @Override
+    public User getFromAllRoles(int id) {
+        List<User> list = em.createNamedQuery(User.GET_FROM_ALL_ROLES)
+                .setParameter("id",id)
+                .getResultList();
+
+        User user = DataAccessUtils.singleResult(list);
+
+        return user;
     }
 
     @Override
@@ -157,4 +169,5 @@ public class JpaUserRepositoryImpl implements UserRepository {
 
         return list;
     }
+
 }

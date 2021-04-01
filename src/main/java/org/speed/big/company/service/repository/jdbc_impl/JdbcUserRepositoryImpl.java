@@ -194,4 +194,9 @@ public class JdbcUserRepositoryImpl implements UserRepository {
 
         return list;
     }
+
+    @Override
+    public User getFromAllRoles(int id) {
+        return null;
+    }
 }
