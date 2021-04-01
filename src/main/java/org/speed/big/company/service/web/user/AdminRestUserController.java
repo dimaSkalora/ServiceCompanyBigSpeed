@@ -44,6 +44,15 @@ public class AdminRestUserController extends AbstractUserController{
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping(value = "/getFromAllRoles/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> getUserFromAllRoles(@PathVariable("id") int id) {
+        User user = super.getFromAllRoles(id);
+
+        return user != null
+                ? new ResponseEntity<>(user, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     //consumes - Типы расходных материалов отображаемого запроса, сужающие первичное отображение.
     //consumes - Какой формат получаем(от клиента)
     //produces - Какой формат отправляем клиенту

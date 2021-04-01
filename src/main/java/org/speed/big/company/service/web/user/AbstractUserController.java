@@ -35,6 +35,11 @@ public abstract class AbstractUserController {
         return userService.get(id);
     }
 
+    public User getFromAllRoles(int id){
+        log.info("getFromAllRoles {}",id);
+        return userService.getFromAllRoles(id);
+    }
+
     public boolean delete(int id){
         log.info("delete {}",id);
         return userService.delete(id);

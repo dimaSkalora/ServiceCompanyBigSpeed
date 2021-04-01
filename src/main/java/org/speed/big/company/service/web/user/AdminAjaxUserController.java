@@ -30,6 +30,13 @@ public class AdminAjaxUserController extends AbstractUserController{
             return user;
         }
 
+        @GetMapping(value = "/getFromAllRoles/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+        public User getFromAllRoles(@PathVariable("id") int id) {
+            User user = super.getFromAllRoles(id);
+
+            return user;
+        }
+
         @PostMapping
         public ResponseEntity<String> createOrUpdate(User user) {
             if (user.isNew())

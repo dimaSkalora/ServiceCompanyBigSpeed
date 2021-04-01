@@ -101,6 +101,14 @@ public class JspUserController extends AbstractUserController{
         return "redirect:/users";
     }
 
+    @RequestMapping(value = "/getUserFromAllRoles/{id}", method = RequestMethod.GET)
+    public String getUserFromAllRoles(@PathVariable int id, Model model){
+        User userFromAllRoles = super.getFromAllRoles(id);
+        model.addAttribute("userFromAllRoles",userFromAllRoles);
+
+        return "users/userFromAllRoles";
+    }
+
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     public String getUser(@PathVariable int id, Model model){
         User user = super.get(id);
