@@ -9,6 +9,7 @@ public interface RoleService {
     Role create(Role role);
     Role update(Role role) throws NotFoundException;//NotFoundException - Об'экт не обнаружен
     Role get(int id) throws NotFoundException;
+    Role getFromAllUsers(int id) throws NotFoundException;
     boolean delete(int id) throws NotFoundException;
     List<Role> getAll();
     List<Role> filter(Role role);

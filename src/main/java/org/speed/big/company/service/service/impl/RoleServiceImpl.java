@@ -44,6 +44,12 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public Role getFromAllUsers(int id) throws NotFoundException {
+        //Проверка - не найден с идентификатором
+        return checkNotFoundWithId(roleRepository.getFromAllUsers(id),id);
+    }
+
+    @Override
     public boolean delete(int id) throws NotFoundException {
         return checkNotFoundWithId(Boolean.valueOf(roleRepository.delete(id)),id);
     }
