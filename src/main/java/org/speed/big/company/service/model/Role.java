@@ -3,11 +3,14 @@ package org.speed.big.company.service.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @NamedQueries({
         @NamedQuery(name = Role.DELETE, query = "DELETE from Role r where r.id=:id"),
         //@NamedQuery(name = Role.GET, query = "select r from Role r where r.id=:id"),
         @NamedQuery(name = Role.GET, query = "select r from Role r join fetch r.roleTypeId where r.id=:id"),
+        @NamedQuery(name = Role.GET_FROM_ALL_USERS, query = "select DISTINCT r from Role r join fetch r.roleTypeId " +
+                " join fetch r.userList where r.id=:id"),
         //@NamedQuery(name = Role.ALL_SORTED, query = "select r from Role r order by r.name")
         @NamedQuery(name = Role.ALL_SORTED, query = "select r from Role r join fetch r.roleTypeId order by r.name")
 })
@@ -18,6 +21,7 @@ public class Role extends AbstractBaseEntity{
 
     public static final String DELETE = "Role.delete";
     public static final String GET = "Role.get";
+    public static final String GET_FROM_ALL_USERS = "Role.getFromAllUsers";
     public static final String ALL_SORTED = "Role.allSorted";
 
     @NotBlank
@@ -25,12 +29,18 @@ public class Role extends AbstractBaseEntity{
     @Column(name = "name", nullable = false)
     private String name;
     @NotBlank
-    @Size(min = 5)
+    @Size(min = 5, max = 250)
     @Column(name = "description", nullable = false)
     private String description;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_type_id", nullable = false)
     private RoleType roleTypeId;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable (name="user_roles",
+            joinColumns=@JoinColumn (name="role_id"),
+            inverseJoinColumns=@JoinColumn(name="user_id"))
+    private List<User> userList;
 
     public Role() {
     }
@@ -72,12 +82,19 @@ public class Role extends AbstractBaseEntity{
         this.roleTypeId = roleTypeId;
     }
 
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
+
     @Override
     public String toString() {
         return "Role{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", roleTypeId=" + roleTypeId +
                 ", id=" + id +
                 '}';
     }
