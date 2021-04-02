@@ -7,6 +7,7 @@ import java.util.List;
 public interface RoleRepository {
     Role save(Role role);
     Role get(int id);
+    Role getFromAllUsers(int id);
     boolean delete(int id);
     List<Role> getAll();
     List<Role> filter(Role role);

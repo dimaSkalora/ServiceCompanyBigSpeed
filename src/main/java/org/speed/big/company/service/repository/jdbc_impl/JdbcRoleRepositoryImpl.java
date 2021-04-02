@@ -89,6 +89,11 @@ public class JdbcRoleRepositoryImpl implements RoleRepository {
         return DataAccessUtils.singleResult(list);//Возвращает один объект результата из данной коллекции.
     }
 
+    @Override
+    public Role getFromAllUsers(int id) {
+        return null;
+    }
+
     @Transactional
     @Override
     public boolean delete(int id) {

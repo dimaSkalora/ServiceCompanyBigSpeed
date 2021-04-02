@@ -2,6 +2,7 @@ package org.speed.big.company.service.repository.jpa;
 
 import org.speed.big.company.service.model.Role;
 import org.speed.big.company.service.repository.RoleRepository;
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +39,18 @@ public class JpaRoleRepositoryImpl implements RoleRepository {
         return role;
     }
 
-   @Transactional
+    @Override
+    public Role getFromAllUsers(int id) {
+        List<Role> list = entityManager.createNamedQuery(Role.GET_FROM_ALL_USERS, Role.class)
+                .setParameter("id",id)
+                .getResultList();
+
+        Role role = DataAccessUtils.singleResult(list);
+
+        return role;
+    }
+
+    @Transactional
     @Override
     public boolean delete(int id) {
         // getReference - выбросить  EntityNotFoundException если не найдено (загружаеть часть полей)
