@@ -68,7 +68,7 @@
                     </fieldset>
 
                     <footer>
-                        <a href="/ServiceCompanyBigSpeed/roles" class="btnLogin"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/roles" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>
@@ -104,6 +104,32 @@
                     </footer>
                 </form:form>
             </div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Users</h1>
+        <div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th><spring:message code="user.name"/></th>
+                    <th><spring:message code="user.email"/></th>
+                    <th><spring:message code="user.phone"/></th>
+                    <th><spring:message code="user.registered"/></th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${roleData.userList}" var="user">
+                    <jsp:useBean id="user" scope="page" type="org.speed.big.company.service.model.User"/>
+                    <tr>
+                        <td><a href="users/getUserFromAllRoles/${user.id}"/><c:out value="${user.name}"/></td>
+                        <td><c:out value="${user.email}"/></td>
+                        <td><c:out value="${user.phone}"/></td>
+                        <td><c:out value="${user.registered}"/></td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
