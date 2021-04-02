@@ -40,6 +40,11 @@ public abstract class AbstractRoleController {
         return roleService.get(id);
     }
 
+    public Role getFromAllUsers(int id){
+        log.info("getFromAllUsers {}",id);
+        return roleService.getFromAllUsers(id);
+    }
+
     public boolean delete(int id){
         log.info("delete {}",id);
         return roleService.delete(id);

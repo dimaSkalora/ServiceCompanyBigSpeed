@@ -32,6 +32,15 @@ public class RestRoleController extends AbstractRoleController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping(value = "/getFromAllUsers/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Role> getRoleFromAllUsers(@PathVariable int id) {
+        Role role = super.getFromAllUsers(id);
+
+        return role != null
+                ? new ResponseEntity<>(role, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     //consumes - Какой формат получаем(от клиента)
     //produces - Какой формат отправляем клиенту
     //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.

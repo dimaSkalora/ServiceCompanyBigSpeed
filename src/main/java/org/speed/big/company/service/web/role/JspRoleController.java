@@ -109,7 +109,7 @@ public class JspRoleController extends AbstractRoleController{
 
     @GetMapping("/getData/{id}")
     public String getData(@PathVariable int id, Model model){
-        Role role = super.get(id);
+        Role role = super.getFromAllUsers(id);
         model.addAttribute("roleData", role);
         model.addAttribute("rRoleType", super.getRoleType(role.getRoleTypeId().getId()));
 

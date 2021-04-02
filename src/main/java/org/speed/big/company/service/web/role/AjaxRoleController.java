@@ -19,8 +19,13 @@ public class AjaxRoleController extends AbstractRoleController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Role getRole(@PathVariable int id) {
+    public Role get(@PathVariable int id) {
         return super.get(id);
+    }
+
+    @GetMapping(value = "/getFromAllUsers/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Role getFromAllUsers(@PathVariable int id) {
+        return super.getFromAllUsers(id);
     }
 
     @PostMapping
