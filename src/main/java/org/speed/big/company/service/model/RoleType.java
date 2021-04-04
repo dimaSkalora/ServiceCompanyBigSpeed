@@ -21,7 +21,7 @@ public class RoleType extends AbstractBaseEntity{
     public static final Integer WEB_WORKFLOW = 2;
 
     @NotBlank
-    @Size(min = 4)
+    @Size(min = 4, max = 250)
     @Column(nullable = false)
     private String name;
     @OneToMany(mappedBy = "roleTypeId")
