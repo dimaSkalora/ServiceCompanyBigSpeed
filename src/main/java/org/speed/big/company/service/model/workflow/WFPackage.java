@@ -27,31 +27,31 @@ public class WFPackage extends WFAbstractBaseEntity {
     public static final String ALL_SORTED = "WFPackage.allSorted";
 
     @NotBlank
-    @Size(min = 5)
+    @Size(min = 5, max = 250)
     @Column(nullable = false)
     private String name;
     @NotNull
     @Column(name = "date_registration", nullable = false)
     private LocalDate dateRegistration;
     @NotBlank
-    @Size(min = 5)
+    @Size(min = 5, max = 250)
     @Column(name = "customer_name", nullable = false)
     private String customerName;
     @NotBlank
-    @Size(min = 10)
+    @Size(min = 10, max = 250)
     @Column(name = "customer_address", nullable = false)
     private String customerAddress;
     @Column(name = "customer_address_jur")
     private String customerAddressJur;
     @NotBlank
-    @Size(min = 5)
+    @Size(min = 5, max = 20)
     @Column(name = "customer_phone", nullable = false)
     private String customerPhone;
     @Email
     @Column(name = "customer_email")
     private String customerEmail;
     @NotBlank
-    @Size(min = 6)
+    @Size(min = 6, max = 15)
     @Column(name = "contract_number", nullable = false)
     private String contractNumber;
     private String description;

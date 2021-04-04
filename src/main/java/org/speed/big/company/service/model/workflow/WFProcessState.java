@@ -27,7 +27,7 @@ public class WFProcessState extends WFAbstractBaseEntity {
     public static final String ALL_SORTED = "WFProcessState.allSorted";
 
     @NotBlank
-    @Size(min = 5)
+    @Size(min = 5, max = 250)
     @Column(nullable = false)
     private String name;
     @ManyToOne(fetch = FetchType.LAZY)

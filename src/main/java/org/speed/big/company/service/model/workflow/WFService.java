@@ -18,7 +18,7 @@ public class WFService extends WFAbstractBaseEntity {
     public static final String ALL_SORTED = "WFService.allSorted";
 
     @NotBlank
-    @Size(min = 5)
+    @Size(min = 5, max = 250)
     @Column(nullable = false)
     private String name;
 
