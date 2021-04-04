@@ -2,6 +2,13 @@ package org.speed.big.company.service.util;
 
 import org.speed.big.company.service.HasId;
 import org.speed.big.company.service.util.exception.NotFoundException;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ValidationUtil {
 
@@ -59,4 +66,19 @@ public class ValidationUtil {
         }
         return result;
     }
+
+    //Обработка для @Valid(если не проходить валидацию то
+    //выбрасывает MethodArgumentNotValidException)
+    public static Map<String, String> handlerValidationExceptions(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+
+        errors.put("timestamp", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+        ex.getBindingResult().getAllErrors().forEach(error -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
+    }
+
 }
