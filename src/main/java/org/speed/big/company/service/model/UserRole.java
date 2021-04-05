@@ -32,7 +32,7 @@ public class UserRole extends AbstractBaseEntity{
     @Column(name = "date_time", nullable = false)
     private LocalDateTime dateTime;
     @NotBlank
-    @Size(min = 5)
+    @Size(min = 5, max = 500)
     @Column(name = "comment", nullable = false)
     private String comment;
 
