@@ -2,13 +2,18 @@ package org.speed.big.company.service.web.user_role;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 import org.speed.big.company.service.model.UserRole;
+import org.speed.big.company.service.util.ValidationUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(RestUserRoleController.REST_URL)
@@ -35,7 +40,7 @@ public class RestUserRoleController extends AbstractUserRoleController{
     //produces - Какой формат отправляем клиенту
     //RequestBody - Аннотации, указывающие параметр метода, должны быть привязаны к телу веб-запроса.
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserRole> createWithLocation(@RequestBody UserRole userRole) {
+    public ResponseEntity<UserRole> createWithLocation(@Valid @RequestBody UserRole userRole) {
         UserRole created = super.create(userRole);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -49,7 +54,7 @@ public class RestUserRoleController extends AbstractUserRoleController{
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@RequestBody UserRole userRole){
+    public void update(@Valid @RequestBody UserRole userRole){
         super.update(userRole);
     }
 
@@ -70,5 +75,13 @@ public class RestUserRoleController extends AbstractUserRoleController{
         return filter != null
                 ? new ResponseEntity<>(filter,HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    //Обработка для @Valid(если не проходить валидацию то
+    //выбрасывает MethodArgumentNotValidException)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        return ValidationUtil.handlerValidationExceptions(ex);
     }
 }
