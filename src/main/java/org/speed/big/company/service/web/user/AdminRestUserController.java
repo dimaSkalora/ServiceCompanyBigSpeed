@@ -1,16 +1,20 @@
 package org.speed.big.company.service.web.user;
 
 import org.speed.big.company.service.model.User;
+import org.speed.big.company.service.util.ValidationUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
-@RestController()
+@RestController
 @RequestMapping(org.speed.big.company.service.web.user.AdminRestUserController.REST_URL)
 public class AdminRestUserController extends AbstractUserController{
 
@@ -61,7 +65,7 @@ public class AdminRestUserController extends AbstractUserController{
     // от типа содержимого запроса. Необязательно, автоматическая проверка может быть применена
     // путем аннотации аргумента с помощью @Valid.
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> createWithLocation(@RequestBody User user) {
+    public ResponseEntity<User> createWithLocation(@Valid @RequestBody User user) {
         User created = super.create(user);
 
 //        HttpHeaders httpHeaders = new HttpHeaders();
@@ -77,7 +81,7 @@ public class AdminRestUserController extends AbstractUserController{
 
     //consumes - Какой формат получаем(от клиента)
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public User update(@RequestBody User user) {
+    public User update(@Valid @RequestBody User user) {
         return super.update(user);
     }
 
@@ -108,5 +112,14 @@ public class AdminRestUserController extends AbstractUserController{
     @GetMapping(value = "/text2",produces = MediaType.APPLICATION_JSON_VALUE)
     public String testUTF2() {
         return "Русский текст";
+    }
+
+
+    //Обработка для @Valid(если не проходить валидацию то
+    //выбрасывает MethodArgumentNotValidException)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        return ValidationUtil.handlerValidationExceptions(ex);
     }
 }
