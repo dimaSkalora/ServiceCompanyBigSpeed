@@ -1,14 +1,17 @@
 package org.speed.big.company.service.web.workflow.wf_base_process_item;
 
 import org.speed.big.company.service.model.workflow.WFBaseProcessItem;
+import org.speed.big.company.service.util.ValidationUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(RestWFBaseProcessItemController.REST_URL)
@@ -73,4 +76,11 @@ public class RestWFBaseProcessItemController extends AbstractWFBaseProcessItemCo
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+ /*   //Обработка для @Valid(если не проходить валидацию то
+    //выбрасывает MethodArgumentNotValidException)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        return ValidationUtil.handlerValidationExceptions(ex);
+    }*/
 }
