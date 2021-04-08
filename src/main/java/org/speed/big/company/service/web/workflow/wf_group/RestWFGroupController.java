@@ -1,14 +1,18 @@
 package org.speed.big.company.service.web.workflow.wf_group;
 
 import org.speed.big.company.service.model.workflow.WFGroup;
+import org.speed.big.company.service.util.ValidationUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(RestWFGroupController.REST_URL)
@@ -34,7 +38,7 @@ public class RestWFGroupController extends AbstractWFGroupController{
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WFGroup> createWithLocation(@RequestBody WFGroup wfGroup){
+    public ResponseEntity<WFGroup> createWithLocation(@Valid @RequestBody WFGroup wfGroup){
         WFGroup created = super.create(wfGroup);
 
         URI uriOfResources = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -49,7 +53,7 @@ public class RestWFGroupController extends AbstractWFGroupController{
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WFGroup> updateWFG(@RequestBody WFGroup wfGroup){
+    public ResponseEntity<WFGroup> updateWFG(@Valid @RequestBody WFGroup wfGroup){
         WFGroup updated = super.update(wfGroup);
 
         return wfGroup != null
@@ -72,4 +76,12 @@ public class RestWFGroupController extends AbstractWFGroupController{
                 ? new ResponseEntity<>(list,HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+/*    //Обработка для @Valid(если не проходить валидацию то
+    //выбрасывает MethodArgumentNotValidException)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        return ValidationUtil.handlerValidationExceptions(ex);
+    }*/
 }
