@@ -1,14 +1,18 @@
 package org.speed.big.company.service.web.workflow.wf_service;
 
 import org.speed.big.company.service.model.workflow.WFService;
+import org.speed.big.company.service.util.ValidationUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(RestWFServiceController.REST_URL)
@@ -30,7 +34,7 @@ public class RestWFServiceController extends AbstractWFServiceController{
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WFService> createWithLocation(@RequestBody WFService wfService){
+    public ResponseEntity<WFService> createWithLocation(@Valid @RequestBody WFService wfService){
         WFService created = super.create(wfService);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -44,7 +48,7 @@ public class RestWFServiceController extends AbstractWFServiceController{
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WFService> updateWFS(@RequestBody WFService wfService){
+    public ResponseEntity<WFService> updateWFS(@Valid@RequestBody WFService wfService){
         WFService update = super.update(wfService);
 
         return update != null
@@ -67,4 +71,12 @@ public class RestWFServiceController extends AbstractWFServiceController{
                 ? new ResponseEntity<>(list, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+/*    //Обработка для @Valid(если не проходить валидацию то
+    //выбрасывает MethodArgumentNotValidException)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        return ValidationUtil.handlerValidationExceptions(ex);
+    }*/
 }
