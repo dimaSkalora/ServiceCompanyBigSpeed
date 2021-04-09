@@ -1,14 +1,18 @@
 package org.speed.big.company.service.web.workflow.wf_process_status;
 
 import org.speed.big.company.service.model.workflow.WFProcessStatus;
+import org.speed.big.company.service.util.ValidationUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(RestWFProcessStatusController.REST_URL)
@@ -34,7 +38,7 @@ public class RestWFProcessStatusController extends AbstractWFProcessStatusContro
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WFProcessStatus> createWithLocation(@RequestBody WFProcessStatus wfProcessStatus){
+    public ResponseEntity<WFProcessStatus> createWithLocation(@Valid @RequestBody WFProcessStatus wfProcessStatus){
         WFProcessStatus created = super.create(wfProcessStatus);
 
         URI uriOfResources = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -47,7 +51,7 @@ public class RestWFProcessStatusController extends AbstractWFProcessStatusContro
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WFProcessStatus> updateWFPS(@RequestBody WFProcessStatus wfProcessStatus){
+    public ResponseEntity<WFProcessStatus> updateWFPS(@Valid @RequestBody WFProcessStatus wfProcessStatus){
         WFProcessStatus updated = super.update(wfProcessStatus);
 
         return updated != null
@@ -69,5 +73,13 @@ public class RestWFProcessStatusController extends AbstractWFProcessStatusContro
         return list != null
                 ? new ResponseEntity<>(list,HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    //Обработка для @Valid(если не проходить валидацию то
+    //выбрасывает MethodArgumentNotValidException)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        return ValidationUtil.handlerValidationExceptions(ex);
     }
 }
