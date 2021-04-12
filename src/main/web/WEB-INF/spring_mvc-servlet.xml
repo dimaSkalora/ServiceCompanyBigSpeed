@@ -7,14 +7,31 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+    <bean class="org.speed.big.company.service.web.json.JacksonObjectMapper" id="objectMapper" factory-method="getMapper"/>
+
     <!-- Enables the Spring MVC @Controller programming model (@RequestMapping, @Controller, @RequestBody, @ResponseBody)-->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper" ref="objectMapper"/>
+            </bean>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
     <!--объявляет поддержку общих аннотаций , таких как @Resource, @Required, @Autowired, @PostConstruct и так далее.-->
     <context:annotation-config />
 
     <!--<import resource="spring/spring_web_db_jdbc.xml"/>-->
     <import resource="spring/spring_web_db_jpa_hibernate.xml"/>
+    <!--<import resource="spring/spring_web_db_data_jpa.xml"/>-->
     <!--<import resource="spring/spring_web_db_hibernate.xml"/>-->
 
     <import resource="spring/spring_web_app.xml"/>
