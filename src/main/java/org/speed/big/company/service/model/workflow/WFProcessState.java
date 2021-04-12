@@ -80,4 +80,15 @@ public class WFProcessState extends WFAbstractBaseEntity {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "WFProcessState{" +
+                "name='" + name + '\'' +
+                ", roleId=" + roleId +
+                ", wfGroupId=" + wfGroupId +
+                ", description='" + description + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }
