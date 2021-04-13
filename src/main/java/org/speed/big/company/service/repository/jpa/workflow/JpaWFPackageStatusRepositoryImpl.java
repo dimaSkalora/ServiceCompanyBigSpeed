@@ -1,7 +1,7 @@
 package org.speed.big.company.service.repository.jpa.workflow;
 
 import org.speed.big.company.service.model.workflow.WFPackageStatus;
-import org.speed.big.company.service.repository.WFPackageStatusRepository;
+import org.speed.big.company.service.repository.workflow.WFPackageStatusRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

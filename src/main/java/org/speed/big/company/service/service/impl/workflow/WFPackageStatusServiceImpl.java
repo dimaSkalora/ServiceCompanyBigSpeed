@@ -1,11 +1,10 @@
 package org.speed.big.company.service.service.impl.workflow;
 
 import org.speed.big.company.service.model.workflow.WFPackageStatus;
-import org.speed.big.company.service.repository.WFPackageStatusRepository;
+import org.speed.big.company.service.repository.workflow.WFPackageStatusRepository;
 import org.speed.big.company.service.service.workflow.WFPackageStatusService;
 import org.speed.big.company.service.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 

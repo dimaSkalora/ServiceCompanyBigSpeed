@@ -1,8 +1,8 @@
 package org.speed.big.company.service.repository.jdbc_impl.workflow;
 
 import org.speed.big.company.service.model.workflow.WFPackageStatus;
-import org.speed.big.company.service.repository.WFPackageStatusRepository;
 import org.speed.big.company.service.repository.jdbc_impl.row_mapper.workflow.WFPackageStatusRowMapper;
+import org.speed.big.company.service.repository.workflow.WFPackageStatusRepository;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
