@@ -1,5 +1,8 @@
 package org.speed.big.company.service.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,6 +19,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "user_roles", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id","role_id"},
         name = "ur_uid_rid_unique_idx"))
+//@JsonIgnoreProperties(ignoreUnknown = false)
+//@Proxy(lazy = false)
 public class UserRole extends AbstractBaseEntity{
 
     public static final String DELETE = "UserRole.delete";

@@ -1,5 +1,8 @@
 package org.speed.big.company.service.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -12,6 +15,8 @@ import java.util.List;
 )
 @Entity
 @Table(name = "role_type")
+//@JsonIgnoreProperties(ignoreUnknown = false)
+//@Proxy(lazy = false)
 public class RoleType extends AbstractBaseEntity{
 
     public static final String DELETE = "RoleType.delete";

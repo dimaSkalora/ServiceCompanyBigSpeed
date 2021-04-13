@@ -1,5 +1,7 @@
 package org.speed.big.company.service.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -18,6 +20,8 @@ import java.util.List;
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx"),
         @UniqueConstraint(columnNames = "phone", name = "users_unique_phone_idx")})
+//@JsonIgnoreProperties(ignoreUnknown = false)
+//@Proxy(lazy = false)
 public class User extends AbstractBaseEntity{
 
     public static final String DELETE = "User.delete";

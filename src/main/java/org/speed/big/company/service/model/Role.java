@@ -1,5 +1,8 @@
 package org.speed.big.company.service.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -17,6 +20,8 @@ import java.util.List;
 @Entity
 @Table(name = "roles", uniqueConstraints = @UniqueConstraint(columnNames = {"name", "role_type_id"},
                         name = "roles_unique_name_role_type_idx"))
+//@JsonIgnoreProperties(ignoreUnknown = false)
+//@Proxy(lazy = false)
 public class Role extends AbstractBaseEntity{
 
     public static final String DELETE = "Role.delete";
@@ -36,6 +41,7 @@ public class Role extends AbstractBaseEntity{
     @JoinColumn(name = "role_type_id", nullable = false)
     private RoleType roleTypeId;
 
+    //@JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable (name="user_roles",
             joinColumns=@JoinColumn (name="role_id"),
@@ -95,6 +101,7 @@ public class Role extends AbstractBaseEntity{
         return "Role{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", roleTypeId=" + roleTypeId +
                 ", id=" + id +
                 '}';
     }
