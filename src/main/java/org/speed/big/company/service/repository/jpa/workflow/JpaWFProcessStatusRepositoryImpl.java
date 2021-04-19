@@ -1,6 +1,5 @@
 package org.speed.big.company.service.repository.jpa.workflow;
 
-import org.speed.big.company.service.model.workflow.WFBaseProcess;
 import org.speed.big.company.service.model.workflow.WFProcessStatus;
 import org.speed.big.company.service.repository.workflow.WFProcessStatusRepository;
 import org.springframework.stereotype.Repository;
@@ -66,7 +65,7 @@ public class JpaWFProcessStatusRepositoryImpl implements WFProcessStatusReposito
 
     @Override
     public List<WFProcessStatus> filter(WFProcessStatus wfProcessStatus) {
-        String queryFilter = "select wfps from WFBaseProcess wfps ";
+        String queryFilter = "select wfps from WFProcessStatus wfps ";
         int paramCount=0;
         List<WFProcessStatus> list;
 
