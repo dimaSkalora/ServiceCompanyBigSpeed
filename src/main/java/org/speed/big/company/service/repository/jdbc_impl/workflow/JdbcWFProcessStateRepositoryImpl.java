@@ -137,4 +137,9 @@ public class JdbcWFProcessStateRepositoryImpl implements WFProcessStateRepositor
 
         return list;
     }
+
+    @Override
+    public List<WFProcessState> getByRoleId(int roleId) {
+        return null;
+    }
 }

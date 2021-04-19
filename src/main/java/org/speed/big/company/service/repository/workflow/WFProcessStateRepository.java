@@ -10,4 +10,5 @@ public interface WFProcessStateRepository {
     boolean delete(int id);
     List<WFProcessState> getAll();
     List<WFProcessState> filter(WFProcessState wfProcessState);
+    List<WFProcessState> getByRoleId(int roleId);
 }

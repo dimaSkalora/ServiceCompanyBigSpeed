@@ -1,5 +1,6 @@
 package org.speed.big.company.service.repository.jpa.workflow;
 
+import org.speed.big.company.service.model.workflow.WFProcess;
 import org.speed.big.company.service.model.workflow.WFProcessState;
 import org.speed.big.company.service.repository.workflow.WFProcessStateRepository;
 import org.springframework.stereotype.Repository;
@@ -116,6 +117,19 @@ public class JpaWFProcessStateRepositoryImpl implements WFProcessStateRepository
             query.setParameter("description",wfProcessState.getDescription());
 
         list = query.getResultList();
+
+        return list;
+    }
+
+    @Override
+    public List<WFProcessState> getByRoleId(int roleId) {
+        String queryGetByRoleId = "select wfpstate from WFProcessState wfpstate\n" +
+                " join fetch wfpstate.roleId join fetch wfpstate.wfGroupId \n" +
+                " where wfpstate.roleId=:roleId";
+
+        List<WFProcessState> list = (List<WFProcessState>) entityManager.createQuery(queryGetByRoleId, WFProcessState.class)
+                .setParameter("roleId",roleId)
+                .getSingleResult();
 
         return list;
     }
