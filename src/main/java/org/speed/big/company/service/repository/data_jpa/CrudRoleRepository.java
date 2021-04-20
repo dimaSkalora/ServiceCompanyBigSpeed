@@ -22,12 +22,15 @@ public interface CrudRoleRepository extends JpaRepository<Role, Integer> {
     @Query("DELETE FROM Role r WHERE r.id=:id")
     int delete(@Param("id") int id);
 
+/*    @Query("SELECT r FROM Role r JOIN FETCH r.roleTypeId WHERE r.id=:id")
+    Optional<Role> findById(@Param("id") int id);*/
     @Override
     Optional<Role> findById(Integer id);
 
     @Query("SELECT DISTINCT r FROM Role r JOIN FETCH r.userList WHERE r.id=:id")
     Role findFromAllUsers(@Param("id") int id);
 
+    @Query("SELECT r FROM Role r JOIN FETCH r.roleTypeId ")
     @Override
     List<Role> findAll(Sort sort);
 

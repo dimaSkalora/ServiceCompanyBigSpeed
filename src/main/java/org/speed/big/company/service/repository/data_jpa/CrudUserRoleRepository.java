@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Transactional(readOnly = true)
 public interface CrudUserRoleRepository extends JpaRepository<UserRole, Integer> {
@@ -21,6 +22,11 @@ public interface CrudUserRoleRepository extends JpaRepository<UserRole, Integer>
     @Query("DELETE FROM UserRole ur WHERE ur.id=:id")
     int delete(@Param("id") int id);
 
+    @Query("SELECT ur FROM UserRole ur " +
+            " JOIN FETCH ur.userId JOIN FETCH ur.roleId WHERE ur.id=:id")
+    Optional<UserRole> findById(@Param("id") int id);
+
+    @Query("SELECT ur FROM UserRole ur JOIN FETCH ur.userId JOIN FETCH ur.roleId")
     @Override
     List<UserRole> findAll(Sort sort);
 
