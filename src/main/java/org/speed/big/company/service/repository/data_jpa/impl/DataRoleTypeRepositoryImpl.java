@@ -3,7 +3,6 @@ package org.speed.big.company.service.repository.data_jpa.impl;
 import org.speed.big.company.service.model.RoleType;
 import org.speed.big.company.service.repository.RoleTypeRepository;
 import org.speed.big.company.service.repository.data_jpa.CrudRoleTypeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
@@ -15,11 +14,14 @@ import java.util.List;
 @Repository
 public class DataRoleTypeRepositoryImpl implements RoleTypeRepository {
 
-    //@Autowired
-    private CrudRoleTypeRepository crudRoleTypeRepository;
+    private final CrudRoleTypeRepository crudRoleTypeRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    public DataRoleTypeRepositoryImpl(CrudRoleTypeRepository crudRoleTypeRepository) {
+        this.crudRoleTypeRepository = crudRoleTypeRepository;
+    }
 
     @Override
     public RoleType save(RoleType roleType) {
