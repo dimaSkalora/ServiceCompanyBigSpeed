@@ -26,6 +26,9 @@ public interface CrudWFBaseProcessItemRepository extends JpaRepository<WFBasePro
     @Override
     Optional<WFBaseProcessItem> findById(Integer id);
 
+    @Query("select wfbpi from WFBaseProcessItem wfbpi " +
+            " join fetch wfbpi.stateFromId join fetch wfbpi.stateToId " +
+            " join fetch wfbpi.baseProcessId ")
     @Override
     List<WFBaseProcessItem> findAll(Sort sort);
 
