@@ -30,8 +30,8 @@
     <context:annotation-config />
 
     <!--<import resource="spring/spring_web_db_jdbc.xml"/>-->
-    <import resource="spring/spring_web_db_jpa_hibernate.xml"/>
-    <!--<import resource="spring/spring_web_db_data_jpa.xml"/>-->
+    <!--<import resource="spring/spring_web_db_jpa_hibernate.xml"/>-->
+    <import resource="spring/spring_web_db_data_jpa.xml"/>
     <!--<import resource="spring/spring_web_db_hibernate.xml"/>-->
 
     <import resource="spring/spring_web_app.xml"/>
