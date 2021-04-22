@@ -63,7 +63,9 @@ public class GlobalBindingInitializer {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
         binder.registerCustomEditor(LocalDate.class, localDateEditor);
         binder.registerCustomEditor(LocalDateTime.class, editor);
-        binder.registerCustomEditor(RoleType.class, new RoleTypePropertyEditor());
+
+        //jdbc
+/*        binder.registerCustomEditor(RoleType.class, new RoleTypePropertyEditor());
         binder.registerCustomEditor(User.class, new UserPropertyEditor());
         binder.registerCustomEditor(Role.class, new RolePropertyEditor());
         binder.registerCustomEditor(WFPackageStatus.class, new WFPackageStatusPropertyEditor());
@@ -74,6 +76,6 @@ public class GlobalBindingInitializer {
         binder.registerCustomEditor(WFProcessStatus.class,new WFProcessStatusPropertyEditor());
         binder.registerCustomEditor(WFBaseProcess.class,new WFBaseProcessPropertyEditor());
         binder.registerCustomEditor(WFProcess.class,new WFProcessPropertyEditor());
-        binder.registerCustomEditor(WFGroup.class,new WFGroupPropertyEditor());
+        binder.registerCustomEditor(WFGroup.class,new WFGroupPropertyEditor());*/
     }
 }
