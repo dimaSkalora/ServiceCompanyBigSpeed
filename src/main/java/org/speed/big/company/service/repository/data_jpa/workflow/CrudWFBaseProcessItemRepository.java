@@ -23,12 +23,16 @@ public interface CrudWFBaseProcessItemRepository extends JpaRepository<WFBasePro
     @Query("DELETE FROM WFBaseProcessItem wfbpi WHERE wfbpi.id=:id")
     int delete(@Param("id") int id);
 
+    @Query("SELECT wfbpi FROM WFBaseProcessItem wfbpi " +
+            " JOIN FETCH wfbpi.stateFromId JOIN FETCH wfbpi.stateToId " +
+            " JOIN FETCH wfbpi.baseProcessId " +
+            " WHERE wfbpi.id=:id")
     @Override
-    Optional<WFBaseProcessItem> findById(Integer id);
+    Optional<WFBaseProcessItem> findById(@Param("") Integer id);
 
-    @Query("select wfbpi from WFBaseProcessItem wfbpi " +
-            " join fetch wfbpi.stateFromId join fetch wfbpi.stateToId " +
-            " join fetch wfbpi.baseProcessId ")
+    @Query("SELECT wfbpi FROM WFBaseProcessItem wfbpi " +
+            " JOIN FETCH wfbpi.stateFromId JOIN FETCH wfbpi.stateToId " +
+            " JOIN FETCH wfbpi.baseProcessId ")
     @Override
     List<WFBaseProcessItem> findAll(Sort sort);
 
