@@ -22,8 +22,10 @@ public interface CrudWFProcessStateRepository extends JpaRepository<WFProcessSta
     @Query("DELETE FROM WFProcessState wfproState WHERE wfproState.id=:id")
     int delete(@Param("id") int id);
 
+    @Query("SELECT wfpstate FROM WFProcessState wfpstate " +
+            " JOIN FETCH wfpstate.roleId JOIN FETCH wfpstate.wfGroupId WHERE wfpstate.id=:id")
     @Override
-    Optional<WFProcessState> findById(Integer id);
+    Optional<WFProcessState> findById(@Param("id")Integer id);
 
     @Query("select wfpstate from WFProcessState wfpstate  " +
             " join fetch wfpstate.roleId join fetch wfpstate.wfGroupId ")

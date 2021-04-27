@@ -22,8 +22,10 @@ public interface CrudWFPackageRepository extends JpaRepository<WFPackage, Intege
     @Query("DELETE FROM WFPackage wfpack WHERE wfpack.id=:id")
     int delete(@Param("id") int id);
 
+    @Query("SELECT wfp FROM WFPackage wfp JOIN FETCH wfp.wfServiceId " +
+            " JOIN FETCH wfp.wfPackageStatusId WHERE wfp.id=:id ")
     @Override
-    Optional<WFPackage> findById(Integer id);
+    Optional<WFPackage> findById(@Param("id") Integer id);
 
     @Override
     List<WFPackage> findAll(Sort sort);

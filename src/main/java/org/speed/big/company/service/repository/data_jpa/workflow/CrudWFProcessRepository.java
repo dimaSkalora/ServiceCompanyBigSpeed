@@ -22,8 +22,11 @@ public interface CrudWFProcessRepository extends JpaRepository<WFProcess, Intege
     @Query("DELETE FROM WFProcess wfpro WHERE wfpro.id=:id")
     int delete(@Param("id") int id);
 
+    @Query("SELECT wfpro FROM WFProcess wfpro \n" +
+            " JOIN FETCH wfpro.wfPackageId JOIN FETCH wfpro.wfBaseProcessId \n" +
+            " JOIN FETCH wfpro.wfProcessStatusId WHERE wfpro.id=:id")
     @Override
-    Optional<WFProcess> findById(Integer id);
+    Optional<WFProcess> findById(@Param("id") Integer id);
 
     @Override
     List<WFProcess> findAll(Sort sort);
