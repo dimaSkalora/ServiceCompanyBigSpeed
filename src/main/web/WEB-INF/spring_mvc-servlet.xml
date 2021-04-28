@@ -31,15 +31,17 @@
 
     <!--<import resource="spring/spring_web_db_jdbc.xml"/>-->
     <!--<import resource="spring/spring_web_db_jpa_hibernate.xml"/>-->
-    <import resource="spring/spring_web_db_data_jpa.xml"/>
+    <!--<import resource="spring/spring_web_db_data_jpa.xml"/>-->
     <!--<import resource="spring/spring_web_db_hibernate.xml"/>-->
 
-    <import resource="spring/spring_web_app.xml"/>
+    <!--<import resource="spring/spring_web_app.xml"/>-->
 
     <!--сообщает spring, что он должен искать путь к классам для всех классов
     и просматривать каждый класс, чтобы увидеть, имеет ли он @Controller или @Repository, или @Service, или @Component-->
-    <context:component-scan base-package="org.speed.big.company.service.**.web"/>
-    <!-- <context:component-scan base-package="com.taxi.speedy.company.**.config"/>-->
+    <context:component-scan base-package="org.speed.big.company.service.web"/>
+    <context:component-scan base-package="org.speed.big.company.service.**.service"/>
+    <context:component-scan base-package="org.speed.big.company.service.config"/>
+
 
 
     <!--  all resources inside folder src/main/webapp/resources are mapped so they can be referred to inside JSP files -->
