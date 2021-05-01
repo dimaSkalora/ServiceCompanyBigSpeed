@@ -19,7 +19,7 @@ public class WFBaseProcessServiceImpl implements WFBaseProcessService {
     private WFBaseProcessRepository wfBaseProcessRepository;
 
     @Autowired
-    public WFBaseProcessServiceImpl(WFBaseProcessRepository wfBaseProcessRepository) {
+    public WFBaseProcessServiceImpl(@Qualifier("dataWFBaseProcessRepositoryImpl") WFBaseProcessRepository wfBaseProcessRepository) {
         this.wfBaseProcessRepository = wfBaseProcessRepository;
     }
 

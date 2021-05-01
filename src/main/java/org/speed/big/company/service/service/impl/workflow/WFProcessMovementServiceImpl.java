@@ -17,7 +17,7 @@ public class WFProcessMovementServiceImpl implements WFProcessMovementService {
 
     private WFProcessMovementRepository wfProcessMovementRepository;
 
-    public WFProcessMovementServiceImpl(WFProcessMovementRepository wfProcessMovementRepository) {
+    public WFProcessMovementServiceImpl(@Qualifier("dataWFProcessMovementRepositoryImpl") WFProcessMovementRepository wfProcessMovementRepository) {
         this.wfProcessMovementRepository = wfProcessMovementRepository;
     }
 

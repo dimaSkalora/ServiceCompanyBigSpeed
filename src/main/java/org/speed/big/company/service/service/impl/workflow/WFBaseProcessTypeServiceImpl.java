@@ -17,7 +17,7 @@ public class WFBaseProcessTypeServiceImpl implements WFBaseProcessTypeService {
 
     private WFBaseProcessTypeRepository wfBaseProcessTypeRepository;
 
-    public WFBaseProcessTypeServiceImpl(WFBaseProcessTypeRepository wfBaseProcessTypeRepository) {
+    public WFBaseProcessTypeServiceImpl(@Qualifier("dataWFBaseProcessTypeRepositoryImpl") WFBaseProcessTypeRepository wfBaseProcessTypeRepository) {
         this.wfBaseProcessTypeRepository = wfBaseProcessTypeRepository;
     }
 

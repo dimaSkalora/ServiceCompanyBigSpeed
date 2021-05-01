@@ -19,7 +19,7 @@ public class WFPackageServiceImpl implements WFPackageService {
     private WFPackageRepository wfPackageRepository;
 
     @Autowired
-    public WFPackageServiceImpl(WFPackageRepository wfPackageRepository) {
+    public WFPackageServiceImpl(@Qualifier("dataWFPackageRepositoryImpl") WFPackageRepository wfPackageRepository) {
         this.wfPackageRepository = wfPackageRepository;
     }
 

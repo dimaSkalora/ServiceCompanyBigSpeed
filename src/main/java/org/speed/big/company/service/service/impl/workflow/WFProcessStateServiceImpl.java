@@ -19,7 +19,7 @@ public class WFProcessStateServiceImpl  implements WFProcessStateService {
     private WFProcessStateRepository wfProcessStateRepository;
 
     @Autowired
-    public WFProcessStateServiceImpl(WFProcessStateRepository wfProcessStateRepository) {
+    public WFProcessStateServiceImpl(@Qualifier("dataWFProcessStateRepositoryImpl") WFProcessStateRepository wfProcessStateRepository) {
         this.wfProcessStateRepository = wfProcessStateRepository;
     }
 

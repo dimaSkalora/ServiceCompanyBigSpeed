@@ -5,6 +5,7 @@ import org.speed.big.company.service.repository.workflow.WFPackageStatusReposito
 import org.speed.big.company.service.service.workflow.WFPackageStatusService;
 import org.speed.big.company.service.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -18,7 +19,7 @@ public class WFPackageStatusServiceImpl implements WFPackageStatusService {
     private WFPackageStatusRepository wfPackageStatusRepository;
 
     @Autowired
-    public WFPackageStatusServiceImpl(WFPackageStatusRepository wfPackageStatusRepository) {
+    public WFPackageStatusServiceImpl(@Qualifier("dataWFPackageStatusRepositoryImpl") WFPackageStatusRepository wfPackageStatusRepository) {
         this.wfPackageStatusRepository = wfPackageStatusRepository;
     }
 

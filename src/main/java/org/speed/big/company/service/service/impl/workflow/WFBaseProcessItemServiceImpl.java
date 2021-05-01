@@ -18,7 +18,7 @@ public class WFBaseProcessItemServiceImpl implements WFBaseProcessItemService {
 
     private WFBaseProcessItemRepository wfBaseProcessItemRepository;
 
-    public WFBaseProcessItemServiceImpl(WFBaseProcessItemRepository wfBaseProcessItemRepository) {
+    public WFBaseProcessItemServiceImpl(@Qualifier("dataWFBaseProcessItemRepositoryImpl") WFBaseProcessItemRepository wfBaseProcessItemRepository) {
         this.wfBaseProcessItemRepository = wfBaseProcessItemRepository;
     }
 
