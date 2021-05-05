@@ -1,6 +1,5 @@
 package org.speed.big.company.service.config;
 
-import org.speed.big.company.service.config.DataSourceConfig;
 import org.springframework.context.annotation.*;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -31,7 +30,7 @@ public class JPAConfig {
         Map<String, Boolean> jpaPropertyMap = new HashMap<>();
         jpaPropertyMap.put("hibernate.format_sql", true);
         jpaPropertyMap.put("hibernate.use_sql_comments", true);
-        //ENABLE_LAZY_LOAD_NO_TRANS - решение проблемы(org.hibernate.LazyInitializationException: could not initialize proxy no Session)  но рекомендуеться
+        //ENABLE_LAZY_LOAD_NO_TRANS - решение проблемы(org.hibernate.LazyInitializationException: could not initialize proxy no Session)  но не рекомендуеться
         //jpaPropertyMap.put("hibernate.enable_lazy_load_no_trans", true);
 
         LocalContainerEntityManagerFactoryBean emf =
@@ -45,7 +44,10 @@ public class JPAConfig {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManagerJpa(EntityManagerFactory entityManagerFactoryJpa) {
-        return new JpaTransactionManager(entityManagerFactoryJpa);
+    public PlatformTransactionManager transactionManagerJpa() {
+        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
+        jpaTransactionManager.setEntityManagerFactory(entityManagerFactoryJpa().getObject());
+
+        return jpaTransactionManager;
     }
 }
