@@ -28,11 +28,15 @@ public class JacksonObjectMapper extends ObjectMapper {
         registerModule(new JavaTimeModule());
         configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 
-        //При отпражении исключаются null
+        //Все Типы, NONE
         setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
+        //Тип поля, модификаторов доступа(ANY) - от частного к общедоступному.
         setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
 
+        //Игнорировать null поля при сериализации
         setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        //Игнорировать пустые поля
+        setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
 
     }
 
