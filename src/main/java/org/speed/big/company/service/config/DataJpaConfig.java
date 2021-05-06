@@ -1,5 +1,6 @@
 package org.speed.big.company.service.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -20,6 +21,13 @@ public class DataJpaConfig {
 
     private final DataSourceConfig  dataSourceConfig;
 
+    @Value("${spring.jpa.showSql}")
+    private boolean showSql;
+    @Value("${hibernate.format_sql}")
+    private boolean formatSql;
+    @Value("${hibernate.use_sql_comments}")
+    private boolean useSqlComments;
+
     public DataJpaConfig(DataSourceConfig dataSourceConfig) {
         this.dataSourceConfig = dataSourceConfig;
     }
@@ -27,11 +35,11 @@ public class DataJpaConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
         HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
-        hibernateJpaVendorAdapter.setShowSql(true);
+        hibernateJpaVendorAdapter.setShowSql(showSql);
 
         Map<String, Boolean> jpaPropertyMap = new HashMap<>();
-        jpaPropertyMap.put("hibernate.format_sql", true);
-        jpaPropertyMap.put("hibernate.use_sql_comments", true);
+        jpaPropertyMap.put("hibernate.format_sql", formatSql);
+        jpaPropertyMap.put("hibernate.use_sql_comments", useSqlComments);
         //ENABLE_LAZY_LOAD_NO_TRANS - решение проблемы(org.hibernate.LazyInitializationException: could not initialize proxy no Session)  но не рекомендуеться
         //jpaPropertyMap.put("hibernate.enable_lazy_load_no_trans", true);
 
