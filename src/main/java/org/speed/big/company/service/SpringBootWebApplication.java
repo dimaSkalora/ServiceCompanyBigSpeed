@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 @SpringBootApplication
 public class SpringBootWebApplication /*extends SpringBootServletInitializer*/ {
-	//Закоментил так как использую встроенный веб - сервер
+	//Закоментил так как пока не надо разварачивать из WAR
 /*	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(SpringBootWebApplication.class);
