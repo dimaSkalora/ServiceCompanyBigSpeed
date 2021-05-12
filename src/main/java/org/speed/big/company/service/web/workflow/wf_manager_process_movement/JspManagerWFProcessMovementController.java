@@ -14,7 +14,7 @@ import static org.speed.big.company.service.util.ParseUtil.parseInteger;
 import static org.speed.big.company.service.util.ParseUtil.parseString;
 
 @Controller
-@RequestMapping("managerWFProcessMovements")
+@RequestMapping("workflow/managerWFProcessMovements")
 public class JspManagerWFProcessMovementController extends AbstractManagerWFProcessMovementController {
 
     /**
@@ -129,7 +129,7 @@ public class JspManagerWFProcessMovementController extends AbstractManagerWFProc
 
         super.wfProcessMovementTransferTasks(wfProcessMovementId,processStateToId,description);
 
-        return "redirect:/managerWFProcessMovements";
+        return "redirect:/workflow/managerWFProcessMovements";
     }
 
 }
