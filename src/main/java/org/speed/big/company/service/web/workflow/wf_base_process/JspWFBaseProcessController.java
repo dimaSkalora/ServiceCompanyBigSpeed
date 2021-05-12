@@ -21,7 +21,7 @@ import static org.speed.big.company.service.util.ParseUtil.parseInteger;
 import static org.speed.big.company.service.util.ParseUtil.parseString;
 
 @Controller
-@RequestMapping("wfBaseProcesses")
+@RequestMapping("workflow/wfBaseProcesses")
 public class JspWFBaseProcessController extends AbstractWFBaseProcessController{
     @RequestMapping
     public ModelAndView wfBaseProcesses(){
@@ -64,7 +64,7 @@ public class JspWFBaseProcessController extends AbstractWFBaseProcessController{
         wfBaseProcess.setWfBaseProcessTypeId(wfBaseProcessType);
         super.create(wfBaseProcess);
 
-        return "redirect:/wfBaseProcesses";
+        return "redirect:/workflow/wfBaseProcesses";
     }
 
     @PostMapping("/createHSR")
@@ -86,7 +86,7 @@ public class JspWFBaseProcessController extends AbstractWFBaseProcessController{
 
         super.create(wfBaseProcess);
 
-        return "redirect:/wfBaseProcesses";
+        return "redirect:/workflow/wfBaseProcesses";
     }
 
     @PostMapping("/createOrUpdate")
@@ -104,7 +104,7 @@ public class JspWFBaseProcessController extends AbstractWFBaseProcessController{
         else
             super.update(wfBaseProcess);
 
-        return "redirect:/wfBaseProcesses";
+        return "redirect:/workflow/wfBaseProcesses";
     }
 
     @GetMapping("/update/{id}")
@@ -129,7 +129,7 @@ public class JspWFBaseProcessController extends AbstractWFBaseProcessController{
         //delete?id=000
         super.delete(id);
 
-        return "redirect:/wfBaseProcesses";
+        return "redirect:/workflow/wfBaseProcesses";
     }
 
     @PostMapping("/filter")
