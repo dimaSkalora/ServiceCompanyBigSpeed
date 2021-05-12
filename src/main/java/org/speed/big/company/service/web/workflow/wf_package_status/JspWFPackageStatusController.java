@@ -14,7 +14,7 @@ import static org.speed.big.company.service.util.ParseUtil.parseInteger;
 import static org.speed.big.company.service.util.ParseUtil.parseString;
 
 @Controller
-@RequestMapping("wfPackageStatuses")
+@RequestMapping("workflow/wfPackageStatuses")
 public class JspWFPackageStatusController extends AbstractWFPackageStatusController{
 
     @RequestMapping(method = RequestMethod.GET)
@@ -45,7 +45,7 @@ public class JspWFPackageStatusController extends AbstractWFPackageStatusControl
 
         super.create(wfPackageStatus);
 
-        return "redirect:/wfPackageStatuses";
+        return "redirect:/workflow/wfPackageStatuses";
     }
 
     @PostMapping("/createHSR")
@@ -54,7 +54,7 @@ public class JspWFPackageStatusController extends AbstractWFPackageStatusControl
         wfPackageStatus.setName(httpServletRequest.getParameter("name"));
         super.create(wfPackageStatus);
 
-        return "redirect:/wfPackageStatuses";
+        return "redirect:/workflow/wfPackageStatuses";
     }
 
     @PostMapping("/createOrUpdate")
@@ -67,7 +67,7 @@ public class JspWFPackageStatusController extends AbstractWFPackageStatusControl
         else
             super.update(wfPackageStatus);
 
-        return "redirect:/wfPackageStatuses";
+        return "redirect:/workflow/wfPackageStatuses";
     }
 
     @GetMapping("/update/{id}")
@@ -82,7 +82,7 @@ public class JspWFPackageStatusController extends AbstractWFPackageStatusControl
         //delete?id=0000
         super.delete(id);
 
-        return "redirect:/wfPackageStatuses";
+        return "redirect:/workflow/wfPackageStatuses";
     }
 
     @GetMapping("/get/{id}")
