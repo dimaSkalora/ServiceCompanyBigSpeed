@@ -14,7 +14,7 @@ import static org.speed.big.company.service.util.ParseUtil.parseInteger;
 import static org.speed.big.company.service.util.ParseUtil.parseString;
 
 @Controller
-@RequestMapping("wfProcessStatuses")
+@RequestMapping("workflow/wfProcessStatuses")
 public class JspWFProcessStatusController extends AbstractWFProcessStatusController{
     @RequestMapping
     public String wfProcessStatuses(Model model){
@@ -44,7 +44,7 @@ public class JspWFProcessStatusController extends AbstractWFProcessStatusControl
 
         super.create(wfProcessStatus);
 
-        return "redirect:/wfProcessStatuses";
+        return "redirect:/workflow/wfProcessStatuses";
     }
 
     @PostMapping("/createHSR")
@@ -56,7 +56,7 @@ public class JspWFProcessStatusController extends AbstractWFProcessStatusControl
 
         super.create(wfProcessStatus);
 
-        return "redirect:/wfProcessStatuses";
+        return "redirect:/workflow/wfProcessStatuses";
     }
 
     @PostMapping("/createOrUpdate")
@@ -69,7 +69,7 @@ public class JspWFProcessStatusController extends AbstractWFProcessStatusControl
         else
             super.update(wfProcessStatus);
 
-        return "redirect:/wfProcessStatuses";
+        return "redirect:/workflow/wfProcessStatuses";
     }
 
     @GetMapping("/update/{id}")
@@ -92,7 +92,7 @@ public class JspWFProcessStatusController extends AbstractWFProcessStatusControl
     public String deleteWFPS(@RequestParam int id){
         //delete?id=00000
         super.delete(id);
-        return "redirect:/wfProcessStatuses";
+        return "redirect:/workflow/wfProcessStatuses";
     }
 
     @PostMapping("/filter")
