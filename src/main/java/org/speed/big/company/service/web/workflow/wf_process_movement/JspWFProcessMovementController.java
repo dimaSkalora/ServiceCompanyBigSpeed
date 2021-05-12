@@ -23,7 +23,7 @@ import static org.speed.big.company.service.util.DateTimeUtil.parseLocalDateTime
 import static org.speed.big.company.service.util.ParseUtil.*;
 
 @Controller
-@RequestMapping("wfProcessMovements")
+@RequestMapping("workflow/wfProcessMovements")
 public class JspWFProcessMovementController extends AbstractWFProcessMovementController{
     @RequestMapping
     public String wfProcessMovements(Model model){
@@ -88,7 +88,7 @@ public class JspWFProcessMovementController extends AbstractWFProcessMovementCon
 
         super.create(wfProcessMovement);
 
-        return "redirect:/wfProcessMovements";
+        return "redirect:/workflow/wfProcessMovements";
     }
 
     @PostMapping("/createHSR")
@@ -130,7 +130,7 @@ public class JspWFProcessMovementController extends AbstractWFProcessMovementCon
 
         super.create(wfProcessMovement);
 
-        return "redirect:/wfProcessMovements";
+        return "redirect:/workflow/wfProcessMovements";
     }
 
     @PostMapping("/createOrUpdate")
@@ -180,7 +180,7 @@ public class JspWFProcessMovementController extends AbstractWFProcessMovementCon
     public String deleteWFPM(@RequestParam int id){
         //delete?id=000
         super.delete(id);
-        return "redirect:/wfProcessMovements";
+        return "redirect:/workflow/wfProcessMovements";
     }
 
     @PostMapping("/filter")
