@@ -14,7 +14,7 @@ import static org.speed.big.company.service.util.ParseUtil.parseInteger;
 import static org.speed.big.company.service.util.ParseUtil.parseString;
 
 @Controller
-@RequestMapping("wfServices")
+@RequestMapping("workflow/wfServices")
 public class JspWFServiceController extends AbstractWFServiceController{
     @RequestMapping(method = RequestMethod.GET)
     public String wfServices(Model model){
@@ -43,7 +43,7 @@ public class JspWFServiceController extends AbstractWFServiceController{
         wfService.setName(name);
         super.create(wfService);
 
-        return "redirect:/wfServices";
+        return "redirect:/workflow/wfServices";
     }
 
     @PostMapping("/createHSR")
@@ -52,7 +52,7 @@ public class JspWFServiceController extends AbstractWFServiceController{
         wfService.setName(request.getParameter("name"));
         super.create(wfService);
 
-        return "redirect:/wfServices";
+        return "redirect:/workflow/wfServices";
     }
 
     @PostMapping("/createOrUpdate")
@@ -65,7 +65,7 @@ public class JspWFServiceController extends AbstractWFServiceController{
         else
             super.update(wfService);
 
-        return "redirect:/wfServices";
+        return "redirect:/workflow/wfServices";
     }
 
     @GetMapping("/update/{id}")
@@ -89,7 +89,7 @@ public class JspWFServiceController extends AbstractWFServiceController{
         //delete?id=0000
         super.delete(id);
 
-        return "redirect:/wfServices";
+        return "redirect:/workflow/wfServices";
     }
 
     @PostMapping("/filter")
