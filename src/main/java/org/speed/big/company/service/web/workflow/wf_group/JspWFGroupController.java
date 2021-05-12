@@ -14,7 +14,7 @@ import static org.speed.big.company.service.util.ParseUtil.parseInteger;
 import static org.speed.big.company.service.util.ParseUtil.parseString;
 
 @Controller
-@RequestMapping("wfGroups")
+@RequestMapping("/workflow/wfGroups")
 public class JspWFGroupController extends AbstractWFGroupController {
     @RequestMapping
     public String wfGroups(Model model){
@@ -45,7 +45,7 @@ public class JspWFGroupController extends AbstractWFGroupController {
             wfGroup.setDescription(description);
         super.create(wfGroup);
 
-        return "redirect:/wfGroups";
+        return "redirect:/workflow/wfGroups";
     }
 
     @PostMapping("/createHSR")
@@ -61,7 +61,7 @@ public class JspWFGroupController extends AbstractWFGroupController {
 
         super.create(wfGroup);
 
-        return "redirect:/wfGroups";
+        return "redirect:/workflow/wfGroups";
     }
 
     @PostMapping("/createOrUpdate")
@@ -74,7 +74,7 @@ public class JspWFGroupController extends AbstractWFGroupController {
         else
             super.update(wfGroup);
 
-        return "redirect:/wfGroups";
+        return "redirect:/workflow/wfGroups";
     }
 
     @GetMapping("/get/{id}")
@@ -96,7 +96,7 @@ public class JspWFGroupController extends AbstractWFGroupController {
     @GetMapping("/delete")
     public String deleteWFG(@RequestParam int id){
         super.delete(id);
-        return "redirect:/wfGroups";
+        return "redirect:/workflow/wfGroups";
     }
 
     @PostMapping("/filter")
