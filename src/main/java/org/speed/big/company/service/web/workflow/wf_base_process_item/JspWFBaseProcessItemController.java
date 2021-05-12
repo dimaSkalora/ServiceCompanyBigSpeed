@@ -18,7 +18,7 @@ import java.util.List;
 import static org.speed.big.company.service.util.ParseUtil.parseInteger;
 
 @Controller
-@RequestMapping("wfBaseProcessItems")
+@RequestMapping("workflow/wfBaseProcessItems")
 public class JspWFBaseProcessItemController extends AbstractWFBaseProcessItemController{
     @RequestMapping
     public String wfBaseProcessItems(Model model){
@@ -61,7 +61,7 @@ public class JspWFBaseProcessItemController extends AbstractWFBaseProcessItemCon
 
         super.create(wfBaseProcessItem);
 
-        return "redirect:/wfBaseProcessItems";
+        return "redirect:/workflow/wfBaseProcessItems";
     }
 
     @PostMapping("/createHSR")
@@ -84,7 +84,7 @@ public class JspWFBaseProcessItemController extends AbstractWFBaseProcessItemCon
 
         super.create(wfBaseProcessItem);
 
-        return "redirect:/wfBaseProcessItems";
+        return "redirect:/workflow/wfBaseProcessItems";
     }
 
     @PostMapping("/createOrUpdate")
@@ -94,7 +94,7 @@ public class JspWFBaseProcessItemController extends AbstractWFBaseProcessItemCon
         else
             super.update(wfBaseProcessItem);
 
-        return "redirect:/wfBaseProcessItems";
+        return "redirect:/workflow/wfBaseProcessItems";
     }
 
     @GetMapping("/get/{id}")
@@ -119,7 +119,7 @@ public class JspWFBaseProcessItemController extends AbstractWFBaseProcessItemCon
         //delete?id=000
         super.delete(id);
 
-        return "redirect:/wfBaseProcessItems";
+        return "redirect:/workflow/wfBaseProcessItems";
     }
 
     @PostMapping("/filter")
