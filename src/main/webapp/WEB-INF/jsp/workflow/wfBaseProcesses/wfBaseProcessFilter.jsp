@@ -15,7 +15,7 @@
 <div class="jumbotron">
     <div class="container">
 
-        <c:url var="createOrUpdateUrl" value="/wfBaseProcesses/filter" />
+        <c:url var="createOrUpdateUrl" value="/workflow/wfBaseProcesses/filter" />
         <form method="post" action="${createOrUpdateUrl}" >
             <table border="0" cellpadding="8" cellspacing="0">
                 <tr>
@@ -35,7 +35,7 @@
                     <td><input type="number" name="wfBaseProcessTypeId" value="${param.wfBaseProcessTypeId}"></td>
                 </tr>
                 <div class="text-right">
-                    <a class="btn btn-outline-primary" role="button" href="wfBaseProcesses">
+                    <a class="btn btn-outline-primary" role="button" href="workflow/wfBaseProcesses">
                         <spring:message code="app.workflow.wfBaseProcesses"/>
                     </a>
                     <button class="btn btn-primary" type="submit"> <spring:message code="app.search"/>

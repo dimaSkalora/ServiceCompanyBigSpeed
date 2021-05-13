@@ -14,7 +14,7 @@
 <jsp:include page="../../fragments/bodyHeader.jsp"/>
 <div class="jumbotron">
     <div class="container">
-        <c:url var="createOrUpdateUrl" value="/wfBaseProcesses/createOrUpdate" />
+        <c:url var="createOrUpdateUrl" value="/workflow/wfBaseProcesses/createOrUpdate" />
         <form:form method="POST" modelAttribute="wfBaseProcess" action="${createOrUpdateUrl}">
             <fieldset>
                 <table>
@@ -88,9 +88,9 @@
 
             <footer>
                 <c:set var="jsf_request_uri" value="${requestScope.get(\"javax.servlet.forward.request_uri\")}"/>
-                <c:set var="jsf_request_uriStr" value="/ServiceCompanyBigSpeed/wfBaseProcesses/get"/>
+                <c:set var="jsf_request_uriStr" value="/ServiceCompanyBigSpeed/workflow/wfBaseProcesses/get"/>
                 <c:if test="${jsf_request_uri.startsWith(jsf_request_uriStr)}">
-                    <a href="/ServiceCompanyBigSpeed/wfBaseProcesses"><spring:message code="app.ok"/></a>
+                    <a href="/ServiceCompanyBigSpeed/workflow/wfBaseProcesses"><spring:message code="app.ok"/></a>
                 </c:if>
                 <c:if test="${!jsf_request_uri.startsWith(jsf_request_uriStr)}">
                     <c:if test="${!empty wfBaseProcess.id}">
