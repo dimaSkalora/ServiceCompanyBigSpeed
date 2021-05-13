@@ -14,18 +14,18 @@
                     <a class="dropdown-item" href="roleTypes"><spring:message code="app.roleTypes"/></a>
                     <a class="dropdown-item" href="roles"><spring:message code="app.roles"/></a>
                     <a class="dropdown-item" href="userRoles"><spring:message code="app.userRoles"/></a>
-                    <a class="dropdown-item" href="wfPackageStatuses"><spring:message code="app.workflow.wfPackageStatuses"/></a>
-                    <a class="dropdown-item" href="wfServices"><spring:message code="app.workflow.wfServices"/></a>
-                    <a class="dropdown-item" href="wfPackages"><spring:message code="app.workflow.wfPackages"/></a>
-                    <a class="dropdown-item" href="wfBaseProcessTypes"><spring:message code="app.workflow.wfBaseProcessTypes"/></a>
-                    <a class="dropdown-item" href="wfBaseProcesses"><spring:message code="app.workflow.wfBaseProcesses"/></a>
-                    <a class="dropdown-item" href="wfProcessStatuses"><spring:message code="app.workflow.wfProcessStatuses"/></a>
-                    <a class="dropdown-item" href="wfProcesses"><spring:message code="app.workflow.wfProcesses"/></a>
-                    <a class="dropdown-item" href="wfGroups"><spring:message code="app.workflow.wfGroups"/></a>
-                    <a class="dropdown-item" href="wfProcessStates"><spring:message code="app.workflow.wfProcessStates"/></a>
-                    <a class="dropdown-item" href="wfBaseProcessItems"><spring:message code="app.workflow.wfBaseProcessItems"/></a>
-                    <a class="dropdown-item" href="wfProcessMovements"><spring:message code="app.workflow.wfProcessMovements"/></a>
-                    <a class="dropdown-item" href="managerWFProcessMovements"><spring:message code="app.workflow.managerWFProcessMovements"/></a>
+                    <a class="dropdown-item" href="workflow/wfPackageStatuses"><spring:message code="app.workflow.wfPackageStatuses"/></a>
+                    <a class="dropdown-item" href="workflow/wfServices"><spring:message code="app.workflow.wfServices"/></a>
+                    <a class="dropdown-item" href="workflow/wfPackages"><spring:message code="app.workflow.wfPackages"/></a>
+                    <a class="dropdown-item" href="workflow/wfBaseProcessTypes"><spring:message code="app.workflow.wfBaseProcessTypes"/></a>
+                    <a class="dropdown-item" href="workflow/wfBaseProcesses"><spring:message code="app.workflow.wfBaseProcesses"/></a>
+                    <a class="dropdown-item" href="workflow/wfProcessStatuses"><spring:message code="app.workflow.wfProcessStatuses"/></a>
+                    <a class="dropdown-item" href="workflow/wfProcesses"><spring:message code="app.workflow.wfProcesses"/></a>
+                    <a class="dropdown-item" href="workflow/wfGroups"><spring:message code="app.workflow.wfGroups"/></a>
+                    <a class="dropdown-item" href="workflow/wfProcessStates"><spring:message code="app.workflow.wfProcessStates"/></a>
+                    <a class="dropdown-item" href="workflow/wfBaseProcessItems"><spring:message code="app.workflow.wfBaseProcessItems"/></a>
+                    <a class="dropdown-item" href="workflow/wfProcessMovements"><spring:message code="app.workflow.wfProcessMovements"/></a>
+                    <a class="dropdown-item" href="workflow/managerWFProcessMovements"><spring:message code="app.workflow.managerWFProcessMovements"/></a>
                  </div>
             </li>
             <a class="navbar-brand" href="restView"><spring:message code="app.rest"/></a>

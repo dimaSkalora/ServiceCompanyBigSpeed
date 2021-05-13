@@ -11,18 +11,18 @@
 <div class="jumbotron">
     <div class="container">
         <ul>
-            <li><a href="wfPackageStatuses"><spring:message code="app.workflow.wfPackageStatuses"/></a></li>
-            <li><a href="wfServices"><spring:message code="app.workflow.wfServices"/></a></li>
-            <li><a href="wfPackages"><spring:message code="app.workflow.wfPackages"/></a></li>
-            <li><a href="wfBaseProcessTypes"><spring:message code="app.workflow.wfBaseProcessTypes"/></a></li>
-            <li><a href="wfBaseProcesses"><spring:message code="app.workflow.wfBaseProcesses"/></a></li>
-            <li><a href="wfProcessStatuses"><spring:message code="app.workflow.wfProcessStatuses"/></a></li>
-            <li><a href="wfProcesses"><spring:message code="app.workflow.wfProcesses"/></a></li>
-            <li><a href="wfGroups"><spring:message code="app.workflow.wfGroups"/></a></li>
-            <li><a href="wfProcessStates"><spring:message code="app.workflow.wfProcessStates"/></a></li>
-            <li><a href="wfBaseProcessItems"><spring:message code="app.workflow.wfBaseProcessItems"/></a></li>
-            <li><a href="wfProcessMovements"><spring:message code="app.workflow.wfProcessMovements"/></a></li>
-            <li><a href="managerWFProcessMovements"><spring:message code="app.workflow.managerWFProcessMovements"/></a></li>
+            <li><a href="workflow/wfPackageStatuses"><spring:message code="app.workflow.wfPackageStatuses"/></a></li>
+            <li><a href="workflow/wfServices"><spring:message code="app.workflow.wfServices"/></a></li>
+            <li><a href="workflow/wfPackages"><spring:message code="app.workflow.wfPackages"/></a></li>
+            <li><a href="workflow/wfBaseProcessTypes"><spring:message code="app.workflow.wfBaseProcessTypes"/></a></li>
+            <li><a href="workflow/wfBaseProcesses"><spring:message code="app.workflow.wfBaseProcesses"/></a></li>
+            <li><a href="workflow/wfProcessStatuses"><spring:message code="app.workflow.wfProcessStatuses"/></a></li>
+            <li><a href="workflow/wfProcesses"><spring:message code="app.workflow.wfProcesses"/></a></li>
+            <li><a href="workflow/wfGroups"><spring:message code="app.workflow.wfGroups"/></a></li>
+            <li><a href="workflow/wfProcessStates"><spring:message code="app.workflow.wfProcessStates"/></a></li>
+            <li><a href="workflow/wfBaseProcessItems"><spring:message code="app.workflow.wfBaseProcessItems"/></a></li>
+            <li><a href="workflow/wfProcessMovements"><spring:message code="app.workflow.wfProcessMovements"/></a></li>
+            <li><a href="workflow/managerWFProcessMovements"><spring:message code="app.workflow.managerWFProcessMovements"/></a></li>
         </ul>
     </div>
 </div>
