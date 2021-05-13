@@ -13,7 +13,7 @@
 <jsp:include page="../../fragments/bodyHeader.jsp"/>
 <div class="jumbotron">
     <div class="container">
-        <c:url var="mwfProcessMovementsUrl" value="/managerWFProcessMovements/transferOnState" />
+        <c:url var="mwfProcessMovementsUrl" value="/workflow/managerWFProcessMovements/transferOnState" />
         <form method="POST" action="${mwfProcessMovementsUrl}">
             <fieldset>
                 <table border="0" cellpadding="8" cellspacing="0">
