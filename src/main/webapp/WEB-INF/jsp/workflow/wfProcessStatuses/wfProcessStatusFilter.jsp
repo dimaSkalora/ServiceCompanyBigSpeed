@@ -15,7 +15,7 @@
 <div class="jumbotron">
     <div class="container">
 
-        <c:url var="createOrUpdateUrl" value="/wfProcessStatuses/filter" />
+        <c:url var="createOrUpdateUrl" value="workflow//wfProcessStatuses/filter" />
         <form method="post" action="${createOrUpdateUrl}" >
             <table border="0" cellpadding="8" cellspacing="0">
                 <tr>
@@ -26,7 +26,7 @@
                 </tr>
 
                 <div class="text-right">
-                    <a class="btn btn-outline-primary" role="button" href="wfProcessStatuses">
+                    <a class="btn btn-outline-primary" role="button" href="workflow/wfProcessStatuses">
                         <spring:message code="app.workflow.wfProcessStatuses"/>
                     </a>
                     <button class="btn btn-primary" type="submit"> <spring:message code="app.search"/>
