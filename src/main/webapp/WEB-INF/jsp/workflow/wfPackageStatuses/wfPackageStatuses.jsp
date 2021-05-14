@@ -14,10 +14,10 @@
 <div class="jumbotron">
     <div class="container">
         <ul>
-            <li><a class="btn btn-primary" role="button" href="wfPackageStatuses/wfPackageStatus">add WorkFlow Package Status</a></li>
+            <li><a class="btn btn-primary" role="button" href="workflow/wfPackageStatuses/wfPackageStatus">add WorkFlow Package Status</a></li>
         </ul>
         <ul>
-            <li><a href="wfPackageStatuses/wfPackageStatusFilter" class="btnSearchBy" role="button">Search by WorkFlow Package Status</a> </li>
+            <li><a href="workflow/wfPackageStatuses/wfPackageStatusFilter" class="btnSearchBy" role="button">Search by WorkFlow Package Status</a> </li>
         </ul>
     </div>
     <div>
@@ -33,10 +33,10 @@
             <c:forEach items="${wfPackageStatuses}" var="wfPackageStatus">
                 <jsp:useBean id="wfPackageStatus" scope="page" type="org.speed.big.company.service.model.workflow.WFPackageStatus"/>
                 <tr>
-                    <td><a href="wfPackageStatuses/get/${wfPackageStatus.id}"/><c:out value="${wfPackageStatus.id}"/></td>
+                    <td><a href="workflow/wfPackageStatuses/get/${wfPackageStatus.id}"/><c:out value="${wfPackageStatus.id}"/></td>
                     <td><c:out value="${wfPackageStatus.name}"/></td>
-                    <td><a href="wfPackageStatuses/update/${wfPackageStatus.id}"/><spring:message code="app.update"/></td>
-                    <td><a href="wfPackageStatuses/delete?id=${wfPackageStatus.id}"/><spring:message code="app.delete"/></td>
+                    <td><a href="workflow/wfPackageStatuses/update/${wfPackageStatus.id}"/><spring:message code="app.update"/></td>
+                    <td><a href="workflow/wfPackageStatuses/delete?id=${wfPackageStatus.id}"/><spring:message code="app.delete"/></td>
                 </tr>
             </c:forEach>
         </table>
