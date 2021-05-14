@@ -161,7 +161,7 @@
                     </fieldset>
 
                     <footer>
-                        <a href="/ServiceCompanyBigSpeed/wfProcessMovements" class="btnLogin"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/workflow/wfProcessMovements" class="btnLogin"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>
@@ -239,7 +239,7 @@
                     </fieldset>
 
                     <footer>
-                        <a href="/ServiceCompanyBigSpeed/wfProcessMovements" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/workflow/wfProcessMovements" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>
@@ -396,7 +396,7 @@
                     </fieldset>
 
                     <footer>
-                        <a href="/ServiceCompanyBigSpeed/wfProcessMovements" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/workflow/wfProcessMovements" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>
@@ -427,7 +427,7 @@
                     </fieldset>
 
                     <footer>
-                        <a href="/ServiceCompanyBigSpeed/wfProcessMovements" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/workflow/wfProcessMovements" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>
@@ -522,7 +522,7 @@
                     </fieldset>
 
                     <footer>
-                        <a href="/ServiceCompanyBigSpeed/wfProcessMovements" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/workflow/wfProcessMovements" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>
@@ -581,7 +581,7 @@
                     </fieldset>
 
                     <footer>
-                        <a href="/ServiceCompanyBigSpeed/wfProcessMovements" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/workflow/wfProcessMovements" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>

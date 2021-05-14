@@ -14,10 +14,10 @@
 <div class="jumbotron">
     <div class="container">
         <ul>
-            <li><a class="btn btn-primary" role="button" href="wfProcessMovements/wfProcessMovement">add WFProcessMovement</a></li>
+            <li><a class="btn btn-primary" role="button" href="workflow/wfProcessMovements/wfProcessMovement">add WFProcessMovement</a></li>
         </ul>
         <ul>
-            <li><a href="wfProcessMovements/newFilter" class="btnSearchBy">Search by WFProcessMovement</a> </li>
+            <li><a href="workflow/wfProcessMovements/newFilter" class="btnSearchBy">Search by WFProcessMovement</a> </li>
         </ul>
     </div>
     <div>
@@ -44,7 +44,7 @@
             <c:forEach items="${wfProcessMovements}" var="wfProcessMovement">
                 <jsp:useBean id="wfProcessMovement" scope="page" type="org.speed.big.company.service.model.workflow.WFProcessMovement"/>
                 <tr>
-                    <td><a href="wfProcessMovements/getData/${wfProcessMovement.id}"/><c:out value="${wfProcessMovement.id}"/></td>
+                    <td><a href="workflow/wfProcessMovements/getData/${wfProcessMovement.id}"/><c:out value="${wfProcessMovement.id}"/></td>
                     <td><c:out value="${wfProcessMovement.startDateTime}"/></td>
                     <td><c:out value="${wfProcessMovement.finalDateTime}"/></td>
                     <td><c:out value="${wfProcessMovement.completed}"/></td>
@@ -57,8 +57,8 @@
                     <td><c:out value="${wfProcessMovement.wfProcessId.id}"/></td>
                     <td><c:out value="${wfProcessMovement.wfBaseProcessId.id}"/></td>
                     <td><c:out value="${wfProcessMovement.last}"/></td>
-                    <td><a href="wfProcessMovements/update/${wfProcessMovement.id}"/><spring:message code="app.update"/></td>
-                    <td><a href="wfProcessMovements/delete?id=${wfProcessMovement.id}"/><spring:message code="app.delete"/></td>
+                    <td><a href="workflow/wfProcessMovements/update/${wfProcessMovement.id}"/><spring:message code="app.update"/></td>
+                    <td><a href="workflow/wfProcessMovements/delete?id=${wfProcessMovement.id}"/><spring:message code="app.delete"/></td>
                 </tr>
             </c:forEach>
         </table>
