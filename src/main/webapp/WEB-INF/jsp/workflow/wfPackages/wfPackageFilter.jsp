@@ -15,7 +15,7 @@
 <div class="jumbotron">
     <div class="container">
 
-        <c:url var="createOrUpdateUrl" value="/wfPackages/filter" />
+        <c:url var="createOrUpdateUrl" value="/workflow/wfPackages/filter" />
         <form method="post" action="${createOrUpdateUrl}" >
             <table border="0" cellpadding="8" cellspacing="0">
                 <tr>
@@ -67,7 +67,7 @@
                     <td><input type="number" name="wfPackageStatusId" value="${param.wfPackageStatusId}"></td>
                 </tr>
                 <div class="text-right">
-                    <a class="btn btn-outline-primary" role="button" href="wfPackages">
+                    <a class="btn btn-outline-primary" role="button" href="workflow/wfPackages">
                         <spring:message code="app.workflow.wfPackages"/>
                     </a>
                     <button class="btn btn-primary" type="submit"> <spring:message code="app.search"/>

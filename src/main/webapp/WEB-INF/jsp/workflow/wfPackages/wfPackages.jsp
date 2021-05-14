@@ -14,10 +14,10 @@
 <div class="jumbotron">
     <div class="container">
         <ul>
-            <li><a class="btn btn-primary" role="button" href="wfPackages/wfPackage">add WFPackage</a></li>
+            <li><a class="btn btn-primary" role="button" href="workflow/wfPackages/wfPackage">add WFPackage</a></li>
         </ul>
         <ul>
-            <li><a href="wfPackages/wfPackageFilter" class="btnSearchBy">Search by WFPackage</a> </li>
+            <li><a href="workflow/wfPackages/wfPackageFilter" class="btnSearchBy">Search by WFPackage</a> </li>
         </ul>
     </div>
     <div>
@@ -47,7 +47,7 @@
             <c:forEach items="${wfPackages}" var="wfPackage">
                 <jsp:useBean id="wfPackage" scope="page" type="org.speed.big.company.service.model.workflow.WFPackage"/>
                 <tr>
-                    <td><a href="wfPackages/getData/${wfPackage.id}"/><c:out value="${wfPackage.id}"/></td>
+                    <td><a href="workflow/wfPackages/getData/${wfPackage.id}"/><c:out value="${wfPackage.id}"/></td>
                     <td><c:out value="${wfPackage.name}"/></td>
                     <td><c:out value="${wfPackage.dateRegistration}"/></td>
                     <td><c:out value="${wfPackage.customerName}"/></td>
@@ -63,8 +63,8 @@
                     <td><c:out value="${wfPackage.dateEdit}"/></td>
                     <td><c:out value="${wfPackage.wfServiceId.id}"/></td>
                     <td><c:out value="${wfPackage.wfPackageStatusId.id}"/></td>
-                    <td><a href="wfPackages/update/${wfPackage.id}"/><spring:message code="app.update"/></td>
-                    <td><a href="wfPackages/delete?id=${wfPackage.id}"/><spring:message code="app.delete"/></td>
+                    <td><a href="workflow/wfPackages/update/${wfPackage.id}"/><spring:message code="app.update"/></td>
+                    <td><a href="workflow/wfPackages/delete?id=${wfPackage.id}"/><spring:message code="app.delete"/></td>
                 </tr>
             </c:forEach>
         </table>

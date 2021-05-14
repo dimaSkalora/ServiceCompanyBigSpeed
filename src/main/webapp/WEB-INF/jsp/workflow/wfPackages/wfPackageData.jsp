@@ -178,7 +178,7 @@
                     </fieldset>
 
                     <footer>
-                        <a href="/ServiceCompanyBigSpeed/wfPackages" class="btnLogin"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/workflow/wfPackages" class="btnLogin"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>
@@ -209,7 +209,7 @@
                     </fieldset>
 
                     <footer>
-                        <a href="/ServiceCompanyBigSpeed/wfPackages" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/workflow/wfPackages" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>
@@ -240,7 +240,7 @@
                     </fieldset>
 
                     <footer>
-                        <a href="/ServiceCompanyBigSpeed/wfPackages" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/workflow/wfPackages" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>
