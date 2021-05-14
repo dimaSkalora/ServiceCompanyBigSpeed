@@ -14,10 +14,10 @@
 <div class="jumbotron">
     <div class="container">
         <ul>
-            <li><a class="btn btn-primary" role="button" href="wfProcesses/wfProcess">add WFProcess</a></li>
+            <li><a class="btn btn-primary" role="button" href="workflow/wfProcesses/wfProcess">add WFProcess</a></li>
         </ul>
         <ul>
-            <li><a href="wfProcesses/newFilter" class="btnSearchBy">Search by WFProcess</a> </li>
+            <li><a href="workflow/wfProcesses/newFilter" class="btnSearchBy">Search by WFProcess</a> </li>
         </ul>
     </div>
     <div>
@@ -40,7 +40,7 @@
             <c:forEach items="${wfProcesses}" var="wfProcess">
                 <jsp:useBean id="wfProcess" scope="page" type="org.speed.big.company.service.model.workflow.WFProcess"/>
                 <tr>
-                    <td><a href="wfProcesses/getData/${wfProcess.id}"/><c:out value="${wfProcess.id}"/></td>
+                    <td><a href="workflow/wfProcesses/getData/${wfProcess.id}"/><c:out value="${wfProcess.id}"/></td>
                     <td><c:out value="${wfProcess.startDate}"/></td>
                     <td><c:out value="${wfProcess.finalDate}"/></td>
                     <td><c:out value="${wfProcess.description}"/></td>
@@ -49,8 +49,8 @@
                     <td><c:out value="${wfProcess.wfPackageId.id}"/></td>
                     <td><c:out value="${wfProcess.wfBaseProcessId.id}"/></td>
                     <td><c:out value="${wfProcess.wfProcessStatusId.id}"/></td>
-                    <td><a href="wfProcesses/update/${wfProcess.id}"/><spring:message code="app.update"/></td>
-                    <td><a href="wfProcesses/delete?id=${wfProcess.id}"/><spring:message code="app.delete"/></td>
+                    <td><a href="workflow/wfProcesses/update/${wfProcess.id}"/><spring:message code="app.update"/></td>
+                    <td><a href="workflow/wfProcesses/delete?id=${wfProcess.id}"/><spring:message code="app.delete"/></td>
                 </tr>
             </c:forEach>
         </table>
