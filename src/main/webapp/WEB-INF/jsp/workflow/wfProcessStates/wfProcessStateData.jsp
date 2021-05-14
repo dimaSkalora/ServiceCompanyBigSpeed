@@ -80,7 +80,7 @@
                     </fieldset>
 
                     <footer>
-                        <a href="/ServiceCompanyBigSpeed/wfProcessStates" class="btnLogin"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/workflow/wfProcessStates" class="btnLogin"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>
@@ -130,7 +130,7 @@
                     </fieldset>
 
                     <footer>
-                        <a href="/ServiceCompanyBigSpeed/wfProcessStates" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/workflow/wfProcessStates" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>
@@ -171,7 +171,7 @@
                     </fieldset>
 
                     <footer>
-                        <a href="/ServiceCompanyBigSpeed/wfProcessStates" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
+                        <a href="/ServiceCompanyBigSpeed/workflow/wfProcessStates" class="btn btn-primary" role="button"><spring:message code="app.ok"/></a>
                     </footer>
                 </form:form>
             </div>

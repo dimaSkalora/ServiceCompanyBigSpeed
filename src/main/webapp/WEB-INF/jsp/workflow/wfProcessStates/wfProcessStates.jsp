@@ -14,10 +14,10 @@
 <div class="jumbotron">
     <div class="container">
         <ul>
-            <li><a class="btn btn-primary" role="button" href="wfProcessStates/wfProcessState">add WFProcessState</a></li>
+            <li><a class="btn btn-primary" role="button" href="workflow/wfProcessStates/wfProcessState">add WFProcessState</a></li>
         </ul>
         <ul>
-            <li><a href="wfProcessStates/newFilter" class="btnSearchBy">Search by WFProcessState</a> </li>
+            <li><a href="workflow/wfProcessStates/newFilter" class="btnSearchBy">Search by WFProcessState</a> </li>
         </ul>
     </div>
     <div>
@@ -36,13 +36,13 @@
             <c:forEach items="${wfProcessStates}" var="wfProcessState">
                 <jsp:useBean id="wfProcessState" scope="page" type="org.speed.big.company.service.model.workflow.WFProcessState"/>
                 <tr>
-                    <td><a href="wfProcessStates/getData/${wfProcessState.id}"/><c:out value="${wfProcessState.id}"/></td>
+                    <td><a href="workflow/wfProcessStates/getData/${wfProcessState.id}"/><c:out value="${wfProcessState.id}"/></td>
                     <td><c:out value="${wfProcessState.name}"/></td>
                     <td><c:out value="${wfProcessState.roleId.id} ${wfProcessState.roleId.name}"/></td>
                     <td><c:out value="${wfProcessState.wfGroupId.id} ${wfProcessState.wfGroupId.name}"/></td>
                     <td><c:out value="${wfProcessState.description}"/></td>
-                    <td><a href="wfProcessStates/update/${wfProcessState.id}"/><spring:message code="app.update"/></td>
-                    <td><a href="wfProcessStates/delete?id=${wfProcessState.id}"/><spring:message code="app.delete"/></td>
+                    <td><a href="workflow/wfProcessStates/update/${wfProcessState.id}"/><spring:message code="app.update"/></td>
+                    <td><a href="workflow/wfProcessStates/delete?id=${wfProcessState.id}"/><spring:message code="app.delete"/></td>
                 </tr>
             </c:forEach>
         </table>
