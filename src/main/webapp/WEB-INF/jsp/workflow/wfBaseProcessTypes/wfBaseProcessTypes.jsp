@@ -14,10 +14,10 @@
 <div class="jumbotron">
     <div class="container">
         <ul>
-            <li><a class="btn btn-primary" role="button" href="wfBaseProcessTypes/wfBaseProcessType">add WorkFlow Base Process Type</a></li>
+            <li><a class="btn btn-primary" role="button" href="workflow/wfBaseProcessTypes/wfBaseProcessType">add WorkFlow Base Process Type</a></li>
         </ul>
         <ul>
-            <li><a href="wfBaseProcessTypes/newFilter" class="btnSearchBy" role="button">Search by WorkFlow Base Process Type</a> </li>
+            <li><a href="workflow/wfBaseProcessTypes/newFilter" class="btnSearchBy" role="button">Search by WorkFlow Base Process Type</a> </li>
         </ul>
     </div>
     <div>
@@ -33,10 +33,10 @@
             <c:forEach items="${wfBaseProcessTypes}" var="wfBaseProcessType">
                 <jsp:useBean id="wfBaseProcessType" scope="page" type="org.speed.big.company.service.model.workflow.WFBaseProcessType"/>
                 <tr>
-                    <td><a href="wfBaseProcessTypes/get/${wfBaseProcessType.id}"/><c:out value="${wfBaseProcessType.id}"/></td>
+                    <td><a href="workflow/wfBaseProcessTypes/get/${wfBaseProcessType.id}"/><c:out value="${wfBaseProcessType.id}"/></td>
                     <td><c:out value="${wfBaseProcessType.name}"/></td>
-                    <td><a href="wfBaseProcessTypes/update/${wfBaseProcessType.id}"/><spring:message code="app.update"/></td>
-                    <td><a href="wfBaseProcessTypes/delete?id=${wfBaseProcessType.id}"/><spring:message code="app.delete"/></td>
+                    <td><a href="workflow/wfBaseProcessTypes/update/${wfBaseProcessType.id}"/><spring:message code="app.update"/></td>
+                    <td><a href="workflow/wfBaseProcessTypes/delete?id=${wfBaseProcessType.id}"/><spring:message code="app.delete"/></td>
                 </tr>
             </c:forEach>
         </table>
