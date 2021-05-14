@@ -14,10 +14,10 @@
 <div class="jumbotron">
     <div class="container">
         <ul>
-            <li><a class="btn btn-primary" role="button" href="wfGroups/wfGroup">add WorkFlow Group</a></li>
+            <li><a class="btn btn-primary" role="button" href="workflow/wfGroups/wfGroup">add WorkFlow Group</a></li>
         </ul>
         <ul>
-            <li><a href="wfGroups/newFilter" class="btnSearchBy" role="button">Search by WorkFlow Group</a> </li>
+            <li><a href="workflow/wfGroups/newFilter" class="btnSearchBy" role="button">Search by WorkFlow Group</a> </li>
         </ul>
     </div>
     <div>
@@ -34,11 +34,11 @@
             <c:forEach items="${wfGroups}" var="wfGroup">
                 <jsp:useBean id="wfGroup" scope="page" type="org.speed.big.company.service.model.workflow.WFGroup"/>
                 <tr>
-                    <td><a href="wfGroups/get/${wfGroup.id}"/><c:out value="${wfGroup.id}"/></td>
+                    <td><a href="workflow/wfGroups/get/${wfGroup.id}"/><c:out value="${wfGroup.id}"/></td>
                     <td><c:out value="${wfGroup.name}"/></td>
                     <td><c:out value="${wfGroup.description}"/></td>
-                    <td><a href="wfGroups/update/${wfGroup.id}"/><spring:message code="app.update"/></td>
-                    <td><a href="wfGroups/delete?id=${wfGroup.id}"/><spring:message code="app.delete"/></td>
+                    <td><a href="workflow/wfGroups/update/${wfGroup.id}"/><spring:message code="app.update"/></td>
+                    <td><a href="wworkflow/fGroups/delete?id=${wfGroup.id}"/><spring:message code="app.delete"/></td>
                 </tr>
             </c:forEach>
         </table>
