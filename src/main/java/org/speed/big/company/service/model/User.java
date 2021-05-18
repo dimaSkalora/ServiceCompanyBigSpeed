@@ -15,7 +15,8 @@ import java.util.List;
         @NamedQuery(name = User.GET_FROM_ALL_ROLES, query = "SELECT DISTINCT u FROM User u join fetch u.roleList where u.id=:id "),
         @NamedQuery(name = User.BETWEEN_REGISTERED, query = "SELECT u FROM User u " +
                 " where u.registered between :startDate and :endDate " +
-                " ORDER BY u.registered")
+                " ORDER BY u.registered"),
+        @NamedQuery(name = User.GET_BY_EMAIL, query = "SELECT u FROM User u WHERE u.email=:email")
 })
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx"),
@@ -28,6 +29,7 @@ public class User extends AbstractBaseEntity{
     public static final String ALL_SORTED = "User.getAllSorted";
     public static final String BETWEEN_REGISTERED = "User.betweenRegistered";
     public static final String GET_FROM_ALL_ROLES = "User.getFromAllRoles";
+    public static final String GET_BY_EMAIL = "User.getByEmail";
 
     @NotBlank
     @Size(min = 3, max = 100)
