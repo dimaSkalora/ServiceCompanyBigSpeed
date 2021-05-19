@@ -53,9 +53,9 @@ public class RestUserRoleController extends AbstractUserRoleController{
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@Valid @RequestBody UserRole userRole){
-        super.update(userRole);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void update(@Valid @RequestBody UserRole userRole, @PathVariable("id") int id){
+        super.update(userRole, id);
     }
 
     @DeleteMapping("/{id}")

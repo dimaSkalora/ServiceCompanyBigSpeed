@@ -106,7 +106,7 @@ public class JspUserRoleController extends AbstractUserRoleController{
         if (userRole.isNew())
             super.create(userRole);
         else
-            super.update(userRole);
+            super.update(userRole, userRole.getId());
 
         return "redirect:/userRoles";
     }

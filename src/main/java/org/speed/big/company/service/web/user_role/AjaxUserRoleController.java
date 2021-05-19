@@ -29,7 +29,7 @@ public class AjaxUserRoleController extends AbstractUserRoleController{
         if (userRole.isNew())
             super.create(userRole);
         else
-            super.update(userRole);
+            super.update(userRole, userRole.getId());
 
         return new ResponseEntity<>( HttpStatus.OK);
     }
