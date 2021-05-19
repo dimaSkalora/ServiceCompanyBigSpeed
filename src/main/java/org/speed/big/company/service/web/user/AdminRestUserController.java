@@ -80,9 +80,9 @@ public class AdminRestUserController extends AbstractUserController{
     }
 
     //consumes - Какой формат получаем(от клиента)
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public User update(@Valid @RequestBody User user) {
-        return super.update(user);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public User update(@Valid @RequestBody User user, @PathVariable("id") int id) {
+        return super.update(user, id);
     }
 
     @DeleteMapping(value = "/{id}")

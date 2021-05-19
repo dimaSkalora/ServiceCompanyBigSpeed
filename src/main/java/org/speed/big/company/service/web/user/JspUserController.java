@@ -82,7 +82,7 @@ public class JspUserController extends AbstractUserController{
             user.setEnabled(true);
             super.create(user);
         }else
-            super.update(user);
+            super.update(user, user.getId());
 
         return "redirect:/users";
     }

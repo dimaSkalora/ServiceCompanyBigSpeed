@@ -9,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.speed.big.company.service.util.ValidationUtil.checkNew;
-import static org.speed.big.company.service.util.ValidationUtil.checkNotNew;
+import static org.speed.big.company.service.util.ValidationUtil.*;
 
 public abstract class AbstractUserController {
     private Logger log = LoggerFactory.getLogger(getClass());
@@ -24,9 +23,9 @@ public abstract class AbstractUserController {
         return userService.create(user);
     }
 
-    public User update(User user) {
-        checkNotNew(user);
-        log.info("update {}",user);
+    public User update(User user, int id) {
+        assureIdConsistent(user, id);
+        log.info("update {} with id={}", user, id);
         return userService.update(user);
     }
 
