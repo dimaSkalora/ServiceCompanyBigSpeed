@@ -65,7 +65,7 @@ public class JspRoleTypeController extends AbstractRoleTypeController{
         if (roleType.isNew())
             super.create(roleType);
         else
-            super.update(roleType);
+            super.update(roleType, roleType.getId());
 
         return "redirect:/roleTypes";
     }

@@ -57,9 +57,9 @@ public class RestRoleTypeController extends AbstractRoleTypeController {
     }
 
     //consumes - Какой формат получаем(от клиента)
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RoleType> updateRT(@Valid @RequestBody RoleType roleType){
-        RoleType updateRoleType = super.update(roleType);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<RoleType> updateRT(@Valid @RequestBody RoleType roleType, @PathVariable("id") int id){
+        RoleType updateRoleType = super.update(roleType,id);
 
         return updateRoleType != null
                 ? new ResponseEntity(updateRoleType,HttpStatus.OK)

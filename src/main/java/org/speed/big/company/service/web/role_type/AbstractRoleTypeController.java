@@ -9,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static org.speed.big.company.service.util.ValidationUtil.checkNew;
-import static org.speed.big.company.service.util.ValidationUtil.checkNotNew;
+import static org.speed.big.company.service.util.ValidationUtil.*;
 
 public abstract class AbstractRoleTypeController {
     private Logger log = LoggerFactory.getLogger(getClass());
@@ -24,8 +23,8 @@ public abstract class AbstractRoleTypeController {
         return roleTypeService.create(roleType);
     }
 
-    public RoleType update(RoleType roleType){
-        checkNotNew(roleType);
+    public RoleType update(RoleType roleType, int id){
+        assureIdConsistent(roleType, id);
         log.info("update {}",roleType);
         return roleTypeService.update(roleType);
     }
