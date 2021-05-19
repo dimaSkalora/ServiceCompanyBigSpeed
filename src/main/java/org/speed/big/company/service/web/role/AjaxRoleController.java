@@ -33,7 +33,7 @@ public class AjaxRoleController extends AbstractRoleController {
         if (role.isNew())
             super.create(role);
         else
-            super.update(role);
+            super.update(role, role.getId());
 
         return new ResponseEntity<>( HttpStatus.CREATED);
     }

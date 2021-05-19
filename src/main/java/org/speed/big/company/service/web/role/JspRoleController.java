@@ -80,7 +80,7 @@ public class JspRoleController extends AbstractRoleController{
         if (role.isNew())
             super.create(role);
         else
-            super.update(role);
+            super.update(role, role.getId());
 
         return "redirect:/roles";
     }

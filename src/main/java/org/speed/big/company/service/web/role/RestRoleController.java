@@ -62,9 +62,9 @@ public class RestRoleController extends AbstractRoleController {
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Role> updateRole(@Valid @RequestBody Role role) {
-        Role updateRole = super.update(role);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Role> updateRole(@Valid @RequestBody Role role, @PathVariable("id") int id) {
+        Role updateRole = super.update(role, id);
 
         return updateRole != null
                 ? new ResponseEntity<>(updateRole, HttpStatus.OK)
