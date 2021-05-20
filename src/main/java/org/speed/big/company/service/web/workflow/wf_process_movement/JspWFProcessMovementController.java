@@ -149,7 +149,7 @@ public class JspWFProcessMovementController extends AbstractWFProcessMovementCon
         if (wfProcessMovement.isNew())
             super.create(wfProcessMovement);
         else
-            super.update(wfProcessMovement);
+            super.update(wfProcessMovement, wfProcessMovement.getId());
 
         return "redirect:/wfProcessMovements";
     }

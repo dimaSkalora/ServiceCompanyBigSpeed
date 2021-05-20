@@ -14,8 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static org.speed.big.company.service.util.ValidationUtil.checkNew;
-import static org.speed.big.company.service.util.ValidationUtil.checkNotNew;
+import static org.speed.big.company.service.util.ValidationUtil.*;
 
 public abstract class AbstractWFProcessController {
     private Logger log = LoggerFactory.getLogger(getClass());
@@ -35,8 +34,8 @@ public abstract class AbstractWFProcessController {
         return wfProcessService.create(wfProcess);
     }
 
-    public WFProcess update(WFProcess wfProcess){
-        checkNotNew(wfProcess);
+    public WFProcess update(WFProcess wfProcess, int id){
+        assureIdConsistent(wfProcess, id);
         log.info("update {}",wfProcess);
         return wfProcessService.update(wfProcess);
     }

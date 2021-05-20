@@ -28,7 +28,7 @@ public class AjaxWFGroupController extends AbstractWFGroupController{
         if (wfGroup.isNew())
             super.create(wfGroup);
         else
-            super.update(wfGroup);
+            super.update(wfGroup, wfGroup.getId());
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

@@ -47,9 +47,9 @@ public class RestWFBaseProcessTypeController extends AbstractWFBaseProcessTypeCo
         return ResponseEntity.created(uriOfResources).body(created);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WFBaseProcessType> updateWFBPT(@Valid @RequestBody WFBaseProcessType wfBaseProcessType){
-        WFBaseProcessType updated = super.update(wfBaseProcessType);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<WFBaseProcessType> updateWFBPT(@Valid @RequestBody WFBaseProcessType wfBaseProcessType, @PathVariable("id") int id){
+        WFBaseProcessType updated = super.update(wfBaseProcessType, id);
 
         return updated != null
                 ? new ResponseEntity<>(updated, HttpStatus.OK)

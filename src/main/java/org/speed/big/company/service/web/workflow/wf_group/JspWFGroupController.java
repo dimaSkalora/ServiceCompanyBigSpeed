@@ -72,7 +72,7 @@ public class JspWFGroupController extends AbstractWFGroupController {
         if (wfGroup.isNew())
             super.create(wfGroup);
         else
-            super.update(wfGroup);
+            super.update(wfGroup, wfGroup.getId());
 
         return "redirect:/workflow/wfGroups";
     }

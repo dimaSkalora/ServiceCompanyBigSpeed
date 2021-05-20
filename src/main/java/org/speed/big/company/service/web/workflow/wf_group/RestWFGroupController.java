@@ -52,9 +52,9 @@ public class RestWFGroupController extends AbstractWFGroupController{
         return ResponseEntity.created(uriOfResources).body(created);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WFGroup> updateWFG(@Valid @RequestBody WFGroup wfGroup){
-        WFGroup updated = super.update(wfGroup);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<WFGroup> updateWFG(@Valid @RequestBody WFGroup wfGroup, @PathVariable("id") int id){
+        WFGroup updated = super.update(wfGroup, id);
 
         return wfGroup != null
                 ? new ResponseEntity<>(wfGroup,HttpStatus.OK)

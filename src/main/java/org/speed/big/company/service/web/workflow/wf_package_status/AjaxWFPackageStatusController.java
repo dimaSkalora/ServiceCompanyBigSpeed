@@ -28,7 +28,7 @@ public class AjaxWFPackageStatusController extends AbstractWFPackageStatusContro
         if (wfPackageStatus.isNew())
             super.create(wfPackageStatus);
         else
-            super.update(wfPackageStatus);
+            super.update(wfPackageStatus, wfPackageStatus.getId());
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

@@ -92,7 +92,7 @@ public class JspWFBaseProcessItemController extends AbstractWFBaseProcessItemCon
         if (wfBaseProcessItem.isNew())
             super.create(wfBaseProcessItem);
         else
-            super.update(wfBaseProcessItem);
+            super.update(wfBaseProcessItem, wfBaseProcessItem.getId());
 
         return "redirect:/workflow/wfBaseProcessItems";
     }

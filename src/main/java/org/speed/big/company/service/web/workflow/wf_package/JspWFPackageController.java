@@ -141,7 +141,7 @@ public class JspWFPackageController extends AbstractWFPackageController{
         if (wfPackage.isNew())
             super.create(wfPackage);
         else
-            super.update(wfPackage);
+            super.update(wfPackage, wfPackage.getId());
         return "redirect:/workflow/wfPackages";
     }
 

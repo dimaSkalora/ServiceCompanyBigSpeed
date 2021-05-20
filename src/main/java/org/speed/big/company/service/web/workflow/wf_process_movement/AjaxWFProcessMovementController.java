@@ -28,7 +28,7 @@ public class AjaxWFProcessMovementController  extends AbstractWFProcessMovementC
         if (wfProcessMovement.isNew())
             super.create(wfProcessMovement);
         else
-            super.update(wfProcessMovement);
+            super.update(wfProcessMovement, wfProcessMovement.getId());
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

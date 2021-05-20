@@ -28,7 +28,7 @@ public class AjaxWFBaseProcessItemController extends AbstractWFBaseProcessItemCo
         if (wfBaseProcessItem.isNew())
             super.create(wfBaseProcessItem);
         else
-            super.update(wfBaseProcessItem);
+            super.update(wfBaseProcessItem, wfBaseProcessItem.getId());
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

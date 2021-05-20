@@ -102,7 +102,7 @@ public class JspWFBaseProcessController extends AbstractWFBaseProcessController{
         if (wfBaseProcess.isNew())
             super.create(wfBaseProcess);
         else
-            super.update(wfBaseProcess);
+            super.update(wfBaseProcess, wfBaseProcess.getId());
 
         return "redirect:/workflow/wfBaseProcesses";
     }

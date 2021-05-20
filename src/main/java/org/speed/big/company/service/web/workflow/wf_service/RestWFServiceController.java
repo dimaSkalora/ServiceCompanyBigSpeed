@@ -47,9 +47,9 @@ public class RestWFServiceController extends AbstractWFServiceController{
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WFService> updateWFS(@Valid@RequestBody WFService wfService){
-        WFService update = super.update(wfService);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<WFService> updateWFS(@Valid@RequestBody WFService wfService, @PathVariable("id") int id){
+        WFService update = super.update(wfService, id);
 
         return update != null
                 ? new ResponseEntity<>(update, HttpStatus.OK)

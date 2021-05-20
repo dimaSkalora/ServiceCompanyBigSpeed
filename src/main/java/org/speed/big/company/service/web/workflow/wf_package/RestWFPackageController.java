@@ -47,9 +47,9 @@ public class RestWFPackageController extends AbstractWFPackageController{
         return ResponseEntity.created(uriOfResources).body(created);
     }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WFPackage> updateWFP(@Valid @RequestBody WFPackage wfPackage){
-        WFPackage update = super.update(wfPackage);
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<WFPackage> updateWFP(@Valid @RequestBody WFPackage wfPackage, @PathVariable("id") int id){
+        WFPackage update = super.update(wfPackage, id);
 
         return update != null
                 ? new ResponseEntity<>(update, HttpStatus.OK)

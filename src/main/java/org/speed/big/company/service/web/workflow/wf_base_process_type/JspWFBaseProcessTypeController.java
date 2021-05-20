@@ -65,7 +65,7 @@ public class JspWFBaseProcessTypeController extends AbstractWFBaseProcessTypeCon
         if (wfBaseProcessType.isNew())
             super.create(wfBaseProcessType);
         else
-            super.update(wfBaseProcessType);
+            super.update(wfBaseProcessType, wfBaseProcessType.getId());
 
         return "redirect:/workflow/wfBaseProcessTypes";
     }

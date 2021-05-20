@@ -67,7 +67,7 @@ public class JspWFProcessStatusController extends AbstractWFProcessStatusControl
         if (wfProcessStatus.isNew())
             super.create(wfProcessStatus);
         else
-            super.update(wfProcessStatus);
+            super.update(wfProcessStatus, wfProcessStatus.getId());
 
         return "redirect:/workflow/wfProcessStatuses";
     }

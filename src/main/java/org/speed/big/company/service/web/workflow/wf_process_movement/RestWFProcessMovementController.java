@@ -52,9 +52,9 @@ public class RestWFProcessMovementController extends AbstractWFProcessMovementCo
         return ResponseEntity.created(uriOfResources).body(created);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WFProcessMovement> updateWFPM(@Valid@RequestBody WFProcessMovement wfProcessMovement){
-        WFProcessMovement updated = super.update(wfProcessMovement);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<WFProcessMovement> updateWFPM(@Valid@RequestBody WFProcessMovement wfProcessMovement, @PathVariable("id") int id){
+        WFProcessMovement updated = super.update(wfProcessMovement, id);
 
         return updated != null
                 ? new ResponseEntity<>(updated,HttpStatus.OK)

@@ -51,9 +51,9 @@ public class RestWFBaseProcessItemController extends AbstractWFBaseProcessItemCo
         return ResponseEntity.created(uriOfResources).body(created);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WFBaseProcessItem> updateWFBPI(@RequestBody WFBaseProcessItem wfBaseProcessItem){
-        WFBaseProcessItem updated = super.update(wfBaseProcessItem);
+    @PutMapping(value = "/{id]", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<WFBaseProcessItem> updateWFBPI(@RequestBody WFBaseProcessItem wfBaseProcessItem, @PathVariable("id") int id){
+        WFBaseProcessItem updated = super.update(wfBaseProcessItem, id);
 
         return updated != null
                 ? new ResponseEntity<>(updated,HttpStatus.OK)

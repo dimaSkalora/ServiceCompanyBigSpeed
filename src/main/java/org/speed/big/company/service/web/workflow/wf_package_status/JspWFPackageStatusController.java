@@ -65,7 +65,7 @@ public class JspWFPackageStatusController extends AbstractWFPackageStatusControl
         if (wfPackageStatus.isNew())
             super.create(wfPackageStatus);
         else
-            super.update(wfPackageStatus);
+            super.update(wfPackageStatus, wfPackageStatus.getId());
 
         return "redirect:/workflow/wfPackageStatuses";
     }

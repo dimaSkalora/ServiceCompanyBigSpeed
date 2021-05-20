@@ -47,9 +47,9 @@ public class RestWFPackageStatusController extends AbstractWFPackageStatusContro
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WFPackageStatus> updateWFPS(@Valid @RequestBody WFPackageStatus wfPackageStatus){
-        WFPackageStatus updateWFPS = super.update(wfPackageStatus);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<WFPackageStatus> updateWFPS(@Valid @RequestBody WFPackageStatus wfPackageStatus, @PathVariable("id") int id){
+        WFPackageStatus updateWFPS = super.update(wfPackageStatus, id);
 
         return updateWFPS != null
                 ? new ResponseEntity<>(updateWFPS, HttpStatus.OK)

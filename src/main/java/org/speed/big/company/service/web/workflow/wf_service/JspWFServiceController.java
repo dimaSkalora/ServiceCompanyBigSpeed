@@ -63,7 +63,7 @@ public class JspWFServiceController extends AbstractWFServiceController{
         if (wfService.isNew())
             super.create(wfService);
         else
-            super.update(wfService);
+            super.update(wfService, wfService.getId());
 
         return "redirect:/workflow/wfServices";
     }

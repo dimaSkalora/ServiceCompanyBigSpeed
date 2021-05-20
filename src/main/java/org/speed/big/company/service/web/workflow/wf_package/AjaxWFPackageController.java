@@ -28,7 +28,7 @@ public class AjaxWFPackageController extends AbstractWFPackageController{
         if (wfPackage.isNew())
             super.create(wfPackage);
         else
-            super.update(wfPackage);
+            super.update(wfPackage, wfPackage.getId());
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

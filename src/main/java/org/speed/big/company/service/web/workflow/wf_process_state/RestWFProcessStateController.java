@@ -52,9 +52,9 @@ public class RestWFProcessStateController extends AbstractWFProcessStateControll
         return ResponseEntity.created(uriOfResources).body(created);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WFProcessState> updateWFPS(@Valid@RequestBody WFProcessState wfProcessState){
-        WFProcessState updated = super.update(wfProcessState);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<WFProcessState> updateWFPS(@Valid@RequestBody WFProcessState wfProcessState, @PathVariable("id") int id){
+        WFProcessState updated = super.update(wfProcessState, id);
 
         return updated != null
                 ? new ResponseEntity<>(updated,HttpStatus.OK)

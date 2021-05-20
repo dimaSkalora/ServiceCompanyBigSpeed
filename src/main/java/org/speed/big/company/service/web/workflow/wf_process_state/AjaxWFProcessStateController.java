@@ -28,7 +28,7 @@ public class AjaxWFProcessStateController  extends AbstractWFProcessStateControl
         if (wfProcessState.isNew())
             super.create(wfProcessState);
         else
-            super.update(wfProcessState);
+            super.update(wfProcessState, wfProcessState.getId());
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
