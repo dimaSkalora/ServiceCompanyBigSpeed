@@ -9,6 +9,7 @@ public interface UserRepository {
     User save(User user);
     User get(int id);
     User getFromAllRoles(int id);
+    User getByEmail(String email);
     boolean delete(int id);
     List<User> getAll();
     List<User> getBetweenRegistered(LocalDate startDate, LocalDate endDate);

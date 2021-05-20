@@ -199,4 +199,15 @@ public class JdbcUserRepositoryImpl implements UserRepository {
     public User getFromAllRoles(int id) {
         return null;
     }
+
+    @Override
+    public User getByEmail(String email) {
+        String sqlGet = sqlQuery + " where u.email=:email";
+        //Этот класс предназначен для передачи в простой Map значений параметров методам NamedParameterJdbcTemplate класса.
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource()
+                .addValue("email",email);
+        List<User> list = namedParameterJdbcTemplate.query(sqlGet,parameterSource, new UserRowMapper());
+
+        return DataAccessUtils.singleResult(list);//Возвращает один объект результата из данной коллекции.
+    }
 }

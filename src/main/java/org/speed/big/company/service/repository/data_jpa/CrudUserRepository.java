@@ -37,4 +37,6 @@ public interface CrudUserRepository extends JpaRepository<User, Integer> {
             " ORDER BY u.registered")
     List<User> getBetweenRegistered(@Param("startDate") LocalDate startDate,
                                     @Param("endDate") LocalDate endDate);
+
+    User findByEmail(String email);
 }

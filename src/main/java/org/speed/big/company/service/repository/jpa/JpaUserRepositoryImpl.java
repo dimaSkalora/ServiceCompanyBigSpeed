@@ -59,6 +59,17 @@ public class JpaUserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public User getByEmail(String email) {
+        List<User> list = em.createNamedQuery(User.GET_BY_EMAIL)
+                .setParameter("email",email)
+                .getResultList();
+
+        User user = DataAccessUtils.singleResult(list);
+
+        return user;
+    }
+
+    @Override
     @Transactional
     public boolean delete(int id) {
 

@@ -38,6 +38,11 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public User getByEmail(String email) {
+        return crudUserRepository.findByEmail(email);
+    }
+
+    @Override
     public boolean delete(int id) {
         return crudUserRepository.delete(id) != 0;
     }
