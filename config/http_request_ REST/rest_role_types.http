@@ -14,7 +14,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8080/ServiceCompanyBigSpeed/rest/roleTypes
+PUT http://localhost:8080/ServiceCompanyBigSpeed/rest/roleTypes/100258
 Content-Type: application/json
 
 {

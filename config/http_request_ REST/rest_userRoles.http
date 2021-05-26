@@ -6,7 +6,7 @@ GET http://localhost:8080/ServiceCompanyBigSpeed/rest/userRoles/100247
 Accept: application/json
 
 ###
-POST http://localhost:8080/ServiceCompanyBigSpeed/rest/roles
+POST http://localhost:8080/ServiceCompanyBigSpeed/rest/userRoles
 Content-Type: application/json
 
 {
@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8080/ServiceCompanyBigSpeed/rest/roles
+PUT http://localhost:8080/ServiceCompanyBigSpeed/rest/userRoles
 Content-Type: application/json
 
 {
@@ -35,15 +35,15 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8080/ServiceCompanyBigSpeed/rest/roles/100259
+DELETE http://localhost:8080/ServiceCompanyBigSpeed/rest/userRoles/100259
 Accept: application/json
 
 ###
-POST http://localhost:8080/ServiceCompanyBigSpeed/rest/roles/filter
+POST http://localhost:8080/ServiceCompanyBigSpeed/rest/userRoles/filter
 Content-Type: application/json
 
 {
-  "name": "test update"
+  "comment": "test update"
 }
 
 
