@@ -6,6 +6,7 @@ import org.speed.big.company.service.service.UserService;
 import org.speed.big.company.service.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -22,6 +23,9 @@ public class UserServiceImpl  implements UserService {
     private UserRepository userRepository;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     public UserServiceImpl(@Qualifier("dataJpaUserRepositoryImpl") UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -29,6 +33,7 @@ public class UserServiceImpl  implements UserService {
     @Override
     public User create(User user) {
         Assert.notNull(user,"не должно быть null");
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
