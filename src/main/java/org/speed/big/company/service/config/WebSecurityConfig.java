@@ -1,5 +1,6 @@
 package org.speed.big.company.service.config;
 
+import org.speed.big.company.service.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -23,12 +27,7 @@ public class WebSecurityConfig {
 
     @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user1").password(passwordEncoder().encode("user1")).roles("USER","WORKFLOW")
-                .and()
-                .withUser("user2").password(passwordEncoder().encode("user2")).roles("USER")
-                .and()
-                .withUser("admin").password(passwordEncoder().encode("admin")).roles("ADMIN");
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Configuration
@@ -59,6 +58,8 @@ public class WebSecurityConfig {
             http
                     .csrf().disable()
                     .authorizeRequests()
+                    //.antMatchers("/login").anonymous()
+                    //.antMatchers("/register").anonymous()
                     .antMatchers("/**/admin/**").hasRole("ADMIN")
                     .antMatchers("/**/update/*").hasAnyRole("UPDATE","ADMIN")
                     .antMatchers("/**/delete").hasAnyRole("DELETE","ADMIN")
