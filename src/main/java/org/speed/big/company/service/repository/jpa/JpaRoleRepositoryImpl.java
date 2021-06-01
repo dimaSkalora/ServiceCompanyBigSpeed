@@ -13,7 +13,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository("jpaRoleRepositoryImpl")
-@Transactional(readOnly = true)
+@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class JpaRoleRepositoryImpl implements RoleRepository {
 
     @PersistenceContext
