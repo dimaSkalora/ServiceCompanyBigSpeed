@@ -38,5 +38,6 @@ public interface CrudUserRepository extends JpaRepository<User, Integer> {
     List<User> getBetweenRegistered(@Param("startDate") LocalDate startDate,
                                     @Param("endDate") LocalDate endDate);
 
-    User findByEmail(String email);
+    @Query("SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roleList WHERE u.email=:email")
+    User findByEmail(@Param("email") String email);
 }
