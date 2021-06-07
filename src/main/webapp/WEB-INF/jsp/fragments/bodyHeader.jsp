@@ -3,7 +3,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href=""><spring:message code="app.home"/></a>
+    <a class="navbar-brand" href="home"><spring:message code="app.home"/></a>
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
@@ -32,8 +32,9 @@
             <a class="navbar-brand" href="workflow"><spring:message code="app.workflow"/></a>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+            <a class="glyphicon glyphicon-log-out" href="logout">==>LOGOUT<==</a>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${pageContext.response.locale}<b
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> (__${pageContext.response.locale}__)<b
                         class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="${requestScope['javax.servlet.forward.request_uri']}?lang=en">English</a></li>
